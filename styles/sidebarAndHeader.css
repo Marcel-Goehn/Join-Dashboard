@@ -1,0 +1,20 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 200px;
+    padding-right: 50px;
+    max-width: 1440px;
+    height: 96px;
+}
+
+#headerIconDiv{
+    display: flex;
+    gap: 10px;
+}
+
+#shorthandNameDiv{
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+
