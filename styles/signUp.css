@@ -1,0 +1,171 @@
+body{
+    margin: 0;
+    background-color: #D1D1D1;
+    position: relative;
+    height: 100vh;
+}
+a{
+    text-decoration: none;
+    margin: 0;
+}
+#formContent{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 32px;
+    width: 598px;
+    height: 630px;
+    border-radius: 30px;
+}
+
+#formContent h2{
+    margin: 0;
+    position: relative;
+    font-family: "inter", sans-serif;
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: 0%;
+    color: #000000;
+    
+}
+#formContent h2::after{
+    content: "";
+    position: absolute;
+    background-color: #29ABE2;
+    left:50%;
+    transform: translate(-50%);
+    top: calc(100% + 10px);
+    height: 3px;
+    width: 70%;
+   
+
+}
+#signUpForm{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.signUpInput {
+    border: none;
+    width: 422px;
+    height: 48px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    padding:0px 21px;
+
+}
+
+#signUpBtn{
+    width: 126px;
+    height: 55px;
+    border-radius: 8px;
+    padding: 14px 24px;
+    background-color: #2A3647;
+    border: none;
+    color: #FFFFFF;
+    font-family: "inter", sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: 0%;
+}
+
+#signUpBtn:hover{
+    cursor: pointer;
+}
+
+.signUpCheckboxDiv{
+    font-family: "inter";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    color: #A8A8A8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.signUpCheckboxDiv a{
+    color:#29ABE2;
+}
+
+.signUpCheckboxDiv input{
+    border-color: #2A3647;
+    width: 16px;
+    height: 16px;
+}
+
+#signUpPrivacyAndLegalDiv{
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+#signUpPrivacyAndLegalDiv a{
+    padding: 8px;
+    color: #A8A8A8;
+    font-family: "inter", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0%;
+}
+
+#signUpLogo{
+    width: 100px;
+    height: 122px;
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+}
+
+.signUpInputDiv{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signUpInputIcon{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translate(-50%, -50%);
+}
+
+#personIcon{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(-50%, -50%);
+}
+
+#emailIcon{
+    width: 20px;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translate(-50%, -50%);
+}
+
+.signUpLock:hover{
+    cursor: pointer;
+}

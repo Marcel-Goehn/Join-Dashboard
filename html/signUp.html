@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../styles/signUp.css">
+</head>
+<body>
+    <img id ="signUpLogo" src="../assets/img/Capa 2.png">
+    <div id="formContent">
+        <h2>Sign up</h2>
+        <form id="signUpForm">
+           <div class="signUpInputDiv"><input id="signUpName" class="signUpInput" required placeholder="Name"><img id="personIcon" class="signUpInputIcon"src="../assets/img/signUp/person.png" alt="Person Icon"></div>
+           <div class="signUpInputDiv"><input id="signUpEmail" class="signUpInput" required placeholder="Email"><img id="emailIcon" class="signUpInputIcon"src="../assets/img/signUp/mail.png" alt="Mail Icon"></div>
+           <div class="signUpInputDiv"><input id="signUpPassword" class="signUpInput" required placeholder="Password"><img id="lockIcon" class="signUpInputIcon signUpLock"src="../assets/img/signUp/lock.png" alt="Lock Icon"></div>
+           <div class="signUpInputDiv"><input id="signUpConfirmPw" class="signUpInput" required placeholder="Confirm Password"><img id="lockIcon2" class="signUpInputIcon signUpLock"src="../assets/img/signUp/lock.png" alt="Lock Icon"></div>
+        </form>
+        <div class="signUpCheckboxDiv">
+            <input type="checkbox" id="privacyCheckbox" required>
+            <span>I accept the 
+                <a href="#Privacy policy">Privacy policy</a>
+            </span>
+        </div>
+        <button id="signUpBtn" type="submit">Sign up</button>
+    </div>
+    <div id="signUpPrivacyAndLegalDiv">
+        <a class="signUpPrivacyAndLegalLink" href="#privacy">Privacy Policy</a>
+        <a class="signUpPrivacyAndLegalLink" href="#legal">Legal notice</a>
+    </div>
+</body>
+</html>
