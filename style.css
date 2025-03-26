@@ -1,0 +1,45 @@
+@font-face {
+    font-family: Inter;
+    src: url(/font/Inter/Inter-Italic-VariableFont_opsz\,wght.ttf);
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.evenly {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+#log_in {
+    width: 652px;
+    height: 449px;
+    border-radius: 30px;
+    gap: 32px;
+    padding-top: 48px;
+    padding-right: 115px;
+    padding-bottom: 48px;
+    padding-left: 115px;
+    background-color: rgb(255, 255, 255);
+
+}
+body {
+    background-color: rgb(246, 247, 249);
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 61px;
+
+}
+.separator {
+    border-color: #3da6cd;
+    border-width: 1px;
+    border-style: solid;
+    width: 150px;
+}
+
+#log_in input {
+    color: #D1D1D1;
+    font-family: Inter;
+}
