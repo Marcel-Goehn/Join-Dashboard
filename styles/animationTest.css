@@ -1,0 +1,54 @@
+body{
+    background-color: black;
+    margin: 0;
+    height: 100vh;
+}
+
+#animateBtn{
+    position: absolute;
+    bottom: 20px;
+    right: 50%;
+    opacity: 0;
+}
+
+#logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2);
+}
+
+@keyframes moveLogo{
+    0%{
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(2);
+    }
+
+    100%{
+        top: 20px;
+        left: 20px;
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+
+.animate{
+
+    animation: moveLogo 0.75s ease-in 0.25s forwards;
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+
+.fadeIn{
+    animation: fadeIn 0.75s ease-in-out 0.25s forwards;
+}
+
