@@ -12,7 +12,9 @@
     <img id="logo" src="../assets/img/login/logo.svg" alt="">
     <div id="signup_div">
         <span>Not a Join User?</span>
-        <button id="signin">Sign up</button>
+        <a href="./signUp.html">
+            <button id="signin">Sign up</button>
+        </a>
     </div>
     <div class="column">
         <div class="column" id="content">
@@ -21,30 +23,31 @@
                 <div class="separator"></div>
             </div>
             <div class="input_div column">
-                <div class="singleinput_div centered">
-                    <div class="space-between">
-                        <input type="email" value="Email">
-                        <img src="../assets/img/login/mail.svg" alt="">
+                <form id="login_data" class="column" action="./summary.html">
+                    <div class="singleinput_div centered">
+                        <div class="space-between">
+                            <input id="email" name="email" type="email" placeholder="Email" required>
+                            <img src="../assets/img/login/mail.svg" alt="">
+                        </div>
                     </div>
-                </div>
-                <div class="singleinput_div centered">
-                    <div class="space-between">
-                        <input type="password" value="Password">
-                        <img src="../assets/img/login/lock.svg" alt="">
+                    <div class="singleinput_div centered">
+                        <div class="space-between">
+                            <input id="password" name="password" type="password" placeholder="Password" required>
+                            <img src="../assets/img/login/lock.svg" alt="">
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
-            <div class="space-between button_div">
-                <button class="centered" id="registered_login">Log in</button>
-                <button class="centered" id="guest_login">Guest Log in</button>
+                <div class="space-between button_div">
+                    <button class="centered" id="registered_login" onclick="validate()">Log in</button>
+                    <button class="centered" id="guest_login" onclick="loginAsGuest()">Guest Log in</button>
+                </div>
             </div>
         </div>
-    </div>
         <div class="link_div centered">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Legal notice</a>
+            <a href="#">Privacy Policy</a> <!-- VERLINKUNG FEHLT -->
+            <a href="#">Legal notice</a> <!-- VERLINKUNG FEHLT -->
         </div>
-        
 </body>
 <script src="../scripts/login.js"></script>
 </html>
