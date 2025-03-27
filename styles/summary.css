@@ -1,0 +1,7 @@
+.test {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-inline: 120px;
+    padding-top: 64px;
+}
