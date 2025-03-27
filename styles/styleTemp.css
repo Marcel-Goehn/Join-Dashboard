@@ -47,3 +47,22 @@ text{
     line-height: 120%;
     letter-spacing: 0%;
 }
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
