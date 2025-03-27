@@ -47,7 +47,7 @@ textarea:not([rows]) {
   min-height: 10em;
 }
 
-text{
+* {
     font-family: "inter", sans-serif;
     line-height: 120%;
     letter-spacing: 0%;
