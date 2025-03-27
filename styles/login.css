@@ -1,6 +1,5 @@
-@font-face {
-    font-family: Inter;
-    src: url(../assets/Fonts/font/inter/Inter-Italic-VariableFont_opsz\,wght.ttf);
+div {
+    opacity: 0;
 }
 
 #content {
@@ -16,9 +15,9 @@ body {
 .separator {
     border-color: #29ABE2;
     border-style: solid;
-    height: 150px;
-    rotate: 90deg;
+    width: 150px;
     border-width: 3px;
+    border-radius: 30px;
 }
 input {
     color: #D1D1D1;
@@ -82,11 +81,6 @@ h1 {
     margin: 0;
 }
 
-#login_div {
-    width: 315px;
-    height: 89px;
-    gap: 16px;
-}
 #signup_div {
     display: flex;
     align-items: center;
@@ -99,4 +93,18 @@ h1 {
 #signin {
     background-color: #2A3647;
     color: white;
+}
+
+#login_div {
+    gap: 16px;
+}
+
+#logo {
+    width: 100px;
+    height: 122px;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2);
 }
