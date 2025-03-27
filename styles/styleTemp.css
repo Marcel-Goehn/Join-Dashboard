@@ -1,0 +1,49 @@
+*:not(dialog) {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+img, picture {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border: unset;
+    cursor: pointer;
+}
+
+input {
+    border: unset;
+}
+
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+text{
+    font-family: "inter", sans-serif;
+    line-height: 120%;
+    letter-spacing: 0%;
+}
