@@ -7,16 +7,16 @@
     <link rel="stylesheet" href="../styles/signUp.css">
     <link rel="stylesheet" href="../styles/styleTemp.css">
 </head>
-<body>
+<body onload="fetchData()">
     <div id="signUpContent">
     <img id ="signUpLogo" src="../assets/img/Capa 2.png">
     <div id="formContent">
         <h2>Sign up</h2>
         <form id="signUpForm">
-           <div class="signUpInputDiv"><input id="signUpName" class="signUpInput" required placeholder="Name"><img id="personIcon" class="signUpInputIcon"src="../assets/img/signUp/person.png" alt="Person Icon"></div>
-           <div class="signUpInputDiv"><input id="signUpEmail" class="signUpInput" required placeholder="Email"><img id="emailIcon" class="signUpInputIcon"src="../assets/img/signUp/mail.png" alt="Mail Icon"></div>
-           <div class="signUpInputDiv"><input id="signUpPassword" class="signUpInput" required placeholder="Password"><img id="lockIcon" class="signUpInputIcon signUpLock"src="../assets/img/signUp/lock.png" alt="Lock Icon"></div>
-           <div class="signUpInputDiv"><input id="signUpConfirmPw" class="signUpInput" required placeholder="Confirm Password"><img id="lockIcon2" class="signUpInputIcon signUpLock"src="../assets/img/signUp/lock.png" alt="Lock Icon"></div>
+           <div class="signUpInputDiv"><input id="signUpName" class="signUpInput" required type= "text" placeholder="Name"><img id="personIcon" class="signUpInputIcon"src="../assets/img/signUp/person.png" alt="Person Icon"></div>
+           <div class="signUpInputDiv"><input id="signUpEmail" class="signUpInput" required type= "email" placeholder="Email"><img id="emailIcon" class="signUpInputIcon"src="../assets/img/signUp/mail.png" alt="Mail Icon"></div>
+           <div class="signUpInputDiv"><input id="signUpPassword" class="signUpInput" required type= "password" placeholder="Password"><img id="lockIcon" class="signUpInputIcon signUpLock"src="../assets/img/signUp/lock.png" alt="Lock Icon"></div>
+           <div class="signUpInputDiv"><input id="signUpConfirmPw" class="signUpInput" required type= "password" placeholder="Confirm Password"><img id="lockIcon2" class="signUpInputIcon signUpLock"src="../assets/img/signUp/lock.png" alt="Lock Icon"></div>
         </form>
         <div class="signUpCheckboxDiv">
             <input type="checkbox" id="privacyCheckbox" required>
@@ -24,12 +24,13 @@
                 <a href="#Privacy policy">Privacy policy</a>
             </span>
         </div>
-        <button id="signUpBtn" type="submit">Sign up</button>
+        <button id="signUpBtn" form="signUpForm" type="submit" onclick="validatePasswords(event)">Sign up</button>
     </div>
     <div id="signUpPrivacyAndLegalDiv">
         <a class="signUpPrivacyAndLegalLink" href="#privacy">Privacy Policy</a>
         <a class="signUpPrivacyAndLegalLink" href="#legal">Legal notice</a>
     </div>
 </div>
+<script src="../scripts/signUp.js"></script>
 </body>
 </html>
