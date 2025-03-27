@@ -1,5 +1,7 @@
 .join-header {
     margin-top: 110px;
+    width: calc(100% - 232px);
+    margin-left: 232px;
 }
 
 .container {
@@ -9,7 +11,7 @@
     align-items: center;
     margin-inline: auto;
     gap: 30px;
-    padding-left: 328px;
+    padding-left: 96px;
 }
 
 h1 {
@@ -29,6 +31,8 @@ h1 {
 
 main {
     margin-top: 56px;
+    width: calc(100% - 232px);
+    margin-left: 232px;
     display: flex;
     align-items: center;
 }
@@ -37,11 +41,107 @@ main {
     max-width: 1440px;
     width: 100%;
     margin-inline: auto;
-    padding-left: 328px;
+    padding-left: 96px;
 }
 
-.align-todos {
+.todo-done {
+    display: flex;
+    gap: 32px;
+}
+
+.align-todos-and-done {
     display: flex;
     align-items: center;
+    padding-inline: 58px;
+    padding-block: 38px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    gap: 18px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.10);
+}
+
+.task-numbers {
+    font-weight: 600;
+    font-size: 64px;
+    color: #000000;
+}
+
+.small-task-text {
+    font-weight: 400;
+    font-size: 20px;
+    color: #2A3647;
+}
+
+.deadline-section {
+    margin-top: 28px;
+    display: flex;
+    gap: 80px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.deadline-box {
+    padding-inline: 58px;
+    padding-block: 38px;
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 61px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.10);
+}
+
+.urgent {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.urgent-task-text {
+    font-weight: 400;
+    font-size: 16px;
+    color: #2A3647;
+}
+
+.urgent-border {
+    height: 102.02px;
+    border: 2px solid #D1D1D1;
+}
+
+.align-urgent-date {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.urgent-date {
+    font-weight: 700;
+    font-size: 21px;
+    color: #2A3647;
+}
+
+.upcoming-deadline-text {
+    font-weight: 400;
+    font-size: 16px;
+    color: #2A3647;
+}
+
+.greetings {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+}
+
+.greet-msg {
+    font-weight: 500;
+    font-size: 47px;
+    color: #2A3647;
+}
+
+.greet-name {
+    font-weight: 700;
+    font-size: 64px;
+    color: #29ABE2;
 }
 
