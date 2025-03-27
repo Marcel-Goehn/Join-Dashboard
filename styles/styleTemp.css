@@ -47,7 +47,11 @@ textarea:not([rows]) {
   min-height: 10em;
 }
 
+<<<<<<< HEAD
 *{
+=======
+* {
+>>>>>>> e0cf5187ffa346a6cb329c37a40ac61deb90121b
     font-family: "inter", sans-serif;
     line-height: 120%;
     letter-spacing: 0%;

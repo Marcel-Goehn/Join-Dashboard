@@ -100,28 +100,3 @@ h1 {
     background-color: #2A3647;
     color: white;
 }
-
-
-
-
-
-
-
-
-
-
-/* ESSENTIALS */
-.centered {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.space-between {
-    display: flex;
-    justify-content: space-between;
-}
-.column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
