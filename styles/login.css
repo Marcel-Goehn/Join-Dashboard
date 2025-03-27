@@ -1,58 +1,35 @@
 @font-face {
     font-family: Inter;
-    src: url(/font/Inter/Inter-Italic-VariableFont_opsz\,wght.ttf);
+    src: url(../assets/Fonts/font/inter/Inter-Italic-VariableFont_opsz\,wght.ttf);
 }
-.column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.evenly {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-#log_in {
-    width: 652px;
-    height: 449px;
+
+#content {
     border-radius: 30px;
     gap: 32px;
-    padding-top: 48px;
-    padding-right: 115px;
-    padding-bottom: 48px;
-    padding-left: 115px;
+    padding: 48px 115px;
     background-color: rgb(255, 255, 255);
 }
 body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
     background-color: rgb(246, 247, 249);
-    font-family: Inter;
-    font-weight: 700;
-    font-size: 61px;
+    justify-content: space-between;
 }
 .separator {
-    border-color: #3da6cd;
-    border-width: 1px;
+    border-color: #29ABE2;
     border-style: solid;
-    width: 150px;
+    height: 150px;
+    rotate: 90deg;
+    border-width: 3px;
 }
-#log_in input {
+input {
     color: #D1D1D1;
-    font-family: Inter;
     border: none;
+    width: 380px;
 }
-.button {
-    /* width: 177px;
-    height: 48px; */
+button {
     border-radius: 8px;
     border-width: 1px;
     gap: 10px;
-    padding-top: 15px;
-    padding-right: 24px;
-    padding-bottom: 15px;
-    padding-left: 24px;
+    padding: 15px 24px;
     font-weight: 700;
     font-size: 21px;
 }
@@ -66,7 +43,85 @@ body {
     color: #2A3647;
     background-color: white;
 }
-.space_between {
+#content .space_between {
+    width: 380px;
+}
+.singleinput_div {
+    border-radius: 10px;
+    border: 1px solid #2A3647;
+    gap: 10px;
+    padding: 12px 21px;
+}
+.input_div {
+    width: 422px;
+    height: 152px;
+    gap: 20px;
+}
+a {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #A8A8A8;
+}
+
+.link_div {
+    gap: 16px;
+}
+
+.button_div {
+    gap: 35px;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 120%;
+    text-align: center;
+    margin: 0;
+}
+
+#login_div {
+    width: 315px;
+    height: 89px;
+    gap: 16px;
+}
+#signup_div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 35px;
+    padding-right: 120px;
+    padding-top: 67px;
+}
+
+#signin {
+    background-color: #2A3647;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+/* ESSENTIALS */
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.space-between {
     display: flex;
     justify-content: space-between;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
