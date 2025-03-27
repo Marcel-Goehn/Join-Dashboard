@@ -26,14 +26,14 @@
                 <form id="login_data" class="column" action="./summary.html">
                     <div class="singleinput_div centered">
                         <div class="space-between">
-                            <input id="email" name="email" type="email" placeholder="Email" required>
+                            <input onclick="removeInvalidClass(0)" id="email" name="email" type="email" placeholder="Email" required>
                             <img src="../assets/img/login/mail.svg" alt="">
                         </div>
                     </div>
                     <div class="singleinput_div centered">
                         <div class="space-between">
-                            <input id="password" name="password" type="password" placeholder="Password" required>
-                            <img onclick="showPassword()" id="lock_img" src="../assets/img/login/lock.svg" alt="">
+                            <input onclick="removeInvalidClass(1)" id="password" name="password" type="password" placeholder="Password" required>
+                            <img onclick="showPassword(); switchIcon()" id="lock_img" src="../assets/img/login/lock.svg" alt="">
                         </div>
                     </div>
                 </form>
