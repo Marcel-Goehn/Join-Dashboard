@@ -44,6 +44,8 @@ function validate() {
     }
 }
 
+
+
 async function loginAsUser() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
@@ -51,14 +53,25 @@ async function loginAsUser() {
     const responseToJSON = await response.json();
     for (const id in responseToJSON) {
         if (responseToJSON[id].email == email && responseToJSON[id].password == password) {
-            console.log("Valid login");
             window.location.href = "../html/summary.html";
             } else {
-                console.log("Invalid login");
+                Array.from(document.getElementsByClassName('singleinput_div')).forEach(element => element.classList.add('invalid'));
                 }
         }
 }
 
 function loginAsGuest() {
     window.location.href = "../html/summary.html";
+}
+
+function showPassword() {
+    let type = document.getElementById('password').type;
+    switch (type) {
+        case "text":
+            document.getElementById('password').type = "password";
+            break;
+        case "password":
+            document.getElementById('password').type = "text";
+            break;
+    }
 }

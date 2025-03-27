@@ -20,7 +20,7 @@ body {
     border-radius: 30px;
 }
 input {
-    color: #D1D1D1;
+    color: black;
     border: none;
     width: 380px;
     outline: none;
@@ -49,15 +49,14 @@ button {
 #content .space_between {
     width: 380px;
 }
+.singleinput_div:focus-within {
+    border-color: #29ABE2;
+}
 .singleinput_div {
     border-radius: 10px;
     border: 1px solid #2A3647;
     gap: 10px;
     padding: 12px 21px;
-}
-.input_div {
-    width: 422px;
-    height: 152px;
 }
 a {
     font-weight: 400;
@@ -114,4 +113,8 @@ h1 {
 
 #login_data {
     gap: 20px;
+}
+
+.invalid {
+    border-color: red;
 }
