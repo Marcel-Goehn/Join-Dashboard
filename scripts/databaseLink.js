@@ -1,1 +1,1 @@
-const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app";
+const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app.json";
