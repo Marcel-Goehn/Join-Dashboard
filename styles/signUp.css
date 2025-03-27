@@ -2,17 +2,25 @@ body{
     margin: 0;
     background-color: #D1D1D1;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#signUpContent{
+    
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
     height: 100vh;
 }
+
 a{
     text-decoration: none;
     margin: 0;
 }
 #formContent{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
@@ -106,10 +114,6 @@ a{
 }
 
 #signUpPrivacyAndLegalDiv{
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
     align-items: center;
