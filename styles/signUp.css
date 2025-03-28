@@ -181,3 +181,18 @@ a{
 .signUpLock:hover{
     cursor: pointer;
 }
+
+#signUpHeadline{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    align-self: center;
+}
+
+#signUpBackIcon{
+    position: absolute;
+    left: 5%;
+    align-self: center;
+}
