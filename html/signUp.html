@@ -11,7 +11,10 @@
     <div id="signUpContent">
     <img id ="signUpLogo" src="../assets/img/Capa 2.png">
     <div id="formContent">
-        <h2>Sign up</h2>
+        <div id="signUpHeadline">
+            <img id="signUpBackIcon" src="../assets/img/backArrow.svg">
+            <h2>Sign up</h2>
+        </div>
         <form id="signUpForm">
            <div class="signUpInputDiv"><input id="signUpName" class="signUpInput" required type= "text" placeholder="Name"><img id="personIcon" class="signUpInputIcon"src="../assets/img/signUp/person.png" alt="Person Icon"></div>
            <div class="signUpInputDiv"><input id="signUpEmail" class="signUpInput" required type= "email" placeholder="Email"><img id="emailIcon" class="signUpInputIcon"src="../assets/img/signUp/mail.png" alt="Mail Icon"></div>
@@ -24,7 +27,7 @@
                 <a href="#Privacy policy">Privacy policy</a>
             </span>
         </div>
-        <button id="signUpBtn" form="signUpForm" type="submit" onclick="validatePasswords(event)">Sign up</button>
+        <button id="signUpBtn" form ="signUpForm" onclick="validateForm(event)">Sign up</button>
     </div>
     <div id="signUpPrivacyAndLegalDiv">
         <a class="signUpPrivacyAndLegalLink" href="#privacy">Privacy Policy</a>
