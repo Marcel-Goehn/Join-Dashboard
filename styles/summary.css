@@ -58,6 +58,8 @@ main {
     border-radius: 30px;
     gap: 18px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.10);
+    width: 264px;
+    height: 168px;
 }
 
 .task-numbers {
@@ -70,6 +72,7 @@ main {
     font-weight: 400;
     font-size: 20px;
     color: #2A3647;
+    text-align: center;
 }
 
 .deadline-section {
@@ -89,6 +92,8 @@ main {
     align-items: center;
     gap: 61px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.10);
+    width: 560px;
+    height: 168px;
 }
 
 .urgent {
@@ -143,5 +148,28 @@ main {
     font-weight: 700;
     font-size: 64px;
     color: #29ABE2;
+}
+
+.board-summary-section {
+    margin-top: 28px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 28px;
+}
+
+.tasks-in-board {
+    padding-inline: 19px;
+    padding-block: 25px;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0 ,0.10);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    width: 168px;
+    height: 168px;
 }
 
