@@ -1,0 +1,79 @@
+#content {
+    display: flex;
+}
+.star {
+    color: red;
+}
+.content_box {
+    display: flex;
+    flex-direction: column;
+}
+h1 {
+    font-weight: 700;
+    font-size: 61px;
+}
+span {
+    font-weight: 400;
+    font-size: 20px;
+}
+input::placeholder {
+    color: #D1D1D1;
+}
+#dueDate img {
+    width: 24px;
+    height: 24px;
+}
+#dueDate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 12px 21px;
+}
+#separator {
+    height: 424px;
+    border: 1px solid #D1D1D1;
+}
+.padding {
+    padding: 12px 21px;
+}
+input {
+    font-size: 20px;
+}
+textarea {
+    font-size: 20px;
+}
+textarea::placeholder {
+    color: #D1D1D1;
+}
+#content_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 376px;
+    width: 440px;
+}
+button {
+    padding: 16px 10px;
+    border-radius: 10px;
+    background-color: white;
+}
+.medium {
+    background-color: #fda807;
+}
+.urgent {
+    background-color: #fe3e00;
+}
+.low {
+    background-color: #7ae229;
+    fill: #D1D1D1;
+}
+#button_div button {
+    display: flex;
+    width: 136px;
+    gap: 8px;
+    align-items: center;
+}
+#button_div {
+    width: 440px;
+}
