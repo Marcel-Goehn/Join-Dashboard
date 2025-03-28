@@ -60,6 +60,26 @@ main {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.10);
     width: 264px;
     height: 168px;
+    transition: all 80ms ease-out;
+}
+
+.align-todos-and-done:hover {
+    cursor: pointer;
+}
+
+.align-todos-and-done:hover .task-numbers,
+.align-todos-and-done:hover .small-task-text {
+    color: #FFFFFF;
+}
+
+.to-do-animation:hover {
+    transform: scale(1.1) translateX(5px);
+    background-color: #2A3647;
+}
+
+.done-animation:hover {
+    transform: scale(1.1) translateX(-5px);
+    background-color: #2A3647;
 }
 
 .task-numbers {
@@ -94,6 +114,13 @@ main {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.10);
     width: 560px;
     height: 168px;
+    transition: all 80ms ease-out;
+}
+
+.deadline-box:hover {
+    cursor: pointer;
+    transform: scale(1.1) translateX(5px) translateY(5px);
+    background-color: #2A3647;
 }
 
 .urgent {
@@ -171,5 +198,24 @@ main {
     gap: 13px;
     width: 168px;
     height: 168px;
+    transition: all 80ms ease-out;
+}
+
+.animate-first-task:hover {
+    cursor: pointer;
+    transform: scale(1.1) translateX(5px);
+    background-color: #2A3647;
+}
+
+.animate-second-task:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: #2A3647;
+}
+
+.animate-third-task:hover {
+    cursor: pointer;
+    transform: scale(1.1) translatex(-5px);
+    background-color: #2A3647;
 }
 
