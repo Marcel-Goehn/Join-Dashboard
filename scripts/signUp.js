@@ -10,8 +10,8 @@ async function fetchData(){
     const response = await fetch(databaseLinkRef);
     const data = await response.json();
     console.log(data);
+    return data;
 }
-
 
 function validateEmail(){
     if(!emailInput.checkValidity()){
@@ -19,54 +19,61 @@ function validateEmail(){
         emailInput.focus();
         return false;
     }
+    return true;
 }
 
-
 function validatePasswords(){
-    if(passwordInput.value != passwordConfirmationInput){
+    
+    if(passwordInput.value !== passwordConfirmationInput.value){
         passwordConfirmationInput.style.outlineColor = "red";
         passwordConfirmationInput.focus();
-        return false;
+        return false;   
     }
+    return true; 
 }
 
 function validatePrivacy(){
     if(!checkbox.checked){
-        checkbox.style.outlineColor = "red";
+        checkbox.style.boxShadow = "0 0 0 1px red";
+        checkbox.focus();
         return false;
     }
+    return true;
 }
 
-function validateForm(event){
-    validateEmail();
-    validatePasswords();
-    validatePrivacy();
-    if(validateEmail(), validatePasswords(), validatePrivacy()){
-        createUser(event);
+async function validateForm(){
+    if(validateEmail() && validatePasswords() && validatePrivacy()){
+        if(await compareEmailWithData()){
+        setUser(nameInput.value, emailInput.value, passwordInput.value)
+    }else{
+        emailTaken();
+    }
     }
 }
 
-function createUser(event){
-    readInputData();
-    setUser();
-}
-
-function readInputData(){
-    const nameValue = nameInput.value;
-    const emailValue = emailInput.value; 
-    const passwordValue = passwordInput.value;
-}
-
-
 async function setUser(name, email, password){
-    console.log("test");
    const request = await fetch(databaseLinkRef, {
     method: "POST",
     headers: {
         "Content-Type": "application/json"
       },
-    body: JSON.stringify({name, email, password, "contacts": "placeholder"}),
+    body: JSON.stringify({name, email, password}),
    })
+}
 
+async function compareEmailWithData(){
+    const users = await fetchData();
+    const sameEmail = Object.values(users).find((user) => user.email === emailInput.value);
+    if(sameEmail){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function emailTaken(){
+    emailInput.style.outlineColor = "red";
+    emailInput.focus()
+    setTimeout()
 }
 

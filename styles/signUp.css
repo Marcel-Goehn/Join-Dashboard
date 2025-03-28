@@ -1,19 +1,22 @@
 body{
     margin: 0;
-    background-color: #D1D1D1;
+    background-color: #F6F7F8;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 40px;
 }
 
 #signUpContent{
-    
+    width: 1440px;
+    height: 1024px;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
+    position: relative;
 }
 
 a{
@@ -22,18 +25,21 @@ a{
 }
 #formContent{
     background-color: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 32px;
     width: 598px;
     height: 630px;
     border-radius: 30px;
+    box-shadow: 0px 0px 3px 5px rgba(42,54,71,0.02);
+    padding: 48px 88px;
 }
 
+#signUpHeadline{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+    width: 100%;
+}
 #formContent h2{
-    margin: 0;
     position: relative;
     font-family: "inter", sans-serif;
     font-size: 61px;
@@ -41,7 +47,6 @@ a{
     line-height: 120%;
     letter-spacing: 0%;
     color: #000000;
-    
 }
 #formContent h2::after{
     content: "";
@@ -56,6 +61,12 @@ a{
    
 
 }
+#signUpFormDiv{
+    margin-bottom: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #signUpForm{
     display: flex;
     flex-direction: column;
@@ -69,6 +80,8 @@ a{
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     padding:0px 21px;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .signUpInput::placeholder{
@@ -92,10 +105,17 @@ a{
     font-weight: 700;
     line-height: 120%;
     letter-spacing: 0%;
+    transition: 200ms ease-in-out;
 }
 
 #signUpBtn:hover{
+    background-color: #29ABE2;
     cursor: pointer;
+    box-shadow: 0px 8px 10px -9px rgba(0,0,0,0.63);
+}
+
+#signUpBtn:active{
+    scale: 0.9;
 }
 
 .signUpCheckboxDiv{
@@ -109,16 +129,19 @@ a{
     justify-content: center;
     align-items: center;
     gap: 16px;
+    margin-bottom: 32px;
 }
+
 
 .signUpCheckboxDiv a{
     color:#29ABE2;
 }
 
 .signUpCheckboxDiv input{
-    border-color: #2A3647;
     width: 16px;
     height: 16px;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px #D1D1D1;
 }
 
 #signUpPrivacyAndLegalDiv{
@@ -126,6 +149,7 @@ a{
     justify-content: center;
     align-items: center;
     gap: 8px;
+    margin-top: 130px;
 }
 
 #signUpPrivacyAndLegalDiv a{
@@ -136,6 +160,12 @@ a{
     font-size: 16px;
     line-height: 120%;
     letter-spacing: 0%;
+    transition: 0.075s ease-in-out;
+}
+
+#signUpPrivacyAndLegalDiv a:hover{
+    color:#29ABE2;
+    transform: scale(1.05);
 }
 
 #signUpLogo{
@@ -192,7 +222,54 @@ a{
 }
 
 #signUpBackIcon{
+  width: 21px;
+  height: 21px;
+}
+
+#signUpBackIcon:hover{
+    width: 21px;
+    height: 21px;
+    cursor: pointer;
+    transform: scale(1.8);
+    border-radius: 50%;
+    background-color: #F6F7F8;
+    padding: 4px;
+}
+
+#signUpBackIcon:active{
+    transform: scale(1);
+    border-radius: 50%;
+    padding: 2px;
+}
+
+input{
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+}
+
+input:hover{
+    border-color: #2A3647;
+}
+
+#signUpToLogIn{
     position: absolute;
     left: 5%;
     align-self: center;
+}
+
+.signUpCheckboxDiv input:hover{
+    width: 16px;
+    height: 16px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px #2A3647;
+}
+
+#signUpButtonDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
