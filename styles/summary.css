@@ -72,6 +72,18 @@ main {
     color: #FFFFFF;
 }
 
+.align-todos-and-done:hover svg circle{
+    fill: #FFFFFF;
+}
+
+.align-todos-and-done:hover .todo-svg path {
+    fill: #2A3647;
+}
+
+.align-todos-and-done:hover .done-svg path {
+    stroke: #2A3647;
+}
+
 .to-do-animation:hover {
     transform: scale(1.1) translateX(5px);
     background-color: #2A3647;
@@ -121,6 +133,13 @@ main {
     cursor: pointer;
     transform: scale(1.1) translateX(5px) translateY(5px);
     background-color: #2A3647;
+}
+
+.deadline-box:hover .task-numbers,
+.deadline-box:hover .urgent-task-text,
+.deadline-box:hover .urgent-date,
+.deadline-box:hover .upcoming-deadline-text {
+    color: #FFFFFF;
 }
 
 .urgent {
@@ -217,5 +236,10 @@ main {
     cursor: pointer;
     transform: scale(1.1) translatex(-5px);
     background-color: #2A3647;
+}
+
+.tasks-in-board:hover .task-numbers,
+.tasks-in-board:hover .small-task-text {
+    color: #FFFFFF;
 }
 
