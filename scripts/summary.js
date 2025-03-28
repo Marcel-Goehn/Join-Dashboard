@@ -1,5 +1,19 @@
 let currentTime = new Date();
 let hours = currentTime.getHours();
-let minutes = currentTime.getMinutes();
+const greeting = document.getElementById('greet_msg');
 
-console.log(hours + ' : ' + minutes.toString().padStart(2, '0'));
+
+function greet() {
+    if(hours >= 0 && hours < 6) {
+        greeting.innerHTML = `Gute Nacht,`;
+    }
+    else if(hours >= 6 && hours < 12) {
+        greeting.innerHTML = `Guten Morgen,`;
+    }
+    else if(hours >= 12 && hours < 18) {
+        greeting.innerHTML = `Guten Nachmittag,`;
+    }
+    else {
+        greeting.innerHTML = `Guten Abend,`;
+    }
+}
