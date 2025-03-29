@@ -18,6 +18,7 @@ function select(num) {
             break;
     }
 }
+
 function resetButtons() {
     document.getElementById(0).classList.remove('urgent');
     document.getElementById(1).classList.remove('medium');

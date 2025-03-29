@@ -10,25 +10,27 @@
 <body>
     <h1>Add Task</h1>
     <div id="content">
-        <div id="content_left">
-            <div class="content_box">
+        <div class="content_half">
+            <div class="column flex_start">
                 <span>Title<span class="star">*</span></span>
                 <input class="padding" type="text" placeholder="Enter a title">
+                <span class="required hidden">this field is required</span>
             </div>
-            <div class="content_box">
+            <div class="column flex_start">
                 <span>Description</span>
-                <textarea class="padding" name="" id="" placeholder="Enter a description"></textarea>
+                <textarea class="padding" name="description" id="description" placeholder="Enter a Description"></textarea>
             </div>
-            <div class="content_box">
+            <div class="column flex_start">
                 <span>Due date<span class="star">*</span></span>
                 <div id="dueDate">
                     <input type="text" placeholder="dd/mm/yyyy">
                     <img src="../assets/img/addtask/calendar.svg" alt="">
                 </div>
+                <span class="required hidden">this field is required</span>
             </div>
         </div>
         <div id="separator"></div>
-        <div id="content_right" class="content_box">
+        <div class="content_half">
             <span>Priority</span>
             <div id="button_div" class="space-between">
                 <button id="0" onclick="select(0)">Urgent
@@ -67,9 +69,18 @@
                     </svg>
                 </button>
             </div>
-            <span>Assigned to</span>
-            <span>Category<span class="star">*</span></span>
-            <span>Subtasks</span>
+            <div class="column flex_start">
+                <span>Assigned to</span>
+                <button><div class="space-between"><span>Select contacts to assign</span><span>v</span></div></button>
+            </div>
+            <div class="column flex_start">
+                <span>Category<span class="star">*</span></span>
+                <button><div class="space-between"><span>Select task category</span><span>v</span></div></button>
+            </div>
+            <div class="column flex_start">
+                <span>Subtasks</span>
+                <div class="space-between"><input type="text" placeholder="Add new subtask"><span>+</span></div>
+            </div>
         </div>
     </div>
 </body>

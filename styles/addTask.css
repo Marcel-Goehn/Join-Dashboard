@@ -4,10 +4,6 @@
 .star {
     color: red;
 }
-.content_box {
-    display: flex;
-    flex-direction: column;
-}
 h1 {
     font-weight: 700;
     font-size: 61px;
@@ -29,6 +25,8 @@ input::placeholder {
     justify-content: space-between;
     background-color: white;
     padding: 12px 21px;
+    width: 100%;
+
 }
 #separator {
     height: 424px;
@@ -39,19 +37,13 @@ input::placeholder {
 }
 input {
     font-size: 20px;
+    width: 100%;
 }
 textarea {
     font-size: 20px;
 }
 textarea::placeholder {
     color: #D1D1D1;
-}
-#content_left {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 376px;
-    width: 440px;
 }
 button {
     padding: 16px 10px;
@@ -74,6 +66,41 @@ button {
     gap: 8px;
     align-items: center;
 }
-#button_div {
+#separator {
+    margin: 0 40px;
+}
+.content_half {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 376px;
     width: 440px;
+}
+.flex_start {
+align-items: flex-start;
+}
+#description {
+    min-height: 120px;
+    height: 120px;
+    width: 100%;
+}
+.content_half button {
+width: 100%;
+}
+.content_half div {
+    width: 100%;
+}
+input:hover {
+    cursor: pointer;
+}
+textarea:hover {
+    cursor: pointer;
+}
+.hidden {
+    display: none;
+}
+.required {
+    color: red;
+    font-size: 12px;
+    font-weight: 200;
 }
