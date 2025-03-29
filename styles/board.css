@@ -1,0 +1,80 @@
+.board-header {
+    width: calc(100% - 232px);
+    margin-left: 232px;
+    margin-top: 80px;
+}
+
+.container {
+    margin-inline: auto;
+    max-width: 1440px;
+    width: 100%;
+    padding-inline: 64px;
+}
+
+.align-board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.align-input-and-task-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 61px;
+    color: #000000;
+}
+
+.add-task-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    padding: 8px 16px;
+    background-color: #2A3647;
+    gap: 4px;
+    border: 1px;
+    border-radius: 10px;
+}
+
+.add-task {
+    font-weight: 700;
+    font-size: 21px;
+    color: #fff;
+}
+
+.inputgroup {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    border: 1px solid #A8A8A8;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.find-task-input {
+    flex: 1;
+    padding: 8px 16px;
+    border-radius: 10px;
+    background-color: #fff;
+    outline: none;
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+}
+
+.find-task-btn {
+    padding-inline: 16px;
+    border-radius: 10px;
+    background-color: #fff;
+    outline: none;
+}
+
+.inputgroup:focus-within {
+    border: 1px solid #35B0E3;
+}
