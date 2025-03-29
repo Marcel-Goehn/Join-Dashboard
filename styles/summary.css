@@ -1,5 +1,5 @@
 .join-header {
-    margin-top: 110px;
+    margin-top: 6.875rem;
     width: calc(100% - 232px);
     margin-left: 232px;
 }
@@ -11,13 +11,13 @@
     justify-content: flex-start;
     align-items: center;
     margin-inline: auto;
-    gap: 30px;
-    padding-left: 96px;
+    gap: 1.875rem;
+    padding-left: 6rem;
 }
 
 h1 {
     font-weight: 700;
-    font-size: 61px;
+    font-size: 3.813rem;
 }
 
 .blue-border {
@@ -27,11 +27,11 @@ h1 {
 
 .subheader {
     font-weight: 400;
-    font-size: 27px;
+    font-size: 1.688rem;
 }
 
 main {
-    margin-top: 56px;
+    margin-top: 3.5rem;
     width: calc(100% - 232px);
     margin-left: 232px;
 }
@@ -40,24 +40,24 @@ main {
     max-width: 1440px;
     width: 100%;
     margin-inline: auto;
-    padding-left: 96px;
+    padding-left: 6rem;
 }
 
 .todo-done {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 32px;
+    gap: 2rem;
 }
 
 .align-todos-and-done {
     display: flex;
     align-items: center;
-    padding-inline: 58px;
-    padding-block: 38px;
+    padding-inline: 3.625rem;
+    padding-block: 2.375rem;
     background-color: #FFFFFF;
     border-radius: 30px;
-    gap: 18px;
+    gap: 1.125rem;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.10);
     width: 264px;
     height: 168px;
@@ -97,33 +97,33 @@ main {
 
 .task-numbers {
     font-weight: 600;
-    font-size: 64px;
+    font-size: 4rem;
     color: #000000;
 }
 
 .small-task-text {
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25rem;
     color: #2A3647;
     text-align: center;
 }
 
 .deadline-section {
-    margin-top: 28px;
+    margin-top: 1.75rem;
     display: flex;
-    gap: 80px;
+    gap: 5rem;
     align-items: center;
     justify-content: flex-start;
 }
 
 .deadline-box {
-    padding-inline: 58px;
-    padding-block: 38px;
+    padding-inline: 3.625rem;
+    padding-block: 2.375rem;
     background-color: #FFFFFF;
     border-radius: 30px;
     display: flex;
     align-items: center;
-    gap: 61px;
+    gap: 3.813rem;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.10);
     width: 560px;
     height: 168px;
@@ -145,13 +145,13 @@ main {
 
 .urgent {
     display: flex;
-    gap: 18px;
+    gap: 1.125rem;
     align-items: center;
 }
 
 .urgent-task-text {
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1rem;
     color: #2A3647;
 }
 
@@ -163,18 +163,18 @@ main {
 .align-urgent-date {
     display: flex;
     flex-direction: column;
-    gap: 13px;
+    gap: 0.813rem;
 }
 
 .urgent-date {
     font-weight: 700;
-    font-size: 21px;
+    font-size: 1.313rem;
     color: #2A3647;
 }
 
 .upcoming-deadline-text {
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1rem;
     color: #2A3647;
 }
 
@@ -182,32 +182,32 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 3px;
+    gap: 0.188rem;
 }
 
 .greet-msg {
     font-weight: 500;
-    font-size: 47px;
+    font-size: 2.938rem;
     color: #2A3647;
 }
 
 .greet-name {
     font-weight: 700;
-    font-size: 64px;
+    font-size: 4rem;
     color: #29ABE2;
 }
 
 .board-summary-section {
-    margin-top: 28px;
+    margin-top: 1.75rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 28px;
+    gap: 1.75rem;
 }
 
 .tasks-in-board {
-    padding-inline: 19px;
-    padding-block: 25px;
+    padding-inline: 1.188rem;
+    padding-block: 1.563rem;
     background-color: #FFFFFF;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0 ,0.10);
     border-radius: 30px;
