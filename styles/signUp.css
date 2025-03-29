@@ -6,17 +6,17 @@ body{
     justify-content: center;
     align-items: center;
     padding-bottom: 40px;
+    overflow: hidden;
 }
 
 #signUpContent{
-    width: 1440px;
-    height: 1024px;
+    max-width: 1440px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     flex-direction: column;
-    height: 100%;
     position: relative;
+    width: 100%;
 }
 
 a{
@@ -33,11 +33,15 @@ a{
 }
 
 #signUpHeadline{
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
     align-items: center;
-    margin-bottom: 32px;
+    margin-bottom: 48px;
     width: 100%;
+}
+
+h1{
+    grid-column: 1;
 }
 #formContent h2{
     position: relative;
@@ -45,8 +49,10 @@ a{
     font-size: 61px;
     font-weight: 700;
     line-height: 120%;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     color: #000000;
+    grid-column: 2;
+    text-align: center;
 }
 #formContent h2::after{
     content: "";
@@ -71,26 +77,23 @@ a{
     display: flex;
     flex-direction: column;
     gap: 24px;
+    width: 100%;
 }
 
 .signUpInput {
     border: none;
-    width: 422px;
+    flex: 1;
     height: 48px;
-    border: 1px solid #D1D1D1;
     border-radius: 10px;
-    padding:0px 21px;
     font-size: 20px;
     font-weight: 400;
+    outline: none;
 }
 
 .signUpInput::placeholder{
     color:#D1D1D1;
 }
 
-.signUpInput:focus{
-    outline-color: #29ABE2;
-}
 
 #signUpBtn{
     width: 126px;
@@ -104,7 +107,7 @@ a{
     font-size: 21px;
     font-weight: 700;
     line-height: 120%;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     transition: 200ms ease-in-out;
 }
 
@@ -112,6 +115,11 @@ a{
     background-color: #29ABE2;
     cursor: pointer;
     box-shadow: 0px 8px 10px -9px rgba(0,0,0,0.63);
+}
+
+#signUpBtn:focus{
+    outline: none;
+    border: none;
 }
 
 #signUpBtn:active{
@@ -123,25 +131,33 @@ a{
     font-weight: 400;
     font-size: 16px;
     line-height: 120%;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     color: #A8A8A8;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 16px;
     margin-bottom: 32px;
-}
 
+    
+}
+.signUpCheckboxDiv span{
+    margin-left: 16px;
+    margin-right: 4px;
+}
 
 .signUpCheckboxDiv a{
     color:#29ABE2;
+    
 }
 
-.signUpCheckboxDiv input{
-    width: 16px;
-    height: 16px;
-    border-radius: 3px;
-    box-shadow: 0 0 0 1px #D1D1D1;
+.signUpCheckboxDiv a:hover{
+    scale: 1.02;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.signUpCheckboxDiv:hover .checkmark{
+    outline: 1px solid black;
 }
 
 #signUpPrivacyAndLegalDiv{
@@ -159,7 +175,7 @@ a{
     font-weight: 400;
     font-size: 16px;
     line-height: 120%;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     transition: 0.075s ease-in-out;
 }
 
@@ -168,12 +184,17 @@ a{
     transform: scale(1.05);
 }
 
+#signUpLogoDiv{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 80px;
+    margin-left: 77px;
+}
 #signUpLogo{
     width: 100px;
     height: 122px;
-    position: absolute;
-    top: 5vh;
-    left: 5vw;
 }
 
 .signUpInputDiv{
@@ -181,49 +202,37 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid #D1D1D1;
+    border-radius: 15px;
+    padding:0px 21px;
 }
 
-.signUpInputIcon{
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translate(-50%, -50%);
+.signUpInputDiv:hover{
+    border-color: black;
+}
+
+.signUpInputDiv:focus-within{
+    border-color: #29ABE2;
 }
 
 #personIcon{
     width: 16px;
     height: 16px;
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translate(-50%, -50%);
 }
 
 #emailIcon{
     width: 20px;
     height: 16px;
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translate(-50%, -50%);
 }
 
 .signUpLock:hover{
     cursor: pointer;
 }
 
-#signUpHeadline{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    position: relative;
-    width: 100%;
-    align-self: center;
-}
-
 #signUpBackIcon{
   width: 21px;
   height: 21px;
+  margin-right: 40px;
 }
 
 #signUpBackIcon:hover{
@@ -252,24 +261,114 @@ input:hover{
 }
 
 #signUpToLogIn{
-    position: absolute;
-    left: 5%;
-    align-self: center;
+    margin-right: auto;
 }
 
-.signUpCheckboxDiv input:hover{
-    width: 16px;
-    height: 16px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border: none;
-    border-radius: 3px;
-    box-shadow: 0 0 0 1px #2A3647;
-}
 
 #signUpButtonDiv{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.show{
+    color:red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide{
+    display: none;
+}
+
+.checkbox:hover{
+    cursor: pointer;
+}
+
+.checkbox input {
+    display: none;
+  }
+  
+  .checkbox input:checked + .checkmark {
+    background-image: url("../assets/img/summary/done.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .checkbox .checkmark {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #D1D1D1;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .checkbox .checkmark::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 16px;
+    height: 16px;
+    background-image: url("../assets/img/summary/done.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .checkbox input:checked + .checkmark::after {
+    opacity: 1;
+  }
+
+  dialog{
+    width: 80%;
+    height: 100%;
+    background-color: transparent;
+    outline: transparent;
+    border: none;
+  }
+  dialog:focus{
+    background-color: transparent;
+    outline: transparent;
+  }
+
+  dialog div{
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    padding: 25px;
+    background-color: #2A3647;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    border-radius: 20px;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+  }
+
+  dialog p{
+    font-size: 20px;
+    color: #FFFFFF
+  }
+
+  @keyframes fadeAndMove{
+    0%{
+        bottom: 0;
+        left: 50%;
+        opacity: 0;
+    }
+    100%{
+        bottom: 50%;
+        left: 50%;
+        opacity: 1;
+    }
+  }
+
+  .fadeInAndMoveUp{
+    animation: fadeAndMove 0.25s ease-in forwards;
+  }
+

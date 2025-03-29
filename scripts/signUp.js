@@ -1,8 +1,14 @@
 const nameInput = document.getElementById("signUpName");
+const nameBorder = document.getElementById("signUpInputNameDiv")
 const emailInput = document.getElementById("signUpEmail");
+const emailBorder = document.getElementById("signUpInputEmailDiv");
 const passwordInput = document.getElementById("signUpPassword");
+const pwBorder = document.getElementById("signUpInputPasswordDiv");
 const passwordConfirmationInput = document.getElementById("signUpConfirmPw");
+const confPwBorder = document.getElementById("signUpInputConfirmPwDiv");
 const checkbox = document.getElementById("privacyCheckbox");
+const checkboxBorder = document.getElementById("checkboxBorder");
+const dialog = document.getElementById("succesfulSignUpDial")
 
 const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users.json";
 
@@ -13,20 +19,35 @@ async function fetchData(){
     return data;
 }
 
+function validateName(){
+    if(nameInput.value.length === 0){
+        nameBorder.style.borderColor = "red";
+        revertBorderColor(nameBorder);
+        return false;
+    }
+    return true;
+}
 function validateEmail(){
     if(!emailInput.checkValidity()){
-        emailInput.style.outlineColor = "red";
+        emailBorder.style.borderColor = "red";
         emailInput.focus();
+        revertBorderColor(emailBorder);
         return false;
     }
     return true;
 }
 
 function validatePasswords(){
-    
+    if(passwordInput.value.length === 0){
+        passwordInput.focus();
+        pwBorder.style.borderColor = "red";
+        revertBorderColor(pwBorder);
+        return false;
+    }
     if(passwordInput.value !== passwordConfirmationInput.value){
-        passwordConfirmationInput.style.outlineColor = "red";
         passwordConfirmationInput.focus();
+        confPwBorder.style.borderColor = "red";
+        revertBorderColor(confPwBorder);
         return false;   
     }
     return true; 
@@ -34,24 +55,25 @@ function validatePasswords(){
 
 function validatePrivacy(){
     if(!checkbox.checked){
-        checkbox.style.boxShadow = "0 0 0 1px red";
-        checkbox.focus();
+        checkboxBorder.style.outline = "1px solid red";
+        revertBorderColor(checkboxBorder);
         return false;
     }
     return true;
 }
 
 async function validateForm(){
-    if(validateEmail() && validatePasswords() && validatePrivacy()){
+    if(validateName() && validateEmail() && validatePasswords() && validatePrivacy()){
         if(await compareEmailWithData()){
-        setUser(nameInput.value, emailInput.value, passwordInput.value)
+        postUser(nameInput.value, emailInput.value, passwordInput.value);
+        nextPage();
     }else{
         emailTaken();
     }
     }
 }
 
-async function setUser(name, email, password){
+async function postUser(name, email, password){
    const request = await fetch(databaseLinkRef, {
     method: "POST",
     headers: {
@@ -74,6 +96,34 @@ async function compareEmailWithData(){
 function emailTaken(){
     emailInput.style.outlineColor = "red";
     emailInput.focus()
-    setTimeout()
+    toggleEmailDiv();
+    setTimeout(()=>{
+        toggleEmailDiv();
+    }, 2000);
 }
 
+function revertBorderColor(element){
+    setTimeout(()=>{
+        element.style.border = "";
+    }, 2000);
+    if(element === checkboxBorder){
+        setTimeout(()=>{
+            element.style.outline = "";
+        }, 2000);
+    }
+}
+
+function toggleEmailDiv(){
+        document.getElementById("emailTakenDiv").classList.toggle("hide");
+        document.getElementById("emailTakenDiv").classList.toggle("show")
+    
+}
+
+function nextPage(){
+    dialog.showModal();
+    document.getElementById("successDiv").classList.add("fadeInAndMoveUp");
+    setTimeout(() => {
+        window.location.href = "./login.html";
+    }, 1000)
+    
+}
