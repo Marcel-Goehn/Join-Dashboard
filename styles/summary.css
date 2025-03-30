@@ -43,6 +43,21 @@ main {
     padding-left: 6rem;
 }
 
+.divide-greeting-from-tasks {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5rem;
+}
+
+.tasks {
+    width: 50%;
+}
+
+.greet-box {
+    width: 50%;
+}
+
 .todo-done {
     display: flex;
     justify-content: flex-start;
@@ -111,7 +126,7 @@ main {
 .deadline-section {
     margin-top: 1.75rem;
     display: flex;
-    gap: 5rem;
+    /* gap: 5rem; */
     align-items: center;
     justify-content: flex-start;
 }

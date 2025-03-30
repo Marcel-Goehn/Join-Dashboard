@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../styles/styleTemp.css">
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/board_dialog.css">
     <link rel="stylesheet" href="../styles/board.css">
     <title>Join | Board</title>
 </head>
@@ -45,7 +46,8 @@
                                 </g>
                             </svg></button>
                     </form>
-                    <button class="add-task-btn"><span class="add-task">Add Task</span><img src="../assets/img/add.png"></button>
+                    <button class="add-task-btn"><span class="add-task">Add Task</span><img
+                            src="../assets/img/add.png"></button>
                 </div>
             </div>
         </div>
@@ -70,7 +72,7 @@
                         <span>In progress</span>
                         <button><img src="../assets/img/plus button.png"></button>
                     </div>
-                    <div class="card">
+                    <div onclick="openDialog()" class="card">
                         <h2>
                             <span class="card-header">User Story</span>
                         </h2>
@@ -97,7 +99,7 @@
                         <span>Await Feedback</span>
                         <button><img src="../assets/img/plus button.png"></button>
                     </div>
-                    <div class="card">
+                    <div onclick="openDialog()" class="card">
                         <h2>
                             <span class="card-header">Technical Task</span>
                         </h2>
@@ -118,7 +120,7 @@
                         <span>Done</span>
                         <button><img src="../assets/img/plus button.png"></button>
                     </div>
-                    <div class="card">
+                    <div onclick="openDialog()" class="card">
                         <h2>
                             <span class="card-header">Technical Task</span>
                         </h2>
@@ -171,8 +173,44 @@
                 <a href="#legal" class="policyLink">Legal notice</a>
             </div>
         </div>
-    </div>div>
     </div>
+
+    <dialog id="overlay">
+        <div class="wrapper">
+            <div class="align-dialog-header">
+                <div class="category">User Story</div>
+                <button onclick="closeDialog()" class="close-btn">X</button>
+            </div>
+            <h1 class="dialog-h1">Kochwelt Page & Recipe Recommender</h1>
+            <p class="dialog-p">Build start page with recipe recommendation.</p>
+            <div class="due-date-section">
+                <span class="due-date-txt">Due date:</span>
+                <span class="due-date">10/05/2023</span>
+            </div>
+            <div class="priority-section">
+                <span class="priority-txt">Priority:</span>
+                <div class="priority-icon-alignment">
+                    <span class="icon-txt">Medium</span>
+                    <img src="../assets/img/Prio media.svg">
+                </div>
+            </div>
+            <p class="assignment-txt">Assigned To:</p>
+            <div class="task-member">
+                <div class="contact">
+                    <div class="contact-logo">EM</div>
+                    <span>Emmanuel Mauer</span>
+                </div>
+                <div class="contact">
+                    <div class="contact-logo">EM</div>
+                    <span>Emmanuel Mauer</span>
+                </div>
+                <div class="contact">
+                    <div class="contact-logo">EM</div>
+                    <span>Emmanuel Mauer</span>
+                </div>
+            </div>
+        </div>
+    </dialog>
 
     <script src="../scripts/board.js"></script>
 </body>

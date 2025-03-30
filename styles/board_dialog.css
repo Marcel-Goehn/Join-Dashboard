@@ -1,0 +1,147 @@
+dialog::backdrop{
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+dialog {
+    padding: 0;
+    outline: none;
+    width: 525px;
+    border: none;
+    border-radius: 30px;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+}
+
+dialog .wrapper {
+    padding: 3rem 2.5rem;
+}
+
+.align-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category {
+    background-color: #0038FF;
+    padding: 0.25rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 400;
+    font-size: 1.438rem;
+    color: #FFFFFF;
+}
+
+.close-btn {
+    font-size: 0.875rem;
+    outline: unset;
+    background-color: #FFFFFF;
+    color: #2A3647;
+    border-radius: 50%;
+}
+
+/*.close-btn:hover {
+    background-color: #EEEEEE;
+    padding: 0.25rem;
+}*/
+
+.dialog-h1 {
+    margin-top: 1.5rem;
+    font-weight: 700;
+    font-size: 3.813rem;
+    color: #000000;
+}
+
+.dialog-p {
+    margin-top: 1.5rem;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #000000;
+}
+
+.due-date-section {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.563rem;
+}
+
+.due-date-txt {
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #2A3647;
+}
+
+.due-date {
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #000000;
+}
+
+.priority-section {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.563rem;
+}
+
+.priority-txt {
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #2A3647;
+}
+
+.priority-icon-alignment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+.icon-txt {
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #000000;
+}
+
+.assignment-txt {
+    text-align: left;
+    margin-top: 1.5rem;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #42526E;
+}
+
+.task-member {
+    margin-top: 0.5rem;
+    padding-inline: 1rem;
+}
+
+.contact {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 0.438rem;
+}
+
+.contact-logo {
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 0.75rem;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #1FD7C1;
+}
+
+.contact span {
+    font-weight: 400;
+    font-size: 1.188rem;
+    color: #000000;
+}
