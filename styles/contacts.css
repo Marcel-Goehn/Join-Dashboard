@@ -1,0 +1,89 @@
+
+
+#stickyContactsContent{
+    width: calc(100% - 232px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    box-shadow: -4px 0px 6px 0px #00000014;
+    position: absolute;
+    top:96px;
+    left:232px;
+    height: calc(100vh - 96px);
+}
+
+#stickyContacts{
+    position: sticky;
+    width: 456px;
+    padding: 22.5px 52px;
+    background-color: white;
+    box-shadow: 4px 0px 6px 0px #00000014;
+}
+
+#contentLimiter{
+    display: flex;
+    margin-left: 688px;
+    width: calc(100% - 688px);
+    height: 100%;
+}
+
+#addNewContactBtn{
+    padding: 12px 64.5px;
+    background-color:#2A3647;
+    color:white;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+#addNewContactBtn img{
+    width: 30px;
+    height: 20px;
+}
+
+#buttonContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+#contactInfo{
+    padding-left: 55px;
+    padding-top: 110px;
+    padding-right: 128px;
+    max-width: 1440px;
+    margin-inline: auto;
+
+}
+
+#contactHeadlineDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.divider{
+    height: 59px;
+    border: 2px solid #29ABE2;
+    margin: 0 30px;
+    border-radius: 10px;
+}
+
+#contactHeadlineDiv h1{
+    font-size: 61px;
+    font-weight: 700;
+}
+
+#contactHeadlineDiv p{
+    font-size: 27px;
+    font-weight: 400;
+}
+
+@media(max-width > 1440) {
+    #contentLimiter{
+        justify-content: center;
+    }
+}

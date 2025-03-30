@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="../styles/styleTemp.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/contacts.css">
+
+</head>
+<body onload="showContacts('Anna Wiese')">
+    <header>
+        <div id="headerContent">
+            <span>Kanban Project Management Tool</span>
+            <div id="headerIconDiv">
+                <img id="headerInfoIcon" src="../assets/img/help.svg" alt="infoIcon">
+                <div id="shorthandNameDiv">
+                    <span class="short-hand-name">PH</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="stickyContactsContent">
+        <div id="stickyContacts">
+            <button id="addNewContactBtn"><div id="buttonContent">Add new contact <img src="../assets/img/person_add.svg"></div></button>
+            <div id="contactNameDiv"></div>
+        </div>
+    </div>
+  
+    <div id="contentLimiter">
+        <div id="contactInfo">
+            <div id="contactHeadlineDiv">
+                <h1>Contacts</h1>
+                <div class="divider"></div>
+                <p>Better With a team</p>
+            </div>
+        </div>
+    </div>
+ 
+
+
+        <div id="sidebar">
+            <div id="sidebarLogoDiv">
+                <img id="sidebarJoinLogo" src="../assets/img/sidebar/logoReversed.svg" alt="Join Logo">
+            </div>
+            <div id="navLinksDiv">
+                <a href="#summary" class="sidebarLink">
+                    <img class="sidebarIcon" src="../assets/img/summary/summary.svg" alt="summaryIcon">
+                    Summary
+                </a>
+                <a href="#addTask" class="sidebarLink">
+                    <img class="sidebarIcon" src="../assets/img/sidebar/addtask.svg" alt="addTaskIcon">
+                    Add Task
+                </a>
+                <a href="#board" class="sidebarLink">
+                    <img class="sidebarIcon" src="../assets/img/sidebar/board.svg" alt="boardIcon">
+                    Board
+                </a>
+                <a href="#contacts" class="sidebarLink">
+                    <img class="sidebarIcon" src="../assets/img/sidebar/contacts.svg" alt="contactsIcon">
+                    Contacts
+                </a>
+            </div>
+            <div id="legalAndPolicyDiv">
+                <a href="#policy" class="policyLink">Privacy Policy</a>
+                <a href="#legal" class="policyLink">Legal notice</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/contacts.js"></script>
+</body>
+</html>
