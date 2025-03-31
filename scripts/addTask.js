@@ -30,3 +30,22 @@ function resetButtons() {
     document.getElementById('low_1').setAttribute("fill", "#7ae229");
     document.getElementById('low_2').setAttribute("fill", "#7ae229");
 }
+
+
+
+// const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users.json";
+
+function tempContacts() {
+    let userObject = sessionStorage.getItem("loggedIn");
+    let user = JSON.parse(userObject);
+    for (const name in user.contacts) {
+        if (Object.prototype.hasOwnProperty.call(user.contacts, name)) {
+            const contact = user.contacts[name];
+            console.log(name);
+            console.log(contact);
+            
+            document.getElementById('contactsList').innerHTML += `<div class="space-between"><span>IMG</span><span>${name}</span><span>Checkbox</span></div>`
+            
+        }
+    }
+}

@@ -71,11 +71,12 @@
             </div>
             <div class="column flex_start">
                 <span>Assigned to</span>
-                <button><div class="space-between"><span>Select contacts to assign</span><span>v</span></div></button>
+                <button class="space-between" onclick="tempContacts()"><input placeholder="Select contacts to assign"></input><span>v</span></button>
+                <div id="contactsList" class="column"></div>
             </div>
             <div class="column flex_start">
                 <span>Category<span class="star">*</span></span>
-                <button><div class="space-between"><span>Select task category</span><span>v</span></div></button>
+                <button><div class="space-between"><input placeholder="Select task category"></input><span>v</span></div></button>
             </div>
             <div class="column flex_start">
                 <span>Subtasks</span>

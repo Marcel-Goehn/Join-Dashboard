@@ -49,11 +49,12 @@ async function loginAsUser() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
     const response = await fetch(databaseLinkRef);
-    const responseToJSON = await response.json();
-    console.log(responseToJSON);
+    const userDB = await response.json();
     
-    for (const id in responseToJSON) {
-        if (responseToJSON[id].email == email && responseToJSON[id].password == password) {
+    for (const key in userDB) {
+        if (userDB[key].email == email && userDB[key].password == password) {
+            console.log(userDB[key]);
+            sessionStorage.setItem("loggedIn", JSON.stringify(userDB[key]));
             window.location.href = "../html/summary.html";
             } else {
                 Array.from(document.getElementsByClassName('singleinput_div')).forEach(element => element.classList.add('invalid'));
