@@ -145,3 +145,67 @@ dialog .wrapper {
     font-size: 1.188rem;
     color: #000000;
 }
+
+.subtask-checkbox {
+    margin-top: 0.5rem;
+    padding-inline: 1rem;
+}
+
+.align-checkbox {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 0.25rem;
+    gap: 1rem;
+}
+
+.align-checkbox p {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #000000;
+    margin-top: 0;
+}
+
+.align-checkbox img:hover {
+    cursor: pointer;
+}
+
+.delete-change-section {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.delete-change-container {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-change-container span {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #2A3647;
+}
+
+.delete-change-container:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.delete-change-container:hover span {
+    color: #29ABE2;
+    font-weight: bold;
+}
+
+.delete-change-container:hover svg path {
+    fill: #29ABE2;
+}
+
+.divider {
+    height: 24px;
+    border: 1px solid #D1D1D1;
+}
