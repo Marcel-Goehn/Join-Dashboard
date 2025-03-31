@@ -1,0 +1,96 @@
+.header {
+    width: calc(100% - 232px);
+    margin-left: 232px;
+    margin-top: 6.875rem;
+}
+
+.container {
+    margin-inline: auto;
+    padding: 0 6rem;
+    max-width: 1440px;
+    width: 100%;
+}
+
+.align-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 3.813rem;
+    color: #000000;
+}
+
+.align-header button {
+    background-color: #F6F7F8;
+}
+
+.introducing {
+    width: calc(100% - 232px);
+    margin-left: 232px;
+    margin-top: 2rem;
+}
+
+h2 {
+    margin-top: 1.5rem;
+    font-weight: 700;
+    color: #000000;
+    font-size: 1.688rem;
+}
+
+span {
+    color: #29ABE2;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.first-p-section {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #000000;
+}
+
+main {
+    margin-top: 1rem;
+    width: calc(100% - 232px);
+    margin-left: 232px;
+}
+
+.align-how-to {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2.188rem;
+    margin-top: 1rem;
+}
+
+.align-how-to:first-child {
+    margin-top: 0;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 1.688rem;
+    color: #000000;
+}
+
+.align-how-to p {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #000000;
+}
+
+.goodbye {
+    margin-top: 2rem;
+
+}
