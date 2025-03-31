@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../styles/addTask.css">
     <title>Join | Tasks</title>
 </head>
-<body>
+<body onload="loadUser(), tempContacts()">
     <h1>Add Task</h1>
     <div id="content">
         <div class="content_half">
@@ -71,8 +71,9 @@
             </div>
             <div class="column flex_start">
                 <span>Assigned to</span>
-                <button class="space-between" onclick="tempContacts()"><input placeholder="Select contacts to assign"></input><span>v</span></button>
+                <button class="space-between" onclick="toggleContacts()"><input id="searchbar" onkeyup="search()" placeholder="Select contacts to assign"></input><span>v</span></button>
                 <div id="contactsList" class="column hidden"></div>
+                <div id="closed_contacts"></div>
             </div>
             <div class="column flex_start">
                 <span>Category<span class="star">*</span></span>

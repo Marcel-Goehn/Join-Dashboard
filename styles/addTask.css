@@ -38,6 +38,7 @@ input::placeholder {
 input {
     font-size: 20px;
     width: 100%;
+    outline: none;
 }
 textarea {
     font-size: 20px;
@@ -97,7 +98,7 @@ textarea:hover {
     cursor: pointer;
 }
 .hidden {
-    display: none;
+    display: none !important;
 }
 .required {
     color: red;
@@ -114,4 +115,29 @@ textarea:hover {
     padding: 16px 10px;
     border-radius: 10px;
     background-color: white;
+}
+.highlight {
+    background-color: #2a3547;
+    color: white;
+}
+.highlight:hover {
+    background-color: #091931;
+}
+#contactsList div {
+    cursor: pointer;
+}
+.circle {
+    height: 42px;
+    width: 42px !important;
+    border-radius: 50%;
+    background-color: red;
+    margin: 6px;
+}
+.indice_name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+#closed_contacts {
+    display: flex;
 }
