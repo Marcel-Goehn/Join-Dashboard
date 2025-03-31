@@ -2,6 +2,7 @@ const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.fireb
 const contactDiv = document.getElementById("contactNameDiv");
 const contactInfoDiv = document.getElementById("contactInfoInfo");
 const addContactDial = document.getElementById("addContactDial");
+const editContactDial = document.getElementById("editContactDial");
 
 async function fetchContactData(user){
     const response = await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${user}/contacts.json`);
@@ -66,11 +67,18 @@ function randomColor(){
     return colorArr;
 }
 
-function openDial(){
+function openAddContactDial(){
     addContactDial.showModal();
 }
 
-function closeDial(){
+function closeAddContactDial(){
     addContactDial.close();
 }
 
+function openEditContactDial(){
+    editContactDial.showModal();
+}
+
+function closeEditContactDial(){
+    editContactDial.close();
+}
