@@ -31,21 +31,29 @@ function resetButtons() {
     document.getElementById('low_2').setAttribute("fill", "#7ae229");
 }
 
-
-
-// const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users.json";
-
 function tempContacts() {
     let userObject = sessionStorage.getItem("loggedIn");
     let user = JSON.parse(userObject);
+    document.getElementById('contactsList').innerHTML = "";
+    document.getElementById('contactsList').classList.toggle('hidden');
     for (const name in user.contacts) {
-        if (Object.prototype.hasOwnProperty.call(user.contacts, name)) {
-            const contact = user.contacts[name];
-            console.log(name);
-            console.log(contact);
-            
-            document.getElementById('contactsList').innerHTML += `<div class="space-between"><span>IMG</span><span>${name}</span><span>Checkbox</span></div>`
-            
-        }
+            document.getElementById('contactsList').innerHTML +=
+            `<div class="space-between contact">
+                <div>
+                    <span>${indices(name)}</span>
+                    <span>${name}</span>
+                </div>
+                <input type="checkbox" id=${name}>
+            </div>`
     }
+}
+
+function indices(name) {
+    let step_1 = name.split(" ");
+    let step_2 = step_1.map(partName => partName[0].toUpperCase());
+    return step_2.join("");
+}
+
+function highlightContact() {
+    document.querySelectorAll('input[type="checkbox"]:checked').forEach(element => element.style.background)
 }

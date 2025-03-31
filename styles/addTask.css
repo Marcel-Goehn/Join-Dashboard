@@ -104,3 +104,14 @@ textarea:hover {
     font-size: 12px;
     font-weight: 200;
 }
+#contactsList input {
+    width: auto;
+}
+.contact:hover {
+    background-color: #D1D1D1;
+}
+.contact {
+    padding: 16px 10px;
+    border-radius: 10px;
+    background-color: white;
+}
