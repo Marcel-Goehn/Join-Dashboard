@@ -1,0 +1,176 @@
+#addContactDial{
+    background-color: transparent;
+    border: none;
+    outline:none;
+}
+
+#addContactDial:active{
+    border: none;
+    outline:none;
+}
+
+#addContactDialContent{
+    display: flex;
+    width: 1212px;
+    background-color: white;
+    border-radius: 30px;
+}
+
+#addContactLogoAndTextDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #2A3647;
+    padding:0 48px;
+    padding-top: 154px;
+    padding-bottom: 232px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+#addContactLogoAndTextDiv img{
+    width: 56px;
+    height: 66.5px;
+    margin-bottom: 12px;
+}
+
+#addContactTextDiv{
+    display: flex;
+    flex-direction: column;
+    gap:8px;
+    color: white;
+}
+
+#addContactTextDiv h3{
+    font-size: 61px;
+    font-weight: 700;
+}
+
+#addContactTextDiv p{
+    font-size: 27px;
+    font-weight: 400;
+}
+
+#addContactInfoDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-grow: 1;
+    padding-left: 83px;
+    padding-right: 48px;
+    padding-top: 48px;
+    padding-bottom: 135px;
+}
+
+#closeDialBtn{
+    margin-bottom: 61px;
+    background-color: white;
+}
+
+#closeDialBtn img{
+    width: 24px;
+    height: 24px;
+}
+
+#contactImgAndFormDiv{
+    display: flex;
+    align-items: flex-start;
+    gap: 72px;
+    justify-content: center;
+}
+
+#contactImgDiv{
+    width: 120px;
+    height: 120px;
+    background-color: #D1D1D1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 67px;
+}
+
+#contactImgDiv img{
+    width: 43px;
+    height: 43px;
+}
+
+#contactFormDiv{
+    display: flex;
+    flex-direction: column;
+}
+
+#contactFormDiv form{
+    flex-direction: column;
+    display: flex;
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.formDiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    padding: 13px 21px;
+    width: 422px;
+}
+
+.formDiv input{
+    z-index: 1;
+    height: 24px;
+    outline:none;
+    border: none;
+    font-weight: 400;
+    font-size:20px; 
+}
+
+.formDiv input::placeholder{
+    font-weight: 400;
+    font-size:20px;
+
+}
+
+.form input:focus{
+    outline:none;
+    border: none;
+}
+
+#dialButtonDiv{
+    display: flex;
+    gap:25px;
+}
+
+#cancelButton{
+    padding: 15px 24px;
+    border: 1px solid #2A3647;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+#cancelButton svg{
+    width: 10.5px;
+    height: 10.5px;
+}
+
+#createContactBtn{
+    display: flex;
+    gap: 4px;
+    padding: 16px;
+    background-color: #2A3647;
+    color: white;
+    border-radius: 10px;
+    align-items: center;
+}
+
+#createContactBtn svg{
+    width: 15.5px;
+    height: 11px;
+}

@@ -1,5 +1,8 @@
 const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/";
 const contactDiv = document.getElementById("contactNameDiv");
+const contactInfoDiv = document.getElementById("contactInfoInfo");
+const addContactDial = document.getElementById("addContactDial");
+const editContactDial = document.getElementById("editContactDial");
 
 async function fetchContactData(user){
     const response = await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${user}/contacts.json`);
@@ -7,29 +10,27 @@ async function fetchContactData(user){
     console.log(contactData);
     return contactData;
 }
+
 async function sortContacts(contactData){
     const sortedContacts = Object.entries(contactData).sort(([a], [b]) => a.localeCompare(b));
-    console.log(sortedContacts);
     const sortedContactsObject = Object.fromEntries(sortedContacts);
-    console.log(sortedContactsObject);
     return sortedContactsObject;
  }
 
-
 function renderContacts(contactData){
     let previousLetter = "";
+    let index = 0;
     for(const contact in contactData){
         if(contact.charAt(0).localeCompare(previousLetter) > 0){
-            contactLetter = contact.charAt(0).toUpperCase();
-            console.log(contactLetter)
-            contactDiv.innerHTML += letterTemp(contactLetter);
-            previousLetter = contact.charAt(0);
+            contactDiv.innerHTML += letterTemp(contact.charAt(0).toUpperCase());
+            previousLetter = contact.charAt(0).toUpperCase();
         }
-        console.log(contactData[contact].email, contact, contactData[contact].phone);
-        contactDiv.innerHTML += contactTemp(contactData[contact].email, contact, contactData[contact].phone);
+        rgbArr = randomColor();
+        contactDiv.innerHTML += contactTemp(contactData[contact].email, contact, contactData[contact].phone, index, rgbArr);
+        document.getElementById(`shorthand${index}`).style.backgroundColor = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
+        index++;
     }
 }
-
 
 function shorthandName(name){
     return name.split(" ").map(partName => partName[0].toUpperCase()).join("");
@@ -41,6 +42,43 @@ async function showContacts(user){
     renderContacts(sortedContacts);
 }
 
-function openContact(email, name, phone){
+function openContact(email, name, phone, rgbArrJSON){
+    const colorArr = JSON.parse(rgbArrJSON);
+    contactInfoDiv.innerHTML = contactInfoTemp(email, name, phone);
+    const initalsDivInfo = document.getElementById("initialsDivInfo");
+    initalsDivInfo.style.backgroundColor = `rgb(${colorArr[0]}, ${colorArr[1]}, ${colorArr[2]})`
+    
+}
 
+function randomColor(){
+    let r = Math.floor(Math.random()*210);
+        if(r < 40){
+            r = 40;
+        }
+    let g = Math.floor(Math.random()*210);
+        if(g < 40){
+           g = 40;
+        }
+    let b = Math.floor(Math.random()*210);
+        if(b < 40){
+           b = 40;
+        }
+    let colorArr = [r, g, b]
+    return colorArr;
+}
+
+function openAddContactDial(){
+    addContactDial.showModal();
+}
+
+function closeAddContactDial(){
+    addContactDial.close();
+}
+
+function openEditContactDial(){
+    editContactDial.showModal();
+}
+
+function closeEditContactDial(){
+    editContactDial.close();
 }
