@@ -3,7 +3,6 @@ const databaseLinkRef =
 const contactDiv = document.getElementById("contactNameDiv");
 const contactInfoDiv = document.getElementById("contactInfoInfo");
 const addContactDial = document.getElementById("addContactDial");
-const editContactDial = document.getElementById("editContactDial");
 const userObject = sessionStorage.getItem("loggedIn");
 const user = JSON.parse(userObject);
 console.log(user);
@@ -14,17 +13,14 @@ async function fetchContactData() {
 		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${testuser}/contacts.json`
 	);
 	const contactData = await response.json();
-	console.log(contactData);
 	return contactData;
 }
 
-async function sortContacts(contactData) {
+function sortContacts(contactData) {
 	const sortedContacts = Object.entries(contactData).sort(([, a], [, b]) =>
 		a.name.localeCompare(b.name)
 	);
-	console.log(sortedContacts);
 	const sortedContactsObject = Object.fromEntries(sortedContacts);
-	console.log(sortedContactsObject);
 	return sortedContactsObject;
 }
 
@@ -33,13 +29,7 @@ function renderContacts(contactData) {
 	let index = 0;
 	contactDiv.innerHTML = "";
 	for (const contact in contactData) {
-		console.log(contactData[contact]);
-		if (contactData[contact].name.charAt(0).localeCompare(previousLetter) > 0) {
-			contactDiv.innerHTML += letterTemp(
-				contactData[contact].name.charAt(0).toUpperCase()
-			);
-			previousLetter = contactData[contact].name.charAt(0).toUpperCase();
-		}
+		renderFirstLetter(contactData, contact, previousLetter);
 		rgbArr = randomColor();
 		contactDiv.innerHTML += contactTemp(
 			contactData[contact].email,
@@ -48,13 +38,25 @@ function renderContacts(contactData) {
 			index,
 			rgbArr
 		);
-		document.getElementById(
-			`shorthand${index}`
-		).style.backgroundColor = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
+		styleBackgroundOfInitials(rgbArr, index);
 		index++;
 	}
 }
 
+function renderFirstLetter(contactData, contact, previousLetter) {
+	if (contactData[contact].name.charAt(0).localeCompare(previousLetter) > 0) {
+		contactDiv.innerHTML += letterTemp(
+			contactData[contact].name.charAt(0).toUpperCase()
+		);
+		previousLetter = contactData[contact].name.charAt(0).toUpperCase();
+	}
+}
+
+function styleBackgroundOfInitials(rgbArr, index) {
+	document.getElementById(
+		`shorthand${index}`
+	).style.backgroundColor = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
+}
 function renderLetters() {}
 function shorthandName(name) {
 	return name
@@ -65,7 +67,7 @@ function shorthandName(name) {
 
 async function showContacts() {
 	const contactData = await fetchContactData();
-	const sortedContacts = await sortContacts(contactData); //
+	const sortedContacts = sortContacts(contactData);
 	renderContacts(sortedContacts);
 }
 
@@ -113,35 +115,23 @@ function openEditContactDial(email, name, phone, color) {
 
 function closeEditContactDial() {
 	addContactDial.close();
+	removeSlideIn();
 }
 
 async function deleteContact(name) {
-	const contactData = await fetchContactData();
-	const contactId = Object.entries(contactData).find(
-		([key, value]) => value.name === name
-	)?.[0];
+	const contactId = getContactId(name);
 	const request = await fetch(
 		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${testuser}/contacts/${contactId}.json`,
 		{
 			method: "DELETE",
 		}
 	);
-	console.log("success");
+	showContacts();
 }
 
 async function updateContact(name) {
-	const contactData = await fetchContactData();
-	const contactId = Object.entries(contactData).find(
-		([key, value]) => value.name === name
-	)?.[0];
-	const editedContactName = document.getElementById("dialNameInput").value;
-	const editedContactEmail = document.getElementById("dialEmailInput").value;
-	const editedContactPhone = document.getElementById("dialPhoneInput").value;
-	const editedContactData = {
-		name: `${editedContactName}`,
-		email: `${editedContactEmail}`,
-		phone: `${editedContactPhone}`,
-	};
+	const contactId = await getContactId(name);
+	const editedContactData = getEditedContactData();
 	console.log("test");
 	const request = await fetch(
 		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${testuser}/contacts/${contactId}.json`,
@@ -153,17 +143,12 @@ async function updateContact(name) {
 			body: JSON.stringify(editedContactData),
 		}
 	);
+	closeAddContactDial();
+	showContacts();
 }
 
 async function addContact() {
-	const newContactName = document.getElementById("dialNameInput").value;
-	const newContactEmail = document.getElementById("dialEmailInput").value;
-	const newContactPhone = document.getElementById("dialPhoneInput").value;
-	const newContactData = {
-		name: `${newContactName}`,
-		email: `${newContactEmail}`,
-		phone: `${newContactPhone}`,
-	};
+	const newContactData = getEditedContactData();
 	const request = await fetch(
 		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${testuser}/contacts.json`,
 		{
@@ -174,6 +159,38 @@ async function addContact() {
 			body: JSON.stringify(newContactData),
 		}
 	);
-	console.log("success");
+	closeAddContactDial();
 	showContacts();
+}
+
+async function getContactId(name) {
+	const contactData = await fetchContactData();
+	const contactId = Object.entries(contactData).find(
+		([, value]) => value.name === name
+	)?.[0];
+	return contactId;
+}
+
+function getEditedContactData() {
+	const editedContactName = document.getElementById("dialNameInput").value;
+	const editedContactEmail = document.getElementById("dialEmailInput").value;
+	const editedContactPhone = document.getElementById("dialPhoneInput").value;
+	const editedContactData = {
+		name: `${editedContactName}`,
+		email: `${editedContactEmail}`,
+		phone: `${editedContactPhone}`,
+	};
+	return editedContactData;
+}
+
+function slideIn() {
+	const editDialContent = document.getElementById("editContactDialContent");
+	editDialContent.classList.toggle("slideIn");
+}
+
+function slideInAddContact() {
+	const addContactDialContent = document.getElementById(
+		"addContactDialContent"
+	);
+	addContactDialContent.classList.toggle("slideIn");
 }
