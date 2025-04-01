@@ -12,28 +12,11 @@ function animateLogo(){
 
 function fadeAllElementsIn(){
     const allElementsExpectLogo = document.getElementsByTagName('div');
-    console.log(allElementsExpectLogo);
-
     for (let index = 0; index < allElementsExpectLogo.length; index++) {
         const element = allElementsExpectLogo[index];
         element.classList.toggle("fadeIn");
     }    
 }
-
-/* async function postData(path="", data={}) {
-    fetch(databaseLinkRef + path, {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-    });
-} */
-
-/* postData("", {
-    email : "guest@join.com",
-    password : "guest123"
-    }
-) */
-
 
 function validate() {
     const form = document.getElementById('login_data');
@@ -43,18 +26,15 @@ function validate() {
         form.reportValidity();
     }
 }
-
-
 async function loginAsUser() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
     const response = await fetch(databaseLinkRef);
     const userDB = await response.json();
-    
-    for (const key in userDB) {
-        if (userDB[key].email == email && userDB[key].password == password) {
-            console.log(userDB[key]);
-            sessionStorage.setItem("loggedIn", JSON.stringify(userDB[key]));
+    for (const id in userDB) {
+        if (userDB[id].email == email && userDB[id].password == password) {
+            userDB[id].ID = id;
+            sessionStorage.setItem("loggedIn", JSON.stringify(userDB[id]));
             window.location.href = "../html/summary.html";
             } else {
                 Array.from(document.getElementsByClassName('singleinput_div')).forEach(element => element.classList.add('invalid'));
