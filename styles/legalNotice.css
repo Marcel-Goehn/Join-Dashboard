@@ -1,0 +1,48 @@
+body {
+    font-size: 1rem;
+    color: #000000;
+    font-weight: 400;
+}
+
+main {
+    width: calc(100% - 232px);
+    margin-left: 232px;
+    margin-top: 6.875rem;
+}
+
+.container {
+    padding: 0 6rem;
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1440px;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 3.813rem;
+    color: #000000;
+}
+
+h2 {
+    margin-top: 2rem;
+    font-weight: 700;
+    font-size: 1.688rem;
+    color: #000000;
+}
+
+ul {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+}
+
+h3 {
+    margin-top: 1.5rem;
+}
+
+span {
+    color: #29ABE2; 
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
