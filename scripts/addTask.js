@@ -37,7 +37,7 @@ function loadUser() {
     logged_user = JSON.parse(userObject);
 }
 
-function tempContacts(array = Object.keys(logged_user.contacts)) {
+function tempContacts(array = Object.keys(logged_user.contacts)[0]) {
     document.getElementById('contactsList').innerHTML = "";
     for (let index = 0; index < array.length; index++) {
         const contact = array[index];

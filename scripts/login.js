@@ -26,6 +26,13 @@ function validate() {
         form.reportValidity();
     }
 }
+
+async function test() {
+    const response = await fetch(databaseLinkRef);
+    const userDB = await response.json();
+    console.log(userDB);
+}
+
 async function loginAsUser() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
