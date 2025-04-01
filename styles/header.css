@@ -14,13 +14,17 @@ a{
 }
 
 header{
+    position: fixed;
+    left: 232px;
+    top: 0;
+    z-index: 10;
     display: flex;
     justify-content: center;
     height: 96px;
     align-items: center;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.10);
     width: calc(100% - 232px);
-    margin-left: 232px;
+    /* margin-left: 232px; */
     background-color: #FFFFFF;
 }
 
