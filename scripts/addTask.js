@@ -1,21 +1,25 @@
 const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/";
 let logged_user = {};
+let priority = "medium";
 
 function select(num) {
     resetButtons();
     switch (num) {
         case 0:
             document.getElementById(num).classList.add('urgent');
+            priority = "urgent";
             document.getElementById('urgent_1').setAttribute("fill", "white");
             document.getElementById('urgent_2').setAttribute("fill", "white");
             break;
         case 1:
             document.getElementById(num).classList.add('medium')
+            priority = "medium";
             document.getElementById('medium_1').setAttribute("fill", "white");
             document.getElementById('medium_2').setAttribute("fill", "white");
             break;
         case 2:
-            document.getElementById(num).classList.add('low')            
+            document.getElementById(num).classList.add('low')
+            priority = "low";         
             document.getElementById('low_1').setAttribute("fill", "white");
             document.getElementById('low_2').setAttribute("fill", "white");
             break;
@@ -72,6 +76,7 @@ function toggleContacts() {
     document.getElementById('closed_contacts').classList.toggle('hidden');
     closedContacts();
 }
+
 function closedContacts() {
     document.getElementById('closed_contacts').innerHTML = "";
     for (let index = 0; index < highlighted_contacts.length; index++) {
@@ -150,19 +155,45 @@ function editSubtask(id) {
 
 }
 
-function createTask() {
-    let form = document.getElementById('task_form');
-    if (form.checkValidity() == true) {
-        console.log("Form valid!");
-    }
-    if (document.getElementById('btn_text').innerHTML !=="Select task category") {
-        console.log("valid");
-        
-    }
+function validate() {
+    let title = document.getElementById('title_input').value;
+    let duedate = document.getElementById('duedate_input').value;
+    let category = document.getElementById('btn_text').innerHTML;
     
+    if (title !== "" && duedate !== "" && category !== "Select task category") {
+        let task = {
+            "assigned" : highlighted_contacts,
+            "category" : category,
+            "description" : document.getElementById('description').value,
+            "duedate" : duedate,
+            "priority" : priority,
+            "subtasks" : null
+        }
+        uploadTask(task);      
+    } else {
+        console.log("something is missing");
+    }
 }
 
-function test() {
-    let test = document.getElementById('btn_text').innerHTML;
-    console.log(test);
+function assembleTask() {
+    let task = {
+        "assigned" : highlighted_contacts,
+        "category" : category,
+        "description" : document.getElementById('description').value,
+        "duedate" : duedate,
+        "priority" : priority,
+        "subtasks" : null
+    }
+    uploadTask(task);
+}
+
+async function uploadTask(task) {
+    let result = sessionStorage.getItem("loggedIn");
+    let userID = await JSON.parse(result);
+    fetch(databaseLinkRef + userID + ".json", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(task),
+    });
+    console.log(databaseLinkRef + userID + ".json");
 }
