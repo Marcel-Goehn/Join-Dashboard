@@ -4,6 +4,7 @@ const contactDiv = document.getElementById("contactNameDiv");
 const contactInfoDiv = document.getElementById("contactInfoInfo");
 const addContactDial = document.getElementById("addContactDial");
 const userObject = sessionStorage.getItem("loggedIn");
+console.log(userObject);
 const user = JSON.parse(userObject);
 console.log(user);
 const testuser = "-OMj4ed3OtRMrfHIWpzD";
