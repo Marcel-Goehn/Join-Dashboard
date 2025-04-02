@@ -141,3 +141,51 @@ textarea:hover {
 #closed_contacts {
     display: flex;
 }
+
+#category {
+    align-items: flex-start;
+}
+.category {
+    padding: 16px 10px;
+    border-radius: 10px;
+    background-color: white;
+    width: 100%;
+    cursor: pointer;
+}
+.category:hover {
+    background-color: #D1D1D1;
+}
+#subtasks_div {
+    padding: 16px 10px;
+    border-radius: 10px;
+    background-color: white;
+}
+#btn_subtask {
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+}
+.addSubtask_btndiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+.addedSubtask {
+    padding: 16px 10px;
+    border-radius: 10px;
+    background-color: white;
+}
+.addedSubtask_btn {
+    width: fit-content !important;
+    height: fit-content;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+#addtask_button_div {
+    display: flex;
+    gap: 16px;
+}

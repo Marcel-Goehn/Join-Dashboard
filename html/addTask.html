@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="../styles/addTask.css">
     <title>Join | Tasks</title>
 </head>
-<body onload="loadUser(), tempContacts()">
+<body onload="fetchUser()">
+    <form id="task_form" action="">
     <h1>Add Task</h1>
-    <div id="content">
+    <div id="content" class="space-between">
         <div class="content_half">
             <div class="column flex_start">
                 <span>Title<span class="star">*</span></span>
-                <input class="padding" type="text" placeholder="Enter a title">
+                <input class="padding" type="text" placeholder="Enter a title" required>
                 <span class="required hidden">this field is required</span>
             </div>
             <div class="column flex_start">
@@ -23,7 +24,7 @@
             <div class="column flex_start">
                 <span>Due date<span class="star">*</span></span>
                 <div id="dueDate">
-                    <input type="text" placeholder="dd/mm/yyyy">
+                    <input type="text" placeholder="dd/mm/yyyy" required>
                     <img src="../assets/img/addtask/calendar.svg" alt="">
                 </div>
                 <span class="required hidden">this field is required</span>
@@ -77,12 +78,28 @@
             </div>
             <div class="column flex_start">
                 <span>Category<span class="star">*</span></span>
-                <button><div class="space-between"><input placeholder="Select task category"></input><span>v</span></div></button>
+                <button onclick="toggleHidden('category')" class="space-between">
+                    <span id="btn_text">Select task category</span>
+                    <span>v</span>
+                </button>
+                <div id="category" class="column hidden">
+                    <span class="category"onclick="setCategory(1)">Technical Task</span>
+                    <span class="category"onclick="setCategory(2)">User Story</span>
+                </div>
             </div>
             <div class="column flex_start">
                 <span>Subtasks</span>
-                <div class="space-between"><input type="text" placeholder="Add new subtask"><span>+</span></div>
+                <div id="subtasks_div" class="space-between"><input id="subtask_input" type="text" placeholder="Add new subtask"><button onclick="addSubtask()" id="btn_subtask">+</button></div>
+                <div id="addedSubtasks" class="column"></div>
             </div>
+        </div>
+    </div>
+</form>
+    <div class="space-between">
+        <span><span class="star">*</span>This field is required</span>
+        <div id=addtask_button_div>
+            <button>Clear X</button>
+            <button type="confirm" onclick="createTask()">Create Task</button>
         </div>
     </div>
 </body>

@@ -1,4 +1,4 @@
-const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users.json";
+const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users";
 
 function init() {
     animateLogo();
@@ -27,21 +27,15 @@ function validate() {
     }
 }
 
-async function test() {
-    const response = await fetch(databaseLinkRef);
-    const userDB = await response.json();
-    console.log(userDB);
-}
-
 async function loginAsUser() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
-    const response = await fetch(databaseLinkRef);
+    const response = await fetch(databaseLinkRef + ".json");
     const userDB = await response.json();
     for (const id in userDB) {
         if (userDB[id].email == email && userDB[id].password == password) {
-            userDB[id].ID = id;
-            sessionStorage.setItem("loggedIn", JSON.stringify(userDB[id]));
+            console.log(typeof(id) + ": " + id);
+            sessionStorage.setItem("loggedIn", JSON.stringify(id));
             window.location.href = "../html/summary.html";
             } else {
                 Array.from(document.getElementsByClassName('singleinput_div')).forEach(element => element.classList.add('invalid'));
