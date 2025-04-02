@@ -79,12 +79,12 @@ function colorClickedContact(index){
 	const acutalContentDivs = document.querySelectorAll(".actualContactDiv");
 	console.log(acutalContentDivs);
 	acutalContentDivs.forEach((div) => {
-		div.style.backgroundColor = "white";
-		div.style.color = "black";
+		div.classList.remove("clickedBackground");
+		div.classList.add("whiteBackground");
 	})
 	const clickedContentDiv = document.getElementById(`actualContactDiv${index}`);
-	clickedContentDiv.style.backgroundColor = "#2a3647";
-	clickedContentDiv.style.color = "white";
+	clickedContentDiv.classList.remove("whiteBackground");
+	clickedContentDiv.classList.add("clickedBackground");
 }
 
 function randomColor() {
@@ -109,8 +109,16 @@ function openAddContactDial() {
 	addContactDial.showModal();
 }
 
-function closeAddContactDial() {
-	addContactDial.close();
+function closeContactDial() {
+	if(document.getElementById("addContactDialContent")){
+		slideOut(document.getElementById("addContactDialContent"));
+	}else{
+		slideOut(document.getElementById("editContactDialContent"))
+		console.log("test");
+	}
+	setTimeout(()=>{
+		addContactDial.close();
+	}, 1000)
 }
 
 function openEditContactDial(email, name, phone, color) {
@@ -120,11 +128,6 @@ function openEditContactDial(email, name, phone, color) {
 		"editImgDiv"
 	).style.backgroundColor = `rgb(${colorArr[0]},${colorArr[1]}, ${colorArr[2]})`;
 	addContactDial.showModal();
-}
-
-function closeEditContactDial() {
-	addContactDial.close();
-	removeSlideIn();
 }
 
 async function deleteContact(name) {
@@ -156,7 +159,9 @@ async function updateContact(name, event) {
 		}
 	);
 	closeAddContactDial();
-	showContacts();
+	await showContacts();
+	const indexAndColor = searchForIndexAndColor(editedContactData);
+	openContact(editedContactData["email"], editedContactData["name"], editedContactData["phone"], indexAndColor[1], indexAndColor[0]);
 }
 
 async function addContact() {
@@ -248,4 +253,9 @@ function searchForIndexAndColor(newContactData){
 		block: "center"
 	});
 	return [index, JSON.stringify(color)]
+}
+
+function slideOut(contentDial){
+	contentDial.classList.remove("slideIn");
+	contentDial.classList.add("slideOut");
 }

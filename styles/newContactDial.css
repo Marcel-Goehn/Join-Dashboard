@@ -197,6 +197,7 @@
 
 #createContactBtn:hover {
 	background-color: #29abe2;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
 }
 
 #createContactBtn svg {
@@ -401,6 +402,7 @@
 
 #saveBtn:hover {
 	background-color: #29abe2;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
 }
 
 .slideIn {
@@ -415,6 +417,20 @@
 	100% {
 		transform: translate(-30%, -50%);
 	}
+}
+
+@keyframes slideOut{
+	0%{
+		transform: translate(-30%, -50%);
+	}
+
+	100%{
+		transform: translate(200%, -50%);
+	}
+}
+
+.slideOut{
+	animation: slideOut 1s ease-in forwards;
 }
 
 #successDial {
@@ -471,4 +487,20 @@
 
 .slideMsgInAndOut {
 	animation: slideInAndOut 1.5s ease-out forwards;
+}
+
+#afterSpan{
+	position: relative;
+}
+
+#afterSpan::after{
+	content: "";
+	position: absolute;
+	background-color: #29abe2;
+	bottom: calc(0% - 16px);
+	height: 3px;
+	width: 125%;
+	left: 0;
+	border-radius: 10px;
+
 }
