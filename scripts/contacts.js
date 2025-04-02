@@ -35,7 +35,6 @@ function renderContacts(contactData) {
 			);
 			previousLetter = contactData[contact].name.charAt(0).toUpperCase();
 		}
-
 		rgbArr = randomColor();
 		contactDiv.innerHTML += contactTemp(
 			contactData[contact].email,
@@ -68,11 +67,24 @@ async function showContacts() {
 	renderContacts(sortedContacts);
 }
 
-function openContact(email, name, phone, rgbArrJSON) {
+function openContact(email, name, phone, rgbArrJSON, index) {
+	colorClickedContact(index);
 	const colorArr = JSON.parse(rgbArrJSON);
 	contactInfoDiv.innerHTML = contactInfoTemp(email, name, phone, rgbArrJSON);
 	const initalsDivInfo = document.getElementById("initialsDivInfo");
 	initalsDivInfo.style.backgroundColor = `rgb(${colorArr[0]}, ${colorArr[1]}, ${colorArr[2]})`;
+}
+
+function colorClickedContact(index){
+	const acutalContentDivs = document.querySelectorAll(".actualContactDiv");
+	console.log(acutalContentDivs);
+	acutalContentDivs.forEach((div) => {
+		div.style.backgroundColor = "white";
+		div.style.color = "black";
+	})
+	const clickedContentDiv = document.getElementById(`actualContactDiv${index}`);
+	clickedContentDiv.style.backgroundColor = "#2a3647";
+	clickedContentDiv.style.color = "white";
 }
 
 function randomColor() {
@@ -128,11 +140,12 @@ async function deleteContact(name) {
 	contactInfoDiv.innerHTML = "";
 }
 
-async function updateContact(name) {
+async function updateContact(name, event) {
+	event.preventDefault();
 	const contactId = await getContactId(name);
 	const editedContactData = getEditedContactData();
 	console.log("test");
-	const request = await fetch(
+	await fetch(
 		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${testuser}/contacts/${contactId}.json`,
 		{
 			method: "PUT",
@@ -147,8 +160,8 @@ async function updateContact(name) {
 }
 
 async function addContact() {
-	const newContactData = getEditedContactData();
-	const request = await fetch(
+	const newContactData = getNewContactData();
+	await fetch(
 		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${testuser}/contacts.json`,
 		{
 			method: "POST",
@@ -159,7 +172,9 @@ async function addContact() {
 		}
 	);
 	closeAddContactDial();
-	showContacts();
+	await showContacts();
+	const indexAndColor = searchForIndexAndColor(newContactData);
+	openContact(newContactData["email"], newContactData["name"], newContactData["phone"], indexAndColor[1], indexAndColor[0]);
 }
 
 async function getContactId(name) {
@@ -170,10 +185,22 @@ async function getContactId(name) {
 	return contactId;
 }
 
+function getNewContactData(){
+	const newContactName = document.getElementById("addDialNameInput").value;
+	const newContactEmail = document.getElementById("addDialEmailInput").value;
+	const newContactPhone = document.getElementById("addDialPhoneInput").value;
+	const newContactData = {
+		name: `${newContactName}`,
+		email: `${newContactEmail}`,
+		phone: `${newContactPhone}`,
+	};
+	return newContactData;
+}
+
 function getEditedContactData() {
-	const editedContactName = document.getElementById("dialNameInput").value;
-	const editedContactEmail = document.getElementById("dialEmailInput").value;
-	const editedContactPhone = document.getElementById("dialPhoneInput").value;
+	const editedContactName = document.getElementById("editDialNameInput").value;
+	const editedContactEmail = document.getElementById("editDialEmailInput").value;
+	const editedContactPhone = document.getElementById("editDialPhoneInput").value;
 	const editedContactData = {
 		name: `${editedContactName}`,
 		email: `${editedContactEmail}`,
@@ -202,11 +229,23 @@ function slideInContactInfo() {
 }
 
 function successMsg() {
-	const successDial = document.getElementById("successDial");
-	successDial.showModal();
-	successDial.innerHTML = `<div id="successDiv"><button>Contact succesfully created</button></div>`;
-	document.getElementById("successDiv").classList.add("slideMsgInAndOut");
-	setTimeout(() => {
-		successDial.close();
-	}, 2000);
+	const successDialBtn = document.getElementById("successBtn");
+	successDialBtn.classList.add("slideMsgInAndOut");
+	setTimeout(()=>{
+		successDialBtn.classList.remove("slideMsgInAndOut")
+	}, 2000)
+	addContactDial.close();
+}
+
+function searchForIndexAndColor(newContactData){
+	const allContactDivs = document.querySelectorAll(".actualContactDiv");
+	const searchedContactDiv = Array.from(allContactDivs).find(contactDiv => contactDiv.textContent.includes(`${newContactData["email"]}`));
+	let index = searchedContactDiv.id.replace(/\D/g, "");
+	index = parseInt(index);
+	const color = searchedContactDiv.children[0].style.backgroundColor;
+	searchedContactDiv.scrollIntoView({
+		behavior: "smooth",
+		block: "center"
+	});
+	return [index, JSON.stringify(color)]
 }

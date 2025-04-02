@@ -1,10 +1,10 @@
 body {
 	position: relative;
+	overflow: hidden;
 }
 
 #stickyContactsContent {
 	width: calc(100% - 232px);
-	position: relative;
 	overflow: hidden;
 	display: flex;
 	box-shadow: -4px 0px 6px 0px #00000014;
@@ -15,14 +15,14 @@ body {
 }
 
 #stickyContacts {
-	position: sticky;
+	position: relative;
 	top: 0;
-	height: 100%;
 	overflow: auto;
 	width: 456px;
-	padding: 22.5px 52px;
+	padding-bottom:  52px;
 	background-color: white;
 	box-shadow: 4px 0px 6px 0px #00000014;
+	scrollbar-width: 24px;
 }
 
 #contentLimiter {
@@ -30,6 +30,18 @@ body {
 	margin-left: 688px;
 	width: calc(100% - 688px);
 	height: 100%;
+	width: 100%;
+}
+
+#addNewContactBtnDiv{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 22.5px;
+	position: sticky;
+	top: 0;
+	background-color: white;
+	padding-bottom: 22.5px;
 }
 
 #addNewContactBtn {
@@ -40,8 +52,15 @@ body {
 	text-align: center;
 	font-size: 21px;
 	font-weight: 700;
+	gap: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	position: sticky;
 	top: 0;
+	white-space: nowrap;
+	z-index: 10;
+	
 }
 
 #addNewContactBtn img {
@@ -49,11 +68,9 @@ body {
 	height: 20px;
 }
 
-#buttonContent {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 16px;
+#addNewContactBtn:hover{
+	background-color: #29abe2;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);;
 }
 
 #contactInfo {
@@ -123,8 +140,7 @@ body {
 }
 
 .actualContactDiv:hover {
-	color: white;
-	background-color: #2a3647;
+	background-color: #d1d1d1;
 	cursor: pointer;
 }
 
@@ -139,9 +155,8 @@ body {
 
 .contactDivider {
 	width: 352px;
-	padding: 8px, 0;
 	border-radius: 3px;
-	border: 1px solid #d1d1d1;
+	border: 0.5px solid #d1d1d1;
 }
 
 #contactNameDiv {
@@ -149,6 +164,7 @@ body {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	padding: 0 52px;
 }
 
 #contactInfoInfo {

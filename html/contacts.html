@@ -25,7 +25,9 @@
     </header>
     <div id="stickyContactsContent">
         <div id="stickyContacts">
-            <button id="addNewContactBtn" onclick="openAddContactDial(), slideInAddContact()"><div id="buttonContent">Add new contact <img src="../assets/img/person_add.svg"></div></button>
+            <div id="addNewContactBtnDiv">
+            <button id="addNewContactBtn" onclick="openAddContactDial(), slideInAddContact()">Add new contact <img src="../assets/img/person_add.svg"></button>
+        </div>
             <div id="contactNameDiv"></div>
         </div>
     </div>
@@ -37,6 +39,9 @@
                 <p>Better With a team</p>
             </div>
             <div id="contactInfoInfo">
+            </div>
+            <div id="successDiv">
+                <button id="successBtn">Contact succesfully created</button>
             </div>
         </div>
     </div>
@@ -69,7 +74,6 @@
         </div>
     </div>
        <dialog id="addContactDial"> </dialog>
-        <dialog id="successDial"></dialog>
     <script src="../scripts/contacts.js"></script>
     <script src="../scripts/contactTemp.js"></script>
 
