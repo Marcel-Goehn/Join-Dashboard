@@ -63,6 +63,7 @@ body {
 	max-width: 1440px;
 	margin-inline: auto;
 	width: 100%;
+	overflow: hidden;
 }
 
 #contactHeadlineDiv {
@@ -262,4 +263,17 @@ body {
 
 .emailInfo {
 	color: #007cee;
+}
+
+@keyframes slideInContactInfo {
+	0% {
+		transform: translateX(200%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.slideInContactInfo {
+	animation: slideInContactInfo 1s ease forwards;
 }

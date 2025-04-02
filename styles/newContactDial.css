@@ -407,3 +407,60 @@
 		transform: translate(-30%, -50%);
 	}
 }
+
+#successDial {
+	position: relative;
+	background-color: transparent;
+	overflow: hidden;
+	width: 100%;
+	height: 500px;
+	border: none;
+	outline: none;
+}
+
+#successDial:active {
+	border: none;
+	outline: none;
+}
+
+#successDial::backdrop {
+	background-color: transparent;
+}
+
+#successDiv {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	bottom: 0;
+	right: 50%;
+}
+
+#successDiv button {
+	background-color: #2a3647;
+	color: white;
+	border-radius: 20px;
+	box-shadow: 0 0 4px 0 #00000026;
+	font-size: 20px;
+	font-weight: 400;
+	padding: 20px;
+}
+
+@keyframes slideInAndOut {
+	0% {
+		transform: translateX(400%);
+	}
+	20% {
+		transform: translateX(10%);
+	}
+	80% {
+		transform: translateX(10%);
+	}
+	100% {
+		transform: translateX(500%);
+	}
+}
+
+.slideMsgInAndOut {
+	animation: slideInAndOut 1.5s ease-out forwards;
+}

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../styles/newContactDial.css">
 
 </head>
-<body onload="showContacts()">
+<body onload="showContacts(), successMsg()">
     <header>
         <div id="headerContent">
             <span>Kanban Project Management Tool</span>
@@ -68,9 +68,8 @@
             </div>
         </div>
     </div>
-       <dialog id="addContactDial">
-        
-    </dialog>
+       <dialog id="addContactDial"> </dialog>
+        <dialog id="successDial"></dialog>
     <script src="../scripts/contacts.js"></script>
     <script src="../scripts/contactTemp.js"></script>
 

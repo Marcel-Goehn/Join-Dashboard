@@ -29,7 +29,13 @@ function renderContacts(contactData) {
 	let index = 0;
 	contactDiv.innerHTML = "";
 	for (const contact in contactData) {
-		renderFirstLetter(contactData, contact, previousLetter);
+		if (contactData[contact].name.charAt(0).localeCompare(previousLetter) > 0) {
+			contactDiv.innerHTML += letterTemp(
+				contactData[contact].name.charAt(0).toUpperCase()
+			);
+			previousLetter = contactData[contact].name.charAt(0).toUpperCase();
+		}
+
 		rgbArr = randomColor();
 		contactDiv.innerHTML += contactTemp(
 			contactData[contact].email,
@@ -43,21 +49,12 @@ function renderContacts(contactData) {
 	}
 }
 
-function renderFirstLetter(contactData, contact, previousLetter) {
-	if (contactData[contact].name.charAt(0).localeCompare(previousLetter) > 0) {
-		contactDiv.innerHTML += letterTemp(
-			contactData[contact].name.charAt(0).toUpperCase()
-		);
-		previousLetter = contactData[contact].name.charAt(0).toUpperCase();
-	}
-}
-
 function styleBackgroundOfInitials(rgbArr, index) {
 	document.getElementById(
 		`shorthand${index}`
 	).style.backgroundColor = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
 }
-function renderLetters() {}
+
 function shorthandName(name) {
 	return name
 		.split(" ")
@@ -119,7 +116,8 @@ function closeEditContactDial() {
 }
 
 async function deleteContact(name) {
-	const contactId = getContactId(name);
+	const contactId = await getContactId(name);
+	console.log(contactId);
 	const request = await fetch(
 		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${testuser}/contacts/${contactId}.json`,
 		{
@@ -127,6 +125,7 @@ async function deleteContact(name) {
 		}
 	);
 	showContacts();
+	contactInfoDiv.innerHTML = "";
 }
 
 async function updateContact(name) {
@@ -193,4 +192,21 @@ function slideInAddContact() {
 		"addContactDialContent"
 	);
 	addContactDialContent.classList.toggle("slideIn");
+}
+
+function slideInContactInfo() {
+	const contactInfoInfo = document.getElementById("contactInfoInfo");
+	contactInfoInfo.classList.remove("slideInContactInfo");
+	void contactInfoInfo.offsetWidth;
+	contactInfoInfo.classList.add("slideInContactInfo");
+}
+
+function successMsg() {
+	const successDial = document.getElementById("successDial");
+	successDial.showModal();
+	successDial.innerHTML = `<div id="successDiv"><button>Contact succesfully created</button></div>`;
+	document.getElementById("successDiv").classList.add("slideMsgInAndOut");
+	setTimeout(() => {
+		successDial.close();
+	}, 2000);
 }
