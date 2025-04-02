@@ -8,13 +8,12 @@
     <title>Join | Tasks</title>
 </head>
 <body onload="fetchUser()">
-    <form id="task_form" action="">
     <h1>Add Task</h1>
     <div id="content" class="space-between">
         <div class="content_half">
             <div class="column flex_start">
                 <span>Title<span class="star">*</span></span>
-                <input class="padding" type="text" placeholder="Enter a title" required>
+                <input id="title_input" class="padding" type="text" placeholder="Enter a title">
                 <span class="required hidden">this field is required</span>
             </div>
             <div class="column flex_start">
@@ -24,7 +23,7 @@
             <div class="column flex_start">
                 <span>Due date<span class="star">*</span></span>
                 <div id="dueDate">
-                    <input type="text" placeholder="dd/mm/yyyy" required>
+                    <input id="duedate_input" type="date" placeholder="dd/mm/yyyy">
                     <img src="../assets/img/addtask/calendar.svg" alt="">
                 </div>
                 <span class="required hidden">this field is required</span>
@@ -94,12 +93,11 @@
             </div>
         </div>
     </div>
-</form>
     <div class="space-between">
         <span><span class="star">*</span>This field is required</span>
         <div id=addtask_button_div>
             <button>Clear X</button>
-            <button type="confirm" onclick="createTask()">Create Task</button>
+            <button type="confirm" onclick="validate()">Create Task</button>
         </div>
     </div>
 </body>
