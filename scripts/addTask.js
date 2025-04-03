@@ -73,7 +73,7 @@ function tempContacts(array = Object.values(logged_user.contacts)) {
         </div>`
     }
     highlighted_contacts.forEach(element => {
-        document.getElementById(element).classList.toggle('highlight');  //Wortteil-Suche geht voll gar nicht steil :<
+        document.getElementById(element).classList.toggle('highlight');
         document.getElementById(`${element}-unchecked`).classList.toggle('hidden');
         document.getElementById(`${element}-checked`).classList.toggle('hidden');})
 }
@@ -94,7 +94,6 @@ function closedContacts() {
     for (let index = 0; index < highlighted_contacts.length; index++) {
         const element = highlighted_contacts[index];
         document.getElementById('closed_contacts').innerHTML += `<div class="circle centered">${indices(element)}</div>`;
-        rotateIcon();
     }
 }
 
@@ -119,15 +118,13 @@ function currentlyHighlighted(contact) {
     }
 }
 
-
-// BROKEN ?!?!??!
 function search() {
     document.getElementById('contactsList').classList.remove('hidden');
     document.getElementById('closed_contacts').classList.add('hidden');
     let search = document.getElementById('searchbar').value.toLowerCase();
-    console.log(Object.values(logged_user.contacts));
     let result = Object.values(logged_user.contacts).filter(details => details.name.toLowerCase().includes(search));
     console.log(result);
+    tempContacts(Object.values(result));
 }
 
 function toggleHidden(id) {
@@ -173,21 +170,38 @@ function addSubtask() {
     let id = Math.random();
         document.getElementById('addedSubtasks').innerHTML += `
             <li class="space-between addedSubtask" id="${id}">
-                <span class="listitem">${subtask}</span>
+                <span id="subtask_row${id}" class="listitem">${subtask}</span>
                 <div class="addSubtask_btndiv">
-                    <img class="hover" onclick="editSubtask(${id})" src="../assets/img/addtask/edit.svg"></button>
+                    <img class="hover" onclick="editSubtask(${id})" src="../assets/img/addtask/edit.svg">
                     |
-                    <img class="hover" onclick="deleteSubtask(${id})" src="../assets/img/addtask/delete.svg"></button>
+                    <img class="hover" onclick="deleteSubtask(${id})" src="../assets/img/addtask/delete.svg">
                 </div>
-            </li>`;
+            </li>
+            <div id="edit_div${id}" class="space-between hidden edittedSubtask">
+            <input id="edit_input${id}" type="text">
+                <div class="addSubtask_btndiv">
+                    <img class="hover" onclick="deleteSubtask(${id})" src="../assets/img/addtask/delete.svg">
+                    |
+                    <img class="hover" onclick="confirmSubtask(${id})" src="../assets/img/addtask/done_black.svg">
+                </div>
+            </div>`;
 }
-
+function confirmSubtask(id) {
+    document.getElementById(`edit_div${id}`).classList.toggle('hidden');
+    document.getElementById(`edit_div${id}`).style = "background-color: white"
+    document.getElementById(id).classList.toggle('hidden');
+    document.getElementById(`subtask_row${id}`).innerHTML = document.getElementById(`edit_input${id}`).value;
+}
 function deleteSubtask(id) {
     document.getElementById(id).remove();
+    document.getElementById(`edit_div${id}`).remove();
 }
 
 function editSubtask(id) {
-
+    document.getElementById(`edit_div${id}`).classList.toggle('hidden');
+    document.getElementById(`edit_div${id}`).style = "background-color: white"
+    document.getElementById(id).classList.toggle('hidden');
+    document.getElementById(`edit_input${id}`).value = document.getElementById(`subtask_row${id}`).innerHTML;
 }
 
 function validate() {
@@ -232,7 +246,3 @@ async function uploadTask(task) {
     });
     console.log(databaseLinkRef + userID + ".json");
 }
-
-
-
-//Penöpel Sammlung ist jetzt auch broken..? 

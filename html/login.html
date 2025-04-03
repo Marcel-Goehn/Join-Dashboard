@@ -30,11 +30,14 @@
                             <img src="../assets/img/login/mail.svg" alt="">
                         </div>
                     </div>
-                    <div class="singleinput_div centered">
-                        <div class="space-between">
-                            <input onclick="removeInvalidClass(1)" id="password" name="password" type="password" placeholder="Password" required>
-                            <img onclick="showPassword(); switchIcon()" id="lock_img" src="../assets/img/login/lock.svg" alt="">
+                    <div>
+                        <div class="singleinput_div centered">
+                            <div class="space-between">
+                                <input onclick="removeInvalidClass(1)" id="password" name="password" type="password" placeholder="Password" required>
+                                <img onclick="showPassword(); switchIcon()" id="lock_img" src="../assets/img/login/lock.svg" alt="">
+                            </div>
                         </div>
+                        <span id="wrong_login" class="hidden">Check your email and password. Please try again.</span>
                     </div>
                 </form>
             </div>

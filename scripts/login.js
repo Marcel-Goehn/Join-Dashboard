@@ -30,18 +30,21 @@ function validate() {
 async function loginAsUser() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
+    let loggedIn;
     const response = await fetch(databaseLinkRef + ".json");
     const userDB = await response.json();
     for (const id in userDB) {
         if (userDB[id].email == email && userDB[id].password == password) {
-            console.log(typeof(id) + ": " + id);
+            loggedIn = true;
             sessionStorage.setItem("loggedIn", JSON.stringify(id));
             window.location.href = "../html/summary.html";
-            } else {
-                Array.from(document.getElementsByClassName('singleinput_div')).forEach(element => element.classList.add('invalid'));
-                }
+            }
         }
-}
+        if (!loggedIn) {
+            removeHidden('wrong_login');
+            Array.from(document.getElementsByClassName('singleinput_div')).forEach(element => element.classList.add('invalid'));
+        }
+    }
 
 function loginAsGuest() {
     window.location.href = "../html/summary.html";
@@ -61,6 +64,7 @@ function showPassword() {
 
 function removeInvalidClass(num) {
     document.getElementsByClassName('singleinput_div')[num].classList.remove('invalid');
+    addHidden('wrong_login');
 }
 
 function switchIcon() {
@@ -68,4 +72,10 @@ function switchIcon() {
     let readable = "../assets/img/login/visibility.svg";
     let ciphered = "../assets/img/login/visibility-off.svg";
     document.getElementById('password').type == "password" ? current.src = ciphered : current.src = readable;
+}
+function removeHidden(id) {
+    document.getElementById(id).classList.remove('hidden');
+}
+function addHidden(id) {
+    document.getElementById(id).classList.add('hidden');
 }
