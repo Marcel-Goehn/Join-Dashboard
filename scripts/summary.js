@@ -11,7 +11,7 @@ const boardAmount = document.getElementById('board_amount');
 const progress = document.getElementById('progress');
 const progressAmount = document.getElementById('progress_amount');
 const feedback = document.getElementById('feedback');
-let cards = [];
+const cards = [];
 
 
 /**
@@ -88,6 +88,7 @@ function checkProgressAmount() {
     else {
         progressAmount.innerHTML = `Tasks in Board`
     }
+    nextUrgentDate();
 }
 
 
@@ -153,4 +154,33 @@ function greetGuest() {
         const evening = "Guten Abend";
         greeting.innerHTML = greetingGuestTemp(evening);
     }
+}
+
+
+function nextUrgentDate() {
+    let count = 0;
+    let miliseconds;
+    let index;
+    for (let i = 0; i < cards.length; i++) {
+        if(cards[i].value.duedate === undefined || cards[i].value.priority != "Urgent") {
+            continue;
+        }
+        let [day, month, year] = cards[i].value.duedate.split("/");
+        let sortArr = `${month}/${day}/${year}`;
+        miliseconds = currentTime.getTime(sortArr);
+        if (count === 0) {
+            count = miliseconds;
+            index = i;
+        }
+        if (miliseconds < count) {
+            count = miliseconds;
+            index = i;
+        }
+    }
+    renderUrgentDate(index);
+}
+
+
+function renderUrgentDate(index) {
+    urgentDate.innerHTML = cards[index].value.duedate;
 }
