@@ -11,7 +11,7 @@
     <title>Join | Summary</title>
 </head>
 
-<body onload="getName()">
+<body onload="init()">
 
     <header>
         <div id="headerContent">
@@ -53,7 +53,7 @@
                                 </g>
                             </svg>
                             <div class="column">
-                                <span class="task-numbers">1</span>
+                                <span id="to_do" class="task-numbers">0</span>
                                 <span class="small-task-text">To-do</span>
                             </div>
                         </a>
@@ -65,7 +65,7 @@
                                     stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                             <div class="column">
-                                <span class="task-numbers">1</span>
+                                <span id="done" class="task-numbers">0</span>
                                 <span class="small-task-text">Done</span>
                             </div>
                         </a>
@@ -76,13 +76,13 @@
                             <div class="urgent">
                                 <img src="../assets/img/summary/urgent.svg" alt="urgent-arrow">
                                 <div class="column">
-                                    <span class="task-numbers">1</span>
+                                    <span id="urgent" class="task-numbers">0</span>
                                     <span class="urgent-task-text">Urgent</span>
                                 </div>
                             </div>
                             <span class="urgent-border"></span>
                             <div class="align-urgent-date">
-                                <span class="urgent-date">October 16, 2022</span>
+                                <span id="urgent_date" class="urgent-date">October 16, 2022</span>
                                 <span class="upcoming-deadline-text">Upcoming Deadline</span>
                             </div>
                         </a>
@@ -90,17 +90,17 @@
 
                     <section class="board-summary-section">
                         <a href="../html/board.html" class="tasks-in-board animate-first-task">
-                            <span class="task-numbers">5</span>
-                            <span class="small-task-text">Tasks in<br>Board</span>
+                            <span id="board" class="task-numbers">0</span>
+                            <span id="board_amount" class="small-task-text"></span>
                         </a>
 
                         <a href="../html/board.html" class="tasks-in-board animate-second-task">
-                            <span class="task-numbers">2</span>
-                            <span class="small-task-text">Tasks in<br>Progress</span>
+                            <span id="progress" class="task-numbers">0</span>
+                            <span id="progress_amount" class="small-task-text"></span>
                         </a>
 
                         <a href="../html/board.html" class="tasks-in-board animate-third-task">
-                            <span class="task-numbers">2</span>
+                            <span id="feedback" class="task-numbers">0</span>
                             <span class="small-task-text">Awating<br>Feedback</span>
                         </a>
                     </section>
