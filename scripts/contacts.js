@@ -4,14 +4,11 @@ const contactDiv = document.getElementById("contactNameDiv");
 const contactInfoDiv = document.getElementById("contactInfoInfo");
 const addContactDial = document.getElementById("addContactDial");
 const userObject = sessionStorage.getItem("loggedIn");
-console.log(userObject);
 const user = JSON.parse(userObject);
-console.log(user);
-const testuser = "-OMj4ed3OtRMrfHIWpzD";
 
 async function fetchContactData() {
 	const response = await fetch(
-		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${testuser}/contacts.json`
+		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${user}/contacts.json`
 	);
 	const contactData = await response.json();
 	return contactData;
@@ -36,23 +33,23 @@ function renderContacts(contactData) {
 			);
 			previousLetter = contactData[contact].name.charAt(0).toUpperCase();
 		}
-		rgbArr = randomColor();
+		color = randomColor();
 		contactDiv.innerHTML += contactTemp(
 			contactData[contact].email,
 			contactData[contact].name,
 			contactData[contact].phone,
 			index,
-			rgbArr
+			color
 		);
-		styleBackgroundOfInitials(rgbArr, index);
+		styleBackgroundOfInitials(color, index);
 		index++;
 	}
 }
 
-function styleBackgroundOfInitials(rgbArr, index) {
+function styleBackgroundOfInitials(color, index) {
 	document.getElementById(
 		`shorthand${index}`
-	).style.backgroundColor = `rgb(${rgbArr[0]}, ${rgbArr[1]}, ${rgbArr[2]})`;
+	).style.backgroundColor = color;
 }
 
 function shorthandName(name) {
@@ -68,17 +65,15 @@ async function showContacts() {
 	renderContacts(sortedContacts);
 }
 
-function openContact(email, name, phone, rgbArrJSON, index) {
+function openContact(email, name, phone, color, index) {
 	colorClickedContact(index);
-	const colorArr = JSON.parse(rgbArrJSON);
-	contactInfoDiv.innerHTML = contactInfoTemp(email, name, phone, rgbArrJSON);
+	contactInfoDiv.innerHTML = contactInfoTemp(email, name, phone, color);
 	const initalsDivInfo = document.getElementById("initialsDivInfo");
-	initalsDivInfo.style.backgroundColor = `rgb(${colorArr[0]}, ${colorArr[1]}, ${colorArr[2]})`;
+	initalsDivInfo.style.backgroundColor = color;
 }
 
 function colorClickedContact(index){
 	const acutalContentDivs = document.querySelectorAll(".actualContactDiv");
-	console.log(acutalContentDivs);
 	acutalContentDivs.forEach((div) => {
 		div.classList.remove("clickedBackground");
 		div.classList.add("whiteBackground");
@@ -101,8 +96,8 @@ function randomColor() {
 	if (b < 40) {
 		b = 40;
 	}
-	let colorArr = [r, g, b];
-	return colorArr;
+	let color = `rgb(${r}, ${g}, ${b})`;
+	return color;
 }
 
 function openAddContactDial() {
@@ -115,7 +110,6 @@ function closeContactDial() {
 		slideOut(document.getElementById("addContactDialContent"));
 	}else{
 		slideOut(document.getElementById("editContactDialContent"))
-		console.log("test");
 	}
 	setTimeout(()=>{
 		addContactDial.close();
@@ -133,9 +127,8 @@ function openEditContactDial(email, name, phone, color) {
 
 async function deleteContact(name) {
 	const contactId = await getContactId(name);
-	console.log(contactId);
 	const request = await fetch(
-		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${testuser}/contacts/${contactId}.json`,
+		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${user}/contacts/${contactId}.json`,
 		{
 			method: "DELETE",
 		}
@@ -148,9 +141,8 @@ async function updateContact(name, event) {
 	event.preventDefault();
 	const contactId = await getContactId(name);
 	const editedContactData = getEditedContactData();
-	console.log("test");
 	await fetch(
-		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${testuser}/contacts/${contactId}.json`,
+		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${user}/contacts/${contactId}.json`,
 		{
 			method: "PUT",
 			headers: {
@@ -159,16 +151,17 @@ async function updateContact(name, event) {
 			body: JSON.stringify(editedContactData),
 		}
 	);
-	closeAddContactDial();
+	
 	await showContacts();
 	const indexAndColor = searchForIndexAndColor(editedContactData);
-	openContact(editedContactData["email"], editedContactData["name"], editedContactData["phone"], indexAndColor[1], indexAndColor[0]);
+	openContact(editedContactData["email"], editedContactData["name"], editedContactData["phone"], indexAndColor[0], indexAndColor[1]);
+	closeContactDial();
 }
 
 async function addContact() {
 	const newContactData = getNewContactData();
 	await fetch(
-		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${testuser}/contacts.json`,
+		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${user}/contacts.json`,
 		{
 			method: "POST",
 			headers: {
@@ -177,10 +170,11 @@ async function addContact() {
 			body: JSON.stringify(newContactData),
 		}
 	);
-	closeAddContactDial();
+	
 	await showContacts();
 	const indexAndColor = searchForIndexAndColor(newContactData);
 	openContact(newContactData["email"], newContactData["name"], newContactData["phone"], indexAndColor[1], indexAndColor[0]);
+	closeContactDial();
 }
 
 async function getContactId(name) {
@@ -253,7 +247,7 @@ function searchForIndexAndColor(newContactData){
 		behavior: "smooth",
 		block: "center"
 	});
-	return [index, JSON.stringify(color)]
+	return [index, color]
 }
 
 function slideOut(contentDial){

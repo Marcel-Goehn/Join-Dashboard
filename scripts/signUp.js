@@ -125,10 +125,12 @@ function emailTaken() {
 function revertBorderColor(element) {
 	setTimeout(() => {
 		element.style.border = "";
+		element.focus();
 	}, 2000);
 	if (element === checkboxBorder) {
 		setTimeout(() => {
 			element.style.outline = "";
+			element.focus();
 		}, 2000);
 	}
 }

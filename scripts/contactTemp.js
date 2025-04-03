@@ -7,11 +7,9 @@ function letterTemp(letter) {
     `;
 }
 
-function contactTemp(email, name, phone, index, rgbArr) {
+function contactTemp(email, name, phone, index, color) {
 	return `
-        <div class="actualContactDiv" id="actualContactDiv${index}"onclick="openContact('${email}', '${name}', '${phone}', '${JSON.stringify(
-		rgbArr
-	)}', ${index}), slideInContactInfo()">
+        <div class="actualContactDiv" id="actualContactDiv${index}"onclick="openContact('${email}', '${name}', '${phone}', '${color}', ${index}), slideInContactInfo()">
             <div class="shorthandLetters" id="shorthand${index}">
                 <span>${shorthandName(name)}</span>
             </div>
