@@ -1,5 +1,7 @@
 #content {
     display: flex;
+    align-items: flex-start;
+    padding-top: 60px;
 }
 .star {
     color: red;
@@ -61,11 +63,17 @@ button {
     background-color: #7ae229;
     fill: #D1D1D1;
 }
+#button_div {
+    gap: 16px;
+}
 #button_div button {
     display: flex;
     width: 136px;
     gap: 8px;
     align-items: center;
+}
+button:hover {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 #separator {
     margin: 0 40px;
@@ -73,9 +81,8 @@ button {
 .content_half {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 376px;
     width: 440px;
+    gap: 24px;
 }
 .flex_start {
 align-items: flex-start;
@@ -87,9 +94,6 @@ align-items: flex-start;
 }
 .content_half button {
 width: 100%;
-}
-.content_half div {
-    width: 100%;
 }
 input:hover {
     cursor: pointer;
@@ -105,6 +109,9 @@ textarea:hover {
     font-size: 12px;
     font-weight: 200;
 }
+#contactsList {
+    width: 100%;
+}
 #contactsList input {
     width: auto;
 }
@@ -113,6 +120,7 @@ textarea:hover {
 }
 .contact {
     padding: 16px 10px;
+    width: 100%;
     border-radius: 10px;
     background-color: white;
 }
@@ -144,8 +152,10 @@ textarea:hover {
 
 #category {
     align-items: flex-start;
+    width: 100%;
 }
 .category {
+    display: flex;
     padding: 16px 10px;
     border-radius: 10px;
     background-color: white;
@@ -159,6 +169,7 @@ textarea:hover {
     padding: 16px 10px;
     border-radius: 10px;
     background-color: white;
+    width: 100%;
 }
 #btn_subtask {
     width: fit-content;
@@ -172,9 +183,13 @@ textarea:hover {
     justify-content: flex-end;
 }
 .addedSubtask {
-    padding: 16px 10px;
+    padding: 16px 0;
+    padding-left: 35px;
+    padding-right: 8px;
     border-radius: 10px;
-    background-color: white;
+}
+.addedSubtask:hover {
+background-color: #D1D1D1;
 }
 .addedSubtask_btn {
     width: fit-content !important;
@@ -188,4 +203,84 @@ body {
 #addtask_button_div {
     display: flex;
     gap: 16px;
+}
+#confirm_btn {
+    background-color: #2a3547;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+#confirm_btn:hover {
+    background-color: #00c0dd;
+}
+#clear_btn {
+    color: #2a3547;
+    display: flex;
+    align-items: center;
+    outline: auto;
+}
+#clear_btn:hover {
+    outline-color: #00c0dd;
+    color: #00c0dd;
+    /* Das verfluchte X muss auch noch irgendwie die Farbe ändern */
+}
+.btn_bigFont {
+    font-size: 21px !important;
+    font-weight: 700 !important;
+    color: white;
+}
+
+.btn_smallFont {
+    font-size: 20px;
+    font-weight: 400;
+}
+#non-sidebar {
+    padding-left: 328px;
+    margin-top: 206px;
+}
+#last_element {
+    position: absolute;
+    right: 13%;
+    bottom: 20%;
+    width: 950px;
+}
+.hover:hover {
+    background-color: #D1D1D1;
+    border-radius: 50px;
+    cursor: pointer;
+}
+ul {
+    width: 100%;
+}
+.listitem {
+    position: relative;
+}
+.listitem::after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    left: calc(0% - 10px);
+    bottom: 50%;
+    border-radius: 50%;
+    background-color: black;
+    transform: translate(0, 50%);
+}
+li span{
+    font-size: 16px;
+    font-weight: 400;
+}
+li {
+    cursor: pointer;
+}
+#subtask_input_icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+#subtask_input {
+}
+.rotate {
+    transform: rotate(180deg)
 }

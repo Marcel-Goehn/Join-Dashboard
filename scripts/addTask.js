@@ -1,25 +1,29 @@
 const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/";
 let logged_user = {};
 let priority = "medium";
+let highlighted_contacts = [];
 
 function select(num) {
     resetButtons();
     switch (num) {
         case 0:
-            document.getElementById(num).classList.add('urgent');
             priority = "urgent";
+            document.getElementById(num).classList.add('urgent');
+            document.getElementById(num).classList.add('btn_bigFont');
             document.getElementById('urgent_1').setAttribute("fill", "white");
             document.getElementById('urgent_2').setAttribute("fill", "white");
             break;
         case 1:
-            document.getElementById(num).classList.add('medium')
             priority = "medium";
+            document.getElementById(num).classList.add('medium');
+            document.getElementById(num).classList.add('btn_bigFont');
             document.getElementById('medium_1').setAttribute("fill", "white");
             document.getElementById('medium_2').setAttribute("fill", "white");
             break;
         case 2:
-            document.getElementById(num).classList.add('low')
             priority = "low";         
+            document.getElementById(num).classList.add('low');
+            document.getElementById(num).classList.add('btn_bigFont');
             document.getElementById('low_1').setAttribute("fill", "white");
             document.getElementById('low_2').setAttribute("fill", "white");
             break;
@@ -28,8 +32,11 @@ function select(num) {
 
 function resetButtons() {
     document.getElementById(0).classList.remove('urgent');
+    document.getElementById(0).classList.remove('btn_bigFont');
     document.getElementById(1).classList.remove('medium');
+    document.getElementById(1).classList.remove('btn_bigFont');
     document.getElementById(2).classList.remove('low');
+    document.getElementById(2).classList.remove('btn_bigFont');
     document.getElementById('urgent_1').setAttribute("fill", "#fe3e00");
     document.getElementById('urgent_2').setAttribute("fill", "#fe3e00");
     document.getElementById('medium_1').setAttribute("fill", "#fda807");
@@ -75,6 +82,11 @@ function toggleContacts() {
     document.getElementById('contactsList').classList.toggle('hidden');
     document.getElementById('closed_contacts').classList.toggle('hidden');
     closedContacts();
+    rotateIcon("assigned_icon");
+}
+
+function rotateIcon(id) {
+    document.getElementById(id).classList.toggle('rotate'); 
 }
 
 function closedContacts() {
@@ -82,6 +94,7 @@ function closedContacts() {
     for (let index = 0; index < highlighted_contacts.length; index++) {
         const element = highlighted_contacts[index];
         document.getElementById('closed_contacts').innerHTML += `<div class="circle centered">${indices(element)}</div>`;
+        rotateIcon();
     }
 }
 
@@ -91,7 +104,6 @@ function indices(name) {
     return step_2.join("");
 }
 
-let highlighted_contacts = [];
 function highlightContact(contact) {
     document.getElementById(contact).classList.toggle('highlight');
     document.getElementById(`${contact}-unchecked`).classList.toggle('hidden');
@@ -107,6 +119,8 @@ function currentlyHighlighted(contact) {
     }
 }
 
+
+// BROKEN ?!?!??!
 function search() {
     document.getElementById('contactsList').classList.remove('hidden');
     document.getElementById('closed_contacts').classList.add('hidden');
@@ -133,18 +147,39 @@ function setCategory(num) {
     }
 }
 
+function clearInput() {
+    document.getElementById('subtask_input').value = "";
+    iconsDuringInput();
+}
+
+
+function iconsDuringInput() {
+    if (document.getElementById('subtask_input').value !== "") {
+        document.getElementById('subtask_input_icons').innerHTML = `
+        <img class="hover" onclick="clearInput()" src="../assets/img/addtask/x.svg"></img>
+        |
+        <img class="hover" onclick="addSubtask()" src="../assets/img/addtask/done_black.svg"></img>`
+    } else {
+        console.log("blub");
+        document.getElementById('subtask_input_icons').innerHTML = `
+        <img class="hover" src="../assets/img/addtask/add.svg"></img>`
+    }
+}
+
 function addSubtask() {
     let subtask = document.getElementById('subtask_input').value;
+    document.getElementById('subtask_input').value = "";
+    iconsDuringInput();
     let id = Math.random();
-    document.getElementById('addedSubtasks').innerHTML += `
-    <div class="space-between addedSubtask" id="${id}">
-        <span>*${subtask}</span>
-        <div class="addSubtask_btndiv">
-            <button onclick="editSubtask(${id})" class="addedSubtask_btn">Edit</button>
-            |
-            <button onclick="deleteSubtask(${id})" class="addedSubtask_btn">Delete</button>
-        </div>
-    </div>`;
+        document.getElementById('addedSubtasks').innerHTML += `
+            <li class="space-between addedSubtask" id="${id}">
+                <span class="listitem">${subtask}</span>
+                <div class="addSubtask_btndiv">
+                    <img class="hover" onclick="editSubtask(${id})" src="../assets/img/addtask/edit.svg"></button>
+                    |
+                    <img class="hover" onclick="deleteSubtask(${id})" src="../assets/img/addtask/delete.svg"></button>
+                </div>
+            </li>`;
 }
 
 function deleteSubtask(id) {
@@ -197,3 +232,7 @@ async function uploadTask(task) {
     });
     console.log(databaseLinkRef + userID + ".json");
 }
+
+
+
+//Penöpel Sammlung ist jetzt auch broken..? 
