@@ -504,3 +504,11 @@
 	border-radius: 10px;
 
 }
+
+.hideRefuseDiv{
+	display: none;
+}
+
+.showRefuseDiv{
+	display: flex;
+}

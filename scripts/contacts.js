@@ -5,6 +5,7 @@ const contactInfoDiv = document.getElementById("contactInfoInfo");
 const addContactDial = document.getElementById("addContactDial");
 const userObject = sessionStorage.getItem("loggedIn");
 const user = JSON.parse(userObject);
+console.log(user);
 
 async function fetchContactData() {
 	const response = await fetch(
@@ -117,11 +118,10 @@ function closeContactDial() {
 }
 
 function openEditContactDial(email, name, phone, color) {
-	let colorArr = JSON.parse(color);
 	addContactDial.innerHTML = editContactDialTemp(email, name, phone);
 	document.getElementById(
 		"editImgDiv"
-	).style.backgroundColor = `rgb(${colorArr[0]},${colorArr[1]}, ${colorArr[2]})`;
+	).style.backgroundColor = color;
 	addContactDial.showModal();
 }
 
@@ -154,7 +154,7 @@ async function updateContact(name, event) {
 	
 	await showContacts();
 	const indexAndColor = searchForIndexAndColor(editedContactData);
-	openContact(editedContactData["email"], editedContactData["name"], editedContactData["phone"], indexAndColor[0], indexAndColor[1]);
+	openContact(editedContactData["email"], editedContactData["name"], editedContactData["phone"], indexAndColor[1], indexAndColor[0]);
 	closeContactDial();
 }
 
@@ -170,7 +170,6 @@ async function addContact() {
 			body: JSON.stringify(newContactData),
 		}
 	);
-	
 	await showContacts();
 	const indexAndColor = searchForIndexAndColor(newContactData);
 	openContact(newContactData["email"], newContactData["name"], newContactData["phone"], indexAndColor[1], indexAndColor[0]);
@@ -254,3 +253,84 @@ function slideOut(contentDial){
 	contentDial.classList.remove("slideIn");
 	contentDial.classList.add("slideOut");
 }
+
+
+
+function validateAddForm(){
+	const nameInput = document.getElementById("addDialNameInput");
+	const nameRefuseDiv = document.getElementById("addNameRefuseDiv");
+	const emailInput = document.getElementById("addDialEmailInput");
+	const emailRefuseDiv = document.getElementById("addEmailRefuseDiv");
+	const phoneInput = document.getElementById("addDialPhoneInput");
+	const phoneRefuseDiv = document.getElementById("addPhoneRefuseDiv");
+	if(validateName(nameInput, nameRefuseDiv) && validateEmail(emailInput, emailRefuseDiv) && validatePhone(phoneInput, phoneRefuseDiv)){
+		addContact();
+		successMsg();
+	}
+}
+
+function validatePhone(phoneInput, refuseDiv){
+    const pattern = /^\+\d{5,}$/
+    if(!pattern.test(phoneInput.value)){
+		refuseDiv.innerHTML = "Please enter the phonenumber of the contact beginning with a +"
+		showRefuseDiv(refuseDiv);
+		setRedBorder(phoneInput);
+		revertBorderColor(phoneInput);
+		disableRefuseDiv(refuseDiv);
+
+        return false;
+    }
+    return true;
+}
+
+function validateName(nameInput, refuseDiv){
+    const pattern = /^[A-Za-z]+ [A-Za-z]+$/
+    if(!pattern.test(nameInput.value)){
+		refuseDiv.innerHTML = "Please enter the first and last name of the contact separated by a space."
+		showRefuseDiv(refuseDiv);
+		setRedBorder(nameInput);
+		revertBorderColor(nameInput);
+		disableRefuseDiv(refuseDiv);
+        return false;
+    }
+    return true;
+}
+
+function validateEmail(emailInput, refuseDiv){
+    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    if(!pattern.test(emailInput.value)){
+		refuseDiv.innerHTML = "Please enter a real email."
+		showRefuseDiv(refuseDiv);
+		setRedBorder(emailInput);
+		revertBorderColor(emailInput);
+		disableRefuseDiv(refuseDiv);
+        return false;
+    }
+    return true;
+}
+
+function revertBorderColor(element) {
+	setTimeout(() => {
+		element.style.border = "";
+		element.focus();
+	}, 2000);
+}
+
+function disableRefuseDiv(element){
+	setTimeout(()=>{
+		element.classList.add("hideRefuseDiv");
+		element.classList.remove("showRefuseDiv");
+	}, 2000)
+}
+
+function showRefuseDiv(refuseDiv){
+	refuseDiv.classList.remove("hideRefuseDiv");
+	refuseDiv.classList.add("showRefuseDiv");
+}
+
+function setRedBorder(element){
+	element.style.border = "1px solid red";
+	console.log("test");
+}
+
+/// -------------------- BEIM BORDER MUSS DIE DIV GENOMMEN WERDEN ------------------------------- ////////////////////////
