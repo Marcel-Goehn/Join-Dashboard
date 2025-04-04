@@ -12,7 +12,7 @@
     <title>Join | Board</title>
 </head>
 
-<body>
+<body onload="init()">
 
     <header>
         <div id="headerContent">
@@ -61,9 +61,11 @@
                         <span>To do</span>
                         <button><img src="../assets/img/plus button.png"></button>
                     </div>
-                    <div class="to-do-cards">
-                        <div>
-                            <span>No tasks To do</span>
+                    <div id="to_do">
+                        <div class="to-do-cards">
+                            <div>
+                                <span>No tasks To do</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -72,25 +74,27 @@
                         <span>In progress</span>
                         <button><img src="../assets/img/plus button.png"></button>
                     </div>
-                    <div onclick="openDialog()" class="card">
-                        <h2>
-                            <span class="card-header">User Story</span>
-                        </h2>
-                        <h3>Kochwelt Page & Recipe Recommender</h3>
-                        <p>Build start page with recipe recommendation...</p>
-                        <div class="subtasks">
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 50%;"></div>
+                    <div id="progress">
+                        <div onclick="openDialog()" class="card">
+                            <h2>
+                                <span class="card-header">User Story</span>
+                            </h2>
+                            <h3>Kochwelt Page & Recipe Recommender</h3>
+                            <p>Build start page with recipe recommendation...</p>
+                            <div class="subtasks">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 50%;"></div>
+                                </div>
+                                <span class="subtask-txt">1/2 Subtasks</span>
                             </div>
-                            <span class="subtask-txt">1/2 Subtasks</span>
-                        </div>
-                        <div class="users">
-                            <div class="user-icons">
-                                <div class="user-1 user">AM</div>
-                                <div class="user-2 user">EM</div>
-                                <div class="user-3 user">MB</div>
+                            <div class="users">
+                                <div class="user-icons">
+                                    <div class="user-1 user">AM</div>
+                                    <div class="user-2 user">EM</div>
+                                    <div class="user-3 user">MB</div>
+                                </div>
+                                <img src="../assets/img/Priority symbols.svg">
                             </div>
-                            <img src="../assets/img/Priority symbols.svg">
                         </div>
                     </div>
                 </div>
@@ -99,19 +103,21 @@
                         <span>Await Feedback</span>
                         <button><img src="../assets/img/plus button.png"></button>
                     </div>
-                    <div onclick="openDialog()" class="card">
-                        <h2>
-                            <span class="card-header">Technical Task</span>
-                        </h2>
-                        <h3>HTML Base Template Creation</h3>
-                        <p>Create reusable HTML base templates...</p>
-                        <div class="users">
-                            <div class="user-icons">
-                                <div class="user-1 user">DE</div>
-                                <div class="user-2 user">BZ</div>
-                                <div class="user-3 user">AS</div>
+                    <div id="feedback">
+                        <div onclick="openDialog()" class="card">
+                            <h2>
+                                <span class="card-header">Technical Task</span>
+                            </h2>
+                            <h3>HTML Base Template Creation</h3>
+                            <p>Create reusable HTML base templates...</p>
+                            <div class="users">
+                                <div class="user-icons">
+                                    <div class="user-1 user">DE</div>
+                                    <div class="user-2 user">BZ</div>
+                                    <div class="user-3 user">AS</div>
+                                </div>
+                                <img src="../assets/img/Priority symbols.svg">
                             </div>
-                            <img src="../assets/img/Priority symbols.svg">
                         </div>
                     </div>
                 </div>
@@ -120,24 +126,26 @@
                         <span>Done</span>
                         <button><img src="../assets/img/plus button.png"></button>
                     </div>
-                    <div onclick="openDialog()" class="card">
-                        <h2>
-                            <span class="card-header">Technical Task</span>
-                        </h2>
-                        <h3>CSS Architecture Planning</h3>
-                        <p>Define CSS naming conventions and structure...</p>
-                        <div class="subtasks">
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 100%;"></div>
+                    <div id="done">
+                        <div onclick="openDialog()" class="card">
+                            <h2>
+                                <span class="card-header">Technical Task</span>
+                            </h2>
+                            <h3>CSS Architecture Planning</h3>
+                            <p>Define CSS naming conventions and structure...</p>
+                            <div class="subtasks">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 100%;"></div>
+                                </div>
+                                <span class="subtask-txt">2/2 Subtasks</span>
                             </div>
-                            <span class="subtask-txt">2/2 Subtasks</span>
-                        </div>
-                        <div class="users">
-                            <div class="user-icons">
-                                <div class="user-1 user">SM</div>
-                                <div class="user-2 user">BZ</div>
+                            <div class="users">
+                                <div class="user-icons">
+                                    <div class="user-1 user">SM</div>
+                                    <div class="user-2 user">BZ</div>
+                                </div>
+                                <img src="../assets/img/Priority symbols.svg">
                             </div>
-                            <img src="../assets/img/Priority symbols.svg">
                         </div>
                     </div>
                 </div>
@@ -239,6 +247,7 @@
     </dialog>
 
     <script src="../scripts/board.js"></script>
+    <script src="../scripts/boardTemp.js"></script>
     <script src="../scripts/board_drag_and_drop.js"></script>
 </body>
 

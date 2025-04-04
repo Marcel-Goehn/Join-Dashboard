@@ -116,10 +116,10 @@ function renderTasks() {
  */
 function checkBoardAmount() {
     if(cards.length -1 === 1) {
-        boardAmount.innerHTML = `Task in Board`;
+        boardAmount.innerHTML = getTaskInBoardTemplate();//`Task in Board`;
     }
     else {
-        boardAmount.innerHTML = `Tasks in Board`;
+        boardAmount.innerHTML = getTasksInBoardTemplate()//`Tasks in Board`;
     }
     checkProgressAmount();
 }
@@ -131,10 +131,10 @@ function checkBoardAmount() {
  */
 function checkProgressAmount() {
     if(progress.length === 1) {
-        progressAmount.innerHTML = `Task in Board`;
+        progressAmount.innerHTML = getTaskInBoardTemplate()//`Task in Board`;
     }
     else {
-        progressAmount.innerHTML = `Tasks in Board`
+        progressAmount.innerHTML = getTasksInBoardTemplate()//`Tasks in Board`;
     }
     nextUrgentDate();
 }
