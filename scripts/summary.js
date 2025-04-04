@@ -1,5 +1,6 @@
 let currentTime = new Date();
 let hours = currentTime.getHours();
+const userData = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users.json"
 const dataBaseUrl = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban.json"
 const greeting = document.getElementById('greeting');
 const todo = document.getElementById('to_do');
@@ -12,21 +13,27 @@ const progress = document.getElementById('progress');
 const progressAmount = document.getElementById('progress_amount');
 const feedback = document.getElementById('feedback');
 const cards = [];
+const userArray = [];
+let urgentLength = 0;
+let todoLength = 0;
+let doneLength = 0;
+let progressLength = 0;
+let feedbackLength = 0;
 
 
 /**
  * This function initializes functions that render elements into the page when opening it
  */
-function init() {
-    fetchBoard();
+async function init() {
+    await fetchData();
     getName();
 }
 
 
 /**
- * Fetches the data from the database and transforms the json to a array
+ * Fetches the data from the database and transforms the json to an array
  */
-async function fetchBoard() {
+async function fetchData() {
     try {
         let response = await fetch(dataBaseUrl);
         if (!response.ok) {
@@ -36,40 +43,77 @@ async function fetchBoard() {
         for (const [key, value] of Object.entries(data)) {
             cards.push({ id: key, value });
         }
-        console.log(cards);
-        renderTasks();
+        await fetchUsers();
+        calculateTasks();
     } catch (error) {
         console.error("Fehler beim Abrufen der Daten:", error);
     }
 }
 
+/**
+ * Fetches the users from the database and transforms the json to an array
+ */
+async function fetchUsers() {
+    try {
+        let response = await fetch(userData);
+        if(!response.ok) {
+            throw new Error(`HTTP Fehler! Status: ${response.status}`);
+        }
+        let data = await response.json();
+        for(let [key, value] of Object.entries(data)) {
+            userArray.push({Id : key, value}
+            );
+        }
+    } catch (error) {
+        console.error("Fehler beim Abrufen der Daten:", error);
+    }
+    console.log(userArray);
+}
+
 
 /**
- * This function adds the amount of tasks in each category to the html
+ * This function calculates the amount of tasks in each category
  */
-function renderTasks() {
+function calculateTasks() {
     for (let i = 0; i < cards.length; i++) {
         if (cards[i].value.priority === "Urgent") {
-            urgent.innerHTML++;
+            urgentLength++;
         }
         if (cards[i].value.currentStatus === "To-do") {
-            todo.innerHTML++;
+            todoLength++;
         }
         else if (cards[i].value.currentStatus === "Done") {
-            done.innerHTML++;
+            doneLength++;
         }
         else if (cards[i].value.currentStatus === "Progress") {
-            progress.innerHTML++;
+            progressLength++;
         }
         else if (cards[i].value.currentStatus === "Feedback") {
-            feedback.innerHTML++;
+            feedbackLength++;
         }
     }
-    board.innerHTML = cards.length -1;
+    renderTasks();
+}
+
+
+/**
+ * This function renders the amount of the tasks into the html
+ */
+function renderTasks() {
+    urgent.innerHTML = urgentLength;
+    todo.innerHTML = todoLength;
+    done.innerHTML = doneLength;
+    progress.innerHTML = progressLength;
+    feedback.innerHTML = feedbackLength;
+    board.innerHTML = cards.length - 1;
     checkBoardAmount();
 }
 
 
+/**
+ * If there is exactly one card, it sets the text to "Task in Board",
+ * otherwise to "Tasks in Board".
+ */
 function checkBoardAmount() {
     if(cards.length -1 === 1) {
         boardAmount.innerHTML = `Task in Board`;
@@ -81,6 +125,10 @@ function checkBoardAmount() {
 }
 
 
+/**
+ * If there is exactly one card, it sets the text to "Task in Board",
+ * otherwise to "Tasks in Board".
+ */
 function checkProgressAmount() {
     if(progress.length === 1) {
         progressAmount.innerHTML = `Task in Board`;
@@ -105,7 +153,8 @@ function getName() {
     }
     let personNameParsed = JSON.parse(personName);
     console.log(personNameParsed);
-    greetUser(personNameParsed.name);
+    const findUser = userArray.find(u => u.Id === personNameParsed);
+    greetUser(findUser.value.name);
 }
 
 
@@ -157,6 +206,11 @@ function greetGuest() {
 }
 
 
+/**
+ * This function converts the duedates of the urgent cards to milliseconds.
+ * After that they will be compared to each other wich is the closest one to the current time.
+ * When the check is done the closest duedate will be shown in the summary page
+ */
 function nextUrgentDate() {
     let count = 0;
     let miliseconds;
@@ -181,6 +235,11 @@ function nextUrgentDate() {
 }
 
 
+/**
+ * This function writes the closest duedate into the html 
+ * 
+ * @param {number} index - the index of the closest duedate 
+ */
 function renderUrgentDate(index) {
     urgentDate.innerHTML = cards[index].value.duedate;
 }
