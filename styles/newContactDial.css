@@ -86,7 +86,7 @@
 	height: 24px;
 }
 
-#closeDialBtn:hover{
+#closeDialBtn:hover {
 	background-color: #d1d1d1;
 }
 
@@ -419,17 +419,17 @@
 	}
 }
 
-@keyframes slideOut{
-	0%{
+@keyframes slideOut {
+	0% {
 		transform: translate(-30%, -50%);
 	}
 
-	100%{
+	100% {
 		transform: translate(200%, -50%);
 	}
 }
 
-.slideOut{
+.slideOut {
 	animation: slideOut 1s ease-in forwards;
 }
 
@@ -489,11 +489,11 @@
 	animation: slideInAndOut 1.5s ease-out forwards;
 }
 
-#afterSpan{
+#afterSpan {
 	position: relative;
 }
 
-#afterSpan::after{
+#afterSpan::after {
 	content: "";
 	position: absolute;
 	background-color: #29abe2;
@@ -502,13 +502,33 @@
 	width: 125%;
 	left: 0;
 	border-radius: 10px;
-
 }
 
-.hideRefuseDiv{
+.hideRefuseDiv {
 	display: none;
 }
 
-.showRefuseDiv{
+.showRefuseDiv {
 	display: flex;
+}
+
+.refuseDiv {
+	justify-content: flex-start;
+	align-items: center;
+	color: red;
+	font-size: 13px;
+	font-weight: 400px;
+	margin-left: 10px;
+}
+
+.formInputWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.formDiv:focus-within {
+	border-color: #29abe2;
 }

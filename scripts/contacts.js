@@ -5,7 +5,6 @@ const contactInfoDiv = document.getElementById("contactInfoInfo");
 const addContactDial = document.getElementById("addContactDial");
 const userObject = sessionStorage.getItem("loggedIn");
 const user = JSON.parse(userObject);
-console.log(user);
 
 async function fetchContactData() {
 	const response = await fetch(
@@ -48,9 +47,7 @@ function renderContacts(contactData) {
 }
 
 function styleBackgroundOfInitials(color, index) {
-	document.getElementById(
-		`shorthand${index}`
-	).style.backgroundColor = color;
+	document.getElementById(`shorthand${index}`).style.backgroundColor = color;
 }
 
 function shorthandName(name) {
@@ -73,12 +70,12 @@ function openContact(email, name, phone, color, index) {
 	initalsDivInfo.style.backgroundColor = color;
 }
 
-function colorClickedContact(index){
+function colorClickedContact(index) {
 	const acutalContentDivs = document.querySelectorAll(".actualContactDiv");
 	acutalContentDivs.forEach((div) => {
 		div.classList.remove("clickedBackground");
 		div.classList.add("whiteBackground");
-	})
+	});
 	const clickedContentDiv = document.getElementById(`actualContactDiv${index}`);
 	clickedContentDiv.classList.remove("whiteBackground");
 	clickedContentDiv.classList.add("clickedBackground");
@@ -107,21 +104,19 @@ function openAddContactDial() {
 }
 
 function closeContactDial() {
-	if(document.getElementById("addContactDialContent")){
+	if (document.getElementById("addContactDialContent")) {
 		slideOut(document.getElementById("addContactDialContent"));
-	}else{
-		slideOut(document.getElementById("editContactDialContent"))
+	} else {
+		slideOut(document.getElementById("editContactDialContent"));
 	}
-	setTimeout(()=>{
+	setTimeout(() => {
 		addContactDial.close();
-	}, 1000)
+	}, 1000);
 }
 
 function openEditContactDial(email, name, phone, color) {
 	addContactDial.innerHTML = editContactDialTemp(email, name, phone);
-	document.getElementById(
-		"editImgDiv"
-	).style.backgroundColor = color;
+	document.getElementById("editImgDiv").style.backgroundColor = color;
 	addContactDial.showModal();
 }
 
@@ -151,10 +146,16 @@ async function updateContact(name, event) {
 			body: JSON.stringify(editedContactData),
 		}
 	);
-	
+
 	await showContacts();
 	const indexAndColor = searchForIndexAndColor(editedContactData);
-	openContact(editedContactData["email"], editedContactData["name"], editedContactData["phone"], indexAndColor[1], indexAndColor[0]);
+	openContact(
+		editedContactData["email"],
+		editedContactData["name"],
+		editedContactData["phone"],
+		indexAndColor[1],
+		indexAndColor[0]
+	);
 	closeContactDial();
 }
 
@@ -172,7 +173,13 @@ async function addContact() {
 	);
 	await showContacts();
 	const indexAndColor = searchForIndexAndColor(newContactData);
-	openContact(newContactData["email"], newContactData["name"], newContactData["phone"], indexAndColor[1], indexAndColor[0]);
+	openContact(
+		newContactData["email"],
+		newContactData["name"],
+		newContactData["phone"],
+		indexAndColor[1],
+		indexAndColor[0]
+	);
 	closeContactDial();
 }
 
@@ -184,7 +191,7 @@ async function getContactId(name) {
 	return contactId;
 }
 
-function getNewContactData(){
+function getNewContactData() {
 	const newContactName = document.getElementById("addDialNameInput").value;
 	const newContactEmail = document.getElementById("addDialEmailInput").value;
 	const newContactPhone = document.getElementById("addDialPhoneInput").value;
@@ -198,8 +205,10 @@ function getNewContactData(){
 
 function getEditedContactData() {
 	const editedContactName = document.getElementById("editDialNameInput").value;
-	const editedContactEmail = document.getElementById("editDialEmailInput").value;
-	const editedContactPhone = document.getElementById("editDialPhoneInput").value;
+	const editedContactEmail =
+		document.getElementById("editDialEmailInput").value;
+	const editedContactPhone =
+		document.getElementById("editDialPhoneInput").value;
 	const editedContactData = {
 		name: `${editedContactName}`,
 		email: `${editedContactEmail}`,
@@ -230,83 +239,94 @@ function slideInContactInfo() {
 function successMsg() {
 	const successDialBtn = document.getElementById("successBtn");
 	successDialBtn.classList.add("slideMsgInAndOut");
-	setTimeout(()=>{
-		successDialBtn.classList.remove("slideMsgInAndOut")
-	}, 2000)
+	setTimeout(() => {
+		successDialBtn.classList.remove("slideMsgInAndOut");
+	}, 2000);
 	addContactDial.close();
 }
 
-function searchForIndexAndColor(newContactData){
+function searchForIndexAndColor(newContactData) {
 	const allContactDivs = document.querySelectorAll(".actualContactDiv");
-	const searchedContactDiv = Array.from(allContactDivs).find(contactDiv => contactDiv.textContent.includes(`${newContactData["email"]}`));
+	const searchedContactDiv = Array.from(allContactDivs).find((contactDiv) =>
+		contactDiv.textContent.includes(`${newContactData["email"]}`)
+	);
 	let index = searchedContactDiv.id.replace(/\D/g, "");
 	index = parseInt(index);
 	const color = searchedContactDiv.children[0].style.backgroundColor;
 	searchedContactDiv.scrollIntoView({
 		behavior: "smooth",
-		block: "center"
+		block: "center",
 	});
-	return [index, color]
+	return [index, color];
 }
 
-function slideOut(contentDial){
+function slideOut(contentDial) {
 	contentDial.classList.remove("slideIn");
 	contentDial.classList.add("slideOut");
 }
 
-
-
-function validateAddForm(){
-	const nameInput = document.getElementById("addDialNameInput");
-	const nameRefuseDiv = document.getElementById("addNameRefuseDiv");
-	const emailInput = document.getElementById("addDialEmailInput");
-	const emailRefuseDiv = document.getElementById("addEmailRefuseDiv");
-	const phoneInput = document.getElementById("addDialPhoneInput");
-	const phoneRefuseDiv = document.getElementById("addPhoneRefuseDiv");
-	if(validateName(nameInput, nameRefuseDiv) && validateEmail(emailInput, emailRefuseDiv) && validatePhone(phoneInput, phoneRefuseDiv)){
-		addContact();
-		successMsg();
+function validateContactForm(addOrEdit, name, event) {
+	const nameInput = document.getElementById(`${addOrEdit}DialNameInput`);
+	const nameRefuseDiv = document.getElementById(`${addOrEdit}NameRefuseDiv`);
+	const nameInputDiv = document.getElementById(`${addOrEdit}DialNameDiv`);
+	const emailInput = document.getElementById(`${addOrEdit}DialEmailInput`);
+	const emailRefuseDiv = document.getElementById(`${addOrEdit}EmailRefuseDiv`);
+	const emailInputDiv = document.getElementById(`${addOrEdit}DialEmailDiv`);
+	const phoneInput = document.getElementById(`${addOrEdit}DialPhoneInput`);
+	const phoneRefuseDiv = document.getElementById(`${addOrEdit}PhoneRefuseDiv`);
+	const phoneInputDiv = document.getElementById(`${addOrEdit}DialPhoneDiv`);
+	if (
+		validateName(nameInput, nameRefuseDiv, nameInputDiv) &&
+		validateEmail(emailInput, emailRefuseDiv, emailInputDiv) &&
+		validatePhone(phoneInput, phoneRefuseDiv, phoneInputDiv)
+	) {
+		if (addOrEdit === "add") {
+			addContact();
+			successMsg();
+		} else {
+			updateContact(name, event);
+		}
 	}
 }
 
-function validatePhone(phoneInput, refuseDiv){
-    const pattern = /^\+\d{5,}$/
-    if(!pattern.test(phoneInput.value)){
-		refuseDiv.innerHTML = "Please enter the phonenumber of the contact beginning with a +"
+function validatePhone(phoneInput, refuseDiv, phoneInputDiv) {
+	const pattern = /^\+\d{5,}$/;
+	if (!pattern.test(phoneInput.value)) {
+		refuseDiv.innerHTML = "Please enter the phonenumber starting with a +";
 		showRefuseDiv(refuseDiv);
-		setRedBorder(phoneInput);
-		revertBorderColor(phoneInput);
+		setRedBorder(phoneInputDiv);
+		revertBorderColor(phoneInputDiv);
 		disableRefuseDiv(refuseDiv);
 
-        return false;
-    }
-    return true;
+		return false;
+	}
+	return true;
 }
 
-function validateName(nameInput, refuseDiv){
-    const pattern = /^[A-Za-z]+ [A-Za-z]+$/
-    if(!pattern.test(nameInput.value)){
-		refuseDiv.innerHTML = "Please enter the first and last name of the contact separated by a space."
+function validateName(nameInput, refuseDiv, nameInputDiv) {
+	const pattern = /^[A-Za-z]+ [A-Za-z]+$/;
+	if (!pattern.test(nameInput.value)) {
+		refuseDiv.innerHTML = "Enter first and lastname separated by a space.";
 		showRefuseDiv(refuseDiv);
-		setRedBorder(nameInput);
-		revertBorderColor(nameInput);
+		setRedBorder(nameInputDiv);
+		revertBorderColor(nameInputDiv);
 		disableRefuseDiv(refuseDiv);
-        return false;
-    }
-    return true;
+		return false;
+	}
+	return true;
 }
 
-function validateEmail(emailInput, refuseDiv){
-    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    if(!pattern.test(emailInput.value)){
-		refuseDiv.innerHTML = "Please enter a real email."
+function validateEmail(emailInput, refuseDiv, emailInputDiv) {
+	const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+	if (!pattern.test(emailInput.value)) {
+		refuseDiv.innerHTML = "Please enter a real email.";
 		showRefuseDiv(refuseDiv);
-		setRedBorder(emailInput);
-		revertBorderColor(emailInput);
+		setRedBorder(emailInputDiv);
+		revertBorderColor(emailInputDiv);
 		disableRefuseDiv(refuseDiv);
-        return false;
-    }
-    return true;
+		return false;
+	}
+	return true;
 }
 
 function revertBorderColor(element) {
@@ -316,21 +336,18 @@ function revertBorderColor(element) {
 	}, 2000);
 }
 
-function disableRefuseDiv(element){
-	setTimeout(()=>{
+function disableRefuseDiv(element) {
+	setTimeout(() => {
 		element.classList.add("hideRefuseDiv");
 		element.classList.remove("showRefuseDiv");
-	}, 2000)
+	}, 2000);
 }
 
-function showRefuseDiv(refuseDiv){
+function showRefuseDiv(refuseDiv) {
 	refuseDiv.classList.remove("hideRefuseDiv");
 	refuseDiv.classList.add("showRefuseDiv");
 }
 
-function setRedBorder(element){
+function setRedBorder(element) {
 	element.style.border = "1px solid red";
-	console.log("test");
 }
-
-/// -------------------- BEIM BORDER MUSS DIE DIV GENOMMEN WERDEN ------------------------------- ////////////////////////
