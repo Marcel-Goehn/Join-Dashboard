@@ -112,7 +112,26 @@ function getSubtasksInformation(index) {
             counter++;
         }
     }
-    return getSubtasksTemplate(subtaskLengthArr.length, counter);    
+    const progress = calculateProgressBar(counter, subtaskLengthArr);
+    return getSubtasksTemplate(progress, counter, subtaskLengthArr.length);    
+}
+
+
+/**
+ * This function calculates the % width for the progressbar
+ * 
+ * @param {number} counter - This counts the cheked tasks
+ * @param {Array} subtaskLengthArr - This gives back the length of all subtasks
+ * @returns - It returns the rounded percent for the progressbar
+ */
+function calculateProgressBar(counter, subtaskLengthArr) {
+    if (counter === 0 && subtaskLengthArr.length === 0) {
+        let progressbarPercent = 0;
+        return progressbarPercent;
+    }
+    let calculatedAmount = counter / subtaskLengthArr.length * 100;
+    let roundedAmount = Math.round(calculatedAmount);
+    return roundedAmount;
 }
 
 

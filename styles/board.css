@@ -4,6 +4,10 @@
     margin-top: 11rem;
 }
 
+.d_none {
+    display: none;
+}
+
 .container {
     margin-inline: auto;
     max-width: 1440px;
