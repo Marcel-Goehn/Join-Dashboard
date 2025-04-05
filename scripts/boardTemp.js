@@ -1,4 +1,4 @@
-function getToDoTemplate(index) {
+function getCardsTemplate(index) {
     return `<div onclick="openDialog(${index})" class="card">
                             <h2>
                                 <span class="card-header">${cards[index].value.category}</span>
@@ -9,7 +9,7 @@ function getToDoTemplate(index) {
                                 <div class="progress-bar">
                                     <div class="progress" style="width: 50%;"></div>
                                 </div>
-                                <span class="subtask-txt">1/2 Subtasks</span>
+                                <span class="subtask-txt">${getSubtasksInformation(index)} Subtasks</span>
                             </div>
                             <div class="users">
                                 <div class="user-icons">
@@ -17,25 +17,15 @@ function getToDoTemplate(index) {
                                 </div>
                                 <img src="../assets/img/${cards[index].value.priority}.svg">
                             </div>
-                        </div>`; // Progressbar muss noch ausgerechnet werden.
+                        </div>`; // Progressbar muss noch ausgerechnet werden. Dann muss noch aus dem Dialog kontrolliert werden ob schon subtasks abgehakt wurden oder nicht
 }
-
-
-/*function getProgressTemplate() {
-    return ``;
-}
-
-
-function getFeedbackTemplate() {
-    return ``;
-}
-
-
-function getDoneTemplate() {
-    return ``;
-}*/
 
 
 function getAssignedUsersTemplate(first, last) {
     return `<div class="user-1 user">${first}${last}</div>`
+}
+
+
+function getSubtasksTemplate(subtasklength, checkedTasks) {
+    return `${checkedTasks}/${subtasklength}` 
 }

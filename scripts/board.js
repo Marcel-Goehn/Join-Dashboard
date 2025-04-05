@@ -1,4 +1,4 @@
-const dataBase = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban.json";
+const dataBase = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test.json";
 const cards = [];
 const dialog = document.getElementById('overlay');
 const wrapper = document.querySelector('.wrapper');
@@ -6,10 +6,10 @@ const todo = document.getElementById('to_do');
 const progress = document.getElementById('progress');
 const feedback = document.getElementById('feedback');
 const done = document.getElementById('done');
-let toDoMemory;
-let progressMemory;
-let feedbackMemory;
-let doneMemory;
+let toDoMemory = ``;
+let progressMemory = ``;
+let feedbackMemory = ``;
+let doneMemory = ``;
 
 
 /**
@@ -17,7 +17,7 @@ let doneMemory;
  */
 async function init() {
     await fetchData();
-    getAssignedUsers(3);
+    renderCards();
 }
 
 
@@ -66,6 +66,10 @@ function renderCards() {
     for (let i = 0; i < cards.length; i++) {
         checkRenderConditions(i);   
     }
+    todo.innerHTML = toDoMemory;
+    progress.innerHTML = progressMemory;
+    feedback.innerHTML = feedbackMemory;
+    done.innerHTML = doneMemory;
 }
 
 
@@ -75,7 +79,7 @@ function renderCards() {
  * @param {number} index - The index of the current card
  */
 function checkRenderConditions(index) {
-    if (cards[index].value.currentStatus === "To Do") {
+    if (cards[index].value.currentStatus === "todo") {
         toDoMemory += getCardsTemplate(index);
     }
     else if (cards[index].value.currentStatus === "progress") {
@@ -91,12 +95,34 @@ function checkRenderConditions(index) {
 
 
 /**
+ * This function calculates the length of the subtasks for a card
+ * 
+ * @param {number} index - The index of the current card
+ * @returns - returns the amount of subtasks in the card
+ */
+function getSubtasksInformation(index) {
+    let subtaskLengthArr = [];
+    let counter = 0;
+    for (let [key, value] of Object.entries(cards[index].value.subtasks)) {
+        if(key === "null") {
+            continue;
+        }
+        subtaskLengthArr.push({id : key, value});
+        if (value.status === "checked") {
+            counter++;
+        }
+    }
+    return getSubtasksTemplate(subtaskLengthArr.length, counter);    
+}
+
+
+/**
  * 
  * @param {number} index - The index of the current card
  * @returns - It return the first letters of the first and last name
  */
 function getAssignedUsers(index) {
-    let assignedContactsRef;
+    let assignedContactsRef = ``;
     for(let [key, value] of Object.entries(cards[index].value.assigned)) {
         if (key == "null") {
             continue;
@@ -137,3 +163,46 @@ dialog.onclick = function(e) {
         dialog.close();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Hab diese Funktion nur gebaut um Test Objekte in die Datenbank zu laden, lösche sie sobald alles glatt läuft
+
+
+/*async function sendDataToFirebase(data) {
+    await fetch("https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test.json", {
+        method : "POST",
+        headers : {"Content-Type" : "application/json"},
+        body : JSON.stringify(data)
+    });
+}
+
+function testUpload() {
+    let obj = {
+        "title" : "CSS Architecture Planning",
+        "priority" : "medium",
+        "duedate" : "20/06/2025",
+        "description" : "Define CSS naming conventions and structure",
+        "currentStatus" : "done",
+        "category" : "Technical Task",
+        "subtasks" : {"null" : "null"},
+        "assigned" : {"null" : "null"}
+    };
+    sendDataToFirebase(obj);
+}
+
+testUpload();*/
