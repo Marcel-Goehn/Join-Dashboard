@@ -289,3 +289,11 @@ li {
     border-bottom-style: solid;
     width: 100%;
 }
+button:disabled {
+    background-color: #ccc !important;
+    cursor: not-allowed;
+}
+button:disabled:hover {
+    box-shadow: none;
+    transform: none;
+}

@@ -1,6 +1,5 @@
 function subtask_template(id, subtask) {
-    document.getElementById('addedSubtasks').innerHTML += `
-        <li class="space-between addedSubtask" id="${id}">
+    return `<li class="space-between addedSubtask" id="${id}">
             <span id="subtask_row${id}" class="listitem">${subtask}</span>
             <div class="addSubtask_btndiv">
                 <img class="hover" onclick="editSubtask(${id})" src="../assets/img/addtask/edit.svg">
@@ -18,25 +17,46 @@ function subtask_template(id, subtask) {
         </div>`;
 }
 
-function iconsDuringInput() {
-    if (document.getElementById('subtask_input').value !== "") {
-        document.getElementById('subtask_input_icons').innerHTML = `
-        <img class="hover" onclick="clearInput()" src="../assets/img/addtask/x.svg"></img>
-        |
-        <img class="hover" onclick="addSubtask()" src="../assets/img/addtask/done_black.svg"></img>`
-    } else {
-        document.getElementById('subtask_input_icons').innerHTML = `
-        <img class="hover" src="../assets/img/addtask/add.svg"></img>`
-    }
+
+
+
+
+
+// function ChangeSubtaskIcons() {
+//     if (document.getElementById('subtask_input').value !== "") {
+//         document.getElementById('subtask_input_icons').innerHTML =
+//         `<img class="hover" onclick="clearInput()" src="../assets/img/addtask/x.svg"></img>
+//         |
+//         <img class="hover" onclick="addSubtask()" src="../assets/img/addtask/done_black.svg"></img>`
+//     } else {
+//         document.getElementById('subtask_input_icons').innerHTML = `
+//         <img class="hover" src="../assets/img/addtask/add.svg"></img>`
+//     }
+// }
+
+
+
+
+
+function renderSelectedContactsAsCircle(name) {
+    return `<div class="circle centered">${getInitials(name)}</div>`
 }
 
-function tempContacts(object = Object.entries(logged_user.contacts)) {
-    document.getElementById('contactsList').innerHTML = "";
-    for (const [id, contact] of object) {
-        document.getElementById('contactsList').innerHTML +=
-        `<div class="space-between contact" id="${id}" onclick="highlightContact('${contact.name}', '${id}')">
+
+function subtaskIsNotBlank() {
+    return `<img class="hover" onclick="clearInput()" src="../assets/img/addtask/x.svg"></img>
+    |
+    <img class="hover" onclick="addSubtask()" src="../assets/img/addtask/done_black.svg"></img>`
+}
+
+function subtaskIsBlank() {
+    return `<img class="hover" src="../assets/img/addtask/add.svg"></img>`
+}
+
+function renderContacts(id, contact) {
+    return `<div class="space-between contact" id="${id}" onclick="toggleCheckmark('${contact.name}', '${id}')">
             <div class="indice_name">
-                <div class="circle centered">${indices(contact.name)}</div>
+                <div class="circle centered">${getInitials(contact.name)}</div>
                 <span>${contact.name}</span>
             </div>
             <img id="${id}-unchecked" src="../assets/img/Check button_unchecked.svg" alt="">
@@ -45,5 +65,4 @@ function tempContacts(object = Object.entries(logged_user.contacts)) {
                 <path d="M8 12L12 16L20 4.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>`
-    }
 }
