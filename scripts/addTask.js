@@ -15,12 +15,17 @@ let title = document.getElementById('title_input');
 let duedate = document.getElementById('duedate_input');
 let selectedCategory = document.getElementById('btn_text');
 
+
+function init() {
+    fetchUser();
+    logged_user.contacts ? getContacts() : null;
+}
+
 async function fetchUser() {
     let result = sessionStorage.getItem("loggedIn");
     let userID = await JSON.parse(result);
     const response = await fetch(databaseLinkRef + "users/" + userID + ".json");
     logged_user = await response.json();
-    getContacts();
 }
 
 function select(priority) {

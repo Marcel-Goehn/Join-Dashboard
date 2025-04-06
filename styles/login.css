@@ -12,12 +12,14 @@ div {
     margin: 0 272px;
     background-color: rgb(255, 255, 255);
     margin-bottom: 40px;
+    max-width: 652px;
 }
 body {
     gap: 172px;
     padding: 67px 122px;
     font-size: 20px;
     font-weight: 400;
+    align-items: center;
 }
 input {
     color: black;
@@ -106,6 +108,12 @@ footer {
     justify-content: center;
     gap: 16px;
 }
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
 h1 {
     font-weight: 700;
     font-size: 61px;
@@ -125,6 +133,7 @@ h1:hover {
     align-items: center;
     justify-content: flex-end;
     gap: 35px;
+    width: 100%;
 }
 #logo {
     width: 100px;

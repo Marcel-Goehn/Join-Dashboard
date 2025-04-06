@@ -21,7 +21,7 @@ function fadeAllElementsIn(){
     for (let index = 0; index < allElementsExpectLogo.length; index++) {
         const element = allElementsExpectLogo[index];
         element.classList.toggle("fadeIn");
-    }    
+    }
 }
 
 function validate() {
@@ -35,7 +35,7 @@ function validate() {
 
 async function loginAsUser() {
     await compareToDatabase();
-    invalidLogin();
+    invalidLogin(); // färbt sich rot, aber ich weiß nicht warum
 }
 
 async function compareToDatabase() {
@@ -55,7 +55,7 @@ function invalidLogin() {
 }
 
 function loginAsGuest() {
-    sessionStorage.setItem("loggedIn", JSON.stringify("Guest"));
+    sessionStorage.setItem("loggedIn", JSON.stringify("-ONBJjWWRRsraHeP8qRV"));
     window.location.href = "../html/summary.html";
     //wir brauchen noch eine Lösung für den Guest-Login. Am einfachsten wäre ein Guest-Userkonto
 }
