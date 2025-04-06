@@ -2,42 +2,64 @@ div {
     opacity: 0;
 }
 
-#content {
+#formular {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border-radius: 30px;
     gap: 32px;
-    padding: 48px 115px;
+    padding: 48px 0;
+    margin: 0 272px;
     background-color: rgb(255, 255, 255);
+    margin-bottom: 40px;
 }
 body {
-    background-color: rgb(246, 247, 249);
-    justify-content: space-between;
-}
-.separator {
-    border-color: #29ABE2;
-    border-style: solid;
-    width: 150px;
-    border-width: 3px;
-    border-radius: 30px;
+    gap: 172px;
+    padding: 67px 122px;
+    font-size: 20px;
+    font-weight: 400;
 }
 input {
     color: black;
     background-color: white;
-    border: none;
-    width: 380px;
     outline: none;
     font-size: 20px;
     font-weight: 400;
+    cursor: pointer;
+    width: 100%;
 }
 input::placeholder {
     color: #D1D1D1;
 }
+#login_data {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 0 115px;
+}
 button {
     border-radius: 8px;
     border-width: 1px;
-    gap: 10px;
     padding: 15px 24px;
     font-weight: 700;
     font-size: 21px;
+    background-color: #2A3647;
+    color: white;
+}
+button:hover {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+#signup_btn {
+    font-size: 16px;
+    font-weight: 700;
+}
+#signup_btn:hover {
+    background-color: #29ABE2;
+}
+.login_buttons_div {
+    display: flex;
+    gap: 35px;
 }
 #registered_login {
     border: none;
@@ -59,14 +81,16 @@ button {
 #content .space_between {
     width: 380px;
 }
-.singleinput_div:focus-within {
-    border-color: #29ABE2;
-}
-.singleinput_div {
+.form-element {
+    display: flex;
+    align-items: center;
     border-radius: 10px;
     border: 1px solid #2A3647;
-    gap: 10px;
     padding: 12px 21px;
+    cursor: pointer;
+}
+.form-element:focus-within {
+    border-color: #29ABE2;
 }
 a {
     font-weight: 400;
@@ -77,44 +101,31 @@ a {
     color: #A8A8A8;
 }
 
-.link_div {
+footer {
+    display: flex;
+    justify-content: center;
     gap: 16px;
 }
-
-.button_div {
-    gap: 35px;
-}
-
 h1 {
     font-weight: 700;
     font-size: 61px;
     line-height: 120%;
     text-align: center;
     margin: 0;
+    border-bottom: #29ABE2;
+    border-bottom-style: solid;
+    border-width: 3px;
+    padding-bottom: 16px;
 }
-
+h1:hover {
+    cursor: default;
+}
 #signup_div {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 35px;
-    padding-right: 120px;
-    padding-top: 67px;
 }
-
-#signin {
-    background-color: #2A3647;
-    color: white;
-    font-size: 16px;
-    font-weight: 700;
-}
-#signin:hover {
-    background-color: #29ABE2;
-}
-#login_div {
-    gap: 16px;
-}
-
 #logo {
     width: 100px;
     height: 122px;
@@ -124,24 +135,13 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%) scale(2);
 }
-
-#login_data {
-    gap: 20px;
-}
-
 .invalid {
     border-color: red;
-}
-form div {
-    cursor: pointer;
-}
-button:hover {
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 .hidden {
     display: none;
 }
-#wrong_login {
+#invalid_login_hint {
     color: red;
     font-size: 13px;
     font-weight: 400;

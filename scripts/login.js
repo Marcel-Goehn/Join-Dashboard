@@ -1,4 +1,10 @@
 const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users";
+let emailInput = document.getElementById('emailInput');
+let passwordInput = document.getElementById('passwordInput');
+let userInput = Array.from(document.getElementsByClassName('form-element'));
+let PasswordIcon = document.getElementById('PasswordIcon');
+let showPassword = "../assets/img/login/visibility.svg";
+let hidePassword = "../assets/img/login/visibility-off.svg";
 
 function init() {
     animateLogo();
@@ -28,54 +34,69 @@ function validate() {
 }
 
 async function loginAsUser() {
-    let email = document.getElementById('email').value;
-    let password = document.getElementById('password').value;
-    let loggedIn;
-    const response = await fetch(databaseLinkRef + ".json");
-    const userDB = await response.json();
-    for (const id in userDB) {
-        if (userDB[id].email == email && userDB[id].password == password) {
-            loggedIn = true;
-            sessionStorage.setItem("loggedIn", JSON.stringify(id));
-            window.location.href = "../html/summary.html";
-            }
-        }
-        if (!loggedIn) {
-            removeHidden('wrong_login');
-            Array.from(document.getElementsByClassName('singleinput_div')).forEach(element => element.classList.add('invalid'));
-        }
-    }
-
-function loginAsGuest() {
-    window.location.href = "../html/summary.html";
+    await compareToDatabase();
+    invalidLogin();
 }
 
-function showPassword() {
-    let type = document.getElementById('password').type;
-    switch (type) {
+async function compareToDatabase() {
+    const response = await fetch(databaseLinkRef + ".json");
+    const users = await response.json();
+    for (const [id, userData] of Object.entries(users)) {
+        if (userData.email == emailInput.value && userData.password == passwordInput.value) {
+            sessionStorage.setItem("loggedIn", JSON.stringify(id));
+            window.location.href = "../html/summary.html";
+        }
+    }
+}
+
+function invalidLogin() {
+    removeHiddenClass('invalid_login_hint');
+    userInput.forEach(element => element.classList.add('invalid'));
+}
+
+function loginAsGuest() {
+    sessionStorage.setItem("loggedIn", JSON.stringify("Guest"));
+    window.location.href = "../html/summary.html";
+    //wir brauchen noch eine Lösung für den Guest-Login. Am einfachsten wäre ein Guest-Userkonto
+}
+
+function toggleVisibility() {
+    switch (passwordInput.type) {
         case "text":
-            document.getElementById('password').type = "password";
+            passwordInput.type = "password";
             break;
         case "password":
-            document.getElementById('password').type = "text";
+            passwordInput.type = "text";
             break;
     }
 }
 
 function removeInvalidClass(num) {
-    document.getElementsByClassName('singleinput_div')[num].classList.remove('invalid');
-    addHidden('wrong_login');
+    userInput[num].classList.remove('invalid');
+    addHiddenClass('invalid_login_hint');
 }
 
-function switchIcon() {
-    let current = document.getElementById('lock_img');
-    let readable = "../assets/img/login/visibility.svg";
-    let ciphered = "../assets/img/login/visibility-off.svg";
-    document.getElementById('password').type == "password" ? current.src = ciphered : current.src = readable;
+function passwordInputisEmpty() {
+    passwordInput.value == "" ? PasswordIcon.src = "../assets/img/login/lock.svg" : checkVisibility();
 }
-function removeHidden(id) {
-    document.getElementById(id).classList.remove('hidden');
+
+function checkVisibility() {
+    switch (passwordInput.type) {
+        case "password":
+            (PasswordIcon.src = hidePassword)
+            break;
+        case "text":
+            (PasswordIcon.src = showPassword)
+            break;
+    }
 }
-function addHidden(id) {
-    document.getElementById(id).classList.add('hidden');
+
+function togglePasswordIcon() {
+    passwordInput.type == "password" ? PasswordIcon.src = hidePassword : PasswordIcon.src = showPassword;
+}
+function removeHiddenClass(container) {
+    document.getElementById(container).classList.remove('hidden');
+}
+function addHiddenClass(container) {
+    document.getElementById(container).classList.add('hidden');
 }

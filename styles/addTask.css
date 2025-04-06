@@ -183,11 +183,6 @@ textarea:hover {
 .addedSubtask:hover {
 background-color: #D1D1D1;
 }
-.addedSubtask_btn {
-    width: fit-content !important;
-    height: fit-content;
-    padding: 0;
-}
 body {
     display: flex;
     flex-direction: column;
