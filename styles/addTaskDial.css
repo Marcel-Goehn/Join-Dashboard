@@ -329,3 +329,29 @@ button:disabled:hover {
 	padding-left: 74px;
 	padding-right: 65px;
 }
+
+@keyframes slideIn {
+	0% {
+		transform: translateX(200%);
+	}
+	100% {
+		transform: translateX(0%);
+	}
+}
+
+@keyframes slideOut {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(200%);
+	}
+}
+
+.slideTaskDialIn {
+	animation: slideIn 1s ease-in forwards;
+}
+
+.slideTaskDialOut {
+	animation: slideOut 1s ease-in forwards;
+}
