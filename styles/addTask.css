@@ -1,7 +1,7 @@
-#content {
+#formular {
     display: flex;
-    align-items: flex-start;
-    padding-top: 60px;
+    justify-content: space-between;
+    gap: 24px;
 }
 .star {
     color: red;
@@ -14,13 +14,6 @@ span {
     font-weight: 400;
     font-size: 20px;
 }
-input::placeholder {
-    color: #D1D1D1;
-}
-#dueDate img {
-    width: 24px;
-    height: 24px;
-}
 #dueDate {
     display: flex;
     align-items: center;
@@ -28,30 +21,38 @@ input::placeholder {
     background-color: white;
     padding: 12px 21px;
     width: 100%;
-
 }
 #separator {
     height: 424px;
     border: 1px solid #D1D1D1;
-}
-.padding {
-    padding: 12px 21px;
 }
 input {
     font-size: 20px;
     width: 100%;
     outline: none;
 }
+input::placeholder {
+    color: #D1D1D1;
+}
+input:hover {
+    cursor: pointer;
+}
 textarea {
     font-size: 20px;
+    max-width: 100%;
+    min-width: 100%;
+}
+textarea:focus {
+    border: none;
+    outline-width: 1px;
+    outline-style: solid;
+    outline-color: #00c0dd;
 }
 textarea::placeholder {
     color: #D1D1D1;
 }
-button {
-    padding: 16px 10px;
-    border-radius: 10px;
-    background-color: white;
+textarea:hover {
+    cursor: pointer;
 }
 .medium {
     background-color: #fda807;
@@ -63,66 +64,48 @@ button {
     background-color: #7ae229;
     fill: #D1D1D1;
 }
-#button_div {
-    gap: 16px;
-}
-#button_div button {
-    display: flex;
-    width: 136px;
-    gap: 8px;
-    align-items: center;
-}
-button:hover {
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-}
-#separator {
-    margin: 0 40px;
-}
-.content_half {
+#leftside {
     display: flex;
     flex-direction: column;
-    width: 440px;
+    max-width: 440px;
+    width: 100%; 
+    gap: 32px;
+}
+#rightside {
+    display: flex;
+    flex-direction: column;
+    max-width: 440px;
+    width: 100%; 
     gap: 24px;
 }
-.flex_start {
-align-items: flex-start;
+#rightside button {
+    width: 100%;
 }
 #description {
     min-height: 120px;
     height: 120px;
     width: 100%;
 }
-.content_half button {
-width: 100%;
-}
-input:hover {
-    cursor: pointer;
-}
-textarea:hover {
-    cursor: pointer;
-}
 .hidden {
     display: none !important;
 }
-.required {
-    color: red;
-    font-size: 12px;
-    font-weight: 200;
-}
 #contactsList {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-}
-#contactsList input {
-    width: auto;
-}
-.contact:hover {
-    background-color: #D1D1D1;
+    cursor: pointer;
 }
 .contact {
-    padding: 16px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 6px;
     width: 100%;
     border-radius: 10px;
     background-color: white;
+}
+.contact:hover {
+    background-color: #D1D1D1;
 }
 .highlight {
     background-color: #2a3547;
@@ -131,28 +114,32 @@ textarea:hover {
 .highlight:hover {
     background-color: #091931;
 }
-#contactsList div {
-    cursor: pointer;
-}
 .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 42px;
     width: 42px !important;
     border-radius: 50%;
     background-color: red;
     margin: 6px;
 }
-.indice_name {
+.circle:hover {
+    cursor: pointer;
+}
+.initial_name {
     display: flex;
     align-items: center;
     gap: 8px;
 }
-#closed_contacts {
-    display: flex;
-}
-
 #category {
+    display: flex;
+    flex-direction: column;
     align-items: flex-start;
     width: 100%;
+}
+#category_btn {
+    justify-content: space-between;
 }
 .category {
     display: flex;
@@ -165,24 +152,29 @@ textarea:hover {
 .category:hover {
     background-color: #D1D1D1;
 }
-#subtasks_div {
-    padding: 16px 10px;
-    border-radius: 10px;
-    background-color: white;
-    width: 100%;
-}
-#btn_subtask {
-    width: fit-content;
-    height: fit-content;
-    padding: 0;
-}
 .addSubtask_btndiv {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
 }
+.edittedSubtask {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    padding-left: 16px;
+    padding-right: 8px;
+    border-bottom-color: #00c0dd;
+    border-bottom-style: solid;
+    border-width: 1px;
+    width: 100%;
+}
+.edittedSubtask input {
+    font-size: 16px;
+}
 .addedSubtask {
+    display: flex;
+    justify-content: space-between;
     padding: 8px 0;
     padding-left: 35px;
     padding-right: 8px;
@@ -235,11 +227,7 @@ body {
     font-size: 20px;
     font-weight: 400;
 }
-#non-sidebar {
-    padding-left: 328px;
-    margin-top: 206px;
-}
-.hover:hover {
+.icon:hover {
     background-color: #D1D1D1;
     border-radius: 50px;
     cursor: pointer;
@@ -278,16 +266,61 @@ li {
 }
 #required_and_taskbuttons {
     display: flex;
+    justify-content: space-between;
     align-items: flex-end;
-    margin-top: 162px;
+    margin-top: 90px;
 }
-.edittedSubtask {
-    padding: 8px 0;
-    padding-left: 35px;
-    padding-right: 8px;
-    border-bottom-color: #00c0dd;
-    border-bottom-style: solid;
-    width: 100%;
+#selected_contacts_div {
+    display: flex;
+}
+#center-content {
+    display: flex;
+    flex-direction: column;
+    padding-left: 328px;
+    padding-top: 206px;
+    max-width: 1304px;
+    gap: 48px;
+}
+
+.formular-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.formular-element {
+    padding: 12px 21px;
+    border-radius: 10px;
+    border-color: #ecedee;
+    border-style: solid;
+    border-width: 1px;
+}
+.formular-element:focus {
+    border-color: #00c0dd;
+}
+#priority_button_div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+#priority_button_div button {
+    border: none;
+}
+button {
+    padding: 16px 10px;
+    border-radius: 10px;
+    background-color: white;
+    gap: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button:focus-within {
+    border-color: #00c0dd;
+    border-style: solid;
+    border-width: 1px;
+}
+button:hover {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 button:disabled {
     background-color: #ccc !important;

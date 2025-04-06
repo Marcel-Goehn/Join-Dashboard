@@ -15,6 +15,14 @@ let title = document.getElementById('title_input');
 let duedate = document.getElementById('duedate_input');
 let selectedCategory = document.getElementById('btn_text');
 
+async function fetchUser() {
+    let result = sessionStorage.getItem("loggedIn");
+    let userID = await JSON.parse(result);
+    const response = await fetch(databaseLinkRef + "users/" + userID + ".json");
+    logged_user = await response.json();
+    getContacts();
+}
+
 function select(priority) {
     resetButtonsToDefault();
     switch (priority) {
@@ -45,29 +53,20 @@ function resetButtonsToDefault() {
     ['low_1', 'low_2'].forEach(id => document.getElementById(id).setAttribute("fill", "#7ae229"));
 }
 
-async function fetchUser() {
-    let result = sessionStorage.getItem("loggedIn");
-    let userID = await JSON.parse(result);
-    const response = await fetch(databaseLinkRef + "users/" + userID + ".json");
-    logged_user = await response.json();
-    getContacts();
-}
-
 function toggleContacts() {
     Contacts.classList.toggle('hidden');
     selectedContacts.classList.toggle('hidden');
-    getSelectedContacts();
     rotateArrowIcon("assigned_icon");
 }
 
-function rotateArrowIcon(id) {
-    document.getElementById(id).classList.toggle('rotate');
+function rotateArrowIcon(formularID) {
+    document.getElementById(formularID).classList.toggle('rotate');
 }
 
 function getSelectedContacts() {
     selectedContacts.innerHTML = "";
-    for (const contact of Object.values(assignedContacts)) {
-        selectedContacts.innerHTML += renderSelectedContactsAsCircle(contact);
+    for (const [id, name] of Object.entries(assignedContacts)) {
+        selectedContacts.innerHTML += renderSelectedContactsAsCircle(name, id);
     }
 }
 
@@ -77,16 +76,17 @@ function getInitials(name) {
     return step_2.join("");
 }
 
-function toggleCheckmark(contact, id) {
+function toggleCheckmark(name, id) {
     document.getElementById(id).classList.toggle('highlight');
     document.getElementById(`${id}-unchecked`).classList.toggle('hidden');
     document.getElementById(`${id}-checked`).classList.toggle('hidden');
-    editAssignedObject(contact, id);
+    editAssignedObject(name, id);
+    getSelectedContacts();
 }
 
-function editAssignedObject(contact, id) {
+function editAssignedObject(name, id) {
     if (document.getElementById(`${id}-checked`).classList != 'hidden') {
-        assignedContacts[`${id}`] ? null : assignedContacts[`${id}`] = contact;
+        assignedContacts[`${id}`] ? null : assignedContacts[`${id}`] = name;
     } else {
         delete assignedContacts[`${id}`];
     }
@@ -142,7 +142,8 @@ function confirmSubtask(id) {
     subtasks[`${id}`] = document.getElementById(`edit_input${id}`).value;
 }
 
-function deleteSubtask(id) {
+function deleteSubtask(event, id) {
+    event.stopPropagation();
     document.getElementById(id).remove();
     document.getElementById(`edit_div${id}`).remove();
     delete subtasks[`${id}`];
@@ -163,6 +164,7 @@ function checkUploadConditions() {
         document.getElementById('confirm_btn').disabled = true;
     }
 }
+
 function assembleTask() {
     return {
         "assigned" : assignedContacts,
@@ -196,7 +198,7 @@ function ChangeSubtaskIcons() {
 
 function getContacts(object = Object.entries(logged_user.contacts)) {
     Contacts.innerHTML = "";
-        for (const [id, contact] of object) {
-            Contacts.innerHTML += renderContacts(id, contact);
+        for (const [id, contactObject] of object) {
+            Contacts.innerHTML += renderContacts(id, contactObject);
         }
     }
