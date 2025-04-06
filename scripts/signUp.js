@@ -13,6 +13,7 @@ const confirmRefuseDiv = document.getElementById("confirmRefuseDiv");
 const checkbox = document.getElementById("privacyCheckbox");
 const checkboxBorder = document.getElementById("checkboxBorder");
 const dialog = document.getElementById("succesfulSignUpDial");
+let previousLength = 0;
 
 const databaseLinkRef =
 	"https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users.json";
@@ -133,7 +134,7 @@ function setRedBorder(element) {
 async function postUser(name, email, password) {
 	const newUser = {
 		name,
-		email,
+		email: email.toLowerCase(),
 		password,
 		contacts: null,
 	};
@@ -209,15 +210,23 @@ function toggleBorder() {
 }
 
 function switchToClosedEye(id) {
-	document.getElementById(`lockIcon${id}`).classList.add("hideIcon");
-	console.log(document.getElementById(`lockIcon${id}`));
-	document.getElementById(`eyeClosed${id}`).classList.remove("hideIcon");
+	if (input.value.length > 0 && input.type === "password") {
+		document.getElementById(`eyeOpen${id}`).classList.add("hideIcon");
+		document.getElementById(`lockIcon${id}`).classList.add("hideIcon");
+		document.getElementById(`eyeClosed${id}`).classList.remove("hideIcon");
+	} else {
+		document.getElementById(`lockIcon${id}`).classList.add("hideIcon");
+		document.getElementById(`eyeClosed${id}`).classList.add("hideIcon");
+		document.getElementById(`eyeOpen${id}`).classList.remove("hideIcon");
+	}
 }
 
 function switchToLock(id) {
+	id === "PW" ? (input = passwordInput) : (input = passwordConfirmationInput);
 	document.getElementById(`lockIcon${id}`).classList.remove("hideIcon");
-	document.getElementById(`eyeClosed${id}`).classList.add("hideIcon");
 	document.getElementById(`eyeOpen${id}`).classList.add("hideIcon");
+	document.getElementById(`eyeClosed${id}`).classList.add("hideIcon");
+	input.type = "password";
 }
 
 function toggleVisibility(id) {

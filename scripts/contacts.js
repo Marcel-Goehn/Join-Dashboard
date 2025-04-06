@@ -303,7 +303,7 @@ function validatePhone(phoneInput, refuseDiv, phoneInputDiv) {
 }
 
 function validateName(nameInput, refuseDiv, nameInputDiv) {
-	const pattern = /^[A-Za-z]+ [A-Za-z]+$/;
+	const pattern = /^[a-zA-ZäöüÄÖÜß]+ [a-zA-ZäöüÄÖÜß]+$/;
 	if (!pattern.test(nameInput.value)) {
 		refuseDiv.innerHTML = "Enter first and lastname separated by a space.";
 		showRefuseDiv(refuseDiv);
