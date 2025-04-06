@@ -1,372 +1,398 @@
-body{
-    margin: 0;
-    background-color: #F6F7F8;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 40px;
-    overflow: hidden;
+body {
+	margin: 0;
+	background-color: #f6f7f8;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 40px;
+	overflow: hidden;
 }
 
-#signUpContent{
-    max-width: 1440px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-    width: 100%;
+#signUpContent {
+	max-width: 1440px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
+	width: 100%;
 }
 
-a{
-    text-decoration: none;
-    margin: 0;
+a {
+	text-decoration: none;
+	margin: 0;
 }
-#formContent{
-    background-color: #FFFFFF;
-    border-radius: 30px;
-    box-shadow: 0px 0px 3px 5px rgba(42,54,71,0.02);
-    padding: 48px 88px;
-}
-
-#signUpHeadline{
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    align-items: center;
-    margin-bottom: 48px;
-    width: 100%;
+#formContent {
+	background-color: #ffffff;
+	border-radius: 30px;
+	box-shadow: 0px 0px 3px 5px rgba(42, 54, 71, 0.02);
+	padding: 48px 88px;
 }
 
-h1{
-    grid-column: 1;
+#signUpHeadline {
+	display: grid;
+	grid-template-columns: 1fr 3fr 1fr;
+	align-items: center;
+	margin-bottom: 48px;
+	width: 100%;
 }
-#formContent h2{
-    position: relative;
-    font-family: "inter", sans-serif;
-    font-size: 61px;
-    font-weight: 700;
-    line-height: 120%;
-    letter-spacing: 0;
-    color: #000000;
-    grid-column: 2;
-    text-align: center;
-}
-#formContent h2::after{
-    content: "";
-    position: absolute;
-    background-color: #29ABE2;
-    left:50%;
-    transform: translate(-50%);
-    top: calc(100% + 16px);
-    height: 3px;
-    width: 70%;
-    border-radius: 30px;
-   
 
+h1 {
+	grid-column: 1;
 }
-#signUpFormDiv{
-    margin-bottom: 38px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#formContent h2 {
+	position: relative;
+	font-family: "inter", sans-serif;
+	font-size: 61px;
+	font-weight: 700;
+	line-height: 120%;
+	letter-spacing: 0;
+	color: #000000;
+	grid-column: 2;
+	text-align: center;
 }
-#signUpForm{
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
+#formContent h2::after {
+	content: "";
+	position: absolute;
+	background-color: #29abe2;
+	left: 50%;
+	transform: translate(-50%);
+	top: calc(100% + 16px);
+	height: 3px;
+	width: 70%;
+	border-radius: 30px;
+}
+#signUpFormDiv {
+	margin-bottom: 38px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#signUpForm {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	width: 100%;
 }
 
 .signUpInput {
-    border: none;
-    flex: 1;
-    height: 48px;
-    border-radius: 10px;
-    font-size: 20px;
-    font-weight: 400;
-    outline: none;
+	border: none;
+	flex: 1;
+	height: 48px;
+	border-radius: 10px;
+	font-size: 20px;
+	font-weight: 400;
+	outline: none;
 }
 
-.signUpInput::placeholder{
-    color:#D1D1D1;
+.signUpInput::placeholder {
+	color: #d1d1d1;
 }
 
-
-#signUpBtn{
-    width: 126px;
-    height: 55px;
-    border-radius: 8px;
-    padding: 14px 24px;
-    background-color: #2A3647;
-    border: none;
-    color: #FFFFFF;
-    font-family: "inter", sans-serif;
-    font-size: 21px;
-    font-weight: 700;
-    line-height: 120%;
-    letter-spacing: 0;
-    transition: 200ms ease-in-out;
+#signUpBtn {
+	width: 126px;
+	height: 55px;
+	border-radius: 8px;
+	padding: 14px 24px;
+	background-color: #2a3647;
+	border: none;
+	color: #ffffff;
+	font-family: "inter", sans-serif;
+	font-size: 21px;
+	font-weight: 700;
+	line-height: 120%;
+	letter-spacing: 0;
+	transition: 200ms ease-in-out;
 }
 
-#signUpBtn:hover{
-    background-color: #29ABE2;
-    cursor: pointer;
-    box-shadow: 0px 8px 10px -9px rgba(0,0,0,0.63);
+#signUpBtn:hover {
+	background-color: #29abe2;
+	cursor: pointer;
+	box-shadow: 0px 8px 10px -9px rgba(0, 0, 0, 0.63);
 }
 
-#signUpBtn:focus{
-    outline: none;
-    border: none;
+#signUpBtn:focus {
+	outline: none;
+	border: none;
 }
 
-#signUpBtn:active{
-    scale: 0.9;
+#signUpBtn:active {
+	scale: 0.9;
 }
 
-.signUpCheckboxDiv{
-    font-family: "inter";
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 120%;
-    letter-spacing: 0;
-    color: #A8A8A8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 32px;
-
-    
+.signUpCheckboxDiv {
+	font-family: "inter";
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 120%;
+	letter-spacing: 0;
+	color: #a8a8a8;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 32px;
 }
-.signUpCheckboxDiv span{
-    margin-left: 16px;
-    margin-right: 4px;
+.signUpCheckboxDiv span {
+	margin-left: 16px;
+	margin-right: 4px;
 }
 
-.signUpCheckboxDiv a{
-    color:#29ABE2;
-    
+.signUpCheckboxDiv a {
+	color: #29abe2;
 }
 
-.signUpCheckboxDiv a:hover{
-    scale: 1.02;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+.signUpCheckboxDiv a:hover {
+	scale: 1.02;
+	text-decoration: underline;
+	text-underline-offset: 3px;
 }
 
-.signUpCheckboxDiv:hover .checkmark{
-    outline: 1px solid black;
+.signUpCheckboxDiv:hover .checkmark {
+	outline: 1px solid black;
 }
 
-#signUpPrivacyAndLegalDiv{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin-top: 130px;
+#signUpPrivacyAndLegalDiv {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	margin-top: 130px;
 }
 
-#signUpPrivacyAndLegalDiv a{
-    padding: 8px;
-    color: #A8A8A8;
-    font-family: "inter", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 120%;
-    letter-spacing: 0;
-    transition: 0.075s ease-in-out;
+#signUpPrivacyAndLegalDiv a {
+	padding: 8px;
+	color: #a8a8a8;
+	font-family: "inter", sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 120%;
+	letter-spacing: 0;
+	transition: 0.075s ease-in-out;
 }
 
-#signUpPrivacyAndLegalDiv a:hover{
-    color:#29ABE2;
-    transform: scale(1.05);
+#signUpPrivacyAndLegalDiv a:hover {
+	color: #29abe2;
+	transform: scale(1.05);
 }
 
-#signUpLogoDiv{
-    display: flex;
-    width: 100%;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: 80px;
-    margin-left: 77px;
+#signUpLogoDiv {
+	display: flex;
+	width: 100%;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: 80px;
+	margin-left: 77px;
 }
-#signUpLogo{
-    width: 100px;
-    height: 122px;
-}
-
-.signUpInputDiv{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #D1D1D1;
-    border-radius: 15px;
-    padding:0px 21px;
+#signUpLogo {
+	width: 100px;
+	height: 122px;
 }
 
-.signUpInputDiv:hover{
-    border-color: black;
+.signUpInputDiv {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #d1d1d1;
+	border-radius: 15px;
+	padding: 0px 21px;
 }
 
-.signUpInputDiv:focus-within{
-    border-color: #29ABE2;
+.signUpInputDiv:hover {
+	border-color: black;
 }
 
-#personIcon{
-    width: 16px;
-    height: 16px;
+.signUpInputDiv:focus-within {
+	border-color: #29abe2;
 }
 
-#emailIcon{
-    width: 20px;
-    height: 16px;
+#personIcon {
+	width: 16px;
+	height: 16px;
 }
 
-.signUpLock:hover{
-    cursor: pointer;
+#emailIcon {
+	width: 20px;
+	height: 16px;
 }
 
-#signUpBackIcon{
-  width: 21px;
-  height: 21px;
-  margin-right: 40px;
+.signUpLock:hover {
+	cursor: pointer;
 }
 
-#signUpBackIcon:hover{
-    width: 21px;
-    height: 21px;
-    cursor: pointer;
-    transform: scale(1.8);
-    border-radius: 50%;
-    background-color: #F6F7F8;
-    padding: 4px;
+#signUpBackIcon {
+	width: 21px;
+	height: 21px;
+	margin-right: 40px;
 }
 
-#signUpBackIcon:active{
-    transform: scale(1);
-    border-radius: 50%;
-    padding: 2px;
+#signUpBackIcon:hover {
+	width: 21px;
+	height: 21px;
+	cursor: pointer;
+	transform: scale(1.8);
+	border-radius: 50%;
+	background-color: #f6f7f8;
+	padding: 4px;
 }
 
-input{
-    cursor: pointer;
-    transition: 200ms ease-in-out;
+#signUpBackIcon:active {
+	transform: scale(1);
+	border-radius: 50%;
+	padding: 2px;
 }
 
-input:hover{
-    border-color: #2A3647;
+input {
+	cursor: pointer;
+	transition: 200ms ease-in-out;
 }
 
-#signUpToLogIn{
-    margin-right: auto;
+input:hover {
+	border-color: #2a3647;
 }
 
-
-#signUpButtonDiv{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#signUpToLogIn {
+	margin-right: auto;
 }
 
-.show{
-    color:red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#signUpButtonDiv {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.hide{
-    display: none;
+.show {
+	color: red;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.checkbox:hover{
-    cursor: pointer;
+.hide {
+	display: none;
+}
+
+.checkbox:hover {
+	cursor: pointer;
 }
 
 .checkbox input {
-    display: none;
-  }
-  
-  .checkbox input:checked + .checkmark {
-    background-image: url("../assets/img/summary/done.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+	display: none;
+}
 
-  .checkbox .checkmark {
-    position: relative;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #D1D1D1;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .checkbox .checkmark::after {
-    content: "";
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 16px;
-    height: 16px;
-    background-image: url("../assets/img/summary/done.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
-  
-  .checkbox input:checked + .checkmark::after {
-    opacity: 1;
-  }
+.checkbox input:checked + .checkmark {
+	background-image: url("../assets/img/signUp/Property\ 1=hover\ checked.svg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 20px;
+	height: 20px;
+	scale: 1.2;
+}
 
-  dialog{
-    width: 80%;
-    height: 100%;
-    background-color: transparent;
-    outline: transparent;
-    border: none;
-  }
-  dialog:focus{
-    background-color: transparent;
-    outline: transparent;
-  }
+.checkbox .checkmark {
+	position: relative;
+	width: 20px;
+	height: 20px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	display: inline-block;
+	transition: background-color 0.3s ease-in-out;
+	border-radius: 4px;
+}
 
-  dialog div{
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    padding: 25px;
-    background-color: #2A3647;
-    box-shadow: 0px 0px 4px 0px #0000001A;
-    border-radius: 20px;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-  }
+dialog {
+	width: 80%;
+	height: 100%;
+	background-color: transparent;
+	outline: transparent;
+	border: none;
+}
+dialog:focus {
+	background-color: transparent;
+	outline: transparent;
+}
 
-  dialog p{
-    font-size: 20px;
-    color: #FFFFFF
-  }
+dialog div {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	padding: 25px;
+	background-color: #2a3647;
+	box-shadow: 0px 0px 4px 0px #0000001a;
+	border-radius: 20px;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+}
 
-  @keyframes fadeAndMove{
-    0%{
-        bottom: 0;
-        left: 50%;
-        opacity: 0;
-    }
-    100%{
-        bottom: 50%;
-        left: 50%;
-        opacity: 1;
-    }
-  }
+dialog p {
+	font-size: 20px;
+	color: #ffffff;
+}
 
-  .fadeInAndMoveUp{
-    animation: fadeAndMove 0.25s ease-in forwards;
-  }
+@keyframes fadeAndMove {
+	0% {
+		bottom: 0;
+		left: 50%;
+		opacity: 0;
+	}
+	100% {
+		bottom: 50%;
+		left: 50%;
+		opacity: 1;
+	}
+}
 
+.fadeInAndMoveUp {
+	animation: fadeAndMove 0.25s ease-in forwards;
+}
+
+.hideRefuseDiv {
+	display: none;
+}
+
+.showRefuseDiv {
+	display: flex;
+}
+
+.refuseDiv {
+	justify-content: flex-start;
+	align-items: center;
+	color: red;
+	font-size: 13px;
+	font-weight: 400px;
+	margin-left: 10px;
+}
+
+.formInputWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+	gap: 8px;
+}
+
+#checkboxBorder {
+	outline: none;
+}
+
+.normalBorder {
+	background-image: url("../assets/img/signUp/Rectangle\ 5.svg");
+}
+
+.redBorder {
+	background-image: url("../assets/img/signUp/rectangle_border_red.svg");
+}
+
+.hideIcon {
+	display: none;
+}
+
+.eyeOpen:hover {
+	cursor: pointer;
+}
+
+.eyeClosed:hover {
+	cursor: pointer;
+}

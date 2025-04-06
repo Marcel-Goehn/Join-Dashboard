@@ -16,7 +16,7 @@ async function fetchContactData() {
 
 function sortContacts(contactData) {
 	const sortedContacts = Object.entries(contactData).sort(([, a], [, b]) =>
-		a.name.localeCompare(b.name)
+		a.name.localeCompare(b.name, undefined, { sensitivity: base })
 	);
 	const sortedContactsObject = Object.fromEntries(sortedContacts);
 	return sortedContactsObject;
@@ -297,7 +297,6 @@ function validatePhone(phoneInput, refuseDiv, phoneInputDiv) {
 		setRedBorder(phoneInputDiv);
 		revertBorderColor(phoneInputDiv);
 		disableRefuseDiv(refuseDiv);
-
 		return false;
 	}
 	return true;
@@ -319,7 +318,7 @@ function validateName(nameInput, refuseDiv, nameInputDiv) {
 function validateEmail(emailInput, refuseDiv, emailInputDiv) {
 	const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 	if (!pattern.test(emailInput.value)) {
-		refuseDiv.innerHTML = "Please enter a real email.";
+		refuseDiv.innerHTML = "Please enter your email.";
 		showRefuseDiv(refuseDiv);
 		setRedBorder(emailInputDiv);
 		revertBorderColor(emailInputDiv);
