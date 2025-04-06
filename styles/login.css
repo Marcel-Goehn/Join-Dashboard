@@ -8,7 +8,7 @@ div {
     align-items: center;
     border-radius: 30px;
     gap: 32px;
-    padding: 48px 0;
+    padding: 48px 115px;
     margin: 0 272px;
     background-color: rgb(255, 255, 255);
     margin-bottom: 40px;
@@ -38,7 +38,6 @@ input::placeholder {
     flex-direction: column;
     gap: 20px;
     width: 100%;
-    padding: 0 115px;
 }
 button {
     border-radius: 8px;

@@ -35,7 +35,10 @@ function validate() {
 
 async function loginAsUser() {
     await compareToDatabase();
-    invalidLogin(); // färbt sich rot, aber ich weiß nicht warum
+    invalidLogin();
+    // färbt sich auch bei korrektem Login rot, aber ich weiß nicht warum. In meinem Kopf sollte erst die komplette 1.Funktion abgeschlossen werden (deshalb await).
+    // Fall 1: Login passt, man wird auf /summary weitergeleitet und die 2.Funktion wird übersprungen.
+    // Fall 2: Login passt nicht; erst jetzt wird die 2.Funktion ausgeführt.
 }
 
 async function compareToDatabase() {
@@ -57,7 +60,6 @@ function invalidLogin() {
 function loginAsGuest() {
     sessionStorage.setItem("loggedIn", JSON.stringify("-ONBJjWWRRsraHeP8qRV"));
     window.location.href = "../html/summary.html";
-    //wir brauchen noch eine Lösung für den Guest-Login. Am einfachsten wäre ein Guest-Userkonto
 }
 
 function toggleVisibility() {
