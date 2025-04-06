@@ -1,11 +1,12 @@
 const dataBase = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test.json";
 const cards = [];
-const dialog = document.getElementById('overlay');
-const wrapper = document.querySelector('.wrapper');
+const findTask = document.getElementById('find_task');
 const todo = document.getElementById('to_do');
 const progress = document.getElementById('progress');
 const feedback = document.getElementById('feedback');
 const done = document.getElementById('done');
+const dialog = document.getElementById('overlay');
+const wrapper = document.querySelector('.wrapper');
 let toDoMemory = ``;
 let progressMemory = ``;
 let feedbackMemory = ``;
@@ -151,7 +152,6 @@ function getAssignedUsers(index) {
         firstLetterLName = lastName.slice(0,1);
         assignedContactsRef += getAssignedUsersTemplate(firstLetterFName, firstLetterLName);
     }
-    console.log(assignedContactsRef);
     return assignedContactsRef;
 }
 
@@ -159,7 +159,8 @@ function getAssignedUsers(index) {
 /**
  * This function opens the dialog of the card
  */
-function openDialog() {
+function openDialog(i) {
+    wrapper.innerHTML = getDialogTemplate(i);
     dialog.showModal();
 }
 
@@ -181,6 +182,33 @@ dialog.onclick = function(e) {
     if(!wrapper.contains(e.target)) {
         dialog.close();
     }
+}
+
+
+function assignedDialogUsers(index) {
+    let assignedContactsRef = ``;
+    for(let [key, value] of Object.entries(cards[index].value.assigned)) {
+        if (key == "null") {
+            continue;
+        }
+        let [firstName, lastName] = value.name.split(" ");
+        firstLetterFName = firstName.slice(0,1);
+        firstLetterLName = lastName.slice(0,1);
+        assignedContactsRef += getAssignedUsersDialogTemplate(firstName, lastName, firstLetterFName, firstLetterLName);
+    }
+    return assignedContactsRef;
+}
+
+
+function renderSubtasksIntoDialog(index) {
+    let subtasksRef = ``;
+    for(let [key, value] of Object.entries(cards[index].value.subtasks)) {
+        if(key == "null") {
+            continue;
+        }
+        subtasksRef += getSubtasksDialogTemplate(value.status, value.name);
+    }
+    return subtasksRef;
 }
 
 
