@@ -1,93 +1,100 @@
-a{
-    color: #CDCDCD;
+a {
+	color: #cdcdcd;
 }
 
-#headerContent{
-    max-width: 1440px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 116px;
-    padding-right: 40px;
-    width: 100%;
-    margin-inline: auto;
+#headerContent {
+	max-width: 1440px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-left: 116px;
+	padding-right: 40px;
+	width: 100%;
+	margin-inline: auto;
 }
 
-header{
-    position: fixed;
-    left: 232px;
-    top: 0;
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    height: 96px;
-    align-items: center;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.10);
-    width: calc(100% - 232px);
-    /* margin-left: 232px; */
-    background-color: #FFFFFF;
+header {
+	position: fixed;
+	left: 232px;
+	top: 0;
+	z-index: 10;
+	display: flex;
+	justify-content: center;
+	height: 96px;
+	align-items: center;
+	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+	width: calc(100% - 232px);
+	/* margin-left: 232px; */
+	background-color: #ffffff;
+	z-index: 999;
 }
 
-header span{
-    font-family: "inter", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 120%;
-    letter-spacing: 0;
-    color: #000000;
+header span {
+	font-family: "inter", sans-serif;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 120%;
+	letter-spacing: 0;
+	color: #000000;
 }
 
-#headerIconDiv{
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    align-items: center;
+#headerIconDiv {
+	display: flex;
+	gap: 16px;
+	justify-content: center;
+	align-items: center;
 }
 
-#headerInfoIcon{
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
+#headerInfoIcon {
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
 }
 span {
-    cursor: default;
+	cursor: default;
 }
 
-#shorthandNameDiv{
-    border-radius: 50%;
-    border: 3px solid #2A3647;
-    width: 56px;
-    height: 56px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:#29ABE2;
-    cursor: pointer;
+#shorthandNameDiv {
+	border-radius: 50%;
+	border: 3px solid #2a3647;
+	width: 56px;
+	height: 56px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #29abe2;
+	cursor: pointer;
 }
 
 .short-hand-name {
-    color: #29ABE2;
-    font-weight: 600;
-    line-height: 120%;
-    letter-spacing: 0;
-    font-family: "inter", sans-serif;
-    cursor: pointer;
+	color: #29abe2;
+	font-weight: 600;
+	line-height: 120%;
+	letter-spacing: 0;
+	font-family: "inter", sans-serif;
+	cursor: pointer;
 }
 
 #menu {
-    display: flex;
-    position: absolute;
-    top: 96px;
-    flex-direction: column;
-    background-color: #2a3547;
-    border-radius: 20px 0 20px 20px;
+	display: flex;
+	position: absolute;
+	top: 96px;
+	flex-direction: column;
+	background-color: #2a3547;
+	border-radius: 20px 0 20px 20px;
+	padding: 10px;
 }
 #menu a {
-    color: #CDCDCD;
-    font-size: 16px;
-    font-weight: 400;
-    padding: 18px 26px;
+	color: #cdcdcd;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 18px 26px;
+	white-space: nowrap;
+}
+
+#menu a:hover {
+	background-color: #2a3f60;
 }
 .hidden {
-    display: none !important;
+	display: none !important;
 }
