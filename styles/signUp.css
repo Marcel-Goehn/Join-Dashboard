@@ -64,7 +64,7 @@ h1 {
 	border-radius: 30px;
 }
 #signUpFormDiv {
-	margin-bottom: 38px;
+	margin-bottom: 30px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -72,7 +72,7 @@ h1 {
 #signUpForm {
 	display: flex;
 	flex-direction: column;
-	gap: 24px;
+	gap: 16px;
 	width: 100%;
 }
 
@@ -156,12 +156,12 @@ h1 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 8px;
+	gap: 16px;
 	margin-top: 130px;
 }
 
 #signUpPrivacyAndLegalDiv a {
-	padding: 8px;
+	padding: 0 8px;
 	color: #a8a8a8;
 	font-family: "inter", sans-serif;
 	font-weight: 400;
@@ -362,8 +362,8 @@ dialog p {
 	justify-content: flex-start;
 	align-items: center;
 	color: red;
-	font-size: 13px;
-	font-weight: 400px;
+	font-size: 12px;
+	font-weight: 400;
 	margin-left: 10px;
 }
 

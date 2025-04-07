@@ -16,7 +16,7 @@ async function fetchContactData() {
 
 function sortContacts(contactData) {
 	const sortedContacts = Object.entries(contactData).sort(([, a], [, b]) =>
-		a.name.localeCompare(b.name, undefined, { sensitivity: base })
+		a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
 	);
 	const sortedContactsObject = Object.fromEntries(sortedContacts);
 	return sortedContactsObject;

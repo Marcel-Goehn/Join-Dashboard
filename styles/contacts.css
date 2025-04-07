@@ -19,7 +19,7 @@ body {
 	top: 0;
 	overflow: auto;
 	width: 456px;
-	padding-bottom:  52px;
+	padding-bottom: 52px;
 	background-color: white;
 	box-shadow: 4px 0px 6px 0px #00000014;
 	scrollbar-width: 24px;
@@ -33,7 +33,7 @@ body {
 	width: 100%;
 }
 
-#addNewContactBtnDiv{
+#addNewContactBtnDiv {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -60,7 +60,6 @@ body {
 	top: 0;
 	white-space: nowrap;
 	z-index: 10;
-	
 }
 
 #addNewContactBtn img {
@@ -68,9 +67,9 @@ body {
 	height: 20px;
 }
 
-#addNewContactBtn:hover{
+#addNewContactBtn:hover {
 	background-color: #29abe2;
-	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
 }
 
 #contactInfo {
@@ -141,7 +140,7 @@ body {
 
 .actualContactDiv:hover {
 	background-color: #d1d1d1;
-	color:black;
+	color: black;
 	cursor: pointer;
 }
 
@@ -294,12 +293,12 @@ body {
 	animation: slideInContactInfo 1s ease forwards;
 }
 
-.whiteBackground{
+.whiteBackground {
 	background-color: white;
 	color: black;
 }
 
-.clickedBackground{
+.clickedBackground {
 	background-color: #2a3647;
 	color: white;
 }
