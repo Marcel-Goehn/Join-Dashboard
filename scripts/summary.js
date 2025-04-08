@@ -1,7 +1,7 @@
 let currentTime = new Date();
 let hours = currentTime.getHours();
-const userData = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users.json"
-const dataBaseUrl = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban.json"
+const userData = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users.json";
+const dataBaseUrl = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban.json";
 const greeting = document.getElementById('greeting');
 const todo = document.getElementById('to_do');
 const done = document.getElementById('done');
@@ -67,7 +67,6 @@ async function fetchUsers() {
     } catch (error) {
         console.error("Fehler beim Abrufen der Daten:", error);
     }
-    console.log(userArray);
 }
 
 
@@ -79,7 +78,7 @@ function calculateTasks() {
         if (cards[i].value.priority === "Urgent") {
             urgentLength++;
         }
-        if (cards[i].value.currentStatus === "To-do") {
+        if (cards[i].value.currentStatus === "To Do") {
             todoLength++;
         }
         else if (cards[i].value.currentStatus === "Done") {
@@ -147,13 +146,12 @@ function checkProgressAmount() {
  */
 function getName() {
     let personName = sessionStorage.getItem('loggedIn');
-    if (personName === null) {
+    let personNameParsed = JSON.parse(personName);
+    const findUser = userArray.find(u => u.Id === personNameParsed);
+    if (findUser.value.name === "Guest Login") {
         greetGuest();
         return;
     }
-    let personNameParsed = JSON.parse(personName);
-    console.log(personNameParsed);
-    const findUser = userArray.find(u => u.Id === personNameParsed);
     greetUser(findUser.value.name);
 }
 
