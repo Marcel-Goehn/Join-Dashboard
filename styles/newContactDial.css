@@ -62,13 +62,16 @@
 #addContactInfoDiv {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-end;
 	flex-grow: 1;
 	padding-left: 83px;
 	padding-right: 48px;
 	padding-top: 48px;
 	padding-bottom: 135px;
+}
+
+#addContactInfoDiv > :first-child {
+	align-self: flex-end;
+	margin-right: 10px;
 }
 
 #closeDialBtn {
@@ -168,6 +171,8 @@
 	display: flex;
 	align-items: center;
 	gap: 4px;
+	font-size: 20px;
+	font-weight: 400;
 }
 
 #cancelButton svg {
@@ -193,6 +198,8 @@
 	color: white;
 	border-radius: 10px;
 	align-items: center;
+	font-size: 21px;
+	font-weight: 700;
 }
 
 #createContactBtn:hover {
@@ -406,7 +413,7 @@
 }
 
 .slideIn {
-	animation: slideIn 1s ease-in-out forwards;
+	animation: slideIn 0.5s ease-in-out forwards;
 }
 
 @keyframes slideIn {
@@ -430,7 +437,7 @@
 }
 
 .slideOut {
-	animation: slideOut 1s ease-in forwards;
+	animation: slideOut 0.5s ease-out forwards;
 }
 
 #successDial {

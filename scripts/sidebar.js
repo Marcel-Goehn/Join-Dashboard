@@ -6,19 +6,19 @@ const summaryDiv = document.getElementById("summarySidebarDiv");
 function highlightSidebarLink() {
 	const currentHtmlSite = window.location.pathname;
 	switch (currentHtmlSite) {
-		case "/contacts.html":
+		case "/html/contacts.html":
 			contactsDiv.classList.add("highlighted");
 			break;
 
-		case "/summary.html":
+		case "/html/summary.html":
 			summaryDiv.classList.add("hightlighted");
 			break;
 
-		case "/board.html":
+		case "/html/board.html":
 			boardDiv.classList.add("hightlighted");
 			break;
 
-		case "/addTask.html":
+		case "/html/addTask.html":
 			addTaskDiv.classList.add("hightlighted");
 			break;
 

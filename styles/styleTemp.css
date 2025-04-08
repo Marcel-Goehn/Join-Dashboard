@@ -1,75 +1,84 @@
 @font-face {
-    font-family: "inter";
-    src: url(../assets/Fonts/font/inter/Inter-VariableFont_opsz\,wght.ttf);
+	font-family: "inter";
+	src: url(../assets/Fonts/font/inter/Inter-VariableFont_opsz\wght.ttf);
 }
 
 *:not(dialog) {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow-wrap: break-word;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	overflow-wrap: break-word;
 }
 
 html {
-    scroll-behavior: smooth;
-    height: 100%;
+	scroll-behavior: smooth;
+	height: 100%;
 }
 
 body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: #F6F7F8;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: #f6f7f8;
 }
 
-img, picture {
-    max-width: 100%;
-    height: auto;
+img,
+picture {
+	max-width: 100%;
+	height: auto;
 }
 
 a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 button {
-    border: unset;
-    cursor: pointer;
+	border: unset;
+	cursor: pointer;
 }
 
 input {
-    border: unset;
+	border: unset;
 }
 
-h1, h2, h3, h4 {
-  text-wrap: balance;
+h1,
+h2,
+h3,
+h4 {
+	text-wrap: balance;
 }
 
 textarea:not([rows]) {
-  min-height: 10em;
+	min-height: 10em;
 }
 
 * {
-    font-family: "inter", sans-serif;
-    line-height: 120%;
-    letter-spacing: 0;
+	font-family: "inter", sans-serif;
+	line-height: 120%;
+	letter-spacing: 0;
 }
 
-
 .centered {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .space-between {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+input:-webkit-autofill {
+	box-shadow: 0 0 0 1000px white inset !important;
+	-webkit-text-fill-color: #000 !important;
+	transition: background-color 9999s ease-out, color 9999s ease-out;
 }

@@ -74,7 +74,7 @@ body {
 
 #contactInfo {
 	padding-left: 55px;
-	padding-top: 110px;
+	padding-top: 206px;
 	padding-right: 128px;
 	max-width: 1440px;
 	margin-inline: auto;
@@ -139,7 +139,7 @@ body {
 }
 
 .actualContactDiv:hover {
-	background-color: #d1d1d1;
+	background: linear-gradient(#f9f9f9, #f0f0f0);
 	color: black;
 	cursor: pointer;
 }
@@ -290,7 +290,7 @@ body {
 }
 
 .slideInContactInfo {
-	animation: slideInContactInfo 1s ease forwards;
+	animation: slideInContactInfo 0.5s ease forwards;
 }
 
 .whiteBackground {

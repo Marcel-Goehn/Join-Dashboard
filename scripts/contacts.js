@@ -15,11 +15,13 @@ async function fetchContactData() {
 }
 
 function sortContacts(contactData) {
-	const sortedContacts = Object.entries(contactData).sort(([, a], [, b]) =>
-		a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
-	);
-	const sortedContactsObject = Object.fromEntries(sortedContacts);
-	return sortedContactsObject;
+	if (contactData != null || undefined) {
+		const sortedContacts = Object.entries(contactData).sort(([, a], [, b]) =>
+			a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
+		);
+		const sortedContactsObject = Object.fromEntries(sortedContacts);
+		return sortedContactsObject;
+	}
 }
 
 function renderContacts(contactData) {
@@ -111,7 +113,7 @@ function closeContactDial() {
 	}
 	setTimeout(() => {
 		addContactDial.close();
-	}, 1000);
+	}, 400);
 }
 
 function openEditContactDial(email, name, phone, color) {
