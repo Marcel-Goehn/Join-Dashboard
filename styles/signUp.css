@@ -134,7 +134,7 @@ h1 {
 	margin-bottom: 32px;
 }
 .signUpCheckboxDiv span {
-	margin-left: 16px;
+	margin-left: 8px;
 	margin-right: 4px;
 }
 
@@ -201,7 +201,7 @@ h1 {
 }
 
 .signUpInputDiv:hover {
-	border-color: black;
+	border-color: #aea5a5;
 }
 
 .signUpInputDiv:focus-within {
@@ -249,10 +249,6 @@ input {
 	transition: 200ms ease-in-out;
 }
 
-input:hover {
-	border-color: #2a3647;
-}
-
 #signUpToLogIn {
 	margin-right: auto;
 }
@@ -264,7 +260,7 @@ input:hover {
 }
 
 .show {
-	color: red;
+	color: #ff8190;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -360,11 +356,13 @@ dialog p {
 
 .refuseDiv {
 	justify-content: flex-start;
-	align-items: center;
-	color: red;
+	align-items: flex-start;
+	color: #ff8190;
 	font-size: 12px;
 	font-weight: 400;
 	margin-left: 10px;
+	text-align: start;
+	width: 100%;
 }
 
 .formInputWrapper {

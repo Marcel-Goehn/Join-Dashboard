@@ -201,7 +201,7 @@ function showRefuseDiv(refuseDiv) {
 }
 
 function setRedBorder(element) {
-	element.style.border = "1px solid red";
+	element.style.border = "1px solid #FF001F";
 }
 
 function toggleBorder() {

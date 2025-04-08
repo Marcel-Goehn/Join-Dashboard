@@ -10,7 +10,7 @@
 
 	<body>
 		<div>
-			<div id="sidebar">
+			<div id="sidebar" onload="highlightSidebarLink()">
 				<div id="sidebarLogoDiv">
 					<img
 						id="sidebarJoinLogo"
@@ -19,7 +19,7 @@
 					/>
 				</div>
 				<div id="navLinksDiv">
-					<div class="navLinkWrapper">
+					<div class="navLinkWrapper" id="summarySidebarDiv">
 						<a href="../html/summary.html" class="sidebarLink">
 							<svg
 								class="sidebarIcon"
@@ -37,7 +37,7 @@
 							Summary
 						</a>
 					</div>
-					<div class="navLinkWrapper">
+					<div class="navLinkWrapper" id="addTaskSidebarDiv">
 						<a href="../html/addTask.html" class="sidebarLink">
 							<svg
 								class="sidebarIcon"
@@ -68,7 +68,7 @@
 							Add Task
 						</a>
 					</div>
-					<div class="navLinkWrapper">
+					<div class="navLinkWrapper" id="boardSidebarDiv">
 						<a href="../html/board.html" class="sidebarLink">
 							<svg
 								class="sidebarIcon"
@@ -90,7 +90,7 @@
 							Board
 						</a>
 					</div>
-					<div class="navLinkWrapper highlighted">
+					<div class="navLinkWrapper" id="contactsSidebarDiv">
 						<a href="../html/contacts.html" class="sidebarLink">
 							<svg
 								class="sidebarIcon"
@@ -115,5 +115,6 @@
 				</div>
 			</div>
 		</div>
+		<script src="../scripts/sidebar.js"></script>
 	</body>
 </html>
