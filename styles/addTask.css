@@ -23,6 +23,7 @@ span {
 	background-color: white;
 	padding: 12px 21px;
 	width: 100%;
+	color: #d1d1d1;
 }
 #separator {
 	height: 424px;
@@ -33,7 +34,7 @@ input {
 	width: 100%;
 	outline: none;
 }
-input::placeholder {
+#leftside input::placeholder {
 	color: #d1d1d1;
 }
 input:hover {
@@ -160,6 +161,9 @@ textarea:hover {
 	align-items: center;
 	justify-content: flex-end;
 }
+#subtask_input::placeholder {
+	color: #d1d1d1 !important;
+}
 .edittedSubtask {
 	display: flex;
 	justify-content: space-between;
@@ -204,6 +208,9 @@ body {
 #confirm_btn:hover {
 	background-color: #00c0dd;
 }
+#confirm_btn:hover span {
+	cursor: not-allowed;
+}
 #clear_btn {
 	color: #2a3547;
 	display: flex;
@@ -232,6 +239,9 @@ body {
 }
 ul {
 	width: 100%;
+}
+#rightside input::placeholder {
+	color: black;
 }
 .listitem {
 	position: relative;
@@ -279,6 +289,7 @@ li {
 	width: 100%;
 	gap: 48px;
 	max-width: 976px;
+	padding-top: 206px;
 }
 
 .formular-section {
@@ -304,6 +315,9 @@ li {
 #priority_button_div button {
 	border: none;
 }
+button:hover #clear_btn_img {
+	fill: #00c0dd;
+}
 button {
 	padding: 16px 10px;
 	border-radius: 10px;
@@ -319,7 +333,7 @@ button:focus-within {
 	border-width: 1px;
 }
 button:hover {
-	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 4px 4px 0px #00000040;
 }
 button:disabled {
 	background-color: #ccc !important;
@@ -328,4 +342,17 @@ button:disabled {
 button:disabled:hover {
 	box-shadow: none;
 	transform: none;
+}
+.no-shadow {
+	box-shadow: none !important;
+	outline: auto;
+	outline-style: solid;
+	outline-width: 1px;
+	outline-color: #d1d1d1;
+}
+.no-shadow:hover {
+	outline: auto;
+	outline-style: solid;
+	outline-width: 1px;
+	outline-color: #A8A8A8;
 }

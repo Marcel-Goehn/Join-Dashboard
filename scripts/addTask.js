@@ -130,13 +130,13 @@ function clearInput() {
 
 function addSubtask() {
     let UserInput = subtaskInput.value;
-    ChangeSubtaskIcons();
     if (UserInput != "") {   
         document.getElementById('addedSubtasks').innerHTML += subtask_template(subtask_id, UserInput);
         subtasks[subtask_id] = UserInput;
         subtask_id += 1;
         subtaskInput.value = "";
     }
+    ChangeSubtaskIcons();
 }
 
 function confirmSubtask(id) {
@@ -193,11 +193,11 @@ async function uploadTask(object) {
 }
 
 function ChangeSubtaskIcons() {
-    let subtaskIcons = document.getElementById('subtask_input_icons').innerHTML;
+    let subtaskIcons = document.getElementById('subtask_input_icons');
     if (subtaskInput.value !== "") {
-        subtaskIcons = subtaskIsNotBlank();
+        subtaskIcons.innerHTML = subtaskIsNotBlank();
     } else {
-        subtaskIcons = subtaskIsBlank();
+        subtaskIcons.innerHTML = subtaskIsBlank();
     }
 }
 
