@@ -11,15 +11,20 @@
     <title>Join | Summary</title>
 </head>
 
-<body onload="init()">
+<body onload="init(); fetchNameInitials()">
 
     <header>
         <div id="headerContent">
             <span>Kanban Project Management Tool</span>
             <div id="headerIconDiv">
                 <a href="../html/help.html"><img id="headerInfoIcon" src="../assets/img/help.svg" alt="infoIcon"></a>
-                <div id="shorthandNameDiv">
-                    <span class="short-hand-name">PH</span>
+                <div onclick="toggleMenu()" id="shorthandNameDiv">
+                    <span class="short-hand-name"></span>
+                </div>
+                <div id="menu" class="hidden">
+                    <a href="legalNotice.html">Legal Notice</a>
+                    <a href="privacyPolicy.html">Privacy Policy</a>
+                    <a onclick="logout()" href="login.html">Log out</a>
                 </div>
             </div>
         </div>
@@ -146,6 +151,7 @@
 
     <script src="../scripts/summary.js"></script>
     <script src="../scripts/summaryTemp.js"></script>
+    <script src="../scripts/header.js"></script>
 </body>
 
 </html>

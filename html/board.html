@@ -13,15 +13,20 @@
     <title>Join | Board</title>
 </head>
 
-<body onload="init(), openAddTask()">
+<body onload="init(); fetchNameInitials(); openAddTask()">
 
     <header>
         <div id="headerContent">
             <span>Kanban Project Management Tool</span>
             <div id="headerIconDiv">
                 <a href="../html/help.html"><img id="headerInfoIcon" src="../assets/img/help.svg" alt="infoIcon"></a>
-                <div id="shorthandNameDiv">
-                    <span class="short-hand-name">PH</span>
+                <div onclick="toggleMenu()" id="shorthandNameDiv">
+                    <span class="short-hand-name"></span>
+                </div>
+                <div id="menu" class="hidden">
+                    <a href="legalNotice.html">Legal Notice</a>
+                    <a href="privacyPolicy.html">Privacy Policy</a>
+                    <a onclick="logout()" href="login.html">Log out</a>
                 </div>
             </div>
         </div>
@@ -304,6 +309,7 @@
     </dialog>
     <script src="../scripts/board.js"></script>
     <script src="../scripts/boardTemp.js"></script>
+    <script src="../scripts/header.js"></script>
     <script src="../scripts/board_drag_and_drop.js"></script>
     <script src="../scripts/addTaskDialog.js"></script>
     <script src="../scripts/addTask.js"></script>
