@@ -1,7 +1,7 @@
 let currentTime = new Date();
 let hours = currentTime.getHours();
 const userData = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users.json";
-const dataBaseUrl = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban.json";
+const dataBaseUrl = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test.json";
 const greeting = document.getElementById('greeting');
 const todo = document.getElementById('to_do');
 const done = document.getElementById('done');
@@ -75,19 +75,19 @@ async function fetchUsers() {
  */
 function calculateTasks() {
     for (let i = 0; i < cards.length; i++) {
-        if (cards[i].value.priority === "Urgent") {
+        if (cards[i].value.priority === "urgent") {
             urgentLength++;
         }
-        if (cards[i].value.currentStatus === "To Do") {
+        if (cards[i].value.currentStatus === "todo") {
             todoLength++;
         }
-        else if (cards[i].value.currentStatus === "Done") {
+        else if (cards[i].value.currentStatus === "done") {
             doneLength++;
         }
-        else if (cards[i].value.currentStatus === "Progress") {
+        else if (cards[i].value.currentStatus === "progress") {
             progressLength++;
         }
-        else if (cards[i].value.currentStatus === "Feedback") {
+        else if (cards[i].value.currentStatus === "feedback") {
             feedbackLength++;
         }
     }
@@ -214,12 +214,12 @@ function nextUrgentDate() {
     let miliseconds;
     let index;
     for (let i = 0; i < cards.length; i++) {
-        if(cards[i].value.duedate === undefined || cards[i].value.priority != "Urgent") {
+        if(cards[i].value.duedate === undefined || cards[i].value.priority != "urgent") {
             continue;
         }
         let [day, month, year] = cards[i].value.duedate.split("/");
         let sortArr = `${month}/${day}/${year}`;
-        miliseconds = currentTime.getTime(sortArr);
+        miliseconds = Date.parse(sortArr);
         if (count === 0) {
             count = miliseconds;
             index = i;

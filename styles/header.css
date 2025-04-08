@@ -50,6 +50,11 @@ header span {
 	height: 20px;
 	cursor: pointer;
 }
+
+#headerInfoIcon:hover {
+	transform: scale(1.2);
+}
+
 span {
 	cursor: default;
 }
@@ -64,6 +69,10 @@ span {
 	align-items: center;
 	color: #29abe2;
 	cursor: pointer;
+}
+
+#shorthandNameDiv:hover {
+	background-color: #E2E6EC;
 }
 
 .short-hand-name {
