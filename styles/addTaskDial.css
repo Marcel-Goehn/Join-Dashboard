@@ -11,6 +11,7 @@ h1 {
 	font-weight: 700;
 	font-size: 61px;
 	width: 100%;
+	cursor: default;
 }
 span {
 	font-weight: 400;
@@ -43,6 +44,7 @@ textarea {
 	font-size: 20px;
 	max-width: 100%;
 	min-width: 100%;
+	overflow-y: scroll;
 }
 textarea:focus {
 	border: none;
@@ -57,17 +59,17 @@ textarea:hover {
 	cursor: pointer;
 }
 .medium {
-	background-color: #fda807;
+	background-color: #fda807 !important;
 }
 .urgent {
-	background-color: #fe3e00;
+	background-color: #fe3e00 !important;
 }
 .low {
-	background-color: #7ae229;
+	background-color: #7ae229 !important;
 	fill: #d1d1d1;
 }
 
-#rightside button {
+#rightside .dialog_button {
 	width: 100%;
 }
 #description {
@@ -83,6 +85,8 @@ textarea:hover {
 	flex-direction: column;
 	width: 100%;
 	cursor: pointer;
+	border-radius: 10px;
+	box-shadow: 0px 4px 10px 0px #00000040;
 }
 .contact {
 	display: flex;
@@ -126,11 +130,13 @@ textarea:hover {
 	flex-direction: column;
 	align-items: flex-start;
 	width: 100%;
+	border-radius: 10px;
+	box-shadow: 0px 4px 10px 0px #00000040;
 }
 #category_btn {
 	justify-content: space-between;
 }
-.category {
+.formular-section .category {
 	display: flex;
 	padding: 16px 10px;
 	border-radius: 10px;
@@ -138,8 +144,9 @@ textarea:hover {
 	width: 100%;
 	cursor: pointer;
 	color: black;
+	font-size: 20px;
 }
-.category:hover {
+.formular-section .category:hover {
 	background-color: #d1d1d1;
 }
 .addSubtask_btndiv {
@@ -280,10 +287,15 @@ li {
 	justify-content: space-between;
 	gap: 16px;
 }
-#priority_button_div button {
-	border: none;
+#priority_button_div .dialog_button {
+	border-style: solid;
+	border-color: #D1D1D1;
+	border-width: 1px;
 }
-button {
+button:hover #clear_btn_img {
+    fill: #00c0dd;
+}
+.dialog_button {
 	padding: 16px 10px;
 	border-radius: 10px;
 	background-color: white;
@@ -292,19 +304,22 @@ button {
 	justify-content: center;
 	align-items: center;
 }
-button:focus-within {
+.dialog_button:focus-within {
 	border-color: #00c0dd;
 	border-style: solid;
 	border-width: 1px;
 }
-button:hover {
-	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+.dialog_button:hover {
+	box-shadow: 0px 4px 4px 0px #00000040;
 }
-button:disabled {
+.dialog_button:disabled {
 	background-color: #ccc !important;
 	cursor: not-allowed;
 }
-button:disabled:hover {
+#confirm_btn:hover span {
+	cursor: not-allowed;
+}
+.dialog_button:disabled:hover {
 	box-shadow: none;
 	transform: none;
 }
@@ -322,6 +337,9 @@ button:disabled:hover {
 	width: 100%;
 	gap: 48px;
 	overflow-y: scroll;
+}
+.highlight span {
+	color: white;
 }
 
 /* #addTaskDialContent { Warum sind diese Werte so spezifisch?
@@ -373,7 +391,7 @@ button:disabled:hover {
     background-color: #e7e7e7;
     cursor: pointer;
 }
-/* Gibt es einen Grund, warum Patrick leftside & rightside nicht übernommen hat? */
+/* Gibt es einen Grund, warum leftside & rightside nicht übernommen wurde? */
 #leftside {
 	display: flex;
 	flex-direction: column;
@@ -388,10 +406,19 @@ button:disabled:hover {
 	width: 100%;
 	gap: 24px;
 }
-#rightside button {
-	width: 100%;
-}
 
 /* Warum gibt es feste width für dialog in der board_dialog.css? */
 
-/* button-Declaration beißt sich */
+.no-shadow {
+	box-shadow: none !important;
+	outline: auto;
+	outline-style: solid;
+	outline-width: 1px;
+	outline-color: #d1d1d1;
+}
+.no-shadow:hover {
+	outline: auto;
+	outline-style: solid;
+	outline-width: 1px;
+	outline-color: #A8A8A8;
+}

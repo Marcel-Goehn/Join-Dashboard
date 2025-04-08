@@ -11,6 +11,7 @@ h1 {
 	font-weight: 700;
 	font-size: 61px;
 	width: 100%;
+	cursor: default;
 }
 span {
 	font-weight: 400;
@@ -313,7 +314,9 @@ li {
 	gap: 16px;
 }
 #priority_button_div button {
-	border: none;
+	border-style: solid;
+	border-color: #D1D1D1;
+	border-width: 1px;
 }
 button:hover #clear_btn_img {
 	fill: #00c0dd;

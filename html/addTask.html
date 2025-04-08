@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../styles/header.css">
     <title>Join | Tasks</title>
 </head>
-<body onload="init()">
+<body onload="init()" onclick="closeOpenSections()">
     <header>
         <div id="headerContent">
             <span>Kanban Project Management Tool</span>
@@ -190,7 +190,7 @@
                 </div>
                 <div class="formular-section">
                     <span>Assigned to</span>
-                    <button class="no-shadow" onclick="toggleContacts()">
+                    <button class="no-shadow" onclick="toggleContacts(), Bubbling(event)">
                         <input id="searchbar" onkeyup="search()" placeholder="Select contacts to assign"></input>
                         <img class="icon" id="assigned_icon" src="../assets/img/addtask/arrow_drop_downaa.svg">
                     </button>
@@ -199,7 +199,7 @@
                 </div>
                 <div class="formular-section">
                     <span>Category<span class="star">*</span></span>
-                    <button class="no-shadow" id="category_btn" onclick="toggleHidden('category'), rotateArrowIcon('category_icon')">
+                    <button class="no-shadow" id="category_btn" onclick="toggleHidden('category'), rotateArrowIcon('category_icon'), Bubbling(event)">
                         <span id="btn_text">Select task category</span>
                         <img class="icon" id="category_icon" src="../assets/img/addtask/arrow_drop_downaa.svg">
                     </button>

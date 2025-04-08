@@ -32,7 +32,7 @@ function subtaskIsBlank() {
 }
 
 function renderContacts(id, contactObject) {
-    return `<div class="contact" id="${id}" onclick="toggleCheckmark('${contactObject.name}', '${id}')">
+    return `<div class="contact" id="${id}" onclick="toggleCheckmark('${contactObject.name}', '${id}'), Bubbling(event)">
                 <div class="initial_name">
                     <div class="circle">${getInitials(contactObject.name)}</div>
                     <span>${contactObject.name}</span>

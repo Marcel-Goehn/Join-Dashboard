@@ -64,6 +64,18 @@ function toggleContacts() {
     rotateArrowIcon("assigned_icon");
 }
 
+function closeOpenSections(){
+    Contacts.classList.add('hidden');
+    selectedContacts.classList.remove('hidden');
+    document.getElementById("assigned_icon").classList.remove('rotate');
+    categorySelection.classList.add('hidden');
+    document.getElementById("assigned_icon").classList.remove('rotate');
+}
+
+function Bubbling(event){
+    event.stopPropagation();
+}
+
 function rotateArrowIcon(formularID) {
     document.getElementById(formularID).classList.toggle('rotate');
 }
