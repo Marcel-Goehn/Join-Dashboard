@@ -24,21 +24,8 @@ function fadeAllElementsIn(){
     }
 }
 
-function validate() {
-    const form = document.getElementById('login_data');
-    if (form.checkValidity() == true) {
-        loginAsUser();
-    } else {
-        form.reportValidity();
-    }
-}
-
 async function loginAsUser() {
-    await compareToDatabase();
-    invalidLogin();
-    // färbt sich auch bei korrektem Login rot, aber ich weiß nicht warum. In meinem Kopf sollte erst die komplette 1.Funktion abgeschlossen werden (deshalb await).
-    // Fall 1: Login passt, man wird auf /summary weitergeleitet und die 2.Funktion wird übersprungen.
-    // Fall 2: Login passt nicht; erst jetzt wird die 2.Funktion ausgeführt.
+    await compareToDatabase() ? null : invalidLogin();
 }
 
 async function compareToDatabase() {
@@ -48,6 +35,7 @@ async function compareToDatabase() {
         if (userData.email == emailInput.value && userData.password == passwordInput.value) {
             sessionStorage.setItem("loggedIn", JSON.stringify(id));
             window.location.href = "../html/summary.html";
+            return true;
         }
     }
 }

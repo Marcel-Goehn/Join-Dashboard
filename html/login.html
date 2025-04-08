@@ -9,37 +9,40 @@
     <link rel="stylesheet" href="../styles/animation.css">
 </head>
 <body onload="init()">
-<img id="logo" src="../assets/img/login/logo.svg">
-    <div id="signup_div">
-        <span>Not a Join User?</span>
-        <a href="./signUp.html">
-            <button id="signup_btn">Sign up</button>
-        </a>
-    </div>
-    <div id="formular">
-        <h1>Log in</h1>
-        <form id="login_data" action="./summary.html">
-            <div class="form-element">
-                <input onclick="removeInvalidClass(0)" id="emailInput" name="email" type="email" placeholder="Email" required>
-                <img src="../assets/img/login/mail.svg">
-            </div>
-            <div>
-                <div class="form-element">
-                    <input onkeyup="passwordInputisEmpty()" onclick="removeInvalidClass(1)" id="passwordInput" name="password" type="password" placeholder="Password" required>
-                    <img onclick="toggleVisibility(), togglePasswordIcon()" id="PasswordIcon" src="../assets/img/login/lock.svg">
-                </div>
-                <span id="invalid_login_hint" class="hidden">Check your email and password. Please try again.</span>
-            </div>
-        </form>
-        <div class="login_buttons_div">
-            <button id="registered_login" onclick="validate()">Log in</button>
-            <button id="guest_login" onclick="loginAsGuest()">Guest Log in</button>
+    <div id="content-wrapper">
+        <img id="logo" src="../assets/img/login/logo.svg">
+        <div id="signup_div">
+            <span>Not a Join User?</span>
+            <a href="./signUp.html">
+                <button id="signup_btn">Sign up</button>
+            </a>
         </div>
+
+        <div id="formular">
+            <h1>Log in</h1>
+            <form id="login_data" action="./summary.html">
+                <div class="form-element">
+                    <input onclick="removeInvalidClass(0)" id="emailInput" name="email" type="email" placeholder="Email">
+                    <img src="../assets/img/login/mail.svg">
+                </div>
+                <div>
+                    <div class="form-element">
+                        <input onkeyup="passwordInputisEmpty()" onclick="removeInvalidClass(1)" id="passwordInput" name="password" type="password" placeholder="Password">
+                        <img onclick="toggleVisibility(), togglePasswordIcon()" id="PasswordIcon" src="../assets/img/login/lock.svg">
+                    </div>
+                    <span id="invalid_login_hint" class="hidden">Check your email and password. Please try again.</span>
+                </div>
+            </form>
+            <div class="login_buttons_div">
+                <button id="registered_login" onclick="loginAsUser()">Log in</button>
+                <button id="guest_login" onclick="loginAsGuest()">Guest Log in</button>
+            </div>
+        </div>
+        <footer>
+            <a href="privacyPolicy.html">Privacy Policy</a>
+            <a href="legalNotice.html">Legal notice</a>
+        </footer>
     </div>
-    <footer>
-        <a href="privacyPolicy.html">Privacy Policy</a>
-        <a href="legalNotice.html">Legal notice</a>
-    </footer>
 </body>
 <script src="../scripts/login.js"></script>
 </html>

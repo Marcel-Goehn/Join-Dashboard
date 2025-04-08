@@ -13,13 +13,7 @@ div {
     background-color: rgb(255, 255, 255);
     margin-bottom: 40px;
     max-width: 652px;
-}
-body {
-    gap: 172px;
-    padding: 67px 122px;
-    font-size: 20px;
-    font-weight: 400;
-    align-items: center;
+    box-shadow: 0px 0px 14px 3px #0000000A;
 }
 input {
     color: black;
@@ -30,13 +24,32 @@ input {
     cursor: pointer;
     width: 100%;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
 input::placeholder {
     color: #D1D1D1;
+}
+#content-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    position: relative;
+    gap: 172px;
+    padding: 67px 122px;
+    font-size: 20px;
+    font-weight: 400;
+    align-items: center;
 }
 #login_data {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 32px;
     width: 100%;
 }
 button {
@@ -54,6 +67,7 @@ button:hover {
 #signup_btn {
     font-size: 16px;
     font-weight: 700;
+    padding: 15px 16px;
 }
 #signup_btn:hover {
     background-color: #29ABE2;
@@ -61,6 +75,7 @@ button:hover {
 .login_buttons_div {
     display: flex;
     gap: 35px;
+    padding-top: 24px;
 }
 #registered_login {
     border: none;
@@ -86,7 +101,7 @@ button:hover {
     display: flex;
     align-items: center;
     border-radius: 10px;
-    border: 1px solid #2A3647;
+    border: 1px solid #D1D1D1;
     padding: 12px 21px;
     cursor: pointer;
 }
@@ -105,7 +120,11 @@ a {
 footer {
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 24px;
+}
+footer a:hover {
+    font-weight: 700;
+    color: #29ABE2;
 }
 #content {
     display: flex;
@@ -144,13 +163,13 @@ h1:hover {
     transform: translate(-50%, -50%) scale(2);
 }
 .invalid {
-    border-color: red;
+    border-color: #FF8190;
 }
 .hidden {
     display: none;
 }
 #invalid_login_hint {
-    color: red;
+    color: #FF8190;
     font-size: 13px;
     font-weight: 400;
 }
