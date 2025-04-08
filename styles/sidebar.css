@@ -1,78 +1,105 @@
-#sidebar{
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    width: 232px;
-    height: 100%;
-    background-color: #2A3647;
-    justify-content: space-between;
-    overflow: hidden;
-    padding: 64px 0;
+#sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	width: 232px;
+	height: 100%;
+	background-color: #2a3647;
+	overflow: hidden;
+	padding: 64px 0;
 }
 
-#sidebarLogoDiv{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#sidebarLogoDiv {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding-left: 56px;
 }
 
-#sidebarJoinLogo{
-position: relative;
-width: 100px;
-height: 122px;
+#sidebarJoinLogo {
+	position: relative;
+	width: 100px;
+	height: 122px;
 }
 
-#navLinksDiv{
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-    height: 229px;
-    width: 232px;
+#navLinksDiv {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	gap: 15px;
+	margin-top: 114px;
 }
 
-.sidebarIcon{
-    width: 30px;
-    height: 30px;
+.sidebarIcon {
+	width: 30px;
+	height: 30px;
 }
 
-.sidebarLink{
-    padding: 8px 56px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-    font-family: "inter", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 120%;
-    letter-spacing: 0%;
-    color: #FFFFFF; 
+.sidebarLink {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	font-size: 16px;
+	font-weight: 400;
+	color: #cdcdcd;
+	padding: 10.5px 0;
+	padding-left: 58px;
 }
 
-.sidebarLink:hover{
-    background-color:#091931;
+.sidebarLink svg path {
+	fill: #cdcdcd;
 }
-#legalAndPolicyDiv{
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    padding-top: 243px;
-    padding-left: 52px;
-    gap:4px;
+
+.sidebarLink:hover {
+	background-color: #2a3d59;
+}
+#legalAndPolicyDiv {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+	padding-left: 52px;
+	gap: 4px;
+	margin-top: 357px;
 }
 #legalAndPolicyDiv a {
-    padding: 8px;
-    gap: 8px;
-    color: #A8A8A8;
-    font-family: "inter", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 120%;
-    letter-spacing: 0%;
+	padding: 8px;
+	gap: 8px;
+	color: #a8a8a8;
+	font-family: "inter", sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 120%;
+	letter-spacing: 0%;
+}
+
+#legalAndPolicyDiv a:hover {
+	color: #29abe2;
+	font-weight: 500;
+}
+
+.highlighted a {
+	color: white;
+}
+
+.highlighted .sidebarLink {
+	background-color: #091931;
+}
+.highlighted svg path {
+	fill: white;
+}
+
+.highlighted {
+}
+
+.navLinkWrapper {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
 }
