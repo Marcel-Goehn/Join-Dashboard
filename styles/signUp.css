@@ -397,6 +397,69 @@ dialog p {
 	cursor: pointer;
 }
 
+@media (max-width: 850px) {
+	#signUpContent {
+		width: 100%;
+	}
+	#formContent h2 {
+		font-size: 52px;
+	}
+
+	#formContent {
+		padding: 0;
+		margin-top: 40px;
+		padding: 48px 88px;
+	}
+
+	#signUpHeadline {
+		margin-bottom: 40px;
+	}
+	#formContent h2::after {
+		width: 60%;
+		top: calc(100% + 10px);
+	}
+	.signUpInput {
+		font-size: 18px;
+	}
+	.signUpInputDiv {
+		padding: 0 20px;
+		width: 100%;
+	}
+	#signUpPrivacyAndLegalDiv {
+		margin-top: 40px;
+	}
+	#signUpLogo {
+		width: 90px;
+		height: 100px;
+	}
+	#signUpLogoDiv {
+		margin: 0;
+		width: 80%;
+	}
+	#signUpFormDiv {
+		margin-bottom: 30px;
+	}
+	.signUpCheckboxDiv {
+		margin-bottom: 10px;
+		font-size: 15px;
+	}
+	#signUpBackIcon {
+		margin-right: 25px;
+	}
+	body {
+		overflow-y: scroll;
+		overflow-x: hidden;
+		padding-bottom: 0;
+	}
+}
+@media (max-width: 650px) {
+	#formContent {
+		padding: 0;
+		margin-top: 40px;
+		padding: 28px 44px;
+	}
+}
+
 @media (max-width: 450px) {
 	#signUpContent {
 		width: 90%;
