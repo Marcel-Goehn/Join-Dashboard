@@ -13,7 +13,7 @@
     <title>Join | Board</title>
 </head>
 
-<body onload="init(); fetchNameInitials(); openAddTask()">
+<body onload="init(); fetchNameInitials()">
 
     <header>
         <div id="headerContent">
@@ -52,7 +52,7 @@
                                 </g>
                             </svg></button>
                     </form>
-                    <button class="add-task-btn"><span class="add-task">Add Task</span><img
+                    <button class="add-task-btn" onclick="openAddTask()"><span class="add-task">Add Task</span><img
                             src="../assets/img/add.png"></button>
                 </div>
             </div>
@@ -201,7 +201,10 @@
     <dialog id="addTaskDial">
         <!-- <div id="addTaskDialContent"> -->
             <div id="center-content" onclick="closeOpenSections()">
-                <h1>Add Task</h1>
+                <div id="title_dialog">
+                    <h1>Add Task</h1>
+                    <button id="dialog_close_btn" onclick="closeAddTask()"><img src="../assets/img/addtask/x.svg"></button>
+                </div>
                 <div id="formular">
                     <div id="leftside">
                         <div class="formular-section">

@@ -69,7 +69,7 @@ function closeOpenSections(){
     selectedContacts.classList.remove('hidden');
     document.getElementById("assigned_icon").classList.remove('rotate');
     categorySelection.classList.add('hidden');
-    document.getElementById("assigned_icon").classList.remove('rotate');
+    document.getElementById("category_icon").classList.remove('rotate');
 }
 
 function Bubbling(event){
@@ -138,6 +138,10 @@ function setCategory(category) {
 function clearInput() {
     subtaskInput.value = "";
     ChangeSubtaskIcons();
+}
+
+function clearInputDialog() {
+    // Formular manuell leeren
 }
 
 function addSubtask() {

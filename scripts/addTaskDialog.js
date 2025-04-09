@@ -10,6 +10,6 @@ function closeAddTask() {
 	addTaskDial.classList.remove("slideTaskDialIn");
 	addTaskDial.classList.add("slideTaskDialOut");
 	setTimeout(() => {
-		addTaskDial.classList.close();
+		addTaskDial.close();
 	}, 1000);
 }
