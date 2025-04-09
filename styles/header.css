@@ -38,6 +38,10 @@ header span {
 	color: #000000;
 }
 
+.header-logo {
+	display: none;
+}
+
 #headerIconDiv {
 	display: flex;
 	gap: 16px;
@@ -106,4 +110,28 @@ span {
 }
 .hidden {
 	display: none !important;
+}
+
+@media (max-width: 850px) {
+	header {
+		width: 100%;
+		left: 0;
+		height: 80px;
+	}
+	.header-subheader {
+		display: none;
+	}
+	.header-logo {
+		display: block;
+	}
+	#headerContent {
+		padding-inline: 1rem;
+	}
+	#headerIconDiv a {
+		display: none;
+	}
+	#shorthandNameDiv {
+		height: 40px;
+		width: 40px;
+	}
 }
