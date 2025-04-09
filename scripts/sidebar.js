@@ -11,15 +11,15 @@ function highlightSidebarLink() {
 			break;
 
 		case "/html/summary.html":
-			summaryDiv.classList.add("hightlighted");
+			summaryDiv.classList.add("highlighted");
 			break;
 
 		case "/html/board.html":
-			boardDiv.classList.add("hightlighted");
+			boardDiv.classList.add("highlighted");
 			break;
 
 		case "/html/addTask.html":
-			addTaskDiv.classList.add("hightlighted");
+			addTaskDiv.classList.add("highlighted");
 			break;
 
 		default:
