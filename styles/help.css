@@ -1,12 +1,12 @@
 .header {
     width: calc(100% - 232px);
     margin-left: 232px;
-    margin-top: 12.875rem;
+    margin-top: clamp(8rem, 0.1786rem + 14.1071vw, 12.875rem);
 }
 
 .container {
     margin-inline: auto;
-    padding: 0 6rem;
+    padding-inline: clamp(1rem, -0.4286rem + 7.1429vw, 6rem);
     max-width: 1440px;
     width: 100%;
 }
@@ -19,12 +19,13 @@
 
 h1 {
     font-weight: 700;
-    font-size: 3.813rem;
+    font-size: clamp(2.938rem, 2.688rem + 1.25vw, 3.813rem);
     color: #000000;
 }
 
 .align-header button {
     background-color: #F6F7F8;
+    align-self: flex-start;
 }
 
 .introducing {
@@ -92,5 +93,23 @@ h3 {
 
 .goodbye {
     margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
 
+@media (max-width: 850px) {
+    .header {
+        width: 100%;
+        margin-left: 0;
+    }
+    .introducing {
+        width: 100%;
+        margin-left: 0;
+    }
+    main {
+        width: 100%;
+        margin-left: 0;
+    }
+    .goodbye {
+        display: none;
+    }
 }

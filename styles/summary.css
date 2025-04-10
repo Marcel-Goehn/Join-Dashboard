@@ -43,6 +43,7 @@ main {
     width: 100%;
     margin-inline: auto;
     padding-left: 6rem;
+    padding-right: 2.5rem;
 }
 
 .divide-greeting-from-tasks {
@@ -109,16 +110,28 @@ main {
     color: #FFFFFF;
 }
 
-.align-todos-and-done:hover svg circle{
-    fill: #FFFFFF;
+.hovered-todo {
+    display: none;
 }
 
-.align-todos-and-done:hover .todo-svg path {
-    fill: #2A3647;
+.hovered-done {
+    display: none;
 }
 
-.align-todos-and-done:hover .done-svg path {
-    stroke: #2A3647;
+.align-todos-and-done:hover .todo-img {
+    display: none;
+}
+
+.align-todos-and-done:hover .hovered-todo {
+    display: block;
+}
+
+.align-todos-and-done:hover .done-img {
+    display: none;
+}
+
+.align-todos-and-done:hover .hovered-done {
+    display: block;
 }
 
 .to-do-animation:hover {
@@ -285,6 +298,20 @@ main {
     }
     .container {
         padding-inline: 1rem;
+    }
+    main {
+        margin-top: 2.5rem;
+        width: 100%;
+        margin-left: 0;
+    }
+    .main-container {
+        padding-inline: 1rem;
+    }
+    .greet {
+        display: none;
+    }
+    .tasks {
+        width: 100%;
     }
 }
 
