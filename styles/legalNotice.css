@@ -7,11 +7,11 @@ body {
 main {
     width: calc(100% - 232px);
     margin-left: 232px;
-    margin-top: 12.875rem;
+    margin-top: clamp(8rem, 0.1786rem + 14.1071vw, 12.875rem);
 }
 
 .container {
-    padding: 0 6rem;
+    padding-inline: clamp(1rem, -0.4286rem + 7.1429vw, 6rem);
     margin-inline: auto;
     width: 100%;
     max-width: 1440px;
@@ -19,7 +19,7 @@ main {
 
 h1 {
     font-weight: 700;
-    font-size: 3.813rem;
+    font-size: clamp(2.938rem, 2.688rem + 1.25vw, 3.813rem);
     color: #000000;
 }
 
@@ -45,4 +45,14 @@ span {
 
 .mt-4 {
     margin-top: 1.5rem;
+}
+
+@media (max-width: 850px) {
+    main {
+        width: 100%;
+        margin-left: 0;
+    }
+    .mb-2 {
+        margin-bottom: 9.25rem;
+    }
 }
