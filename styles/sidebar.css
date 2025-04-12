@@ -101,7 +101,22 @@
 	align-items: flex-start;
 }
 
-@media (max-width: 53.125rem) {
+@media(max-width: 1100px){
+	#sidebarLogoDiv{
+		padding-left: 35px;
+	}
+	#sidebar{
+		width: 180px;
+	}
+	.sidebarLink{
+		padding-left: 35px;
+	}
+	#legalAndPolicyDiv{
+		padding-left: 35px;
+	}
+}
+
+@media (max-width: 55rem) {
 	#sidebar {
 		position: fixed;
 		bottom: 0;
