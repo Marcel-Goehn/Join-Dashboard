@@ -116,7 +116,7 @@
 	}
 }
 
-@media (max-width: 55rem) {
+@media (max-width: 53.125rem) {
 	#sidebar {
 		position: fixed;
 		bottom: 0;
@@ -175,7 +175,7 @@
 	}
 }
 
-@media (max-width: 37.5rem) {
+@media (max-width: 40rem) {
 	#sidebarLogoDiv {
 		display: none;
 	}
