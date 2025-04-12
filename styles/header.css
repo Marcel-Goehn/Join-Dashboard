@@ -112,6 +112,12 @@ span {
 	display: none !important;
 }
 
+@media (max-width: 1100px) {
+	header {
+		left: 180px;
+	}
+}
+
 @media (max-width: 850px) {
 	header {
 		width: 100%;
