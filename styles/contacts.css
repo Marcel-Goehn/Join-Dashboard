@@ -9,8 +9,8 @@ body {
 	display: flex;
 	box-shadow: -4px 0px 6px 0px #00000014;
 	position: absolute;
-	top: 96px;
-	left: 232px;
+	top: 6.0rem;
+	left: 14.5rem;
 	height: calc(100vh - 96px);
 }
 
@@ -18,16 +18,16 @@ body {
 	position: relative;
 	top: 0;
 	overflow: auto;
-	width: 456px;
-	padding-bottom: 52px;
+	width: 28.5rem;
+	padding-bottom: 3.25rem;
 	background-color: white;
 	box-shadow: 4px 0px 6px 0px #00000014;
-	scrollbar-width: 24px;
+	scrollbar-width: 1.5rem;
 }
 
 #contentLimiter {
 	display: flex;
-	margin-left: 688px;
+	margin-left: 43.0rem;
 	width: calc(100% - 688px);
 	height: 100%;
 	width: 100%;
@@ -37,22 +37,22 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-top: 22.5px;
+	padding-top: 1.4062rem;
 	position: sticky;
 	top: 0;
 	background-color: white;
-	padding-bottom: 22.5px;
+	padding-bottom: 1.4062rem;
 }
 
 #addNewContactBtn {
-	padding: 12px 64.5px;
+	padding: 0.75rem 64.5px;
 	background-color: #2a3647;
 	color: white;
-	border-radius: 10px;
+	border-radius: 0.625rem;
 	text-align: center;
-	font-size: 21px;
+	font-size: 1.3125rem;
 	font-weight: 700;
-	gap: 16px;
+	gap: 1.0rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -63,8 +63,8 @@ body {
 }
 
 #addNewContactBtn img {
-	width: 30px;
-	height: 20px;
+	width: 1.875rem;
+	height: 1.25rem;
 }
 
 #addNewContactBtn:hover {
@@ -73,10 +73,10 @@ body {
 }
 
 #contactInfo {
-	padding-left: 55px;
-	padding-top: 206px;
-	padding-right: 128px;
-	max-width: 1440px;
+	padding-left: 3.4375rem;
+	padding-top: 12.875rem;
+	padding-right: 8.0rem;
+	max-width: 90.0rem;
 	margin-inline: auto;
 	width: 100%;
 	overflow: hidden;
@@ -90,19 +90,19 @@ body {
 }
 
 .divider {
-	height: 59px;
-	border: 2px solid #29abe2;
+	height: 3.6875rem;
+	border: 0.125rem solid #29abe2;
 	margin: 0 30px;
-	border-radius: 10px;
+	border-radius: 0.625rem;
 }
 
 #contactHeadlineDiv h1 {
-	font-size: 61px;
+	font-size: 3.8125rem;
 	font-weight: 700;
 }
 
 #contactHeadlineDiv p {
-	font-size: 27px;
+	font-size: 1.6875rem;
 	font-weight: 400;
 }
 
@@ -110,12 +110,12 @@ body {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	padding: 17px 36px;
+	padding: 1.0625rem 36px;
 }
 
 .shorthandLetters {
-	width: 42px;
-	height: 42px;
+	width: 2.625rem;
+	height: 2.625rem;
 	border-radius: 50%;
 	background-color: blue;
 	display: flex;
@@ -133,9 +133,9 @@ body {
 
 .actualContactDiv {
 	display: flex;
-	gap: 35px;
-	padding: 15px 24px;
-	border-radius: 10px;
+	gap: 2.1875rem;
+	padding: 0.9375rem 24px;
+	border-radius: 0.625rem;
 }
 
 .actualContactDiv:hover {
@@ -145,21 +145,21 @@ body {
 }
 
 .contactListName {
-	font-size: 20px;
+	font-size: 1.25rem;
 }
 
 .contactListEmail {
-	font-size: 16px;
+	font-size: 1.0rem;
 	color: #007cee;
 }
 
 .contactDivider {
-	border-radius: 3px;
-	border: 0.5px solid #d1d1d1;
+	border-radius: 0.1875rem;
+	border: 0.0312rem solid #d1d1d1;
 }
 
 #contactNameDiv {
-	gap: 8px;
+	gap: 0.5rem;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -172,48 +172,48 @@ body {
 	align-items: center;
 	flex-direction: column;
 	width: 100%;
-	gap: 21px;
+	gap: 1.3125rem;
 }
 
 #contactInfoInfoHeadline {
-	margin-top: 31px;
+	margin-top: 1.9375rem;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	width: 100%;
-	gap: 54px;
+	gap: 3.375rem;
 }
 
 #initialsDivInfo {
 	border-radius: 50%;
-	width: 120px;
-	height: 120px;
+	width: 7.5rem;
+	height: 7.5rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 47px;
+	font-size: 2.9375rem;
 	font-weight: 500;
 }
 
 #nameAndEditDiv {
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: 0.5rem;
 }
 
 #nameAndEditDiv h3 {
-	font-size: 47px;
+	font-size: 2.9375rem;
 	font-weight: 500;
 }
 
 #editDiv {
 	display: flex;
-	gap: 16px;
+	gap: 1.0rem;
 }
 
 .editBlock {
 	display: flex;
-	gap: 8px;
+	gap: 0.5rem;
 	justify-content: flex-start;
 	z-index: 0;
 }
@@ -224,7 +224,7 @@ body {
 
 .editBlock span {
 	color: #2a3647;
-	font-size: 16px;
+	font-size: 1.0rem;
 	font-weight: 400;
 }
 
@@ -242,11 +242,11 @@ body {
 
 #contactInformationDiv {
 	width: 100%;
-	padding: 30px 0;
+	padding: 1.875rem 0;
 }
 
 #contactInformationDiv p {
-	font-size: 20px;
+	font-size: 1.25rem;
 	font-weight: 400;
 }
 
@@ -254,7 +254,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	gap: 22px;
+	gap: 1.375rem;
 	justify-content: center;
 	align-items: flex-start;
 }
@@ -262,17 +262,17 @@ body {
 .actualInfoBlock {
 	display: flex;
 	flex-direction: column;
-	gap: 15px;
+	gap: 0.9375rem;
 }
 
 .actualInfoBlock p {
-	font-size: 16px;
+	font-size: 1.0rem;
 	font-weight: 700;
 	color: black;
 }
 
 .actualInfoBlock span {
-	font-size: 16px;
+	font-size: 1.0rem;
 	font-weight: 400;
 }
 

@@ -5,13 +5,13 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-bottom: 40px;
+	padding-bottom: 2.5rem;
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
 
 #signUpContent {
-	max-width: 1440px;
+	max-width: 90.0rem;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
@@ -26,16 +26,16 @@ a {
 }
 #formContent {
 	background-color: #ffffff;
-	border-radius: 30px;
+	border-radius: 1.875rem;
 	box-shadow: 0px 0px 3px 5px rgba(42, 54, 71, 0.02);
-	padding: 48px 88px;
+	padding: 3.0rem 88px;
 }
 
 #signUpHeadline {
 	display: grid;
 	grid-template-columns: 1fr 3fr 1fr;
 	align-items: center;
-	margin-bottom: 48px;
+	margin-bottom: 3.0rem;
 	width: 100%;
 }
 
@@ -45,7 +45,7 @@ h1 {
 #formContent h2 {
 	position: relative;
 	font-family: "inter", sans-serif;
-	font-size: 61px;
+	font-size: 3.8125rem;
 	font-weight: 700;
 	line-height: 120%;
 	letter-spacing: 0;
@@ -60,12 +60,12 @@ h1 {
 	left: 50%;
 	transform: translate(-50%);
 	top: calc(100% + 16px);
-	height: 3px;
+	height: 0.1875rem;
 	width: 70%;
-	border-radius: 30px;
+	border-radius: 1.875rem;
 }
 #signUpFormDiv {
-	margin-bottom: 30px;
+	margin-bottom: 1.875rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -73,16 +73,16 @@ h1 {
 #signUpForm {
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	gap: 1.0rem;
 	width: 100%;
 }
 
 .signUpInput {
 	border: none;
 	flex: 1;
-	height: 48px;
-	border-radius: 10px;
-	font-size: 20px;
+	height: 3.0rem;
+	border-radius: 0.625rem;
+	font-size: 1.25rem;
 	font-weight: 400;
 	outline: none;
 }
@@ -92,15 +92,15 @@ h1 {
 }
 
 #signUpBtn {
-	width: 126px;
-	height: 55px;
-	border-radius: 8px;
-	padding: 14px 24px;
+	width: 7.875rem;
+	height: 3.4375rem;
+	border-radius: 0.5rem;
+	padding: 0.875rem 24px;
 	background-color: #2a3647;
 	border: none;
 	color: #ffffff;
 	font-family: "inter", sans-serif;
-	font-size: 21px;
+	font-size: 1.3125rem;
 	font-weight: 700;
 	line-height: 120%;
 	letter-spacing: 0;
@@ -125,18 +125,18 @@ h1 {
 .signUpCheckboxDiv {
 	font-family: "inter";
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 1.0rem;
 	line-height: 120%;
 	letter-spacing: 0;
 	color: #a8a8a8;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-bottom: 32px;
+	margin-bottom: 2.0rem;
 }
 .signUpCheckboxDiv span {
-	margin-left: 8px;
-	margin-right: 4px;
+	margin-left: 0.5rem;
+	margin-right: 0.25rem;
 }
 
 .signUpCheckboxDiv a {
@@ -157,8 +157,8 @@ h1 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 16px;
-	margin-top: 130px;
+	gap: 1.0rem;
+	margin-top: 8.125rem;
 }
 
 #signUpPrivacyAndLegalDiv a {
@@ -166,7 +166,7 @@ h1 {
 	color: #a8a8a8;
 	font-family: "inter", sans-serif;
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 1.0rem;
 	line-height: 120%;
 	letter-spacing: 0;
 	transition: 0.075s ease-in-out;
@@ -182,21 +182,21 @@ h1 {
 	width: 100%;
 	justify-content: flex-start;
 	align-items: center;
-	margin-top: 80px;
-	margin-left: 77px;
+	margin-top: 5.0rem;
+	margin-left: 4.8125rem;
 }
 #signUpLogo {
-	width: 100px;
-	height: 122px;
+	width: 6.25rem;
+	height: 7.625rem;
 }
 
 .signUpInputDiv {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid #d1d1d1;
-	border-radius: 15px;
-	padding: 0px 21px;
+	border: 0.0625rem solid #d1d1d1;
+	border-radius: 0.9375rem;
+	padding: 0.0rem 21px;
 	flex-grow: 1;
 	width: 100%;
 }
@@ -210,13 +210,13 @@ h1 {
 }
 
 #personIcon {
-	width: 16px;
-	height: 16px;
+	width: 1.0rem;
+	height: 1.0rem;
 }
 
 #emailIcon {
-	width: 20px;
-	height: 16px;
+	width: 1.25rem;
+	height: 1.0rem;
 }
 
 .signUpLock:hover {
@@ -224,25 +224,25 @@ h1 {
 }
 
 #signUpBackIcon {
-	width: 21px;
-	height: 21px;
-	margin-right: 40px;
+	width: 1.3125rem;
+	height: 1.3125rem;
+	margin-right: 2.5rem;
 }
 
 #signUpBackIcon:hover {
-	width: 21px;
-	height: 21px;
+	width: 1.3125rem;
+	height: 1.3125rem;
 	cursor: pointer;
 	transform: scale(1.8);
 	border-radius: 50%;
 	background-color: #f6f7f8;
-	padding: 4px;
+	padding: 0.25rem;
 }
 
 #signUpBackIcon:active {
 	transform: scale(1);
 	border-radius: 50%;
-	padding: 2px;
+	padding: 0.125rem;
 }
 
 input {
@@ -284,21 +284,21 @@ input {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	width: 20px;
-	height: 20px;
+	width: 1.25rem;
+	height: 1.25rem;
 	scale: 1.2;
 }
 
 .checkbox .checkmark {
 	position: relative;
-	width: 20px;
-	height: 20px;
+	width: 1.25rem;
+	height: 1.25rem;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
 	display: inline-block;
 	transition: background-color 0.3s ease-in-out;
-	border-radius: 4px;
+	border-radius: 0.25rem;
 }
 
 dialog {
@@ -317,16 +317,16 @@ dialog div {
 	position: absolute;
 	left: 50%;
 	bottom: 0;
-	padding: 25px;
+	padding: 1.5625rem;
 	background-color: #2a3647;
 	box-shadow: 0px 0px 4px 0px #0000001a;
-	border-radius: 20px;
+	border-radius: 1.25rem;
 	transform: translate(-50%, -50%);
 	opacity: 0;
 }
 
 dialog p {
-	font-size: 20px;
+	font-size: 1.25rem;
 	color: #ffffff;
 }
 
@@ -359,9 +359,9 @@ dialog p {
 	justify-content: flex-start;
 	align-items: flex-start;
 	color: #ff8190;
-	font-size: 12px;
+	font-size: 0.75rem;
 	font-weight: 400;
-	margin-left: 10px;
+	margin-left: 0.625rem;
 	text-align: start;
 	width: 100%;
 }
@@ -371,7 +371,7 @@ dialog p {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	gap: 8px;
+	gap: 0.5rem;
 }
 
 #checkboxBorder {
@@ -398,54 +398,54 @@ dialog p {
 	cursor: pointer;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 53.125rem) {
 	#signUpContent {
 		width: 100%;
 	}
 	#formContent h2 {
-		font-size: 52px;
+		font-size: 3.25rem;
 	}
 
 	#formContent {
 		padding: 0;
-		margin-top: 40px;
-		padding: 48px 88px;
+		margin-top: 2.5rem;
+		padding: 3.0rem 88px;
 	}
 
 	#signUpHeadline {
-		margin-bottom: 40px;
+		margin-bottom: 2.5rem;
 	}
 	#formContent h2::after {
 		width: 60%;
 		top: calc(100% + 10px);
 	}
 	.signUpInput {
-		font-size: 18px;
+		font-size: 1.125rem;
 	}
 	.signUpInputDiv {
 		padding: 0 20px;
 		width: 100%;
 	}
 	#signUpPrivacyAndLegalDiv {
-		margin-top: 40px;
+		margin-top: 2.5rem;
 	}
 	#signUpLogo {
-		width: 90px;
-		height: 100px;
+		width: 5.625rem;
+		height: 6.25rem;
 	}
 	#signUpLogoDiv {
 		margin: 0;
 		width: 80%;
 	}
 	#signUpFormDiv {
-		margin-bottom: 30px;
+		margin-bottom: 1.875rem;
 	}
 	.signUpCheckboxDiv {
-		margin-bottom: 10px;
-		font-size: 15px;
+		margin-bottom: 0.625rem;
+		font-size: 0.9375rem;
 	}
 	#signUpBackIcon {
-		margin-right: 25px;
+		margin-right: 1.5625rem;
 	}
 	body {
 		overflow-y: scroll;
@@ -453,61 +453,61 @@ dialog p {
 		padding-bottom: 0;
 	}
 }
-@media (max-width: 650px) {
+@media (max-width: 40.625rem) {
 	#formContent {
 		padding: 0;
-		margin-top: 40px;
-		padding: 28px 44px;
+		margin-top: 2.5rem;
+		padding: 1.75rem 44px;
 	}
 }
 
-@media (max-width: 450px) {
+@media (max-width: 28.125rem) {
 	#signUpContent {
 		width: 90%;
 	}
 	#formContent h2 {
-		font-size: 38px;
+		font-size: 2.375rem;
 	}
 
 	#formContent {
-		padding: 20px 20px;
-		margin-top: 20px;
+		padding: 1.25rem 20px;
+		margin-top: 1.25rem;
 	}
 
 	#signUpHeadline {
-		margin-bottom: 20px;
+		margin-bottom: 1.25rem;
 	}
 	#formContent h2::after {
 		width: 60%;
 		top: calc(100% + 6px);
 	}
 	.signUpInput {
-		font-size: 15px;
+		font-size: 0.9375rem;
 	}
 	.signUpInputDiv {
 		padding: 0 10px;
 		width: 100%;
 	}
 	#signUpPrivacyAndLegalDiv {
-		margin-top: 20px;
+		margin-top: 1.25rem;
 	}
 	#signUpLogo {
-		width: 64px;
-		height: 78px;
+		width: 4.0rem;
+		height: 4.875rem;
 	}
 	#signUpLogoDiv {
 		margin: 0;
 		width: 80%;
 	}
 	#signUpFormDiv {
-		margin-bottom: 10px;
+		margin-bottom: 0.625rem;
 	}
 	.signUpCheckboxDiv {
-		margin-bottom: 10px;
-		font-size: 15px;
+		margin-bottom: 0.625rem;
+		font-size: 0.9375rem;
 	}
 	#signUpBackIcon {
-		margin-right: 25px;
+		margin-right: 1.5625rem;
 	}
 	body {
 		overflow-y: scroll;
