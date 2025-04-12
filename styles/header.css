@@ -115,6 +115,7 @@ span {
 @media (max-width: 1100px) {
 	header {
 		left: 180px;
+		width: calc(100% - 180px);
 	}
 }
 

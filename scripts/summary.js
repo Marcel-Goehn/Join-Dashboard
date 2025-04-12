@@ -12,6 +12,7 @@ const boardAmount = document.getElementById('board_amount');
 const progress = document.getElementById('progress');
 const progressAmount = document.getElementById('progress_amount');
 const feedback = document.getElementById('feedback');
+const fadeOutGreeting = document.getElementById('fade_out_greeting');
 const cards = [];
 const userArray = [];
 let urgentLength = 0;
@@ -150,9 +151,11 @@ function getName() {
     const findUser = userArray.find(u => u.Id === personNameParsed);
     if (findUser.value.name === "Guest Login") {
         greetGuest();
+        greetOnSmallerDevices();
         return;
     }
     greetUser(findUser.value.name);
+    greetOnSmallerDevices();
 }
 
 
@@ -241,3 +244,16 @@ function nextUrgentDate() {
 function renderUrgentDate(index) {
     urgentDate.innerHTML = cards[index].value.duedate;
 }
+
+
+function greetOnSmallerDevices() {
+    fadeOutGreeting.innerHTML = greeting.innerHTML;
+}
+
+
+function disableScrollTemporarily() {
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+      document.body.style.overflow = 'auto';
+    }, 2700);
+  }
