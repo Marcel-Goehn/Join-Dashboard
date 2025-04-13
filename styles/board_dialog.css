@@ -208,3 +208,154 @@ dialog .wrapper {
     height: 24px;
     border: 1px solid #D1D1D1;
 }
+
+.align-edit-dialog-close-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.align-title-input {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.align-title-input label {
+    color: #2A3647;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+}
+
+#input_title {
+    border: 1px solid #D1D1D1;
+    outline: none;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    color: #000000;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+}
+
+#input_title:focus {
+    border: 1px solid #29ABE2;
+}
+
+#input_title::placeholder {
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+    color: #D1D1D1;
+}
+
+#input_title, #input_descr, #input_duedate {
+    width: 100%;
+}
+
+.align-descr-input {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.align-descr-input label {
+    color: #2A3647;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+}
+
+#input_descr {
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    outline: none;
+    padding: 1rem 1.5rem;
+    color: #000000;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+}
+
+#input_descr:focus {
+    border: 1px solid #29ABE2;
+}
+
+#input_descr::placeholder {
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+    color: #D1D1D1;
+}
+
+.align-duedate-input {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.align-duedate-input label {
+    color: #2A3647;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+}
+
+#input_duedate {
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    outline: none;
+    padding: 1rem 1.5rem;
+    color: #000000;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+}
+
+#input_duedate:focus {
+    border: 1px solid #29ABE2;
+}
+
+#input_duedate::placeholder {
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+    color: #D1D1D1;
+}
+
+.align-priority-btn-section {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}
+
+.align-priority-btn-section p {
+    color: #42526E;
+    font-weight: 700;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+}
+
+/* .btn-flexbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+    width: 100%;
+    gap: 1rem;
+}
+
+.btn-flexbox button {
+    flex: 1;
+}
+
+.flexbtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFA800;
+}
+
+.flexbtn:first-child {
+    background-color: #fff;
+}
+
+.flexbtn:last-child {
+    background-color: fff;
+} */
+
+

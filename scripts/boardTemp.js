@@ -136,3 +136,8 @@ function getSubtasksDialogTemplate(status, name) {
                 <p>${name}</p>
             </div>`
 }
+
+
+function getEditDialogTemplate(index) {
+    return ``
+}

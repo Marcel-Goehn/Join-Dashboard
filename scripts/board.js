@@ -192,7 +192,7 @@ function getAssignedUsers(index) {
  * This function opens the dialog of the card
  */
 function openDialog(i) {
-    wrapper.innerHTML = getDialogTemplate(i);
+    // wrapper.innerHTML = getDialogTemplate(i);
     dialog.showModal();
 }
 
