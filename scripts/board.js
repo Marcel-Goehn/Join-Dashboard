@@ -71,10 +71,38 @@ function renderCards() {
     for (let i = 0; i < cards.length; i++) {
         checkRenderConditions(i);   
     }
-    todo.innerHTML = toDoMemory;
-    progress.innerHTML = progressMemory;
-    feedback.innerHTML = feedbackMemory;
-    done.innerHTML = doneMemory;
+    checkIfBoxIsEmpty();
+}
+
+
+/**
+ * Checks if one of the following section are empty, so it will insert a placeholder. If not empty it renders the content into the sections.
+ */
+function checkIfBoxIsEmpty() {
+    if(toDoMemory === "") {
+        todo.innerHTML = getEmptySectionTemplate("to do");
+    }
+    else {
+        todo.innerHTML = toDoMemory;
+    }
+    if(progressMemory === "") {
+        progress.innerHTML = getEmptySectionTemplate("in progress");
+    }
+    else {
+        progress.innerHTML = progressMemory;
+    }
+    if(feedbackMemory === "") {
+        feedback.innerHTML = getEmptySectionTemplate("in feedback");
+    }
+    else {
+        feedback.innerHTML = feedbackMemory;
+    }
+    if(doneMemory === "") {
+        done.innerHTML = getEmptySectionTemplate("are done");
+    }
+    else {
+        done.innerHTML = doneMemory;
+    }
 }
 
 
@@ -226,6 +254,11 @@ function renderSubtasksIntoDialog(index) {
 }
 
 
+/**
+ * This function calls the deleteFromDatabase function. After that it re-renders the page.
+ * 
+ * @param {number} i - The index of the current card 
+ */
 function deleteCard(i) {
     deleteFromDatabase(i);
     cards.splice(i, 1);
@@ -234,6 +267,11 @@ function deleteCard(i) {
 }
 
 
+/**
+ * This function deletes the chosen card.
+ * 
+ * @param {i} i - The index of the current card 
+ */
 async function deleteFromDatabase(i) {
     let cardToDelete = cards[i].id;
     await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${cardToDelete}.json`, {

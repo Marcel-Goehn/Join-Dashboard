@@ -51,6 +51,15 @@ function getSubtasksTemplate(progress, checkedTasks, subtasklength) {
 }
 
 
+function getEmptySectionTemplate(placeholder) {
+    return `<div class="empty-cards">
+                <div>
+                    <span>No tasks ${placeholder}</span>
+                </div>
+            </div>` 
+}
+
+
 /**
  * 
  * @returns - It returns the html code for the dialog of the task card
