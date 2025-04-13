@@ -127,9 +127,3 @@ function getSubtasksDialogTemplate(status, name) {
                 <p>${name}</p>
             </div>`
 }
-
-
-/*<div class="align-checkbox">
-    <img src="../assets/img/Check_button_checked.svg">
-    <p>Implement Recipe recommendation</p>
-</div>*/

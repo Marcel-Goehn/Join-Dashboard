@@ -189,6 +189,11 @@ dialog.onclick = function(e) {
 }
 
 
+/**
+ * 
+ * @param {number} index - The index of the current card 
+ * @returns - It returns the assigned users to the card dialog
+ */
 function assignedDialogUsers(index) {
     let assignedContactsRef = ``;
     for(let [key, value] of Object.entries(cards[index].value.assigned)) {
@@ -204,6 +209,11 @@ function assignedDialogUsers(index) {
 }
 
 
+/**
+ * 
+ * @param {number} index - The index of the current card 
+ * @returns - It returns the subtasks to the card dialog
+ */
 function renderSubtasksIntoDialog(index) {
     let subtasksRef = ``;
     for(let [key, value] of Object.entries(cards[index].value.subtasks)) {
