@@ -59,6 +59,10 @@ function pushDataToCardsArray(cardData) {
  * This function renders the task cards into the HTML
  */
 function renderCards() {
+    toDoMemory = ``;
+    progressMemory = ``;
+    feedbackMemory = ``;
+    doneMemory = ``;
     todo.innerHTML = ``;
     progress.innerHTML = ``;
     feedback.innerHTML = ``;
