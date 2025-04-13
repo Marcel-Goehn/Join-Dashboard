@@ -226,6 +226,22 @@ function renderSubtasksIntoDialog(index) {
 }
 
 
+function deleteCard(i) {
+    deleteFromDatabase(i);
+    cards.splice(i, 1);
+    closeDialog();
+    renderCards();    
+}
+
+
+async function deleteFromDatabase(i) {
+    let cardToDelete = cards[i].id;
+    await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${cardToDelete}.json`, {
+        method : "DELETE"
+    });
+}
+
+
 
 
 
