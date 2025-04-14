@@ -153,17 +153,20 @@
                 <div class="align-priority-btn-section">
                     <p>Priority</p>
                     <div class="btn-flexbox">
-                        <button class="flexbtn">
-                            <span>Urgent</span>
-                            <img src="../assets/img/urgent.svg">
+                        <button id="urgent_button" class="flexbtn urgent_button_unklicked" onclick="choosePriority('urgent', 'medium', 'low')">
+                            Urgent
+                            <img id="urgent_img" src="../assets/img/urgent.svg">
+                            <img id="urgent_white_img" src="../assets/img/urgent_white.svg" class="d_none">
                         </button>
-                        <button class="flexbtn">
-                            <span>Medium</span>
-                            <img src="../assets/img/medium.svg">
+                        <button id="medium_button" class="flexbtn medium_button_klicked" onclick="choosePriority('medium', 'urgent', 'low')">
+                            Medium
+                            <img id="medium_white_img" src="../assets/img/medium_white.svg">
+                            <img id="medium_img" src="../assets/img/Prio media.svg" class="d_none">
                         </button>
-                        <button class="flexbtn">
-                            <span>Low</span>
-                            <img src="../assets/img/low.svg">
+                        <button id="low_button" class="flexbtn low_button_unklicked" onclick="choosePriority('low', 'urgent', 'medium')">
+                            Low
+                            <img id="low_img" src="../assets/img/low.svg">
+                            <img id="low_white_img" src="../assets/img/low_white.svg" class="d_none">
                         </button>
                     </div>
                 </div>
