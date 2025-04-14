@@ -398,4 +398,53 @@ dialog .wrapper {
     color: #FFFFFF;
 }
 
+.align-assigned-to-section {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.align-assigned-to-section label {
+    color: #42526E;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+}
+
+.diaolog-dropdown-menu {
+    margin-top: 0.5rem;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 1.5rem;
+}
+
+.diaolog-dropdown-menu:focus-within {
+    border: 1px solid #29ABE2;
+}
+
+.diaolog-dropdown-menu input {
+    outline: none;
+    border: none;
+    flex: 1;
+    border-radius: 10px;
+    padding: 0.25rem;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+    color: #000000;
+}
+
+.diaolog-dropdown-menu input::placeholder{
+    color: #000000;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+}
+
+.dropdown-icon:hover {
+    background-color: #EEEEEE;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 

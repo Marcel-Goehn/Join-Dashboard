@@ -1,5 +1,7 @@
 const dataBase = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test.json";
+const usersDatabase = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/"
 const cards = [];
+const user = [];
 const findTask = document.getElementById('find_task');
 const todo = document.getElementById('to_do');
 const progress = document.getElementById('progress');
@@ -19,6 +21,7 @@ let doneMemory = ``;
 async function init() {
     await fetchData();
     renderCards();
+    await fetchUserData();
 }
 
 
@@ -315,6 +318,41 @@ function changeClassesOfBtnTwoAndThree(btnTwoAndThree) {
     document.getElementById(`${btnTwoAndThree}_button`).classList.add(`${btnTwoAndThree}_button_unklicked`);
     document.getElementById(`${btnTwoAndThree}_img`).classList.remove('d_none');
     document.getElementById(`${btnTwoAndThree}_white_img`).classList.add('d_none');
+}
+
+
+function openContactList() {
+    document.getElementById('arrow_down').classList.add('d_none');
+    document.getElementById('arrow_up').classList.remove('d_none');
+}
+
+
+function closeContactList() {
+    document.getElementById('arrow_up').classList.add('d_none');
+    document.getElementById('arrow_down').classList.remove('d_none');
+}
+
+
+async function fetchUserData() {
+    let activeUser = sessionStorage.getItem('loggedIn');
+    let parsedActiveUser = JSON.parse(activeUser);
+    try {
+        let response = await fetch(usersDatabase + parsedActiveUser + '.json');
+        if(!response.ok) {
+            throw new Error(`HTTP Fehler! Status: ${response.status}`);    
+        }
+        let data = await response.json();
+        //renderContactList(data.contacts);
+    } catch (error) {
+        console.error("Fehler beim Abrufen der Daten:", error);
+    }
+}
+
+
+function renderContactList(contacts) {
+    for (let value of Object.values(contacts)) {
+        console.log(value.name);
+    }
 }
 
 
