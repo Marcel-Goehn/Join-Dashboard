@@ -447,4 +447,65 @@ dialog .wrapper {
     cursor: pointer;
 }
 
+.contact-list {
+    height: 300px;
+    overflow-y: auto;
+    margin-top: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 14px 3px rgba(0, 0, 0, 0.04);
+}
+
+.align-contact-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+}
+
+.align-contact-list:hover {
+    cursor: pointer;
+    background-color: #EEEEEE;
+}
+
+.combine-name-and-shorthand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.combine-name-and-shorthand span {
+    font-size: 1.25rem;
+    color: #000000;
+}
+
+.combine-name-and-shorthand span:hover {
+    cursor: pointer;
+}
+
+.short-name-dialog {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFA800;
+    font-size: 0.75rem;
+    color: #FFFFFF;
+}
+
+.short-name-dialog:hover {
+    cursor: pointer;
+}
+
+.align-shorthand-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
 

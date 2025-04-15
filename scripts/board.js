@@ -9,6 +9,8 @@ const feedback = document.getElementById('feedback');
 const done = document.getElementById('done');
 const dialog = document.getElementById('overlay');
 const wrapper = document.querySelector('.wrapper');
+const contactList = document.getElementById('contact_list');
+const contactWrapper = document.getElementById('contact-list-wrapper');
 let toDoMemory = ``;
 let progressMemory = ``;
 let feedbackMemory = ``;
@@ -217,6 +219,9 @@ dialog.onclick = function(e) {
     if(!wrapper.contains(e.target)) {
         dialog.close();
     }
+    if(!contactWrapper.contains(e.target)) {
+        closeContactList();
+    }
 }
 
 
@@ -321,15 +326,20 @@ function changeClassesOfBtnTwoAndThree(btnTwoAndThree) {
 }
 
 
-function openContactList() {
+function openContactList(e) {
+    e.stopPropagation();
     document.getElementById('arrow_down').classList.add('d_none');
     document.getElementById('arrow_up').classList.remove('d_none');
+    document.getElementById('shorthand_contact_list').classList.add('d_none');
+    document.getElementById('contact_list').classList.remove('d_none');
 }
 
 
 function closeContactList() {
     document.getElementById('arrow_up').classList.add('d_none');
     document.getElementById('arrow_down').classList.remove('d_none');
+    document.getElementById('contact_list').classList.add('d_none');
+    document.getElementById('shorthand_contact_list').classList.remove('d_none');
 }
 
 
