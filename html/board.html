@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="../styles/sidebar.css">
     <link rel="stylesheet" href="../styles/board_dialog.css">
     <link rel="stylesheet" href="../styles/board.css">
-    <!-- <link rel="stylesheet" href="../styles/addTaskDial.css">  -->
+    <link rel="stylesheet" href="../styles/addTaskDial.css"> 
     <title>Join | Board</title>
 </head>
 
-<body onload="init(); fetchNameInitials()">
+<body onload="init(); init_addTask(); fetchNameInitials()">
 
     <header>
         <div id="headerContent">
@@ -248,9 +248,9 @@
             </form>
         </div>
     </dialog>
-    <!-- <dialog id="addTaskDial"> -->
-        <!-- <div id="addTaskDialContent"> -->
-            <!-- <div id="center-content" onclick="closeOpenSections()">
+    <dialog id="addTaskDial">
+        <div id="addTaskDialContent">
+            <div id="center-content" onclick="closeOpenSections()">
                 <div id="title_dialog">
                     <h1>Add Task</h1>
                     <button id="dialog_close_btn" onclick="closeAddTask()"><img src="../assets/img/addtask/x.svg"></button>
@@ -363,16 +363,16 @@
                     </button>
                 </div>
                 </div>
-            </div> -->
-        <!-- </div> -->
-    <!-- </dialog> -->
+            </div>
+        </div>
+    </dialog>
     <script src="../scripts/board.js"></script>
     <script src="../scripts/boardTemp.js"></script>
     <script src="../scripts/header.js"></script>
     <script src="../scripts/board_drag_and_drop.js"></script>
-    <!-- <script src="../scripts/addTaskDialog.js"></script>
+    <script src="../scripts/addTaskDialog.js"></script>
     <script src="../scripts/addTask.js"></script>
-    <script src="../scripts/addTask_templates.js"></script> -->
+    <script src="../scripts/addTask_templates.js"></script>
 </body>
 
 </html>

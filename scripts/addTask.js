@@ -16,7 +16,7 @@ let duedate = document.getElementById('duedate_input');
 let selectedCategory = document.getElementById('btn_text');
 
 
-async function init() {
+async function init_addTask() {
     await fetchUser();
     logged_user.contacts ? getContacts() : null;
 }
