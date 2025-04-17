@@ -11,6 +11,8 @@ const dialog = document.getElementById('overlay');
 const wrapper = document.querySelector('.wrapper');
 const contactList = document.getElementById('contact_list');
 const contactWrapper = document.getElementById('contact-list-wrapper');
+const dialogSubtasks = document.getElementById('dialog_subtasks');
+let inputTitle = document.getElementById('input_title');
 let toDoMemory = ``;
 let progressMemory = ``;
 let feedbackMemory = ``;
@@ -197,7 +199,7 @@ function getAssignedUsers(index) {
  * This function opens the dialog of the card
  */
 function openDialog(i) {
-    //wrapper.innerHTML = getDialogTemplate(i);
+    // wrapper.innerHTML = getDialogTemplate(i);
     dialog.showModal();
 }
 
@@ -364,6 +366,36 @@ function renderContactList(contacts) {
         console.log(value.name);
     }
 }
+
+
+function checkSubtaskInputField() {
+    if (dialogSubtasks.value.length >= 1) {
+        document.getElementById('plus_icon').classList.add('d_none');
+        document.getElementById('x_icon').classList.remove('d_none');
+        document.getElementById('check_icon').classList.remove('d_none');
+        document.getElementById('icon_divider').classList.remove('d_none');
+    }
+    else {
+        document.getElementById('x_icon').classList.add('d_none');
+        document.getElementById('check_icon').classList.add('d_none');
+        document.getElementById('icon_divider').classList.add('d_none');
+        document.getElementById('plus_icon').classList.remove('d_none');
+    }
+}
+
+
+function deleteSubtaskFromInput() {
+    dialogSubtasks.value = '';
+    document.getElementById('x_icon').classList.add('d_none');
+    document.getElementById('check_icon').classList.add('d_none');
+    document.getElementById('icon_divider').classList.add('d_none');
+    document.getElementById('plus_icon').classList.remove('d_none');
+}
+
+
+// function getInputTitleValue(i) {
+//     return ;
+// }
 
 
 

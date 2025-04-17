@@ -135,12 +135,12 @@
     <dialog id="overlay">
         <div class="wrapper">
             <div class="align-edit-dialog-close-btn">
-                <button onclick="closeDialog()" class="close-btn">X</button>
+                <img onclick="closeDialog()" class="close-btn" src="../assets/img/addtask/x.svg">
             </div>
             <form onsubmit="return false">
                 <div class="align-title-input">
                     <label for="input_title">Title</label>
-                    <input type="text" name="input_title" id="input_title" placeholder="Enter a title">
+                    <input value="Hello World" type="text" name="input_title" id="input_title" placeholder="Enter a title">
                 </div>
                 <div class="align-descr-input">
                     <label for="input_descr">Description</label>
@@ -194,56 +194,28 @@
                             <img class="d_none" src="../assets/img/Check_button_checked.svg">
                         </div>
                     </div>
-                    <div id="contact-list-wrapper">
-                        <div class="align-contact-list">
-                            <div class="combine-name-and-shorthand">
-                                <div class="short-name-dialog">AM</div>
-                                <span>Anton Meyer</span>
-                            </div>
-                            <img src="../assets/img/Check_button_unchecked.svg">
-                            <img class="d_none" src="../assets/img/Check_button_checked.svg">
+                </div>
+                <div class="align-subtasks-section">
+                    <label for="dialog_subtasks">Subtasks</label>
+                    <div class="diaolog-dropdown-menu">
+                        <input onkeyup="checkSubtaskInputField()" type="text" id="dialog_subtasks" name="dialog_subtasks" placeholder="Add new subtask">
+                        <img id="plus_icon" class="subtask-icons" src="../assets/img/addtask/add.svg">
+                        <div class="align-subtask-icons">
+                            <img onclick="deleteSubtaskFromInput()" id="x_icon" class="d_none subtask-icons" src="../assets/img/addtask/x.svg">
+                            <div id="icon_divider" class="subtask-icon-divider d_none"></div>
+                            <img id="check_icon" class="d_none subtask-icons" src="../assets/img/addtask/done_black.svg">
                         </div>
                     </div>
-                    <div id="contact-list-wrapper">
-                        <div class="align-contact-list">
-                            <div class="combine-name-and-shorthand">
-                                <div class="short-name-dialog">AM</div>
-                                <span>Anton Meyer</span>
-                            </div>
-                            <img src="../assets/img/Check_button_unchecked.svg">
-                            <img class="d_none" src="../assets/img/Check_button_checked.svg">
-                        </div>
-                    </div>
-                    <div id="contact-list-wrapper">
-                        <div class="align-contact-list">
-                            <div class="combine-name-and-shorthand">
-                                <div class="short-name-dialog">AM</div>
-                                <span>Anton Meyer</span>
-                            </div>
-                            <img src="../assets/img/Check_button_unchecked.svg">
-                            <img class="d_none" src="../assets/img/Check_button_checked.svg">
-                        </div>
-                    </div>
-                    <div id="contact-list-wrapper">
-                        <div class="align-contact-list">
-                            <div class="combine-name-and-shorthand">
-                                <div class="short-name-dialog">AM</div>
-                                <span>Anton Meyer</span>
-                            </div>
-                            <img src="../assets/img/Check_button_unchecked.svg">
-                            <img class="d_none" src="../assets/img/Check_button_checked.svg">
-                        </div>
-                    </div>
-                    <div id="contact-list-wrapper">
-                        <div class="align-contact-list">
-                            <div class="combine-name-and-shorthand">
-                                <div class="short-name-dialog">AM</div>
-                                <span>Anton Meyer</span>
-                            </div>
-                            <img src="../assets/img/Check_button_unchecked.svg">
-                            <img class="d_none" src="../assets/img/Check_button_checked.svg">
-                        </div>
-                    </div>
+                </div>
+                <ul id="subtasks_list">
+                    <li class="subtasks-list-items"><span>&bull;</span>Contact Form</li>
+                    <li class="subtasks-list-items"><span>&bull;</span>Contact Form</li>
+                </ul>
+                <div class="align-save-btn">
+                    <button>
+                        Ok
+                        <img src="../assets/img/addtask/done.svg">
+                    </button>
                 </div>
             </form>
         </div>

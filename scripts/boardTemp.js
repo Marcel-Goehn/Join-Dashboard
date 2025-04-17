@@ -51,6 +51,11 @@ function getSubtasksTemplate(progress, checkedTasks, subtasklength) {
 }
 
 
+/**
+ * 
+ * @param {string} placeholder - The placeholder text of the placeholder card 
+ * @returns - It returns the card 
+ */
 function getEmptySectionTemplate(placeholder) {
     return `<div class="empty-cards">
                 <div>
@@ -67,7 +72,7 @@ function getEmptySectionTemplate(placeholder) {
 function getDialogTemplate(index) {
     return `<div class="align-dialog-header">
                 <div class="category">${cards[index].value.category}</div>
-                <button onclick="closeDialog()" class="close-btn">X</button>
+                <img onclick="closeDialog()" class="close-btn" src="../assets/img/addtask/x.svg">
             </div>
             <h1 class="dialog-h1">${cards[index].value.title}</h1>
             <p class="dialog-p">${cards[index].value.description}</p>
@@ -98,7 +103,7 @@ function getDialogTemplate(index) {
                     <span>Delete</span>
                 </div>
                 <div class="divider"></div>
-                <div class="delete-change-container">
+                <div onclick="getEditDialogTemplate(${index})" class="delete-change-container">
                     <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
                         <path d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z" fill="#2A3647"/>
                         </svg>
@@ -138,6 +143,94 @@ function getSubtasksDialogTemplate(status, name) {
 }
 
 
+/**
+ * 
+ * @param {number} index - The index of the current card
+ * @returns - It returns the changeable content of the current card
+ */
 function getEditDialogTemplate(index) {
-    return ``
+    return `<div class="align-edit-dialog-close-btn">
+                <img onclick="closeDialog()" class="close-btn" src="../assets/img/addtask/x.svg">
+            </div>
+            <form onsubmit="return false">
+                <div class="align-title-input">
+                    <label for="input_title">Title</label>
+                    <input value="${cards[index].value.title}"type="text" name="input_title" id="input_title" placeholder="Enter a title">
+                </div>
+                <div class="align-descr-input">
+                    <label for="input_descr">Description</label>
+                    <textarea name="input_descr" id="input_descr" rows="4" placeholder="Enter a description">${cards[index].value.description}</textarea>
+                </div>
+                <div class="align-duedate-input">
+                    <label for="input_duedate">Duedate</label>
+                    <input type="date" name="input_duedate" id="input_duedate">
+                </div>
+                <div class="align-priority-btn-section">
+                    <p>Priority</p>
+                    <div class="btn-flexbox">
+                        <button id="urgent_button" class="flexbtn urgent_button_unklicked" onclick="choosePriority('urgent', 'medium', 'low')">
+                            Urgent
+                            <img id="urgent_img" src="../assets/img/urgent.svg">
+                            <img id="urgent_white_img" src="../assets/img/urgent_white.svg" class="d_none">
+                        </button>
+                        <button id="medium_button" class="flexbtn medium_button_klicked" onclick="choosePriority('medium', 'urgent', 'low')">
+                            Medium
+                            <img id="medium_white_img" src="../assets/img/medium_white.svg">
+                            <img id="medium_img" src="../assets/img/Prio media.svg" class="d_none">
+                        </button>
+                        <button id="low_button" class="flexbtn low_button_unklicked" onclick="choosePriority('low', 'urgent', 'medium')">
+                            Low
+                            <img id="low_img" src="../assets/img/low.svg">
+                            <img id="low_white_img" src="../assets/img/low_white.svg" class="d_none">
+                        </button>
+                    </div>
+                </div>
+                <div class="align-assigned-to-section">
+                    <label for="dialog_assigned_to">Assigned to</label>
+                    <div class="diaolog-dropdown-menu">
+                        <input type="text" id="dialog_assigned_to" name="dialog_assigned_to" placeholder="Select contacts to assign">
+                        <img onclick="openContactList(event)" id="arrow_down" class="dropdown-icon" src="../assets/img/addtask/arrow_drop_downaa.svg">
+                        <img onclick="closeContactList()" id="arrow_up" class="dropdown-icon d_none" src="../assets/img/addtask/arrow_drop_down.svg">
+                    </div>
+                </div>
+                <div id="shorthand_contact_list" class="align-shorthand-container">
+                    <div onclick="openContactList(event)" class="short-name-dialog">AS</div>
+                    <div onclick="openContactList(event)" class="short-name-dialog">DE</div>
+                    <div onclick="openContactList(event)" class="short-name-dialog">EF</div>
+                </div>
+                <div id="contact_list" class="contact-list d_none">
+                    <div id="contact-list-wrapper">
+                        <div class="align-contact-list">
+                            <div class="combine-name-and-shorthand">
+                                <div class="short-name-dialog">AM</div>
+                                <span>Anton Meyer</span>
+                            </div>
+                            <img src="../assets/img/Check_button_unchecked.svg">
+                            <img class="d_none" src="../assets/img/Check_button_checked.svg">
+                        </div>
+                    </div>
+                </div>
+                <div class="align-subtasks-section">
+                    <label for="dialog_subtasks">Subtasks</label>
+                    <div class="diaolog-dropdown-menu">
+                        <input onkeyup="checkSubtaskInputField()" type="text" id="dialog_subtasks" name="dialog_subtasks" placeholder="Add new subtask">
+                        <img id="plus_icon" class="subtask-icons" src="../assets/img/addtask/add.svg">
+                        <div class="align-subtask-icons">
+                            <img onclick="deleteSubtaskFromInput()" id="x_icon" class="d_none subtask-icons" src="../assets/img/addtask/x.svg">
+                            <div id="icon_divider" class="subtask-icon-divider d_none"></div>
+                            <img id="check_icon" class="d_none subtask-icons" src="../assets/img/addtask/done_black.svg">
+                        </div>
+                    </div>
+                </div>
+                <ul id="subtasks_list">
+                    <li class="subtasks-list-items"><span>&bull;</span>Contact Form</li>
+                    <li class="subtasks-list-items"><span>&bull;</span>Contact Form</li>
+                </ul>
+                <div class="align-save-btn">
+                    <button>
+                        Ok
+                        <img src="../assets/img/addtask/done.svg">
+                    </button>
+                </div>
+            </form>`
 }
