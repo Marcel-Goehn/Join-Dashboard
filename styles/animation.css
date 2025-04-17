@@ -31,3 +31,17 @@
 .fadeIn{
     animation: fadeIn 0.33s ease-in-out 0.5s forwards;
 }
+
+@keyframes moveLogo-mobile{
+    0%{
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(2);
+    }
+
+    100%{
+        top: 5%;
+        left: 5%;
+        transform: translate(0, 0) scale(0.66);
+    }
+}
