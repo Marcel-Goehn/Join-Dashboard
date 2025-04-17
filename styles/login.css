@@ -104,6 +104,7 @@ button:hover {
     border: 1px solid #D1D1D1;
     padding: 12px 21px;
     cursor: pointer;
+    width: 343px;
 }
 .form-element:focus-within {
     border-color: #29ABE2;
@@ -172,4 +173,43 @@ h1:hover {
     color: #FF8190;
     font-size: 13px;
     font-weight: 400;
+}
+@media(max-width: 620px) {
+    .login_buttons_div {
+        flex-direction: column;
+        gap: 21px;
+    }
+    h1 {
+        font-size: 47px;
+    }
+    button {
+        font-size: 16px;
+    }
+    #formular {
+        padding: 32px 16px;
+        margin: 0;
+    }
+    #signup_div {
+        display: none;
+    }
+    #signup_div_mobile {
+        display: flex;
+        gap: 35px;
+        align-items: center;
+        padding-top: 27.5px;
+    }
+    #content-wrapper {
+        padding: 0 16px;
+        padding-top: 225.5px;
+        gap: 50px;
+    }
+    footer {
+        gap: 32px;
+    }
+    .form-element {
+        width: auto;
+    }
+    #logo {
+        animation: moveLogo-mobile 0.33s ease-in 0.5s forwards
+    }
 }
