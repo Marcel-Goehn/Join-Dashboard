@@ -588,4 +588,10 @@ dialog .wrapper {
     align-items: center;
     gap: 8px;
     margin-top: 1.5rem;
+    transition: all 100ms ease-in-out;
+}
+
+.align-save-btn button:hover {
+    background-color: #29ABE2;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 25);
 }

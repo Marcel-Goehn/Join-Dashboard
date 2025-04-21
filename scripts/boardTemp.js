@@ -103,7 +103,7 @@ function getDialogTemplate(index) {
                     <span>Delete</span>
                 </div>
                 <div class="divider"></div>
-                <div onclick="getEditDialogTemplate(${index})" class="delete-change-container">
+                <div onclick="openEditDialog(${index}, event)" class="delete-change-container">
                     <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
                         <path d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z" fill="#2A3647"/>
                         </svg>
@@ -155,11 +155,11 @@ function getEditDialogTemplate(index) {
             <form onsubmit="return false">
                 <div class="align-title-input">
                     <label for="input_title">Title</label>
-                    <input value="${cards[index].value.title}"type="text" name="input_title" id="input_title" placeholder="Enter a title">
+                    <input value="${cards[index].value.title}"type="text" name="input_title" id="input_title_${index}" placeholder="Enter a title">
                 </div>
                 <div class="align-descr-input">
                     <label for="input_descr">Description</label>
-                    <textarea name="input_descr" id="input_descr" rows="4" placeholder="Enter a description">${cards[index].value.description}</textarea>
+                    <textarea name="input_descr" id="input_descr_${index}" rows="4" placeholder="Enter a description">${cards[index].value.description}</textarea>
                 </div>
                 <div class="align-duedate-input">
                     <label for="input_duedate">Duedate</label>
@@ -168,21 +168,7 @@ function getEditDialogTemplate(index) {
                 <div class="align-priority-btn-section">
                     <p>Priority</p>
                     <div class="btn-flexbox">
-                        <button id="urgent_button" class="flexbtn urgent_button_unklicked" onclick="choosePriority('urgent', 'medium', 'low')">
-                            Urgent
-                            <img id="urgent_img" src="../assets/img/urgent.svg">
-                            <img id="urgent_white_img" src="../assets/img/urgent_white.svg" class="d_none">
-                        </button>
-                        <button id="medium_button" class="flexbtn medium_button_klicked" onclick="choosePriority('medium', 'urgent', 'low')">
-                            Medium
-                            <img id="medium_white_img" src="../assets/img/medium_white.svg">
-                            <img id="medium_img" src="../assets/img/Prio media.svg" class="d_none">
-                        </button>
-                        <button id="low_button" class="flexbtn low_button_unklicked" onclick="choosePriority('low', 'urgent', 'medium')">
-                            Low
-                            <img id="low_img" src="../assets/img/low.svg">
-                            <img id="low_white_img" src="../assets/img/low_white.svg" class="d_none">
-                        </button>
+                        ${checkWichBtnToHighlight(index)}
                     </div>
                 </div>
                 <div class="align-assigned-to-section">
@@ -194,20 +180,11 @@ function getEditDialogTemplate(index) {
                     </div>
                 </div>
                 <div id="shorthand_contact_list" class="align-shorthand-container">
-                    <div onclick="openContactList(event)" class="short-name-dialog">AS</div>
-                    <div onclick="openContactList(event)" class="short-name-dialog">DE</div>
-                    <div onclick="openContactList(event)" class="short-name-dialog">EF</div>
+                    ${renderAssignedContactsToEditDialog(index)}
                 </div>
                 <div id="contact_list" class="contact-list d_none">
                     <div id="contact-list-wrapper">
-                        <div class="align-contact-list">
-                            <div class="combine-name-and-shorthand">
-                                <div class="short-name-dialog">AM</div>
-                                <span>Anton Meyer</span>
-                            </div>
-                            <img src="../assets/img/Check_button_unchecked.svg">
-                            <img class="d_none" src="../assets/img/Check_button_checked.svg">
-                        </div>
+                        ${renderContactList()}
                     </div>
                 </div>
                 <div class="align-subtasks-section">
@@ -223,14 +200,92 @@ function getEditDialogTemplate(index) {
                     </div>
                 </div>
                 <ul id="subtasks_list">
-                    <li class="subtasks-list-items"><span>&bull;</span>Contact Form</li>
-                    <li class="subtasks-list-items"><span>&bull;</span>Contact Form</li>
+                    ${renderSubtasksintoEditDialog(index)}
                 </ul>
                 <div class="align-save-btn">
-                    <button>
+                    <button onclick="saveCardChangesToDatabase(${index})">
                         Ok
                         <img src="../assets/img/addtask/done.svg">
                     </button>
                 </div>
             </form>`
+}
+
+
+function renderUrgent() {
+    return `<button id="urgent_button" class="flexbtn urgent_button_klicked" onclick="choosePriority('urgent', 'medium', 'low')">
+                            Urgent
+                            <img id="urgent_img" src="../assets/img/urgent.svg" class="d_none">
+                            <img id="urgent_white_img" src="../assets/img/urgent_white.svg">
+                        </button>
+                        <button id="medium_button" class="flexbtn medium_button_unklicked" onclick="choosePriority('medium', 'urgent', 'low')">
+                            Medium
+                            <img id="medium_white_img" src="../assets/img/medium_white.svg" class="d_none">
+                            <img id="medium_img" src="../assets/img/Prio media.svg">
+                        </button>
+                        <button id="low_button" class="flexbtn low_button_unklicked" onclick="choosePriority('low', 'urgent', 'medium')">
+                            Low
+                            <img id="low_img" src="../assets/img/low.svg">
+                            <img id="low_white_img" src="../assets/img/low_white.svg" class="d_none">
+                        </button>`
+}
+
+
+function renderMedium() {
+    return `<button id="urgent_button" class="flexbtn urgent_button_unklicked" onclick="choosePriority('urgent', 'medium', 'low')">
+                            Urgent
+                            <img id="urgent_img" src="../assets/img/urgent.svg">
+                            <img id="urgent_white_img" src="../assets/img/urgent_white.svg" class="d_none">
+                        </button>
+                        <button id="medium_button" class="flexbtn medium_button_klicked" onclick="choosePriority('medium', 'urgent', 'low')">
+                            Medium
+                            <img id="medium_white_img" src="../assets/img/medium_white.svg">
+                            <img id="medium_img" src="../assets/img/Prio media.svg" class="d_none">
+                        </button>
+                        <button id="low_button" class="flexbtn low_button_unklicked" onclick="choosePriority('low', 'urgent', 'medium')">
+                            Low
+                            <img id="low_img" src="../assets/img/low.svg">
+                            <img id="low_white_img" src="../assets/img/low_white.svg" class="d_none">
+                        </button>`
+}
+
+
+function renderLow() {
+    return `<button id="urgent_button" class="flexbtn urgent_button_unklicked" onclick="choosePriority('urgent', 'medium', 'low')">
+                            Urgent
+                            <img id="urgent_img" src="../assets/img/urgent.svg">
+                            <img id="urgent_white_img" src="../assets/img/urgent_white.svg" class="d_none">
+                        </button>
+                        <button id="medium_button" class="flexbtn medium_button_unklicked" onclick="choosePriority('medium', 'urgent', 'low')">
+                            Medium
+                            <img id="medium_white_img" src="../assets/img/medium_white.svg" class="d_none">
+                            <img id="medium_img" src="../assets/img/Prio media.svg">
+                        </button>
+                        <button id="low_button" class="flexbtn low_button_klicked" onclick="choosePriority('low', 'urgent', 'medium')">
+                            Low
+                            <img id="low_img" src="../assets/img/low.svg" class="d_none">
+                            <img id="low_white_img" src="../assets/img/low_white.svg">
+                        </button>`
+}
+
+
+function getAssignedUsersEditTemplate(firstLetterFName, firstLetterLName) {
+    return `<div onclick="openContactList(event)" class="short-name-dialog">${firstLetterFName}${firstLetterLName}</div>`
+}
+
+
+function renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i) {
+    return `<div class="align-contact-list">
+                            <div class="combine-name-and-shorthand">
+                                <div class="short-name-dialog">${firstNameFirstChar}${lastNameFirstChar}</div>
+                                <span>${contactsNamesOfUser[i]}</span>
+                            </div>
+                            <img src="../assets/img/Check_button_unchecked.svg">
+                            <img class="d_none" src="../assets/img/Check_button_checked.svg">
+                        </div>`
+}
+
+
+function getSubtasksEditDialogTemplate(name) {
+    return `<li class="subtasks-list-items"><span>&bull;</span>${name}</li>`
 }

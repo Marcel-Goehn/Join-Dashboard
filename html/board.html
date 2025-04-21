@@ -134,90 +134,7 @@
 
     <dialog id="overlay">
         <div class="wrapper">
-            <div class="align-edit-dialog-close-btn">
-                <img onclick="closeDialog()" class="close-btn" src="../assets/img/addtask/x.svg">
-            </div>
-            <form onsubmit="return false">
-                <div class="align-title-input">
-                    <label for="input_title">Title</label>
-                    <input value="Hello World" type="text" name="input_title" id="input_title" placeholder="Enter a title">
-                </div>
-                <div class="align-descr-input">
-                    <label for="input_descr">Description</label>
-                    <textarea name="input_descr" id="input_descr" rows="4" placeholder="Enter a description"></textarea>
-                </div>
-                <div class="align-duedate-input">
-                    <label for="input_duedate">Duedate</label>
-                    <input type="date" name="input_duedate" id="input_duedate">
-                </div>
-                <div class="align-priority-btn-section">
-                    <p>Priority</p>
-                    <div class="btn-flexbox">
-                        <button id="urgent_button" class="flexbtn urgent_button_unklicked" onclick="choosePriority('urgent', 'medium', 'low')">
-                            Urgent
-                            <img id="urgent_img" src="../assets/img/urgent.svg">
-                            <img id="urgent_white_img" src="../assets/img/urgent_white.svg" class="d_none">
-                        </button>
-                        <button id="medium_button" class="flexbtn medium_button_klicked" onclick="choosePriority('medium', 'urgent', 'low')">
-                            Medium
-                            <img id="medium_white_img" src="../assets/img/medium_white.svg">
-                            <img id="medium_img" src="../assets/img/Prio media.svg" class="d_none">
-                        </button>
-                        <button id="low_button" class="flexbtn low_button_unklicked" onclick="choosePriority('low', 'urgent', 'medium')">
-                            Low
-                            <img id="low_img" src="../assets/img/low.svg">
-                            <img id="low_white_img" src="../assets/img/low_white.svg" class="d_none">
-                        </button>
-                    </div>
-                </div>
-                <div class="align-assigned-to-section">
-                    <label for="dialog_assigned_to">Assigned to</label>
-                    <div class="diaolog-dropdown-menu">
-                        <input type="text" id="dialog_assigned_to" name="dialog_assigned_to" placeholder="Select contacts to assign">
-                        <img onclick="openContactList(event)" id="arrow_down" class="dropdown-icon" src="../assets/img/addtask/arrow_drop_downaa.svg">
-                        <img onclick="closeContactList()" id="arrow_up" class="dropdown-icon d_none" src="../assets/img/addtask/arrow_drop_down.svg">
-                    </div>
-                </div>
-                <div id="shorthand_contact_list" class="align-shorthand-container">
-                    <div onclick="openContactList(event)" class="short-name-dialog">AS</div>
-                    <div onclick="openContactList(event)" class="short-name-dialog">DE</div>
-                    <div onclick="openContactList(event)" class="short-name-dialog">EF</div>
-                </div>
-                <div id="contact_list" class="contact-list d_none">
-                    <div id="contact-list-wrapper">
-                        <div class="align-contact-list">
-                            <div class="combine-name-and-shorthand">
-                                <div class="short-name-dialog">AM</div>
-                                <span>Anton Meyer</span>
-                            </div>
-                            <img src="../assets/img/Check_button_unchecked.svg">
-                            <img class="d_none" src="../assets/img/Check_button_checked.svg">
-                        </div>
-                    </div>
-                </div>
-                <div class="align-subtasks-section">
-                    <label for="dialog_subtasks">Subtasks</label>
-                    <div class="diaolog-dropdown-menu">
-                        <input onkeyup="checkSubtaskInputField()" type="text" id="dialog_subtasks" name="dialog_subtasks" placeholder="Add new subtask">
-                        <img id="plus_icon" class="subtask-icons" src="../assets/img/addtask/add.svg">
-                        <div class="align-subtask-icons">
-                            <img onclick="deleteSubtaskFromInput()" id="x_icon" class="d_none subtask-icons" src="../assets/img/addtask/x.svg">
-                            <div id="icon_divider" class="subtask-icon-divider d_none"></div>
-                            <img id="check_icon" class="d_none subtask-icons" src="../assets/img/addtask/done_black.svg">
-                        </div>
-                    </div>
-                </div>
-                <ul id="subtasks_list">
-                    <li class="subtasks-list-items"><span>&bull;</span>Contact Form</li>
-                    <li class="subtasks-list-items"><span>&bull;</span>Contact Form</li>
-                </ul>
-                <div class="align-save-btn">
-                    <button>
-                        Ok
-                        <img src="../assets/img/addtask/done.svg">
-                    </button>
-                </div>
-            </form>
+            
         </div>
     </dialog>
     <dialog id="addTaskDial">
@@ -340,6 +257,7 @@
     </dialog>
     <script src="../scripts/board.js"></script>
     <script src="../scripts/boardTemp.js"></script>
+    <script src="../scripts/board_dialog.js"></script>
     <script src="../scripts/header.js"></script>
     <script src="../scripts/board_drag_and_drop.js"></script>
     <script src="../scripts/addTaskDialog.js"></script>
