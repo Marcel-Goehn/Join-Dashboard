@@ -463,6 +463,11 @@ dialog .wrapper {
     justify-content: space-between;
     border-radius: 10px;
     padding: 0.5rem 1rem;
+    margin-top: 0.25rem;
+}
+
+.align-contact-list:first-child {
+    margin-top: 0;
 }
 
 .align-contact-list:hover {
@@ -470,15 +475,50 @@ dialog .wrapper {
     background-color: #EEEEEE;
 }
 
+.assigned-contact-background {
+    background-color: #2A3647;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    margin-top: 0.25rem;
+}
+
+.assigned-contact-background:first-child {
+    margin-top: 0;
+}
+
+.assigned-contact-background:hover {
+    cursor: pointer;
+}
+
+.full-name-white {
+    color: #FFFFFF;
+    font-size: 1.25rem;
+}
+
+.full-name-white:hover {
+    cursor: pointer;
+}
+
+.full-name-dark {
+    color: #000000;
+    font-size: 1.25rem;
+}
+
+.full-name-dark:hover {
+    cursor: pointer;
+}
+
+.assigned-contact-background:hover {
+    background-color: #091931;
+}
+
 .combine-name-and-shorthand {
     display: flex;
     align-items: center;
     gap: 1rem;
-}
-
-.combine-name-and-shorthand span {
-    font-size: 1.25rem;
-    color: #000000;
 }
 
 .combine-name-and-shorthand span:hover {

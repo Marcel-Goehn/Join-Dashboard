@@ -192,22 +192,41 @@ async function fetchUserData() {
 
 
 function pushContactList(contacts) {
-    for(let value of Object.values(contacts)) {
-        contactsNamesOfUser.push(value.name);
+    for(let [key, value] of Object.entries(contacts)) {
+        contactsNamesOfUser.push({id : key, value});
     }
     console.log(contactsNamesOfUser);
 }
 
 
-function renderContactList() {
+function renderContactList(cardIndex) {
+    let assignmentList = getAssignmentList(cardIndex);
     let contactsRef = ``;
     for (let i = 0; i < contactsNamesOfUser.length; i++) {
-        let [firstNameFirstChar, lastNameFirstChar] = contactsNamesOfUser[i].split(" ");
+        let [firstNameFirstChar, lastNameFirstChar] = contactsNamesOfUser[i].value.name.split(" ");
         firstNameFirstChar = firstNameFirstChar.charAt(0);
         lastNameFirstChar = lastNameFirstChar.charAt(0);
-        contactsRef += renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i);
+        const checkAssignment = assignmentList.find(element => element.id == contactsNamesOfUser[i].id);
+        if(checkAssignment != undefined) {
+            contactsRef += renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i);
+        }
+        else {
+            contactsRef += renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i);
+        }
     }
     return contactsRef;
+}
+
+
+function getAssignmentList(cardIndex) {
+    let assignedTo = [];
+    for (let [key, value] of Object.entries(cards[cardIndex].value.assigned)) {
+        if (key === "null") {
+            continue;
+        }
+        assignedTo.push({id : key, value});
+    } 
+    return assignedTo;
 }
 
 
@@ -273,6 +292,11 @@ function renderSubtasksintoEditDialog(index) {
         subtasksRef += getSubtasksEditDialogTemplate(value.name);
     }
     return subtasksRef;
+}
+
+
+function assignOrDisassignContact(index) {
+    
 }
 
 

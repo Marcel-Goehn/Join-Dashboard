@@ -184,7 +184,7 @@ function getEditDialogTemplate(index) {
                 </div>
                 <div id="contact_list" class="contact-list d_none">
                     <div id="contact-list-wrapper">
-                        ${renderContactList()}
+                        ${renderContactList(index)}
                     </div>
                 </div>
                 <div class="align-subtasks-section">
@@ -275,13 +275,25 @@ function getAssignedUsersEditTemplate(firstLetterFName, firstLetterLName) {
 
 
 function renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i) {
-    return `<div class="align-contact-list">
+    return `<div class="align-contact-list" onclick="assignOrDisassignContact(${i})">
                             <div class="combine-name-and-shorthand">
                                 <div class="short-name-dialog">${firstNameFirstChar}${lastNameFirstChar}</div>
-                                <span>${contactsNamesOfUser[i]}</span>
+                                <span class="full-name-dark">${contactsNamesOfUser[i].value.name}</span>
                             </div>
                             <img src="../assets/img/Check_button_unchecked.svg">
-                            <img class="d_none" src="../assets/img/Check_button_checked.svg">
+                            <img class="d_none" src="../assets/img/Check button_white.svg">
+                        </div>`
+}
+
+
+function renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i) {
+    return `<div class="assigned-contact-background" onclick="assignOrDisassignContact(${i})">
+                            <div class="combine-name-and-shorthand">
+                                <div class="short-name-dialog">${firstNameFirstChar}${lastNameFirstChar}</div>
+                                <span class="full-name-white">${contactsNamesOfUser[i].value.name}</span>
+                            </div>
+                            <img class="d_none" src="../assets/img/Check_button_unchecked.svg">
+                            <img src="../assets/img/Check button_white.svg">
                         </div>`
 }
 
