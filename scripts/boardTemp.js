@@ -155,7 +155,7 @@ function getEditDialogTemplate(index) {
             <form onsubmit="return false">
                 <div class="align-title-input">
                     <label for="input_title">Title</label>
-                    <input value="${cards[index].value.title}"type="text" name="input_title" id="input_title_${index}" placeholder="Enter a title">
+                    <input value="${cards[index].value.title}" type="text" name="input_title" id="input_title_${index}" placeholder="Enter a title">
                 </div>
                 <div class="align-descr-input">
                     <label for="input_descr">Description</label>

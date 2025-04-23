@@ -332,7 +332,38 @@ function disAssignUserFromCard(contactId, cardIndex, contactIndex) {
     document.getElementById(`full_name_${contactIndex}`).classList.add('full-name-dark');
     document.getElementById(`checked_image_${contactIndex}`).classList.add('d_none');
     document.getElementById(`unchecked_image_${contactIndex}`).classList.remove('d_none');
+    updateShortHandNames(cardIndex);
     // console.log(cards);
+}
+
+
+function assignUserToCard(contactIndex, cardIndex) {
+    cards[cardIndex].value.assigned[contactsNamesOfUser[contactIndex].id] = {name : contactsNamesOfUser[contactIndex].value.name};
+    document.getElementById(`contact_container_${contactIndex}`).classList.add('assigned-contact-background');
+    document.getElementById(`contact_container_${contactIndex}`).classList.remove('align-contact-list');
+    document.getElementById(`full_name_${contactIndex}`).classList.add('full-name-white');
+    document.getElementById(`full_name_${contactIndex}`).classList.remove('full-name-dark');
+    document.getElementById(`checked_image_${contactIndex}`).classList.remove('d_none');
+    document.getElementById(`unchecked_image_${contactIndex}`).classList.add('d_none');
+    updateShortHandNames(cardIndex);
+    // console.log(cards[cardIndex].value.assigned);
+}
+
+
+function updateShortHandNames(cardIndex) {
+    let assignedUsers = "";
+    let shortHandRef = document.getElementById('shorthand_contact_list');
+    shortHandRef.innerHTML = ``;
+    for(let [key, value] of Object.entries(cards[cardIndex].value.assigned)) {
+        if (key == "null") {
+            continue;
+        }
+        let [firstName, lastName] = value.name.split(" ");
+        firstLetterFName = firstName.slice(0, 1);
+        firstLetterLName = lastName.slice(0, 1);
+        assignedUsers += getAssignedUsersEditTemplate(firstLetterFName, firstLetterLName);
+    }
+    shortHandRef.innerHTML = assignedUsers;
 }
 
 
