@@ -2,7 +2,7 @@ const dialog = document.getElementById('overlay');
 const wrapper = document.querySelector('.wrapper');
 const contactList = document.getElementById('contact_list');
 const dialogSubtasks = document.getElementById('dialog_subtasks');
-const contactsNamesOfUser = [];
+let contactsNamesOfUser = [];
 let currentPriority = "";
 
 
@@ -18,9 +18,14 @@ function openDialog(i) {
 /**
  * This function closes the dialog of the card
  */
-function closeDialog() {
+function closeDialog(e) {
+    e.stopPropagation();
     currentPriority = "";
     dialog.close();
+    cards = [];
+    user = [];
+    contactsNamesOfUser = [];
+    init();
 }
 
 
@@ -208,10 +213,10 @@ function renderContactList(cardIndex) {
         lastNameFirstChar = lastNameFirstChar.charAt(0);
         const checkAssignment = assignmentList.find(element => element.id == contactsNamesOfUser[i].id);
         if(checkAssignment != undefined) {
-            contactsRef += renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i);
+            contactsRef += renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i, cardIndex);
         }
         else {
-            contactsRef += renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i);
+            contactsRef += renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i, cardIndex);
         }
     }
     return contactsRef;
@@ -295,8 +300,39 @@ function renderSubtasksintoEditDialog(index) {
 }
 
 
-function assignOrDisassignContact(index) {
-    
+function assignOrDisassignContact(contactIndex, cardIndex) {
+    let iteratedAssignments = getAssignmentList(cardIndex);
+    let searchForAssignment = iteratedAssignments.find(element => element.id == contactsNamesOfUser[contactIndex].id);
+    if(searchForAssignment != undefined) {
+        disAssignUserFromCard(searchForAssignment.id, cardIndex, contactIndex);
+    }
+    else {
+        assignUserToCard(contactIndex, cardIndex);
+    }
+}
+
+
+function getAssignmentList(index) {
+    let assignedTo = [];
+    for(let [key, value] of Object.entries(cards[index].value.assigned)) {
+        if (key == "null") {
+            continue;
+        }
+        assignedTo.push({id : key, value});
+    }
+    return assignedTo;
+}
+
+
+function disAssignUserFromCard(contactId, cardIndex, contactIndex) {
+    delete cards[cardIndex].value.assigned[contactId];
+    document.getElementById(`contact_container_${contactIndex}`).classList.remove('assigned-contact-background');
+    document.getElementById(`contact_container_${contactIndex}`).classList.add('align-contact-list');
+    document.getElementById(`full_name_${contactIndex}`).classList.remove('full-name-white');
+    document.getElementById(`full_name_${contactIndex}`).classList.add('full-name-dark');
+    document.getElementById(`checked_image_${contactIndex}`).classList.add('d_none');
+    document.getElementById(`unchecked_image_${contactIndex}`).classList.remove('d_none');
+    // console.log(cards);
 }
 
 
