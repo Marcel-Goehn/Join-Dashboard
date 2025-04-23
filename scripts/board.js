@@ -12,6 +12,7 @@ let progressMemory = ``;
 let feedbackMemory = ``;
 let doneMemory = ``;
 let previousInput = 0;
+let foundTasks = [];
 
 
 /**
@@ -61,7 +62,7 @@ function pushDataToCardsArray(cardData) {
 function searchTasks(){
     const searchInput = document.getElementById("find_task").value;
     if(searchInput.length > 2){
-    let foundTasks = cards.filter(card => 
+        foundTasks = cards.filter(card => 
         card.value.title.toLowerCase().includes(searchInput.toLowerCase()) ||
         card.value.description.toLowerCase().includes(searchInput.toLowerCase())
         )
@@ -69,6 +70,7 @@ function searchTasks(){
         previousInput = searchInput.length;
     }else if(searchInput.length < 3 && previousInput > searchInput.length){
         renderCards(cards);
+        foundTasks = [];
     }
 
 }
@@ -132,16 +134,16 @@ function checkIfBoxIsEmpty() {
  */
 function checkRenderConditions(index, array) {
     if (array[index].value.currentStatus === "todo") {
-        toDoMemory += getCardsTemplate(index);
+        toDoMemory += getCardsTemplate(index, array);
     }
     else if (array[index].value.currentStatus === "progress") {
-        progressMemory += getCardsTemplate(index);
+        progressMemory += getCardsTemplate(index, array);
     }
     else if (array[index].value.currentStatus === "feedback") {
-        feedbackMemory += getCardsTemplate(index);
+        feedbackMemory += getCardsTemplate(index, array);
     }
     else if (array[index].value.currentStatus === "done") {
-        doneMemory += getCardsTemplate(index);
+        doneMemory += getCardsTemplate(index, array);
     }
 }
 
@@ -152,10 +154,10 @@ function checkRenderConditions(index, array) {
  * @param {number} index - The index of the current card
  * @returns - returns the amount of subtasks in the card
  */
-function getSubtasksInformation(index) {
+function getSubtasksInformation(index, array) {
     let subtaskLengthArr = [];
     let counter = 0;
-    for (let [key, value] of Object.entries(cards[index].value.subtasks)) {
+    for (let [key, value] of Object.entries(array[index].value.subtasks)) {
         if(key === "null") {
             continue;
         }
@@ -192,9 +194,9 @@ function calculateProgressBar(counter, subtaskLengthArr) {
  * @param {number} index - The index of the current card
  * @returns - It return the first letters of the first and last name
  */
-function getAssignedUsers(index) {
+function getAssignedUsers(index, array) {
     let assignedContactsRef = ``;
-    for(let [key, value] of Object.entries(cards[index].value.assigned)) {
+    for(let [key, value] of Object.entries(array[index].value.assigned)) {
         if (key == "null") {
             continue;
         }

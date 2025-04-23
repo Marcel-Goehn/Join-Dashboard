@@ -5,18 +5,18 @@
  * @returns - it returns the html code to the render function
  */
 function getCardsTemplate(index, array) {
-    return `<div draggable="true" ondragstart="startDragging(${index})" onclick="openDialog(${index})" class="card">
+    return `<div draggable="true" ondragstart="startDragging(${index})" onclick="openDialog(${index, array})" class="card">
                             <h2>
                                 <span class="card-header">${array[index].value.category}</span>
                             </h2>
                             <h3>${array[index].value.title}</h3>
                             <p>${array[index].value.description}</p>
                             <div id="subtasks${index}" class="subtasks">
-                            ${getSubtasksInformation(index)}
+                            ${getSubtasksInformation(index, array)}
                             </div>
                             <div class="users">
                                 <div class="user-icons">
-                                    ${getAssignedUsers(index)}
+                                    ${getAssignedUsers(index, array)}
                                 </div>
                                 <img src="../assets/img/${array[index].value.priority}.svg">
                             </div>
