@@ -4,7 +4,6 @@ body {
 }
 
 #stickyContactsContent {
-	width: calc(100% - 232px);
 	overflow: hidden;
 	display: flex;
 	box-shadow: -4px 0px 6px 0px #00000014;
@@ -18,7 +17,6 @@ body {
 	position: relative;
 	top: 0;
 	overflow: auto;
-	width: 28.5rem;
 	padding-bottom: 3.25rem;
 	background-color: white;
 	box-shadow: 4px 0px 6px 0px #00000014;
@@ -27,7 +25,7 @@ body {
 
 #contentLimiter {
 	display: flex;
-	margin-left: 43.0rem;
+	margin-left: 45rem;
 	width: calc(100% - 688px);
 	height: 100%;
 	width: 100%;
@@ -42,6 +40,7 @@ body {
 	top: 0;
 	background-color: white;
 	padding-bottom: 1.4062rem;
+	padding-inline: 52px;
 }
 
 #addNewContactBtn {
@@ -87,6 +86,7 @@ body {
 	justify-content: flex-start;
 	align-items: center;
 	width: 100%;
+	position: relative;
 }
 
 .divider {
@@ -104,6 +104,7 @@ body {
 #contactHeadlineDiv p {
 	font-size: 1.6875rem;
 	font-weight: 400;
+	white-space: nowrap;
 }
 
 .letterDiv {
@@ -280,6 +281,44 @@ body {
 	color: #007cee;
 }
 
+.dnone{
+	display: none !important;
+}
+
+#addContactFixed{
+	width: 56px;
+	height: 56px;
+	background-color: #2a3647;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	bottom: 150px;
+	right: 5%;
+}
+#addContactFixed:hover{
+	cursor: pointer;
+}
+
+#contactInfoBackBtn{
+	position: fixed;
+	right: 30px;
+	top: 170px;
+	display: none;
+}
+
+#contactInfoBackBtn:hover{
+	cursor: pointer;
+}
+
+.dividerBottom{
+	height: 3px;
+	width: 90px;
+	background-color: #29abe2;
+	border-radius: 4px ;
+	display: none;
+}
 @keyframes slideInContactInfo {
 	0% {
 		transform: translateX(200%);
@@ -301,4 +340,156 @@ body {
 .clickedBackground {
 	background-color: #2a3647;
 	color: white;
+}
+
+#optionsBtn{
+	background-color: #2a3647;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	position: fixed;
+	bottom: 150px;
+	right: 5%;
+}
+
+#optionsBtn:hover{
+	cursor: pointer;
+}
+
+#editBurger{
+	position: fixed;
+	bottom: 120px;
+	right: 2%;
+	z-index: 10;
+	background-color: white;
+	padding: 20px;
+	border-top-right-radius: 20px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	box-shadow: 0 3px 9px -2px rgba(0,0,0,0.2);
+	transform: translateX(200%);
+	transition: 0.33s;
+}
+
+#editDivMobile{
+	gap: 16px;
+	display: flex;
+	flex-direction: column;
+
+}
+
+.slideBurgerIn{
+	transform: translateX(0)!important;
+}
+@media(max-width: 1440px){
+	#addNewContactBtn{
+		font-size: clamp(1rem, 0.5498rem + 0.8475vw, 1.3125rem);
+		padding-inline: clamp(1.25rem, -1.6314rem + 5.4237vw, 3.25rem);
+	}
+	#contactHeadlineDiv h1{
+		font-size: clamp(2rem, -0.6112rem + 4.9153vw, 3.8125rem);
+	}
+	#contactHeadlineDiv p{
+		font-size: clamp(1rem, 0.0095rem + 1.8644vw, 1.6875rem);
+	}
+	#contentLimiter{
+		margin-left: clamp(35rem, 2.6471rem + 47.0588vw, 45rem);
+	}
+
+
+	#initialsDivInfo{
+		font-size: clamp(2rem, -1.0331rem + 4.4118vw, 2.9375rem);
+		height: clamp(5.5rem, -0.9706rem + 9.4118vw, 7.5rem);;
+		width: clamp(5.5rem, -0.9706rem + 9.4118vw, 7.5rem);;
+	}
+	#nameAndEditDiv h3{
+		font-size: clamp(2rem, -1.0331rem + 4.4118vw, 2.9375rem);
+	}
+
+	.contactListName{
+		font-size: clamp(1.3125rem, 0.7059rem + 0.8824vw, 1.5rem);
+	}
+	.actualContactDiv{
+		padding-inline:clamp(0.9375rem, -0.8824rem + 2.6471vw, 1.5rem);
+		gap:clamp(1rem, -2.8419rem + 5.5882vw, 2.1875rem);
+	}
+	#contactNameDiv{
+		padding-inline: clamp(1.25rem, -5.2206rem + 9.4118vw, 3.25rem);
+	}
+
+
+}
+
+@media(max-width: 1100px){
+	#stickyContactsContent{
+		left: 180px;
+	}
+	#contentLimiter{
+		margin-left: clamp(31.25rem, 27.6483rem + 6.7797vw, 33.75rem);
+	}
+	#contactInfo{
+		padding-inline:clamp(1rem, -7.16rem + 15.36vw, 3.4rem);;
+	}
+	.divider{
+		margin-inline:clamp(0.625rem, -3.625rem + 8vw, 1.875rem); ;
+	}
+	#contactInfoInfoHeadline{
+		gap: clamp(1rem, -6.6838rem + 11.1765vw, 3.375rem);
+	}
+}
+
+@media(max-width: 850px){
+	#stickyContactsContent{
+		left: 0;
+		top: 80px;
+	}
+	#contentLimiter{
+		margin-left: clamp(20.125rem, 4.2813rem + 39vw, 25rem);
+	}
+}
+
+@media(max-width: 650px){
+	.dividerBottom{
+		display: flex !important;
+	}
+	#contactInfoBackBtn{
+		display: flex !important;
+	}
+	#addNewContactBtn{
+		font-size: clamp(1rem, 0.5498rem + 0.8475vw, 1.3125rem);
+		padding-inline: clamp(1.25rem, -1.6314rem + 5.4237vw, 3.25rem);
+	}
+	#contentLimiter{
+		margin-left: clamp(0.3125rem, -6.6572rem + 34.8485vw, 7.5rem);
+	}
+	#contactHeadlineDiv{
+		flex-direction: column;
+		justify-content: center;
+		align-items: start;
+		gap: 10px
+	}
+	#contactHeadlineDiv .divider{
+		display: none;
+	}
+	#contactHeadlineDiv h1{
+		font-size: 47px;
+	}
+	#contactHeadlineDiv p{
+		font-size: 20px;
+	}
+
+	#contactInfo{
+		padding-top: 150px;
+	}
+
+	#optionsBtn{
+		display: flex !important;
+	}
+
+	#editDiv{
+		display: none !important;
+	}
 }

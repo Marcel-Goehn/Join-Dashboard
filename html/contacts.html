@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="../styles/contacts.css" />
 		<link rel="stylesheet" href="../styles/newContactDial.css" />
 	</head>
-	<body onload="showContacts(),  highlightSidebarLink()">
+	<body onload="showContacts(),  highlightSidebarLink(), addResizeListener()">
 		<header>
 			<div id="headerContent">
 				<span>Kanban Project Management Tool</span>
@@ -29,6 +29,7 @@
 		</header>
 		<div id="stickyContactsContent">
 			<div id="stickyContacts">
+				<div id="addContactFixed" onclick="openAddContactDial(), slideInAddContact()"><img src="../assets/img/person_add.svg"></div>
 				<div id="addNewContactBtnDiv">
 					<button
 						id="addNewContactBtn"
@@ -46,6 +47,8 @@
 					<h1>Contacts</h1>
 					<div class="divider"></div>
 					<p>Better With a team</p>
+					<div class="dividerBottom"></div>
+					<div id="contactInfoBackBtn" onclick="backSmall()"><img src="../assets/img/backArrow.svg"></div>
 				</div>
 				<div id="contactInfoInfo"></div>
 				<div id="successDiv">

@@ -11,6 +11,7 @@ let toDoMemory = ``;
 let progressMemory = ``;
 let feedbackMemory = ``;
 let doneMemory = ``;
+let previousInput = 0;
 
 
 /**
@@ -18,7 +19,7 @@ let doneMemory = ``;
  */
 async function init() {
     await fetchData();
-    renderCards();
+    renderCards(cards);
     await fetchUserData();
 }
 
@@ -54,12 +55,29 @@ function pushDataToCardsArray(cardData) {
     }
     console.log(cards);
 }
+/**
+ * This function filters the cards array based on title and description
+ */
+function searchTasks(){
+    const searchInput = document.getElementById("find_task").value;
+    if(searchInput.length > 2){
+    let foundTasks = cards.filter(card => 
+        card.value.title.toLowerCase().includes(searchInput.toLowerCase()) ||
+        card.value.description.toLowerCase().includes(searchInput.toLowerCase())
+        )
+        renderCards(foundTasks);
+        previousInput = searchInput.length;
+    }else if(searchInput.length < 3 && previousInput > searchInput.length){
+        renderCards(cards);
+    }
+
+}
 
 
 /**
  * This function renders the task cards into the HTML
  */
-function renderCards() {
+function renderCards(array) {
     toDoMemory = ``;
     progressMemory = ``;
     feedbackMemory = ``;
@@ -69,8 +87,8 @@ function renderCards() {
     feedback.innerHTML = ``;
     done.innerHTML = ``;
 
-    for (let i = 0; i < cards.length; i++) {
-        checkRenderConditions(i);   
+    for (let i = 0; i < array.length; i++) {
+        checkRenderConditions(i, array);   
     }
     checkIfBoxIsEmpty();
 }
@@ -112,17 +130,17 @@ function checkIfBoxIsEmpty() {
  * 
  * @param {number} index - The index of the current card
  */
-function checkRenderConditions(index) {
-    if (cards[index].value.currentStatus === "todo") {
+function checkRenderConditions(index, array) {
+    if (array[index].value.currentStatus === "todo") {
         toDoMemory += getCardsTemplate(index);
     }
-    else if (cards[index].value.currentStatus === "progress") {
+    else if (array[index].value.currentStatus === "progress") {
         progressMemory += getCardsTemplate(index);
     }
-    else if (cards[index].value.currentStatus === "feedback") {
+    else if (array[index].value.currentStatus === "feedback") {
         feedbackMemory += getCardsTemplate(index);
     }
-    else if (cards[index].value.currentStatus === "done") {
+    else if (array[index].value.currentStatus === "done") {
         doneMemory += getCardsTemplate(index);
     }
 }

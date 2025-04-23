@@ -70,6 +70,16 @@ function openContact(email, name, phone, color, index) {
 	contactInfoDiv.innerHTML = contactInfoTemp(email, name, phone, color);
 	const initalsDivInfo = document.getElementById("initialsDivInfo");
 	initalsDivInfo.style.backgroundColor = color;
+	getMobileIn(email, name, phone, color);
+	
+}
+
+function getMobileIn(email, name, phone, color){
+	const contactInfoContent = document.getElementById("contactInfo")
+	if(!contactInfoContent.querySelector("#optionsBtn")){
+		contactInfoContent.innerHTML += editMobileTemp(email, name, phone, color);
+	}
+	
 }
 
 function colorClickedContact(index) {
@@ -352,3 +362,69 @@ function showRefuseDiv(refuseDiv) {
 function setRedBorder(element) {
 	element.style.border = "1px solid red";
 }
+
+
+function switchToSingleView(contentLimiter, stickyContacts, addNewContactBtn, addNewFixed){
+	if(!document.getElementById("stickyContactsContent").classList.contains("dnone")){
+	contentLimiter.classList.add("dnone");
+	contentLimiter.style.width = window.innerWidth + "px";
+	stickyContacts.style.width = window.innerWidth + "px";
+	addNewContactBtn.classList.add("dnone")
+	addNewFixed.classList.remove("dnone");
+}
+}
+
+function addResizeListener(){
+window.addEventListener("resize", ()=>{
+	const contentLimiter = document.getElementById("contentLimiter");
+	const stickyContacts = document.getElementById("stickyContacts");
+	const addNewContactBtn = document.getElementById("addNewContactBtn");
+	const addNewFixed = document.getElementById("addContactFixed");
+	if(window.innerWidth <= 650){
+		switchToSingleView(contentLimiter, stickyContacts, addNewContactBtn, addNewFixed);
+	}else if(window.innerWidth > 650){
+		contentLimiter.classList.remove("dnone");
+		stickyContacts.style.width = "auto";
+		addNewContactBtn.classList.remove("dnone");
+		addNewFixed.classList.add("dnone");
+		contentLimiter.style.width = "auto";
+		const stickyContactsContent = document.getElementById("stickyContactsContent");
+		stickyContactsContent.classList.remove("dnone");
+	}
+});
+}
+
+function clickContactSmall(){
+	if(window.innerWidth < 650){
+		const stickyContactsContent = document.getElementById("stickyContactsContent");
+		stickyContactsContent.classList.add("dnone");
+		const contentLimiter = document.getElementById("contentLimiter");
+		contentLimiter.classList.remove("dnone");
+	}
+}
+
+function backSmall(){
+	if(window.innerWidth < 650){
+		const stickyContactsContent = document.getElementById("stickyContactsContent");
+		stickyContactsContent.classList.remove("dnone");
+		const contentLimiter = document.getElementById("contentLimiter");
+		contentLimiter.classList.add("dnone");
+	}
+}
+
+function openBurger(){
+	const burgerDiv = document.getElementById("editBurger");
+	burgerDiv.classList.remove("slideBurgerOut");
+	burgerDiv.classList.add("slideBurgerIn");
+	document.addEventListener("click", closeBurgerHandler);
+}
+
+const closeBurgerHandler = (event) => {
+	const burgerDiv = document.getElementById("editBurger");
+	if(!burgerDiv.contains(event.target)){
+		 burgerDiv.classList.remove("slideBurgerIn");
+		 burgerDiv.classList.add("slideBurgerOut");
+		 document.removeEventListener("click", closeBurgerHandler);
+	}
+}
+	
