@@ -314,6 +314,10 @@
 	color: #2a3647;
 }
 
+.formInputWrapper svg{
+	flex-shrink: 0;
+}
+
 #deleteButton svg {
 	width: 0.6562rem;
 	height: 0.6562rem;

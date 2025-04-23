@@ -6,11 +6,12 @@ let contactsNamesOfUser = [];
 let currentPriority = "";
 
 
-/**
+/**S
  * This function opens the dialog of the card
  */
 function openDialog(i) {
-    wrapper.innerHTML = getDialogTemplate(i);
+    const array = getCurrentArray();
+    wrapper.innerHTML = getDialogTemplate(i, array);
     dialog.showModal();
 }
 
@@ -25,6 +26,8 @@ function closeDialog(e) {
     cards = [];
     user = [];
     contactsNamesOfUser = [];
+    foundTasks = [];
+    document.getElementById("find_task").value = "";
     init();
 }
 

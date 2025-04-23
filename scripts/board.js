@@ -19,9 +19,9 @@ let foundTasks = [];
  * Initializes the fetching
  */
 async function init() {
-    await fetchData();
-    renderCards(cards);
-    await fetchUserData();
+        await fetchData();
+        renderCards(cards);
+        await fetchUserData();
 }
 
 
@@ -154,7 +154,8 @@ function checkRenderConditions(index, array) {
  * @param {number} index - The index of the current card
  * @returns - returns the amount of subtasks in the card
  */
-function getSubtasksInformation(index, array) {
+function getSubtasksInformation(index) {
+    const array = getCurrentArray();
     let subtaskLengthArr = [];
     let counter = 0;
     for (let [key, value] of Object.entries(array[index].value.subtasks)) {
@@ -194,7 +195,8 @@ function calculateProgressBar(counter, subtaskLengthArr) {
  * @param {number} index - The index of the current card
  * @returns - It return the first letters of the first and last name
  */
-function getAssignedUsers(index, array) {
+function getAssignedUsers(index) {
+    const array = getCurrentArray();
     let assignedContactsRef = ``;
     for(let [key, value] of Object.entries(array[index].value.assigned)) {
         if (key == "null") {
@@ -206,6 +208,14 @@ function getAssignedUsers(index, array) {
         assignedContactsRef += getAssignedUsersTemplate(firstLetterFName, firstLetterLName);
     }
     return assignedContactsRef;
+}
+
+function getCurrentArray(){
+    if(foundTasks.length === 0){
+        return cards;
+    }else{
+        return foundTasks;
+    }
 }
 
 
