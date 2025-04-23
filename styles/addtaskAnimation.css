@@ -1,0 +1,12 @@
+@keyframes confirmTask{
+	0% {
+		transform: translate(-50%, 100%);
+	}
+	100% {
+		transform: translate(-50%, -600%);
+	}
+}
+
+.animate{
+    animation: confirmTask 0.33s ease-in 0.5s forwards;
+}

@@ -140,10 +140,6 @@ function clearInput() {
     ChangeSubtaskIcons();
 }
 
-function clearInputDialog() {
-    // Formular manuell leeren
-}
-
 function addSubtask() {
     let UserInput = subtaskInput.value;
     if (UserInput != "") {   
@@ -186,6 +182,15 @@ function checkUploadConditions() {
     }
 }
 
+function animationTaskAdded() {
+    let confirmation = document.getElementById('confirmation');
+    confirmation.classList.remove('hidden');
+    confirmation.classList.add('animate');
+    setTimeout(() => {
+        window.location.href = "board.html";
+    }, 2000);
+}
+
 function assembleTask() {
     return {
         "assigned" : assignedContacts,
@@ -205,7 +210,7 @@ async function uploadTask(object) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(object)
     });
-    location.reload()
+    animationTaskAdded();
 }
 
 function ChangeSubtaskIcons() {
