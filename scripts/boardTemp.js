@@ -4,13 +4,13 @@
  * @param {number} index - The index of the current card 
  * @returns - it returns the html code to the render function
  */
-function getCardsTemplate(index) {
+function getCardsTemplate(index, array) {
     return `<div draggable="true" ondragstart="startDragging(${index})" onclick="openDialog(${index})" class="card">
                             <h2>
-                                <span class="card-header">${cards[index].value.category}</span>
+                                <span class="card-header">${array[index].value.category}</span>
                             </h2>
-                            <h3>${cards[index].value.title}</h3>
-                            <p>${cards[index].value.description}</p>
+                            <h3>${array[index].value.title}</h3>
+                            <p>${array[index].value.description}</p>
                             <div id="subtasks${index}" class="subtasks">
                             ${getSubtasksInformation(index)}
                             </div>
@@ -18,7 +18,7 @@ function getCardsTemplate(index) {
                                 <div class="user-icons">
                                     ${getAssignedUsers(index)}
                                 </div>
-                                <img src="../assets/img/${cards[index].value.priority}.svg">
+                                <img src="../assets/img/${array[index].value.priority}.svg">
                             </div>
                         </div>`; // Dann muss noch aus dem Dialog kontrolliert werden ob schon subtasks abgehakt wurden oder nicht.
 }
