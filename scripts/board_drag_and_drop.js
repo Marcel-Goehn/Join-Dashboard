@@ -25,9 +25,16 @@ function allowDrop(ev) {
  * @param {string} category - The state in wich the card will be dropped 
  */
 function moveTo(category) {
-    cards[currentDraggedElement].value.currentStatus = category;
-    renderCards();
-    updateDatabase(cards[currentDraggedElement].id, category);
+    if(foundTasks.length === 0){
+        cards[currentDraggedElement].value.currentStatus = category;
+        renderCards(cards);
+        updateDatabase(cards[currentDraggedElement].id, category);
+    }else{
+        foundTasks[currentDraggedElement].value.currentStatus = category;
+        renderCards(foundTasks);
+        updateDatabase(foundTasks[currentDraggedElement].id, category);
+    }
+   
 }
 
 

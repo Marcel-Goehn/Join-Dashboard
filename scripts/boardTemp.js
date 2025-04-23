@@ -4,13 +4,13 @@
  * @param {number} index - The index of the current card 
  * @returns - it returns the html code to the render function
  */
-function getCardsTemplate(index) {
+function getCardsTemplate(index, array) {
     return `<div draggable="true" ondragstart="startDragging(${index})" onclick="openDialog(${index})" class="card">
                             <h2>
-                                <span class="card-header">${cards[index].value.category}</span>
+                                <span class="card-header">${array[index].value.category}</span>
                             </h2>
-                            <h3>${cards[index].value.title}</h3>
-                            <p>${cards[index].value.description}</p>
+                            <h3>${array[index].value.title}</h3>
+                            <p>${array[index].value.description}</p>
                             <div id="subtasks${index}" class="subtasks">
                             ${getSubtasksInformation(index)}
                             </div>
@@ -18,7 +18,7 @@ function getCardsTemplate(index) {
                                 <div class="user-icons">
                                     ${getAssignedUsers(index)}
                                 </div>
-                                <img src="../assets/img/${cards[index].value.priority}.svg">
+                                <img src="../assets/img/${array[index].value.priority}.svg">
                             </div>
                         </div>`; // Dann muss noch aus dem Dialog kontrolliert werden ob schon subtasks abgehakt wurden oder nicht.
 }
@@ -69,22 +69,22 @@ function getEmptySectionTemplate(placeholder) {
  * 
  * @returns - It returns the html code for the dialog of the task card
  */
-function getDialogTemplate(index) {
+function getDialogTemplate(index, array) {
     return `<div class="align-dialog-header">
-                <div class="category">${cards[index].value.category}</div>
+                <div class="category">${array[index].value.category}</div>
                 <img onclick="closeDialog(event)" class="close-btn" src="../assets/img/addtask/x.svg">
             </div>
-            <h1 class="dialog-h1">${cards[index].value.title}</h1>
-            <p class="dialog-p">${cards[index].value.description}</p>
+            <h1 class="dialog-h1">${array[index].value.title}</h1>
+            <p class="dialog-p">${array[index].value.description}</p>
             <div class="due-date-section">
                 <span class="due-date-txt">Due date:</span>
-                <span class="due-date">${cards[index].value.duedate}</span>
+                <span class="due-date">${array[index].value.duedate}</span>
             </div>
             <div class="priority-section">
                 <span class="priority-txt">Priority:</span>
                 <div class="priority-icon-alignment">
-                    <span class="icon-txt">${cards[index].value.priority}</span>
-                    <img src="../assets/img/${cards[index].value.priority}.svg">
+                    <span class="icon-txt">${array[index].value.priority}</span>
+                    <img src="../assets/img/${array[index].value.priority}.svg">
                 </div>
             </div>
             <p class="assignment-txt">Assigned To:</p>
