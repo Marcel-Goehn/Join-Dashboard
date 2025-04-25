@@ -214,7 +214,8 @@ body {
 	display: flex;
 	flex-direction: column;
 	/* align-items: center; */
-	padding-left: clamp(328px, calc(232px + 96px + 5vw), 400px);
+	/* padding-left: clamp(328px, calc(232px + 96px + 5vw), 400px); */
+	padding-left: 328px;
 }
 #center-content {
 	display: flex;
@@ -385,7 +386,8 @@ button:disabled:hover {
 }
 @media(max-width: 850px) {
 	body {
-		padding-left: calc(16px + 10vw);
+		/* padding-left: calc(16px + 10vw); */
+		padding-left: 0;
 	}
 	h1 {
 		font-size: 47px;
@@ -401,7 +403,13 @@ button:disabled:hover {
 		gap: 22px;
 	}
 	#addtask_button_div {
+		/* left: 138px; */
+		left: 16px;
 		gap: 32px;
+		position: fixed;
+		bottom: 150px;
+		/* left: clamp(16px, 10vw, 96px); */
+		padding-right: 16px;
 	}
 	#separator {
 		display: none;
@@ -411,7 +419,8 @@ button:disabled:hover {
 		/* align-items: center; */
 	}
 	#center-content {
-		/* padding-left: clamp(16px, 10vw, 1000px); */
+		padding-left: 16px;
+		padding-top: 128px;
 		padding-right: 16px;
 		gap: 32px;
 		align-items: center;
@@ -432,11 +441,6 @@ button:disabled:hover {
 	.btn_bigFont {
 		font-size: 16px !important;
 	}
-	#addtask_button_div {
-		position: fixed;
-		bottom: 150px;
-		right: 16px;
-	}
 	#description {
 		min-height: 88px;
 		max-height: 88px;
@@ -451,6 +455,7 @@ button:disabled:hover {
 	}
 	#addtask_button_div button {
 		padding: 16px;
+		max-height: 57.2px;
 	}
 	#required_hint {
 		margin-bottom: 200px;
