@@ -174,7 +174,7 @@ function getEditDialogTemplate(index) {
                 <div class="align-assigned-to-section">
                     <label for="dialog_assigned_to">Assigned to</label>
                     <div class="diaolog-dropdown-menu">
-                        <input type="text" id="dialog_assigned_to" name="dialog_assigned_to" placeholder="Select contacts to assign">
+                        <input onkeyup="checkFilterContactConditions(${index})" type="text" id="dialog_assigned_to" name="dialog_assigned_to" placeholder="Select contacts to assign">
                         <img onclick="openContactList(event)" id="arrow_down" class="dropdown-icon" src="../assets/img/addtask/arrow_drop_downaa.svg">
                         <img onclick="closeContactList()" id="arrow_up" class="dropdown-icon d_none" src="../assets/img/addtask/arrow_drop_down.svg">
                     </div>
@@ -274,11 +274,11 @@ function getAssignedUsersEditTemplate(firstLetterFName, firstLetterLName) {
 }
 
 
-function renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, contactIndex, cardIndex) {
+function renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, contactIndex, cardIndex, contactArr) {
     return `<div id="contact_container_${contactIndex}" class="align-contact-list" onclick="assignOrDisassignContact(${contactIndex}, ${cardIndex})">
                             <div class="combine-name-and-shorthand">
                                 <div class="short-name-dialog">${firstNameFirstChar}${lastNameFirstChar}</div>
-                                <span id="full_name_${contactIndex}" class="full-name-dark">${contactsNamesOfUser[contactIndex].value.name}</span>
+                                <span id="full_name_${contactIndex}" class="full-name-dark">${contactArr[contactIndex].value.name}</span>
                             </div>
                             <img id="unchecked_image_${contactIndex}" src="../assets/img/Check_button_unchecked.svg">
                             <img id="checked_image_${contactIndex}" class="d_none" src="../assets/img/Check button_white.svg">
@@ -286,11 +286,11 @@ function renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, con
 }
 
 
-function renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, contactIndex, cardIndex) {
+function renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, contactIndex, cardIndex, contactArr) {
     return `<div id="contact_container_${contactIndex}" class="assigned-contact-background" onclick="assignOrDisassignContact(${contactIndex}, ${cardIndex})">
                             <div class="combine-name-and-shorthand">
                                 <div class="short-name-dialog">${firstNameFirstChar}${lastNameFirstChar}</div>
-                                <span id="full_name_${contactIndex}" class="full-name-white">${contactsNamesOfUser[contactIndex].value.name}</span>
+                                <span id="full_name_${contactIndex}" class="full-name-white">${contactArr[contactIndex].value.name}</span>
                             </div>
                             <img id="unchecked_image_${contactIndex}" class="d_none" src="../assets/img/Check_button_unchecked.svg">
                             <img id="checked_image_${contactIndex}" src="../assets/img/Check button_white.svg">

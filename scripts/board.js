@@ -54,7 +54,7 @@ function pushDataToCardsArray(cardData) {
         }
         cards.push({id : key, value});
     }
-    console.log(cards);
+    //console.log(cards);
 }
 /**
  * This function filters the cards array based on title and description

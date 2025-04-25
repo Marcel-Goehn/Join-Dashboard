@@ -191,7 +191,6 @@ async function fetchUserData() {
             throw new Error(`HTTP Fehler! Status: ${response.status}`);
         }
         let data = await response.json();
-        //renderContactList(data.contacts);
         pushContactList(data.contacts);
     } catch (error) {
         console.error("Fehler beim Abrufen der Daten:", error);
@@ -216,10 +215,10 @@ function renderContactList(cardIndex) {
         lastNameFirstChar = lastNameFirstChar.charAt(0);
         const checkAssignment = assignmentList.find(element => element.id == contactsNamesOfUser[i].id);
         if(checkAssignment != undefined) {
-            contactsRef += renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i, cardIndex);
+            contactsRef += renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i, cardIndex, contactsNamesOfUser);
         }
         else {
-            contactsRef += renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i, cardIndex);
+            contactsRef += renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i, cardIndex, contactsNamesOfUser);
         }
     }
     return contactsRef;
@@ -336,7 +335,6 @@ function disAssignUserFromCard(contactId, cardIndex, contactIndex) {
     document.getElementById(`checked_image_${contactIndex}`).classList.add('d_none');
     document.getElementById(`unchecked_image_${contactIndex}`).classList.remove('d_none');
     updateShortHandNames(cardIndex);
-    // console.log(cards);
 }
 
 
@@ -349,7 +347,6 @@ function assignUserToCard(contactIndex, cardIndex) {
     document.getElementById(`checked_image_${contactIndex}`).classList.remove('d_none');
     document.getElementById(`unchecked_image_${contactIndex}`).classList.add('d_none');
     updateShortHandNames(cardIndex);
-    // console.log(cards[cardIndex].value.assigned);
 }
 
 
@@ -367,6 +364,48 @@ function updateShortHandNames(cardIndex) {
         assignedUsers += getAssignedUsersEditTemplate(firstLetterFName, firstLetterLName);
     }
     shortHandRef.innerHTML = assignedUsers;
+}
+
+
+function checkFilterContactConditions(cardIndex) {
+    let inputLetters = document.getElementById('dialog_assigned_to').value;
+    let inputLettersLength = inputLetters.trim().length;
+    if (inputLettersLength >= 2) {
+        filterContactsInEditDialog(inputLetters.toLowerCase(), cardIndex);
+    }
+    else if (inputLettersLength === 0) {
+        renderFilteredContactsIntoDialog(contactsNamesOfUser, cardIndex);
+    }
+}
+
+
+function filterContactsInEditDialog(inputLetters, cardIndex) {
+    let filteredContacts = "";
+    filteredContacts = contactsNamesOfUser.filter(contact => contact.value.name.toLowerCase().includes(inputLetters));
+    console.log(filteredContacts);
+    renderFilteredContactsIntoDialog(filteredContacts, cardIndex);
+}
+
+
+function renderFilteredContactsIntoDialog(filteredContacts, cardIndex) {
+    let assignmentList = getAssignmentList(cardIndex);
+    let contactListRef = document.getElementById('contact-list-wrapper');
+    let contactsRef = "";
+    contactListRef.innerHTML = ``;
+    for (let i = 0; i < filteredContacts.length; i++) {
+        let [firstNameFirstChar, lastNameFirstChar] = filteredContacts[i].value.name.split(" ");
+        firstNameFirstChar = firstNameFirstChar.charAt(0);
+        lastNameFirstChar = lastNameFirstChar.charAt(0);
+        const checkAssignment = assignmentList.find(element => element.id == filteredContacts[i].id);
+        if(checkAssignment != undefined) {
+            contactsRef += renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i, cardIndex, filteredContacts);
+        }
+        else {
+            contactsRef += renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i, cardIndex, filteredContacts);
+        }
+    }
+    contactListRef.innerHTML = contactsRef;
+    console.log(contactsNamesOfUser);
 }
 
 
