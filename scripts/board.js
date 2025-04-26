@@ -69,8 +69,9 @@ function searchTasks(){
         renderCards(foundTasks);
         previousInput = searchInput.length;
     }else if(searchInput.length < 3 && previousInput > searchInput.length){
-        renderCards(cards);
         foundTasks = [];
+        renderCards(cards);
+        
     }
 
 }
@@ -156,6 +157,7 @@ function checkRenderConditions(index, array) {
  */
 function getSubtasksInformation(index) {
     const array = getCurrentArray();
+    console.log(array);
     let subtaskLengthArr = [];
     let counter = 0;
     for (let [key, value] of Object.entries(array[index].value.subtasks)) {

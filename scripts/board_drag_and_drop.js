@@ -25,15 +25,10 @@ function allowDrop(ev) {
  * @param {string} category - The state in wich the card will be dropped 
  */
 function moveTo(category) {
-    if(foundTasks.length === 0){
-        cards[currentDraggedElement].value.currentStatus = category;
-        renderCards(cards);
-        updateDatabase(cards[currentDraggedElement].id, category);
-    }else{
-        foundTasks[currentDraggedElement].value.currentStatus = category;
-        renderCards(foundTasks);
-        updateDatabase(foundTasks[currentDraggedElement].id, category);
-    }
+        const array = getCurrentArray();
+        array[currentDraggedElement].value.currentStatus = category;
+        renderCards(array);
+        updateDatabase(array[currentDraggedElement].id, category);
    
 }
 
@@ -45,18 +40,19 @@ function moveTo(category) {
  * @param {string} cat - The new state/section in wich the card was dropped
  */
 async function updateDatabase(id, cat) {
+    const array = getCurrentArray();
     await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${id}.json`, {
         method : "PUT",
         headers : {"Content-Type" : "application/json"},
         body : JSON.stringify({
-            category : cards[currentDraggedElement].value.category,
+            category : array[currentDraggedElement].value.category,
             currentStatus : cat,
-            description : cards[currentDraggedElement].value.description,
-            duedate : cards[currentDraggedElement].value.duedate,
-            priority : cards[currentDraggedElement].value.priority,
-            title : cards[currentDraggedElement].value.title,
-            subtasks : cards[currentDraggedElement].value.subtasks,
-            assigned : cards[currentDraggedElement].value.assigned
+            description : array[currentDraggedElement].value.description,
+            duedate : array[currentDraggedElement].value.duedate,
+            priority : array[currentDraggedElement].value.priority,
+            title : array[currentDraggedElement].value.title,
+            subtasks : array[currentDraggedElement].value.subtasks,
+            assigned : array[currentDraggedElement].value.assigned
         })
     })
 }
