@@ -13,6 +13,8 @@ let feedbackMemory = ``;
 let doneMemory = ``;
 let previousInput = 0;
 let foundTasks = [];
+let originalCards = [];
+let originalFoundTasks = [];
 
 
 /**
@@ -49,14 +51,13 @@ async function fetchData() {
  * @param {object} cardData - This is the fetched json from the database 
  */
 function pushDataToCardsArray(cardData) {
-    cards = [];
     for(let [key, value] of Object.entries(cardData)) {
         if (key == "null") {
             continue;
         }
-        cards.push({id : key, value});
+        originalCards.push({id : key, value});
     }
-    //console.log(cards);
+    cards = structuredClone(originalCards);
 }
 /**
  * This function filters the cards array based on title and description
@@ -64,17 +65,21 @@ function pushDataToCardsArray(cardData) {
 function searchTasks(){
     const searchInput = document.getElementById("find_task").value;
     if(searchInput.length > 2){
-        foundTasks = cards.filter(card => 
+        originalFoundTasks = cards.filter(card => 
         card.value.title.toLowerCase().includes(searchInput.toLowerCase()) ||
         card.value.description.toLowerCase().includes(searchInput.toLowerCase())
         )
+        foundTasks = structuredClone(originalFoundTasks);
         renderCards(foundTasks);
         previousInput = searchInput.length;
     }else if(searchInput.length < 3 && previousInput > searchInput.length){
-        foundTasks = [];
+        originalFoundTasks = [];
+        foundTasks = structuredClone(originalFoundTasks);
         renderCards(cards);
         
     }
+
+    
 
 }
 
@@ -159,7 +164,6 @@ function checkRenderConditions(index, array) {
  */
 function getSubtasksInformation(index) {
     const array = getCurrentArray();
-    console.log(array);
     let subtaskLengthArr = [];
     let counter = 0;
     for (let [key, value] of Object.entries(array[index].value.subtasks)) {

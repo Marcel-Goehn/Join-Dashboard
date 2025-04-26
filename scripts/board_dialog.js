@@ -23,16 +23,11 @@ async function closeDialog(e) {
     e.stopPropagation();
     currentPriority = "";
     dialog.close();
-    cards = [];
-    user = [];
-    contactsNamesOfUser = [];
-    foundTasks = [];
-    let searchValue = document.getElementById("find_task").value;
-    let newInput = searchValue;
-    searchValue = "";
-    await init();
-    searchValue = newInput;
-    searchTasks();
+    cards = structuredClone(originalCards);
+    foundTasks = structuredClone(originalFoundTasks);
+    const array = getCurrentArray();
+    renderCards(array);
+   
 }
 
 
