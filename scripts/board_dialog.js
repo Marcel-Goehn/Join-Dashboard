@@ -43,6 +43,9 @@ dialog.onclick = function (e) {
         dialog.close();
         return;
     }
+    if (contactWrapper === null) {
+        return;
+    }
     if (!contactWrapper.contains(e.target)) {
         closeContactList();
     }
@@ -83,20 +86,51 @@ function assignedDialogUsers(index) {
 }
 
 
-/**
- * 
- * @param {number} index - The index of the current card 
- * @returns - It returns the subtasks to the card dialog
- */
-function renderSubtasksIntoDialog(index) {
+// /**
+//  * 
+//  * @param {number} index - The index of the current card 
+//  * @returns - It returns the subtasks to the card dialog
+//  */
+// function renderSubtasksIntoDialog(index) {
+//     let subtasksRef = ``;
+//     for (let [key, value] of Object.entries(cards[index].value.subtasks)) {
+//         if (key == "null") {
+//             continue;
+//         }
+//         subtasksRef += getSubtasksDialogTemplate(value.status, value.name);
+//     }
+//     return subtasksRef;
+// }
+
+
+function renderSubtasksIntoDialog(cardIndex) {
     let subtasksRef = ``;
-    for (let [key, value] of Object.entries(cards[index].value.subtasks)) {
+    const entries = Object.entries(cards[cardIndex].value.subtasks);
+    for (let i = 0; i < entries.length; i++) {
+        const [key, value] = entries[i];
         if (key == "null") {
             continue;
         }
-        subtasksRef += getSubtasksDialogTemplate(value.status, value.name);
+        subtasksRef += getSubtasksDialogTemplate(value.status, value.name, cardIndex, key);
     }
     return subtasksRef;
+}
+
+
+async function checkOrUncheckSubtask(status, cardIndex, subtaskKey) {
+    if(status === "checked") {
+        cards[cardIndex].value.subtasks[subtaskKey].status = "unchecked";
+    }
+    else {
+        cards[cardIndex].value.subtasks[subtaskKey].status = "checked";
+    }
+    await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${cards[cardIndex].id}/subtasks.json`, {
+        method : "PUT",
+        headers : {"Content-Type" : "application/json"},
+        body : JSON.stringify(cards[cardIndex].value.subtasks)
+    });
+    init();
+    openDialog(cardIndex);
 }
 
 
@@ -302,14 +336,14 @@ function renderSubtasksintoEditDialog(index) {
 }
 
 
-function assignOrDisassignContact(contactIndex, cardIndex) {
+function assignOrDisassignContact(contactIndex, cardIndex, contactID, contactName) {
     let iteratedAssignments = getAssignmentList(cardIndex);
-    let searchForAssignment = iteratedAssignments.find(element => element.id == contactsNamesOfUser[contactIndex].id);
+    let searchForAssignment = iteratedAssignments.find(element => element.id == contactID);
     if(searchForAssignment != undefined) {
         disAssignUserFromCard(searchForAssignment.id, cardIndex, contactIndex);
     }
     else {
-        assignUserToCard(contactIndex, cardIndex);
+        assignUserToCard(contactIndex, cardIndex, contactID, contactName);
     }
 }
 
@@ -326,8 +360,8 @@ function getAssignmentList(index) {
 }
 
 
-function disAssignUserFromCard(contactId, cardIndex, contactIndex) {
-    delete cards[cardIndex].value.assigned[contactId];
+function disAssignUserFromCard(contactID, cardIndex, contactIndex) {
+    delete cards[cardIndex].value.assigned[contactID];
     document.getElementById(`contact_container_${contactIndex}`).classList.remove('assigned-contact-background');
     document.getElementById(`contact_container_${contactIndex}`).classList.add('align-contact-list');
     document.getElementById(`full_name_${contactIndex}`).classList.remove('full-name-white');
@@ -338,8 +372,8 @@ function disAssignUserFromCard(contactId, cardIndex, contactIndex) {
 }
 
 
-function assignUserToCard(contactIndex, cardIndex) {
-    cards[cardIndex].value.assigned[contactsNamesOfUser[contactIndex].id] = {name : contactsNamesOfUser[contactIndex].value.name};
+function assignUserToCard(contactIndex, cardIndex, contactID, contactName) {
+    cards[cardIndex].value.assigned[contactID] = {name : contactName};
     document.getElementById(`contact_container_${contactIndex}`).classList.add('assigned-contact-background');
     document.getElementById(`contact_container_${contactIndex}`).classList.remove('align-contact-list');
     document.getElementById(`full_name_${contactIndex}`).classList.add('full-name-white');

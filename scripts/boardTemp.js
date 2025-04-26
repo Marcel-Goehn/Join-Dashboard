@@ -135,9 +135,9 @@ function getAssignedUsersDialogTemplate(firstName, lastName, firstLetterFName, f
  * @param {string} name 
  * @returns - Adds the status name to the svg so that the right one gets rendered and inserts the subtask into the html 
  */
-function getSubtasksDialogTemplate(status, name) {
+function getSubtasksDialogTemplate(status, name, cardIndex, key) {
     return `<div class="align-checkbox">
-                <img src="../assets/img/Check_button_${status}.svg">
+                <img onclick="checkOrUncheckSubtask('${status}', ${cardIndex}, '${key}')" src="../assets/img/Check_button_${status}.svg">
                 <p>${name}</p>
             </div>`
 }
@@ -275,7 +275,7 @@ function getAssignedUsersEditTemplate(firstLetterFName, firstLetterLName) {
 
 
 function renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, contactIndex, cardIndex, contactArr) {
-    return `<div id="contact_container_${contactIndex}" class="align-contact-list" onclick="assignOrDisassignContact(${contactIndex}, ${cardIndex})">
+    return `<div id="contact_container_${contactIndex}" class="align-contact-list" onclick="assignOrDisassignContact(${contactIndex}, ${cardIndex}, '${contactArr[contactIndex].id}', '${contactArr[contactIndex].value.name}')">
                             <div class="combine-name-and-shorthand">
                                 <div class="short-name-dialog">${firstNameFirstChar}${lastNameFirstChar}</div>
                                 <span id="full_name_${contactIndex}" class="full-name-dark">${contactArr[contactIndex].value.name}</span>
@@ -287,7 +287,7 @@ function renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, con
 
 
 function renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, contactIndex, cardIndex, contactArr) {
-    return `<div id="contact_container_${contactIndex}" class="assigned-contact-background" onclick="assignOrDisassignContact(${contactIndex}, ${cardIndex})">
+    return `<div id="contact_container_${contactIndex}" class="assigned-contact-background" onclick="assignOrDisassignContact(${contactIndex}, ${cardIndex}, '${contactArr[contactIndex].id}', '${contactArr[contactIndex].value.name}')">
                             <div class="combine-name-and-shorthand">
                                 <div class="short-name-dialog">${firstNameFirstChar}${lastNameFirstChar}</div>
                                 <span id="full_name_${contactIndex}" class="full-name-white">${contactArr[contactIndex].value.name}</span>

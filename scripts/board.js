@@ -20,7 +20,8 @@ let foundTasks = [];
  */
 async function init() {
         await fetchData();
-        renderCards(cards);
+        const array = getCurrentArray();
+        renderCards(array);
         await fetchUserData();
 }
 
@@ -48,6 +49,7 @@ async function fetchData() {
  * @param {object} cardData - This is the fetched json from the database 
  */
 function pushDataToCardsArray(cardData) {
+    cards = [];
     for(let [key, value] of Object.entries(cardData)) {
         if (key == "null") {
             continue;
