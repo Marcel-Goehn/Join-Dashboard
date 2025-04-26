@@ -78,6 +78,8 @@ function getMobileIn(email, name, phone, color){
 	const contactInfoContent = document.getElementById("contactInfo")
 	if(!contactInfoContent.querySelector("#optionsBtn")){
 		contactInfoContent.innerHTML += editMobileTemp(email, name, phone, color);
+		const optionsButton = document.getElementById("optionsBtn");
+		optionsButton.addEventListener("click", toggleBurger);
 	}
 	
 }
@@ -375,11 +377,14 @@ function switchToSingleView(contentLimiter, stickyContacts, addNewContactBtn, ad
 }
 
 function addResizeListener(){
-window.addEventListener("resize", ()=>{
-	const contentLimiter = document.getElementById("contentLimiter");
+window.addEventListener("resize", resizeHandler)
+}
+
+resizeHandler = () => {const contentLimiter = document.getElementById("contentLimiter");
 	const stickyContacts = document.getElementById("stickyContacts");
 	const addNewContactBtn = document.getElementById("addNewContactBtn");
 	const addNewFixed = document.getElementById("addContactFixed");
+	const stickyContactsContent = document.getElementById("stickyContactsContent");
 	if(window.innerWidth <= 650){
 		switchToSingleView(contentLimiter, stickyContacts, addNewContactBtn, addNewFixed);
 	}else if(window.innerWidth > 650){
@@ -388,11 +393,10 @@ window.addEventListener("resize", ()=>{
 		addNewContactBtn.classList.remove("dnone");
 		addNewFixed.classList.add("dnone");
 		contentLimiter.style.width = "auto";
-		const stickyContactsContent = document.getElementById("stickyContactsContent");
 		stickyContactsContent.classList.remove("dnone");
-	}
-});
-}
+		closeBurger();
+	}}
+
 
 function clickContactSmall(){
 	if(window.innerWidth < 650){
@@ -412,19 +416,36 @@ function backSmall(){
 	}
 }
 
-function openBurger(){
-	const burgerDiv = document.getElementById("editBurger");
-	burgerDiv.classList.remove("slideBurgerOut");
-	burgerDiv.classList.add("slideBurgerIn");
-	document.addEventListener("click", closeBurgerHandler);
+function openBurger() {
+  const burgerDiv = document.getElementById("editBurger");
+  burgerDiv.classList.remove("slideBurgerOut");
+  burgerDiv.classList.add("slideBurgerIn");
+  document.addEventListener("click", closeBurgerHandler, { once: true });
 }
 
-const closeBurgerHandler = (event) => {
-	const burgerDiv = document.getElementById("editBurger");
-	if(!burgerDiv.contains(event.target)){
-		 burgerDiv.classList.remove("slideBurgerIn");
-		 burgerDiv.classList.add("slideBurgerOut");
-		 document.removeEventListener("click", closeBurgerHandler);
+function closeBurger() {
+  const burgerDiv = document.getElementById("editBurger");
+  if(burgerDiv){
+  	burgerDiv.classList.remove("slideBurgerIn");
+  	burgerDiv.classList.add("slideBurgerOut");
 	}
 }
-	
+
+function toggleBurger(event) {
+  const burgerDiv = document.getElementById("editBurger");
+  event.stopPropagation();
+  if (burgerDiv.classList.contains("slideBurgerIn")) {
+    closeBurger();
+  } else {
+    openBurger();
+  }
+}
+
+function closeBurgerHandler(event) {
+  const burgerDiv = document.getElementById("editBurger");
+  if (!burgerDiv.contains(event.target)) {
+    closeBurger();
+  }
+}
+
+

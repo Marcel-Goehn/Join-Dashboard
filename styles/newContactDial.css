@@ -561,3 +561,80 @@
 		animation: slideOutFromBottom 0.5s ease-in-out forwards;
 	}
 }
+
+@media(max-width: 850px){
+    #editContactDialContent {
+        flex-direction: column;
+        width: 90%; /* statt feste 75.75rem */
+        max-width: 600px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #editContactLogoAndTextDiv {
+        padding-inline: 20px;
+        padding-block: 150px;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 20px;
+    }
+
+    #editContactLogoAndTextDiv img {
+        display: none;
+    }
+
+    #editContactTextDiv h3 {
+        font-size: 47px;
+    }
+
+    #editContactTextDiv p {
+        font-size: 20px;
+    }
+
+    #editContactInfoDiv {
+        padding-inline: 20px;
+        padding-block: 62px;
+        margin-top: 40px;
+        align-items: center;
+    }
+
+    #editImgDiv {
+        display: flex;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -70%);
+        margin: 0;
+        border: 3px solid white;
+    }
+
+    #closeDialBtnDiv {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+    }
+
+    #closeDialBtn {
+        background-color: #2a3647;
+    }
+
+    #closeDialBtn img {
+        filter: invert(100);
+    }
+
+    #dialButtonDiv {
+        justify-content: center;
+    }
+
+    #deleteButton {
+        display: none; /* Delete Button ausblenden auf kleinen Screens */
+    }
+    
+    .slideIn {
+        animation: slideInFromBottom 0.5s ease-in-out forwards;
+    }
+
+    .slideOut {
+        animation: slideOutFromBottom 0.5s ease-in-out forwards;
+    }
+}
