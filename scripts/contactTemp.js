@@ -109,8 +109,7 @@ function editContactDialTemp(email, name, phone) {
                         <div id="dialButtonDiv">
                             <button id="deleteButton" onclick="deleteContact('${name}')">Delete</button>
                             <button id="saveBtn" onclick="validateContactForm('edit', '${name}', event)">Save
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none">
-                                    <path d="M5.55057 9.15L14.0256 0.675..." fill="white" />
+                                <svg><path xmlns="http://www.w3.org/2000/svg" d="M5.55057 9.15L14.0256 0.675C14.2256 0.475 14.4631 0.375 14.7381 0.375C15.0131 0.375 15.2506 0.475 15.4506 0.675C15.6506 0.875 15.7506 1.1125 15.7506 1.3875C15.7506 1.6625 15.6506 1.9 15.4506 2.1L6.25057 11.3C6.05057 11.5 5.81724 11.6 5.55057 11.6C5.28391 11.6 5.05057 11.5 4.85057 11.3L0.550573 7C0.350573 6.8 0.25474 6.5625 0.263073 6.2875C0.271407 6.0125 0.375573 5.775 0.575573 5.575C0.775573 5.375 1.01307 5.275 1.28807 5.275C1.56307 5.275 1.80057 5.375 2.00057 5.575L5.55057 9.15Z" fill="white"/>
                                 </svg>
                             </button>
                         </div>
@@ -181,7 +180,7 @@ function addContactDialTemp() {
 }
 
 function editMobileTemp(email, name, phone, color){
-    return `<div id="optionsBtn" onclick="openBurger()"><img src="../assets/img/contacts/more_vert.png"></div>
+    return `<div id="optionsBtn" onclick="toggleBurger(event)"><img src="../assets/img/contacts/more_vert.png"></div>
             <div id="editBurger">  
                 <div id="editDivMobile">
                     <div class="editBlock" onclick="openEditContactDial('${email}', '${name}', '${phone}', '${color}'), slideIn()">

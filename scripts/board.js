@@ -21,6 +21,7 @@ let originalFoundTasks = [];
  * Initializes the fetching
  */
 async function init() {
+        originalCards = [];
         await fetchData();
         const array = getCurrentArray();
         renderCards(array);

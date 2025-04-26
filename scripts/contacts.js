@@ -78,8 +78,6 @@ function getMobileIn(email, name, phone, color){
 	const contactInfoContent = document.getElementById("contactInfo")
 	if(!contactInfoContent.querySelector("#optionsBtn")){
 		contactInfoContent.innerHTML += editMobileTemp(email, name, phone, color);
-		const optionsButton = document.getElementById("optionsBtn");
-		optionsButton.addEventListener("click", toggleBurger);
 	}
 	
 }
@@ -416,36 +414,39 @@ function backSmall(){
 	}
 }
 
-function openBurger() {
-  const burgerDiv = document.getElementById("editBurger");
-  burgerDiv.classList.remove("slideBurgerOut");
-  burgerDiv.classList.add("slideBurgerIn");
-  document.addEventListener("click", closeBurgerHandler, { once: true });
-}
-
-function closeBurger() {
-  const burgerDiv = document.getElementById("editBurger");
-  if(burgerDiv){
-  	burgerDiv.classList.remove("slideBurgerIn");
-  	burgerDiv.classList.add("slideBurgerOut");
-	}
-}
-
 function toggleBurger(event) {
-  const burgerDiv = document.getElementById("editBurger");
-  event.stopPropagation();
-  if (burgerDiv.classList.contains("slideBurgerIn")) {
-    closeBurger();
-  } else {
-    openBurger();
+	event.stopPropagation();
+	const burgerDiv = document.getElementById("editBurger");
+	
+	if (burgerDiv.classList.contains("slideBurgerIn")) {
+	  closeBurger();
+	} else {
+	  openBurger();
+	  document.addEventListener("click", closeBurgerHandler);
+	}
   }
-}
-
-function closeBurgerHandler(event) {
-  const burgerDiv = document.getElementById("editBurger");
-  if (!burgerDiv.contains(event.target)) {
-    closeBurger();
+  
+  function openBurger() {
+	const burgerDiv = document.getElementById("editBurger");
+	burgerDiv.classList.remove("slideBurgerOut");
+	burgerDiv.classList.add("slideBurgerIn");
   }
-}
-
+  
+  function closeBurger() {
+	const burgerDiv = document.getElementById("editBurger");
+	if (burgerDiv) {
+	  burgerDiv.classList.remove("slideBurgerIn");
+	  burgerDiv.classList.add("slideBurgerOut");
+	}
+  }
+  
+  function closeBurgerHandler(event) {
+	const burgerDiv = document.getElementById("editBurger");
+	const optionsBtn = document.getElementById("optionsBtn");
+	
+	if (!burgerDiv.contains(event.target) && event.target !== optionsBtn) {
+	  closeBurger();
+	  document.removeEventListener("click", closeBurgerHandler);
+	}
+  }
 
