@@ -148,18 +148,18 @@ function getSubtasksDialogTemplate(status, name, cardIndex, key) {
  * @param {number} index - The index of the current card
  * @returns - It returns the changeable content of the current card
  */
-function getEditDialogTemplate(index) {
+function getEditDialogTemplate(array, index) {
     return `<div class="align-edit-dialog-close-btn">
                 <img onclick="closeDialog(event)" class="close-btn" src="../assets/img/addtask/x.svg">
             </div>
             <form onsubmit="return false">
                 <div class="align-title-input">
                     <label for="input_title">Title</label>
-                    <input value="${cards[index].value.title}" type="text" name="input_title" id="input_title_${index}" placeholder="Enter a title">
+                    <input value="${array[index].value.title}" type="text" name="input_title" id="input_title_${index}" placeholder="Enter a title">
                 </div>
                 <div class="align-descr-input">
                     <label for="input_descr">Description</label>
-                    <textarea name="input_descr" id="input_descr_${index}" rows="4" placeholder="Enter a description">${cards[index].value.description}</textarea>
+                    <textarea name="input_descr" id="input_descr_${index}" rows="4" placeholder="Enter a description">${array[index].value.description}</textarea>
                 </div>
                 <div class="align-duedate-input">
                     <label for="input_duedate">Duedate</label>

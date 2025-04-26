@@ -19,7 +19,7 @@ function openDialog(i) {
 /**
  * This function closes the dialog of the card
  */
-function closeDialog(e) {
+async function closeDialog(e) {
     e.stopPropagation();
     currentPriority = "";
     dialog.close();
@@ -27,8 +27,12 @@ function closeDialog(e) {
     user = [];
     contactsNamesOfUser = [];
     foundTasks = [];
-    document.getElementById("find_task").value = "";
-    init();
+    let searchValue = document.getElementById("find_task").value;
+    let newInput = searchValue;
+    searchValue = "";
+    await init();
+    searchValue = newInput;
+    searchTasks();
 }
 
 
@@ -40,7 +44,8 @@ function closeDialog(e) {
 dialog.onclick = function (e) {
     const contactWrapper = document.getElementById('contact-list-wrapper');
     if (!wrapper.contains(e.target)) {
-        dialog.close();
+        //dialog.close();
+        closeDialog(e);
         return;
     }
     if (contactWrapper === null) {
@@ -60,8 +65,9 @@ dialog.onclick = function (e) {
  */
 function openEditDialog(index, e) {
     e.stopPropagation();
-    wrapper.innerHTML = getEditDialogTemplate(index);
-    currentPriority = cards[index].value.priority;
+    const array = getCurrentArray();
+    wrapper.innerHTML = getEditDialogTemplate(array ,index);
+    currentPriority = array[index].value.priority;
     dialog.showModal();
 }
 
@@ -73,7 +79,8 @@ function openEditDialog(index, e) {
  */
 function assignedDialogUsers(index) {
     let assignedContactsRef = ``;
-    for (let [key, value] of Object.entries(cards[index].value.assigned)) {
+    const array = getCurrentArray();
+    for (let [key, value] of Object.entries(array[index].value.assigned)) {
         if (key == "null") {
             continue;
         }
@@ -105,7 +112,8 @@ function assignedDialogUsers(index) {
 
 function renderSubtasksIntoDialog(cardIndex) {
     let subtasksRef = ``;
-    const entries = Object.entries(cards[cardIndex].value.subtasks);
+    const array = getCurrentArray();
+    const entries = Object.entries(array[cardIndex].value.subtasks);
     for (let i = 0; i < entries.length; i++) {
         const [key, value] = entries[i];
         if (key == "null") {
@@ -118,16 +126,17 @@ function renderSubtasksIntoDialog(cardIndex) {
 
 
 async function checkOrUncheckSubtask(status, cardIndex, subtaskKey) {
+    const array = getCurrentArray();
     if(status === "checked") {
-        cards[cardIndex].value.subtasks[subtaskKey].status = "unchecked";
+        array[cardIndex].value.subtasks[subtaskKey].status = "unchecked";
     }
     else {
-        cards[cardIndex].value.subtasks[subtaskKey].status = "checked";
+        array[cardIndex].value.subtasks[subtaskKey].status = "checked";
     }
-    await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${cards[cardIndex].id}/subtasks.json`, {
+    await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${array[cardIndex].id}/subtasks.json`, {
         method : "PUT",
         headers : {"Content-Type" : "application/json"},
-        body : JSON.stringify(cards[cardIndex].value.subtasks)
+        body : JSON.stringify(array[cardIndex].value.subtasks)
     });
     init();
     openDialog(cardIndex);
@@ -140,8 +149,9 @@ async function checkOrUncheckSubtask(status, cardIndex, subtaskKey) {
  * @param {number} i - The index of the current card 
  */
 function deleteCard(i) {
+    const array = getCurrentArray();
     deleteFromDatabase(i);
-    cards.splice(i, 1);
+    array.splice(i, 1);
     closeDialog();
     renderCards();
 }
@@ -153,7 +163,8 @@ function deleteCard(i) {
  * @param {i} i - The index of the current card 
  */
 async function deleteFromDatabase(i) {
-    let cardToDelete = cards[i].id;
+    const array = getCurrentArray();
+    let cardToDelete = array[i].id;
     await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${cardToDelete}.json`, {
         method: "DELETE"
     });
@@ -233,6 +244,7 @@ async function fetchUserData() {
 
 
 function pushContactList(contacts) {
+    contactsNamesOfUser = [];
     for(let [key, value] of Object.entries(contacts)) {
         contactsNamesOfUser.push({id : key, value});
     }
@@ -260,8 +272,9 @@ function renderContactList(cardIndex) {
 
 
 function getAssignmentList(cardIndex) {
+    const array = getCurrentArray();
     let assignedTo = [];
-    for (let [key, value] of Object.entries(cards[cardIndex].value.assigned)) {
+    for (let [key, value] of Object.entries(array[cardIndex].value.assigned)) {
         if (key === "null") {
             continue;
         }
@@ -297,10 +310,11 @@ function deleteSubtaskFromInput() {
 
 
 function checkWichBtnToHighlight(index) {
-    if (cards[index].value.priority === 'urgent') {
+    const array = getCurrentArray();
+    if (array[index].value.priority === 'urgent') {
         return renderUrgent();
     }
-    else if (cards[index].value.priority === 'medium') {
+    else if (array[index].value.priority === 'medium') {
         return renderMedium();
     }
     else {
@@ -310,8 +324,9 @@ function checkWichBtnToHighlight(index) {
 
 
 function renderAssignedContactsToEditDialog(index) {
+    const array = getCurrentArray();
     let assignedContactsRef = ``;
-    for (let [key, value] of Object.entries(cards[index].value.assigned)) {
+    for (let [key, value] of Object.entries(array[index].value.assigned)) {
         if (key == "null") {
             continue;
         }
@@ -325,8 +340,9 @@ function renderAssignedContactsToEditDialog(index) {
 
 
 function renderSubtasksintoEditDialog(index) {
+    const array = getCurrentArray();
     let subtasksRef = ``;
-    for(let [key, value] of Object.entries(cards[index].value.subtasks)) {
+    for(let [key, value] of Object.entries(array[index].value.subtasks)) {
         if (key == "null") {
             continue;
         }
@@ -349,8 +365,9 @@ function assignOrDisassignContact(contactIndex, cardIndex, contactID, contactNam
 
 
 function getAssignmentList(index) {
+    const array = getCurrentArray();
     let assignedTo = [];
-    for(let [key, value] of Object.entries(cards[index].value.assigned)) {
+    for(let [key, value] of Object.entries(array[index].value.assigned)) {
         if (key == "null") {
             continue;
         }
@@ -361,7 +378,8 @@ function getAssignmentList(index) {
 
 
 function disAssignUserFromCard(contactID, cardIndex, contactIndex) {
-    delete cards[cardIndex].value.assigned[contactID];
+    const array = getCurrentArray();
+    delete array[cardIndex].value.assigned[contactID];
     document.getElementById(`contact_container_${contactIndex}`).classList.remove('assigned-contact-background');
     document.getElementById(`contact_container_${contactIndex}`).classList.add('align-contact-list');
     document.getElementById(`full_name_${contactIndex}`).classList.remove('full-name-white');
@@ -373,7 +391,8 @@ function disAssignUserFromCard(contactID, cardIndex, contactIndex) {
 
 
 function assignUserToCard(contactIndex, cardIndex, contactID, contactName) {
-    cards[cardIndex].value.assigned[contactID] = {name : contactName};
+    const array = getCurrentArray();
+    array[cardIndex].value.assigned[contactID] = {name : contactName};
     document.getElementById(`contact_container_${contactIndex}`).classList.add('assigned-contact-background');
     document.getElementById(`contact_container_${contactIndex}`).classList.remove('align-contact-list');
     document.getElementById(`full_name_${contactIndex}`).classList.add('full-name-white');
@@ -385,10 +404,11 @@ function assignUserToCard(contactIndex, cardIndex, contactID, contactName) {
 
 
 function updateShortHandNames(cardIndex) {
+    const array = getCurrentArray();
     let assignedUsers = "";
     let shortHandRef = document.getElementById('shorthand_contact_list');
     shortHandRef.innerHTML = ``;
-    for(let [key, value] of Object.entries(cards[cardIndex].value.assigned)) {
+    for(let [key, value] of Object.entries(array[cardIndex].value.assigned)) {
         if (key == "null") {
             continue;
         }
@@ -444,7 +464,8 @@ function renderFilteredContactsIntoDialog(filteredContacts, cardIndex) {
 
 
 async function saveCardChangesToDatabase(index) {
-    /*await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${cards[index].id}.json`, {
+    const array = getCurrentArray();
+    /*await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${array[index].id}.json`, {
         method : "PUT",
         headers : {"Content-Type" : "application/json"},
         body : JSON.stringify({
