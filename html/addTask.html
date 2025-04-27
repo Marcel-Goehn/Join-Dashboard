@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../styles/addtaskAnimation.css">
     <title>Join | Tasks</title>
 </head>
-<body onload="init_addTask(); highlightSidebarLink()" onclick="closeOpenSections()">
+<body onload="init_addTask(); highlightSidebarLink(); fetchNameInitials()" onclick="closeOpenSections()">
     <header>
         <div id="headerContent">
             <span class="header-subheader">Kanban Project Management Tool</span>
@@ -28,7 +28,7 @@
             </div>
         </div>
     </header>
-    <div id="sidebar">
+    <div id="sidebar" onload="highlightSidebarLink()">
         <div id="sidebarLogoDiv">
             <img
                 id="sidebarJoinLogo"
@@ -256,4 +256,5 @@
 <script src="../scripts/addTask.js"></script>
 <script src="../scripts/addTask_templates.js"></script>
 <script src="../scripts/sidebar.js"></script>
+<script src="..//scripts/header.js"></script>
 </html>

@@ -46,17 +46,13 @@ span {
 	color: #d1d1d1;
 	background-color: white;
 }
-/* #duedate_input::before {
-	position: fixed;
-	content: "dd/mm/yyyy";
-} */
 #separator {
 	height: 424px;
 	border: 1px solid #d1d1d1;
 }
 input {
 	font-size: 20px;
-	width: 100%;
+	flex: 1;
 	outline: none;
 }
 input:hover {
@@ -412,6 +408,11 @@ button:disabled:hover {
 		padding-left: calc(120px + 10vw);
 	}
 }
+/* @media(max-width: 980px) {
+	#description {
+		width: 80%;
+	}
+} */
 @media(max-width: 850px) {
 	body {
 		padding-left: 0;
@@ -420,7 +421,7 @@ button:disabled:hover {
 	h1 {
 		position: fixed;
 		top: 80px;
-		left: 16px;
+		padding-left: 16px;
 		font-size: 47px;
 		padding-top: 48px;
 		background-color: #f6f7f8;
@@ -429,20 +430,21 @@ button:disabled:hover {
 		font-size: 16px;
 	}
 	#required_and_taskbuttons {
-		/* flex-direction: column; */
+		flex-direction: column;
 		margin: 0;
 		gap: 22px;
+		position: relative;
 	}
 	#addtask_button_div {
-		/* align-self: flex-end; */
 		justify-content: flex-end;
 		gap: 32px;
 		position: fixed;
 		bottom: 140px;
 		padding-bottom: 20px;
-		/* background-color: #f6f7f8; */
-		background-color: red;
+		background-color: #f6f7f8;
 		width: 100%;
+		padding-right: 16px;
+		right: 0;
 	}
 	#separator {
 		display: none;
