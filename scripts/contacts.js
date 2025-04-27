@@ -5,7 +5,7 @@ const contactInfoDiv = document.getElementById("contactInfoInfo");
 const addContactDial = document.getElementById("addContactDial");
 const userObject = sessionStorage.getItem("loggedIn");
 const user = JSON.parse(userObject);
-console.log(user);
+const colors = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E","#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B",  "#FF4646", "#FFBB2B"];
 
 async function fetchContactData() {
 	const response = await fetch(
@@ -36,17 +36,26 @@ function renderContacts(contactData) {
 			);
 			previousLetter = contactData[contact].name.charAt(0).toUpperCase();
 		}
-		color = randomColor();
+		const color = getColor(index);
+		const phone = checkIfUndefined(contactData[contact].phone);
 		contactDiv.innerHTML += contactTemp(
 			contactData[contact].email,
 			contactData[contact].name,
-			contactData[contact].phone,
+			phone,
 			index,
 			color
 		);
 		styleBackgroundOfInitials(color, index);
 		index++;
 	}
+}
+
+function checkIfUndefined(phone) {
+	if(phone === undefined){
+		phone = "No number assigned";
+		return phone;
+	}
+	return phone;
 }
 
 function styleBackgroundOfInitials(color, index) {
@@ -67,20 +76,29 @@ async function showContacts() {
 }
 
 function openContact(email, name, phone, color, index) {
-	colorClickedContact(index);
-	contactInfoDiv.innerHTML = contactInfoTemp(email, name, phone, color);
-	const initalsDivInfo = document.getElementById("initialsDivInfo");
-	initalsDivInfo.style.backgroundColor = color;
-	getMobileIn(email, name, phone, color);
-	
+    email = decodeURIComponent(email);
+    name = decodeURIComponent(name);
+    phone = decodeURIComponent(phone);
+    color = decodeURIComponent(color);
+    colorClickedContact(index);
+    contactInfoDiv.innerHTML = contactInfoTemp(email, name, phone, color);
+    const placeholder = document.getElementById("editMobileButtonPlaceholder");
+    if (placeholder) {
+        placeholder.innerHTML = editMobileTemp(email, name, phone, color);
+    }
+    const initialsDivInfo = document.getElementById("initialsDivInfo");
+    if (initialsDivInfo) {
+        initialsDivInfo.style.backgroundColor = color;
+    }
 }
 
 function getMobileIn(email, name, phone, color){
-	const contactInfoContent = document.getElementById("contactInfo")
-	if(!contactInfoContent.querySelector("#optionsBtn")){
-		contactInfoContent.innerHTML += editMobileTemp(email, name, phone, color);
+	const contactInfoContent = document.getElementById("contactInfo");
+	const optionsBtn = contactInfoContent.querySelector("#optionsBtn");
+	if (optionsBtn) {
+		optionsBtn.remove();
 	}
-	
+	contactInfoContent.innerHTML += editMobileTemp(email, name, phone, color);
 }
 
 function colorClickedContact(index) {
@@ -94,22 +112,10 @@ function colorClickedContact(index) {
 	clickedContentDiv.classList.add("clickedBackground");
 }
 
-function randomColor() {
-	let r = Math.floor(Math.random() * 210);
-	if (r < 40) {
-		r = 40;
-	}
-	let g = Math.floor(Math.random() * 210);
-	if (g < 40) {
-		g = 40;
-	}
-	let b = Math.floor(Math.random() * 210);
-	if (b < 40) {
-		b = 40;
-	}
-	let color = `rgb(${r}, ${g}, ${b})`;
+function getColor(index){
+	const color = colors[index % colors.length];
 	return color;
-}
+  }
 
 function openAddContactDial() {
 	addContactDial.innerHTML = addContactDialTemp();
