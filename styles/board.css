@@ -281,4 +281,10 @@ p {
         display: flex;
         gap: 20px; /* don't know the actual gap */
     }
+    .card {
+        width: 252px;
+    }
+    .col {
+        width: auto;
+    }
 }
