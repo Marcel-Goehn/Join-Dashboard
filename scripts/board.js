@@ -76,12 +76,8 @@ function searchTasks(){
     }else if(searchInput.length < 3 && previousInput > searchInput.length){
         originalFoundTasks = [];
         foundTasks = structuredClone(originalFoundTasks);
-        renderCards(cards);
-        
+        renderCards(cards);   
     }
-
-    
-
 }
 
 

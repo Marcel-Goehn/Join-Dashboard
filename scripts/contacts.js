@@ -5,6 +5,7 @@ const contactInfoDiv = document.getElementById("contactInfoInfo");
 const addContactDial = document.getElementById("addContactDial");
 const userObject = sessionStorage.getItem("loggedIn");
 const user = JSON.parse(userObject);
+console.log(user);
 
 async function fetchContactData() {
 	const response = await fetch(
@@ -449,4 +450,3 @@ function toggleBurger(event) {
 	  document.removeEventListener("click", closeBurgerHandler);
 	}
   }
-
