@@ -122,7 +122,7 @@ function getDialogTemplate(index, array) {
  * @returns - Adds the names and first letters of first- and lastname into the html snippet
  */
 function getAssignedUsersDialogTemplate(firstName, lastName, firstLetterFName, firstLetterLName) {
-    return `<div class="contact">
+    return `<div class="contact-board-dialog">
                 <div class="contact-logo">${firstLetterFName}${firstLetterLName}</div>
                 <span>${firstName} ${lastName}</span>
             </div>`
@@ -155,11 +155,11 @@ function getEditDialogTemplate(array, index) {
             <form onsubmit="return false">
                 <div class="align-title-input">
                     <label for="input_title">Title</label>
-                    <input value="${array[index].value.title}" type="text" name="input_title" id="input_title_${index}" placeholder="Enter a title">
+                    <input value="${array[index].value.title}" type="text" name="input_title" id="input_title" placeholder="Enter a title">
                 </div>
                 <div class="align-descr-input">
                     <label for="input_descr">Description</label>
-                    <textarea name="input_descr" id="input_descr_${index}" rows="4" placeholder="Enter a description">${array[index].value.description}</textarea>
+                    <textarea name="input_descr" id="input_descr" rows="4" placeholder="Enter a description">${array[index].value.description}</textarea>
                 </div>
                 <div class="align-duedate-input">
                     <label for="input_duedate">Duedate</label>
@@ -195,7 +195,7 @@ function getEditDialogTemplate(array, index) {
                         <div class="align-subtask-icons">
                             <img onclick="deleteSubtaskFromInput()" id="x_icon" class="d_none subtask-icons" src="../assets/img/addtask/x.svg">
                             <div id="icon_divider" class="subtask-icon-divider d_none"></div>
-                            <img id="check_icon" class="d_none subtask-icons" src="../assets/img/addtask/done_black.svg">
+                            <img onclick="addInputToSubtasks(${index})" id="check_icon" class="d_none subtask-icons" src="../assets/img/addtask/done_black.svg">
                         </div>
                     </div>
                 </div>
@@ -298,6 +298,16 @@ function renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstC
 }
 
 
-function getSubtasksEditDialogTemplate(name) {
-    return `<li class="subtasks-list-items"><span>&bull;</span>${name}</li>`
+function getSubtasksEditDialogTemplate(id, cardIndex, name, subtaskIndex) {
+    return `<li id="number_of_subtask_${subtaskIndex}" onmouseover="highlightChangeOptions(${subtaskIndex})" onmouseout="hideChangeOptions(${subtaskIndex})" class="subtasks-list-items">
+                <div class="dot-name-gap">
+                    <span>&bull;</span>${name}
+                </div>
+                <div id="edit_delete_container_${subtaskIndex}" class="d_none">
+                    <img onclick="editSubtaskInEditDialog('${id}', ${cardIndex}, event)" src="../assets/img/addtask/edit.svg">
+                    <div class="change-delete-divider"></div>
+                    <img onclick="deleteSubtaskFromEditDialog('${id}', ${cardIndex}, event)" src="../assets/img/addtask/delete.svg">
+                </div>
+            </li>
+            <input type="text" value="${name}" class="d_none">`
 }

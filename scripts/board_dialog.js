@@ -1,7 +1,6 @@
 const dialog = document.getElementById('overlay');
 const wrapper = document.querySelector('.wrapper');
 const contactList = document.getElementById('contact_list');
-const dialogSubtasks = document.getElementById('dialog_subtasks');
 let contactsNamesOfUser = [];
 let currentPriority = "";
 
@@ -91,23 +90,6 @@ function assignedDialogUsers(index) {
     }
     return assignedContactsRef;
 }
-
-
-// /**
-//  * 
-//  * @param {number} index - The index of the current card 
-//  * @returns - It returns the subtasks to the card dialog
-//  */
-// function renderSubtasksIntoDialog(index) {
-//     let subtasksRef = ``;
-//     for (let [key, value] of Object.entries(cards[index].value.subtasks)) {
-//         if (key == "null") {
-//             continue;
-//         }
-//         subtasksRef += getSubtasksDialogTemplate(value.status, value.name);
-//     }
-//     return subtasksRef;
-// }
 
 
 function renderSubtasksIntoDialog(cardIndex) {
@@ -285,6 +267,7 @@ function getAssignmentList(cardIndex) {
 
 
 function checkSubtaskInputField() {
+    const dialogSubtasks = document.getElementById('dialog_subtasks');
     if (dialogSubtasks.value.length >= 1) {
         document.getElementById('plus_icon').classList.add('d_none');
         document.getElementById('x_icon').classList.remove('d_none');
@@ -301,11 +284,35 @@ function checkSubtaskInputField() {
 
 
 function deleteSubtaskFromInput() {
+    const dialogSubtasks = document.getElementById('dialog_subtasks');
     dialogSubtasks.value = '';
     document.getElementById('x_icon').classList.add('d_none');
     document.getElementById('check_icon').classList.add('d_none');
     document.getElementById('icon_divider').classList.add('d_none');
     document.getElementById('plus_icon').classList.remove('d_none');
+}
+
+
+function addInputToSubtasks(cardIndex) {
+    const array = getCurrentArray();
+    const dialogSubtasks = document.getElementById('dialog_subtasks');
+    let randomId = Math.round(Math.random() * 100000);
+    for (let [key, value] of Object.entries(array[cardIndex].value.subtasks)) {
+        if(randomId == key) {
+            addInputToSubtasks(array, cardIndex);
+            break;
+        }
+    }
+    array[cardIndex].value.subtasks[randomId] = {name : dialogSubtasks.value, status : "unchecked"};
+    console.log(array[cardIndex].value.subtasks);
+    renderUpdatedSutasksInEditDialog(cardIndex);
+}
+
+
+function renderUpdatedSutasksInEditDialog(cardIndex) {
+    const subtasksListRef = document.getElementById('subtasks_list');
+    subtasksListRef.innerHTML = ``;
+    subtasksListRef.innerHTML = renderSubtasksintoEditDialog(cardIndex);
 }
 
 
@@ -339,14 +346,29 @@ function renderAssignedContactsToEditDialog(index) {
 }
 
 
+// function renderSubtasksintoEditDialog(index) {
+//     const array = getCurrentArray();
+//     let subtasksRef = ``;
+//     for(let [key, value] of Object.entries(array[index].value.subtasks)) {
+//         if (key == "null") {
+//             continue;
+//         }
+//         subtasksRef += getSubtasksEditDialogTemplate(value.name, i);
+//     }
+//     return subtasksRef;
+// }
+
+
 function renderSubtasksintoEditDialog(index) {
     const array = getCurrentArray();
     let subtasksRef = ``;
-    for(let [key, value] of Object.entries(array[index].value.subtasks)) {
-        if (key == "null") {
+    const subtasks = Object.entries(array[index].value.subtasks);
+    for (let i = 0; i < subtasks.length; i++) {
+        const [key, value] = subtasks[i];
+        if (key === "null") {
             continue;
         }
-        subtasksRef += getSubtasksEditDialogTemplate(value.name);
+        subtasksRef += getSubtasksEditDialogTemplate(key, index, value.name, i);
     }
     return subtasksRef;
 }
@@ -460,6 +482,35 @@ function renderFilteredContactsIntoDialog(filteredContacts, cardIndex) {
     }
     contactListRef.innerHTML = contactsRef;
     console.log(contactsNamesOfUser);
+}
+
+
+function highlightChangeOptions(subtaskIndex) {
+    document.getElementById(`edit_delete_container_${subtaskIndex}`).classList.remove('d_none');
+    document.getElementById(`edit_delete_container_${subtaskIndex}`).classList.add('align-change-or-delete-btn');  
+}
+
+
+function hideChangeOptions(subtaskIndex) {
+    document.getElementById(`edit_delete_container_${subtaskIndex}`).classList.remove('align-change-or-delete-btn');
+    document.getElementById(`edit_delete_container_${subtaskIndex}`).classList.add('d_none');  
+}
+
+
+function deleteSubtaskFromEditDialog(id, cardIndex, e) {
+    e.stopPropagation();
+    const array = getCurrentArray();
+    delete array[cardIndex].value.subtasks[id];
+    const listOfSubtasksRef = document.getElementById('subtasks_list');
+    listOfSubtasksRef.innerHTML = ``;
+    listOfSubtasksRef.innerHTML = renderSubtasksintoEditDialog(cardIndex);
+}
+
+
+function editSubtaskInEditDialog(id, cardIndex, e) {
+    e.stopPropagation();
+    const array = getCurrentArray();
+    
 }
 
 
