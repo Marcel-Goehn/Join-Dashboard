@@ -304,10 +304,17 @@ function getSubtasksEditDialogTemplate(id, cardIndex, name, subtaskIndex) {
                     <span>&bull;</span>${name}
                 </div>
                 <div id="edit_delete_container_${subtaskIndex}" class="d_none">
-                    <img onclick="editSubtaskInEditDialog('${id}', ${cardIndex}, event)" src="../assets/img/addtask/edit.svg">
+                    <img onclick="editSubtaskInEditDialog('${id}', ${cardIndex}, ${subtaskIndex}, event)" src="../assets/img/addtask/edit.svg">
                     <div class="change-delete-divider"></div>
                     <img onclick="deleteSubtaskFromEditDialog('${id}', ${cardIndex}, event)" src="../assets/img/addtask/delete.svg">
                 </div>
             </li>
-            <input type="text" value="${name}" class="d_none">`
+            <div id="edit_list_subtask_${subtaskIndex}" class="d_none">
+                <input id="edit_list_subtask_input_${subtaskIndex}" type="text" value="${name}">
+                <div class="align-change-or-delete-btn">
+                    <img onclick="deleteSubtaskFromEditDialog('${id}', ${cardIndex}, event)" class="subtask-icons" src="../assets/img/addtask/delete.svg">
+                    <div class="change-delete-divider"></div>
+                    <img onclick="saveChangesToSubtaskInEditDialog(${cardIndex}, '${id}', ${subtaskIndex}, event)" class="subtask-icons" src="../assets/img/addtask/done_black.svg">
+                </div>
+            </div>`
 }

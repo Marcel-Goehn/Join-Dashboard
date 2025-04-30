@@ -504,10 +504,22 @@ function deleteSubtaskFromEditDialog(id, cardIndex, e) {
 }
 
 
-function editSubtaskInEditDialog(id, cardIndex, e) {
+function editSubtaskInEditDialog(id, cardIndex, subtaskIndex, e) {
     e.stopPropagation();
     const array = getCurrentArray();
-    
+    document.getElementById(`number_of_subtask_${subtaskIndex}`).classList.add('d_none');
+    document.getElementById(`edit_list_subtask_${subtaskIndex}`).classList.remove('d_none');
+    document.getElementById(`edit_list_subtask_${subtaskIndex}`).classList.add('edit-list-subtask');
+}
+
+
+function saveChangesToSubtaskInEditDialog(cardIndex, subtaskId, subtaskIndex, e) {
+    e.stopPropagation();
+    const array = getCurrentArray();
+    const inputRef = document.getElementById(`edit_list_subtask_input_${subtaskIndex}`);
+    const inputRefValue = inputRef.value;
+    array[cardIndex].value.subtasks[subtaskId].name = inputRefValue;
+    document.getElementById('subtasks_list').innerHTML = renderSubtasksintoEditDialog(cardIndex);
 }
 
 
