@@ -1,7 +1,7 @@
 function subtask_template(id, subtask) {
     return `<li class="addedSubtask" onclick="editSubtask(${id})" id="${id}">
                 <span id="subtask_row${id}" class="listitem">${subtask}</span>
-                <div class="addSubtask_btndiv">
+                <div class="addSubtask_btn_div hidden">
                     <img class="icon" src="../assets/img/addtask/edit.svg">
                     |
                     <img class="icon" onclick="deleteSubtask(event, ${id})" src="../assets/img/addtask/delete.svg">
@@ -9,7 +9,7 @@ function subtask_template(id, subtask) {
             </li>
             <div id="edit_div${id}" class="hidden edittedSubtask">
                 <input id="edit_input${id}" type="text">
-                    <div class="addSubtask_btndiv">
+                    <div class="addSubtask_btn_div">
                         <img class="icon" onclick="deleteSubtask(event, ${id})" src="../assets/img/addtask/delete.svg">
                         |
                         <img class="icon" onclick="confirmSubtask(${id})" src="../assets/img/addtask/done_black.svg">

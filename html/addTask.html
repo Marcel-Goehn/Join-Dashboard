@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../styles/addtaskAnimation.css">
     <title>Join | Tasks</title>
 </head>
-<body onload="init_addTask(); highlightSidebarLink()" onclick="closeOpenSections()">
+<body onload="init_addTask(); highlightSidebarLink(); fetchNameInitials()" onclick="closeOpenSections()">
     <header>
         <div id="headerContent">
             <span class="header-subheader">Kanban Project Management Tool</span>
@@ -28,7 +28,7 @@
             </div>
         </div>
     </header>
-    <div id="sidebar">
+    <div id="sidebar" onload="highlightSidebarLink()">
         <div id="sidebarLogoDiv">
             <img
                 id="sidebarJoinLogo"
@@ -147,7 +147,12 @@
                 </div>
                 <div class="formular-section">
                     <span>Due date<span class="star">*</span></span>
-                    <input id="duedate_input" onkeyup="checkUploadConditions()" class="formular-element" type="date" placeholder="dd/mm/yyyy">
+                    <div class="duedate_wrapper formular-element">
+                        <div id="placeholder">
+                            <span>dd/mm/yyyy</span><img src="../assets/img/addtask/calendar.svg">
+                        </div>
+                        <input id="duedate_input" onkeyup="checkUploadConditions()" type="date">
+                    </div>
                     <span class="hidden">this field is required</span>
                 </div>
             </div>
@@ -253,4 +258,5 @@
 <script src="../scripts/addTask.js"></script>
 <script src="../scripts/addTask_templates.js"></script>
 <script src="../scripts/sidebar.js"></script>
+<script src="..//scripts/header.js"></script>
 </html>

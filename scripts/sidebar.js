@@ -2,6 +2,7 @@ const contactsDiv = document.getElementById("contactsSidebarDiv");
 const addTaskDiv = document.getElementById("addTaskSidebarDiv");
 const boardDiv = document.getElementById("boardSidebarDiv");
 const summaryDiv = document.getElementById("summarySidebarDiv");
+checkIfLoggedIn();
 
 function highlightSidebarLink() {
 	const currentHtmlSite = window.location.pathname;
@@ -27,5 +28,12 @@ function highlightSidebarLink() {
 			boardDiv.classList.remove("hightlighted");
 			summaryDiv.classList.remove("hightlighted");
 			contactsDiv.classList.remove("hightlighted");
+	}
+}
+
+
+function checkIfLoggedIn(){
+	if(user === null){
+		window.location.href = "../html/login.html";
 	}
 }

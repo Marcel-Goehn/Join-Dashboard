@@ -226,3 +226,65 @@ p {
 .user-3 {
     background-color: #462F8A;
 }
+
+
+
+
+
+
+
+.mobile {
+    display: none;
+}
+
+@media(max-width: 850px) {
+/* toggle active add-Task button */
+    .add-task-btn.mobile {
+        display: flex;
+    }
+    .add-task-btn {
+        display: none;
+    }
+
+/* centering & formation stuff */
+    .board-header_mobile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding-bottom: 40px;
+    }
+    .align-board-header {
+        flex-direction: column;
+        align-items: normal;
+    }
+    .board-header {
+        margin: 128px 0;
+        margin-bottom: 0;
+        width: 100%;
+    }
+    .container {
+        padding: 0 16px;
+    }
+    .inputgroup {
+        flex: 1;
+        margin-bottom: 24px;
+    }
+    main {
+        margin: 0;
+        width: 100%;
+    }
+    .board-layout {
+        flex-direction: column;
+    }
+    .board_category {
+        display: flex;
+        gap: 20px; /* don't know the actual gap */
+    }
+    .card {
+        width: 252px;
+    }
+    .col {
+        width: auto;
+    }
+}

@@ -56,6 +56,7 @@ function contactInfoTemp(email, name, phone, color) {
                 <span>${phone}</span>
             </div>
         </div>
+        <div id="editMobileButtonPlaceholder"></div>
     `;
 }
 
@@ -69,36 +70,49 @@ function editContactDialTemp(email, name, phone) {
                 </div>
             </div>
             <div id="editContactInfoDiv">
-                <button id="closeDialBtn" onclick="closeContactDial()"><img src="../assets/img/close.png" alt="closeImg"></button>
+                <div id="closeDialBtnDiv">
+                    <button id="closeDialBtn" onclick="closeContactDial()"><img src="../assets/img/close.png" alt="closeImg"></button>
+                </div>
                 <div id="contactImgAndFormDiv">
                     <div id="editImgDiv">
                        ${shorthandName(name)}
                     </div>
                     <div id="contactFormDiv">
                         <form id="editForm" novalidate>
-                        <div class="formInputWrapper">
-                            <div id="editDialNameDiv" class="formDiv">
-                                <input id="editDialNameInput" placeholder="Name" value="${name}" required type="text">
-                            </div>
-                            <div id="editNameRefuseDiv" class="refuseDiv hideRefuseDiv"></div>
+                            <div class="formInputWrapper">
+                                <div id="editDialNameDiv" class="formDiv">
+                                    <input id="editDialNameInput" placeholder="Name" value="${name}" required type="text">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 8C6.9 8 5.95833 7.60833 5.175 6.825C4.39167 6.04167 4 5.1 4 4C4 2.9 4.39167 1.95833 5.175 1.175C5.95833 0.391667 6.9 0 8 0C9.1 0 10.0417 0.391667 10.825 1.175C11.6083 1.95833 12 2.9 12 4C12 5.1 11.6083 6.04167 10.825 6.825C10.0417 7.60833 9.1 8 8 8ZM14 16H2C1.45 16 0.979167 15.8042 0.5875 15.4125C0.195833 15.0208 0 14.55 0 14V13.2C0 12.6333 0.145833 12.1125 0.4375 11.6375C0.729167 11.1625 1.11667 10.8 1.6 10.55C2.63333 10.0333 3.68333 9.64583 4.75 9.3875C5.81667 9.12917 6.9 9 8 9C9.1 9 10.1833 9.12917 11.25 9.3875C12.3167 9.64583 13.3667 10.0333 14.4 10.55C14.8833 10.8 15.2708 11.1625 15.5625 11.6375C15.8542 12.1125 16 12.6333 16 13.2V14C16 14.55 15.8042 15.0208 15.4125 15.4125C15.0208 15.8042 14.55 16 14 16ZM2 14H14V13.2C14 13.0167 13.9542 12.85 13.8625 12.7C13.7708 12.55 13.65 12.4333 13.5 12.35C12.6 11.9 11.6917 11.5625 10.775 11.3375C9.85833 11.1125 8.93333 11 8 11C7.06667 11 6.14167 11.1125 5.225 11.3375C4.30833 11.5625 3.4 11.9 2.5 12.35C2.35 12.4333 2.22917 12.55 2.1375 12.7C2.04583 12.85 2 13.0167 2 13.2V14ZM8 6C8.55 6 9.02083 5.80417 9.4125 5.4125C9.80417 5.02083 10 4.55 10 4C10 3.45 9.80417 2.97917 9.4125 2.5875C9.02083 2.19583 8.55 2 8 2C7.45 2 6.97917 2.19583 6.5875 2.5875C6.19583 2.97917 6 3.45 6 4C6 4.55 6.19583 5.02083 6.5875 5.4125C6.97917 5.80417 7.45 6 8 6Z" fill="#A8A8A8"/>
+                                    </svg>
+                                </div>
+                                <div id="editNameRefuseDiv" class="refuseDiv hideRefuseDiv"></div>
                             </div>
                             <div class="formInputWrapper">
-                            <div id="editDialEmailDiv" class="formDiv">
-                                <input id="editDialEmailInput" placeholder="Email" value="${email}" type="email" required>
-                            </div>
-                            <div id="editEmailRefuseDiv" class="refuseDiv hideRefuseDiv">TEST</div>
+                                <div id="editDialEmailDiv" class="formDiv">
+                                    <input id="editDialEmailInput" placeholder="Email" value="${email}" type="email" required>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16" fill="none">
+                                        <path d="M2 16C1.45 16 0.979167 15.8042 0.5875 15.4125C0.195833 15.0208 0 14.55 0 14V2C0 1.45 0.195833 0.979167 0.5875 0.5875C0.979167 0.195833 1.45 0 2 0H18C18.55 0 19.0208 0.195833 19.4125 0.5875C19.8042 0.979167 20 1.45 20 2V14C20 14.55 19.8042 15.0208 19.4125 15.4125C19.0208 15.8042 18.55 16 18 16H2ZM18 4L10.525 8.675C10.4417 8.725 10.3542 8.7625 10.2625 8.7875C10.1708 8.8125 10.0833 8.825 10 8.825C9.91667 8.825 9.82917 8.8125 9.7375 8.7875C9.64583 8.7625 9.55833 8.725 9.475 8.675L2 4V14H18V4ZM10 7L18 2H2L10 7ZM2 4.25V2.775V2.8V2.7875V4.25Z" fill="#A8A8A8"/>
+                                    </svg>
+                                </div>
+                                <div id="editEmailRefuseDiv" class="refuseDiv hideRefuseDiv"></div>
                             </div>
                             <div class="formInputWrapper">
-                            <div id="editDialPhoneDiv" class="formDiv">
-                                <input id="editDialPhoneInput" placeholder="Phone" value="${phone}" type="tel" required">
-                            </div>
-                            <div id="editPhoneRefuseDiv" class="refuseDiv hideRefuseDiv"></div>
+                                <div id="editDialPhoneDiv" class="formDiv">
+                                    <input id="editDialPhoneInput" placeholder="Phone" value="${phone}" type="tel" required>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
+                                        <path d="M16.95 18.5C14.8667 18.5 12.8083 18.0458 10.775 17.1375C8.74167 16.2292 6.89167 14.9417 5.225 13.275C3.55833 11.6083 2.27083 9.75833 1.3625 7.725C0.454167 5.69167 0 3.63333 0 1.55C0 1.25 0.1 1 0.3 0.8C0.5 0.6 0.75 0.5 1.05 0.5H5.1C5.33333 0.5 5.54167 0.579167 5.725 0.7375C5.90833 0.895833 6.01667 1.08333 6.05 1.3L6.7 4.8C6.73333 5.06667 6.725 5.29167 6.675 5.475C6.625 5.65833 6.53333 5.81667 6.4 5.95L3.975 8.4C4.30833 9.01667 4.70417 9.6125 5.1625 10.1875C5.62083 10.7625 6.125 11.3167 6.675 11.85C7.19167 12.3667 7.73333 12.8458 8.3 13.2875C8.86667 13.7292 9.46667 14.1333 10.1 14.5L12.45 12.15C12.6 12 12.7958 11.8875 13.0375 11.8125C13.2792 11.7375 13.5167 11.7167 13.75 11.75L17.2 12.45C17.4333 12.5167 17.625 12.6375 17.775 12.8125C17.925 12.9875 18 13.1833 18 13.4V17.45C18 17.75 17.9 18 17.7 18.2C17.5 18.4 17.25 18.5 16.95 18.5Z" fill="#A8A8A8"/>
+                                    </svg>
+                                </div>
+                                <div id="editPhoneRefuseDiv" class="refuseDiv hideRefuseDiv"></div>
                             </div>
                         </form>
                         <div id="dialButtonDiv">
                             <button id="deleteButton" onclick="deleteContact('${name}')">Delete</button>
-                            <button id="saveBtn" onclick="validateContactForm('edit', '${name}', event)">Save<svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none">
-                        <path d="M5.55057 9.15L14.0256 0.675C14.2256 0.475 14.4631 0.375 14.7381 0.375C15.0131 0.375 15.2506 0.475 15.4506 0.675C15.6506 0.875 15.7506 1.1125 15.7506 1.3875C15.7506 1.6625 15.6506 1.9 15.4506 2.1L6.25057 11.3C6.05057 11.5 5.81724 11.6 5.55057 11.6C5.28391 11.6 5.05057 11.5 4.85057 11.3L0.550573 7C0.350573 6.8 0.25474 6.5625 0.263073 6.2875C0.271407 6.0125 0.375573 5.775 0.575573 5.575C0.775573 5.375 1.01307 5.275 1.28807 5.275C1.56307 5.275 1.80057 5.375 2.00057 5.575L5.55057 9.15Z" fill="white"/></svg></button>
+                            <button id="saveBtn" onclick="validateContactForm('edit', '${name}', event)">Save
+                                <svg><path xmlns="http://www.w3.org/2000/svg" d="M5.55057 9.15L14.0256 0.675C14.2256 0.475 14.4631 0.375 14.7381 0.375C15.0131 0.375 15.2506 0.475 15.4506 0.675C15.6506 0.875 15.7506 1.1125 15.7506 1.3875C15.7506 1.6625 15.6506 1.9 15.4506 2.1L6.25057 11.3C6.05057 11.5 5.81724 11.6 5.55057 11.6C5.28391 11.6 5.05057 11.5 4.85057 11.3L0.550573 7C0.350573 6.8 0.25474 6.5625 0.263073 6.2875C0.271407 6.0125 0.375573 5.775 0.575573 5.575C0.775573 5.375 1.01307 5.275 1.28807 5.275C1.56307 5.275 1.80057 5.375 2.00057 5.575L5.55057 9.15Z" fill="white"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -167,7 +181,7 @@ function addContactDialTemp() {
 }
 
 function editMobileTemp(email, name, phone, color){
-    return `<div id="optionsBtn" onclick="openBurger()"><img src="../assets/img/contacts/more_vert.png"></div>
+    return `<div id="optionsBtn" onclick="toggleBurger(event)"><img src="../assets/img/contacts/more_vert.png"></div>
             <div id="editBurger">  
                 <div id="editDivMobile">
                     <div class="editBlock" onclick="openEditContactDial('${email}', '${name}', '${phone}', '${color}'), slideIn()">

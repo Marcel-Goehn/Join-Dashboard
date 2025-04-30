@@ -171,7 +171,7 @@ function editSubtask(id) {
     document.getElementById(`edit_div${id}`).classList.toggle('hidden');
     document.getElementById(`edit_div${id}`).style = "background-color: white";
     document.getElementById(id).classList.toggle('hidden');
-    document.getElementById(`edit_input${id}`).value = current_subtask;
+    document.getElementById(`edit_input${id}`).value = current_subtask;    
 }
 
 function checkUploadConditions() {

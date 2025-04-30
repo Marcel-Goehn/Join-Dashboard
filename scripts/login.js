@@ -28,6 +28,20 @@ async function loginAsUser() {
     await compareToDatabase() ? null : invalidLogin();
 }
 
+emailInput.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        emailInput.blur();
+        loginAsUser();
+    }});
+
+passwordInput.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      passwordInput.blur();
+      loginAsUser();
+    }});
+
 async function compareToDatabase() {
     const response = await fetch(databaseLinkRef + ".json");
     const users = await response.json();

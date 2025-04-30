@@ -35,7 +35,12 @@
     <section class="board-header">
         <div class="container">
             <div class="align-board-header">
-                <h1>Board</h1>
+<!--                 <div class="board-header_mobile"> -->
+                    <h1>Board</h1>
+<!--                     <button class="add-task-btn mobile" onclick="window.location.href='addTask.html'">
+                        <img src="../assets/img/add.png">
+                    </button>
+                </div> -->
                 <div class="align-input-and-task-btn">
                     <form class="inputgroup" onsubmit="return false">
                         <input class="find-task-input" id="find_task" type="text" placeholder="Find Task" required oninput="searchTasks()">
@@ -67,7 +72,7 @@
                         <span>To do</span>
                         <button><img src="../assets/img/plus button.png"></button>
                     </div>
-                    <div id="to_do" ondragover="allowDrop(event)" ondrop="moveTo('todo')">
+                    <div class="board_category" id="to_do" ondragover="allowDrop(event)" ondrop="moveTo('todo')">
                         
                     </div>
                 </div>
@@ -76,7 +81,7 @@
                         <span>In progress</span>
                         <button><img src="../assets/img/plus button.png"></button>
                     </div>
-                    <div id="progress" ondragover="allowDrop(event)" ondrop="moveTo('progress')">
+                    <div class="board_category" id="progress" ondragover="allowDrop(event)" ondrop="moveTo('progress')">
                         
                     </div>
                 </div>
@@ -85,7 +90,7 @@
                         <span>Await Feedback</span>
                         <button><img src="../assets/img/plus button.png"></button>
                     </div>
-                    <div id="feedback" ondragover="allowDrop(event)" ondrop="moveTo('feedback')">
+                    <div class="board_category" id="feedback" ondragover="allowDrop(event)" ondrop="moveTo('feedback')">
                         
                     </div>
                 </div>
@@ -94,7 +99,7 @@
                         <span>Done</span>
                         <button><img src="../assets/img/plus button.png"></button>
                     </div>
-                    <div id="done" ondragover="allowDrop(event)" ondrop="moveTo('done')">
+                    <div class="board_category" id="done" ondragover="allowDrop(event)" ondrop="moveTo('done')">
                         
                     </div>
                 </div>

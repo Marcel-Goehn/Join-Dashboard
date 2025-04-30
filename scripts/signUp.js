@@ -21,7 +21,6 @@ const databaseLinkRef =
 async function fetchData() {
 	const response = await fetch(databaseLinkRef);
 	const data = await response.json();
-	console.log(data);
 	return data;
 }
 
@@ -102,7 +101,7 @@ async function validateForm() {
 			return;
 		}
 		postUser(nameInput.value, emailInput.value, passwordInput.value);
-		nextPage();
+		//nextPage();
 	}
 }
 
@@ -145,8 +144,34 @@ async function postUser(name, email, password) {
 		},
 		body: JSON.stringify(newUser),
 	});
+	await addSelfToContacts(name, email)
 }
 
+async function addSelfToContacts(name, email){
+	data = await fetchData();
+	const user = await getUserId(data, name)
+	const newContactData = {
+	name,
+	email: email.toLowerCase()
+	}
+	await fetch(
+	`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${user}/contacts.json`,
+	{
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(newContactData),
+	}
+	);
+}
+
+async function getUserId(data, name) {
+	const userId = Object.entries(data).find(
+		([, value]) => value.name === name
+	)?.[0];
+	return userId;
+}
 async function compareEmailWithData() {
 	const users = await fetchData();
 	const sameEmail = Object.values(users).find(

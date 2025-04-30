@@ -5,6 +5,7 @@ const contactInfoDiv = document.getElementById("contactInfoInfo");
 const addContactDial = document.getElementById("addContactDial");
 const userObject = sessionStorage.getItem("loggedIn");
 const user = JSON.parse(userObject);
+const colors = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E","#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B",  "#FF4646", "#FFBB2B"];
 
 async function fetchContactData() {
 	const response = await fetch(
@@ -35,17 +36,26 @@ function renderContacts(contactData) {
 			);
 			previousLetter = contactData[contact].name.charAt(0).toUpperCase();
 		}
-		color = randomColor();
+		const color = getColor(index);
+		const phone = checkIfUndefined(contactData[contact].phone);
 		contactDiv.innerHTML += contactTemp(
 			contactData[contact].email,
 			contactData[contact].name,
-			contactData[contact].phone,
+			phone,
 			index,
 			color
 		);
 		styleBackgroundOfInitials(color, index);
 		index++;
 	}
+}
+
+function checkIfUndefined(phone) {
+	if(phone === undefined){
+		phone = "No number assigned";
+		return phone;
+	}
+	return phone;
 }
 
 function styleBackgroundOfInitials(color, index) {
@@ -66,20 +76,29 @@ async function showContacts() {
 }
 
 function openContact(email, name, phone, color, index) {
-	colorClickedContact(index);
-	contactInfoDiv.innerHTML = contactInfoTemp(email, name, phone, color);
-	const initalsDivInfo = document.getElementById("initialsDivInfo");
-	initalsDivInfo.style.backgroundColor = color;
-	getMobileIn(email, name, phone, color);
-	
+    email = decodeURIComponent(email);
+    name = decodeURIComponent(name);
+    phone = decodeURIComponent(phone);
+    color = decodeURIComponent(color);
+    colorClickedContact(index);
+    contactInfoDiv.innerHTML = contactInfoTemp(email, name, phone, color);
+    const placeholder = document.getElementById("editMobileButtonPlaceholder");
+    if (placeholder) {
+        placeholder.innerHTML = editMobileTemp(email, name, phone, color);
+    }
+    const initialsDivInfo = document.getElementById("initialsDivInfo");
+    if (initialsDivInfo) {
+        initialsDivInfo.style.backgroundColor = color;
+    }
 }
 
 function getMobileIn(email, name, phone, color){
-	const contactInfoContent = document.getElementById("contactInfo")
-	if(!contactInfoContent.querySelector("#optionsBtn")){
-		contactInfoContent.innerHTML += editMobileTemp(email, name, phone, color);
+	const contactInfoContent = document.getElementById("contactInfo");
+	const optionsBtn = contactInfoContent.querySelector("#optionsBtn");
+	if (optionsBtn) {
+		optionsBtn.remove();
 	}
-	
+	contactInfoContent.innerHTML += editMobileTemp(email, name, phone, color);
 }
 
 function colorClickedContact(index) {
@@ -93,22 +112,10 @@ function colorClickedContact(index) {
 	clickedContentDiv.classList.add("clickedBackground");
 }
 
-function randomColor() {
-	let r = Math.floor(Math.random() * 210);
-	if (r < 40) {
-		r = 40;
-	}
-	let g = Math.floor(Math.random() * 210);
-	if (g < 40) {
-		g = 40;
-	}
-	let b = Math.floor(Math.random() * 210);
-	if (b < 40) {
-		b = 40;
-	}
-	let color = `rgb(${r}, ${g}, ${b})`;
+function getColor(index){
+	const color = colors[index % colors.length];
 	return color;
-}
+  }
 
 function openAddContactDial() {
 	addContactDial.innerHTML = addContactDialTemp();
@@ -375,11 +382,14 @@ function switchToSingleView(contentLimiter, stickyContacts, addNewContactBtn, ad
 }
 
 function addResizeListener(){
-window.addEventListener("resize", ()=>{
-	const contentLimiter = document.getElementById("contentLimiter");
+window.addEventListener("resize", resizeHandler)
+}
+
+resizeHandler = () => {const contentLimiter = document.getElementById("contentLimiter");
 	const stickyContacts = document.getElementById("stickyContacts");
 	const addNewContactBtn = document.getElementById("addNewContactBtn");
 	const addNewFixed = document.getElementById("addContactFixed");
+	const stickyContactsContent = document.getElementById("stickyContactsContent");
 	if(window.innerWidth <= 650){
 		switchToSingleView(contentLimiter, stickyContacts, addNewContactBtn, addNewFixed);
 	}else if(window.innerWidth > 650){
@@ -388,11 +398,10 @@ window.addEventListener("resize", ()=>{
 		addNewContactBtn.classList.remove("dnone");
 		addNewFixed.classList.add("dnone");
 		contentLimiter.style.width = "auto";
-		const stickyContactsContent = document.getElementById("stickyContactsContent");
 		stickyContactsContent.classList.remove("dnone");
-	}
-});
-}
+		closeBurger();
+	}}
+
 
 function clickContactSmall(){
 	if(window.innerWidth < 650){
@@ -412,19 +421,38 @@ function backSmall(){
 	}
 }
 
-function openBurger(){
+function toggleBurger(event) {
+	event.stopPropagation();
+	const burgerDiv = document.getElementById("editBurger");
+	
+	if (burgerDiv.classList.contains("slideBurgerIn")) {
+	  closeBurger();
+	} else {
+	  openBurger();
+	  document.addEventListener("click", closeBurgerHandler);
+	}
+  }
+  
+  function openBurger() {
 	const burgerDiv = document.getElementById("editBurger");
 	burgerDiv.classList.remove("slideBurgerOut");
 	burgerDiv.classList.add("slideBurgerIn");
-	document.addEventListener("click", closeBurgerHandler);
-}
-
-const closeBurgerHandler = (event) => {
+  }
+  
+  function closeBurger() {
 	const burgerDiv = document.getElementById("editBurger");
-	if(!burgerDiv.contains(event.target)){
-		 burgerDiv.classList.remove("slideBurgerIn");
-		 burgerDiv.classList.add("slideBurgerOut");
-		 document.removeEventListener("click", closeBurgerHandler);
+	if (burgerDiv) {
+	  burgerDiv.classList.remove("slideBurgerIn");
+	  burgerDiv.classList.add("slideBurgerOut");
 	}
-}
+  }
+  
+  function closeBurgerHandler(event) {
+	const burgerDiv = document.getElementById("editBurger");
+	const optionsBtn = document.getElementById("optionsBtn");
 	
+	if (!burgerDiv.contains(event.target) && event.target !== optionsBtn) {
+	  closeBurger();
+	  document.removeEventListener("click", closeBurgerHandler);
+	}
+  }
