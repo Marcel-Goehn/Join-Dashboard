@@ -60,6 +60,8 @@ function pushDataToCardsArray(cardData) {
     }
     cards = structuredClone(originalCards);
 }
+
+
 /**
  * This function filters the cards array based on title and description
  */
@@ -215,6 +217,11 @@ function getAssignedUsers(index) {
     return assignedContactsRef;
 }
 
+
+/**
+ * 
+ * @returns - It returns an array. If foundTasks.length is not 0, it will return the new filtered array. If it's zero, it will return the original card array.
+ */
 function getCurrentArray(){
     if(foundTasks.length === 0){
         return cards;
@@ -222,20 +229,6 @@ function getCurrentArray(){
         return foundTasks;
     }
 }
-
-
-// function getInputTitleValue(i) {
-//     return ;
-// }
-
-
-
-
-
-
-
-
-
 
 
 

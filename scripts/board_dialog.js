@@ -87,6 +87,12 @@ function assignedDialogUsers(index) {
 }
 
 
+/**
+ * It loops through all subtasks of the current card. 
+ * 
+ * @param {number} cardIndex - The index of the current card.
+ * @returns - It returns the html template of the subtasks.
+ */
 function renderSubtasksIntoDialog(cardIndex) {
     let subtasksRef = ``;
     const array = getCurrentArray();
@@ -102,6 +108,13 @@ function renderSubtasksIntoDialog(cardIndex) {
 }
 
 
+/**
+ * This function allows the user to check off a task or uncheck it if he still needs to do it.
+ * 
+ * @param {string} status - It holds one of the two values: "checked" or "unchecked".
+ * @param {number} cardIndex - The index of the current card.
+ * @param {string} subtaskKey - The key of the klicked subtask to get access to his value.
+ */
 async function checkOrUncheckSubtask(status, cardIndex, subtaskKey) {
     const array = getCurrentArray();
     if(status === "checked") {
@@ -179,6 +192,7 @@ function choosePriority(btnOne, btnTwo, btnThree) {
 
 
 /**
+ * It changes the css classes of the button wich got klicked
  * 
  * @param {string} btnOne - This is the button wich got klicked 
  */
@@ -203,6 +217,11 @@ function changeClassesOfBtnTwoAndThree(btnTwoAndThree) {
 }
 
 
+/**
+ * This function opens the drop down menu of the contact list.
+ * 
+ * @param {event} e - It prevents the event bubbling.
+ */
 function openContactList(e) {
     e.stopPropagation();
     document.getElementById('arrow_down').classList.add('d_none');
@@ -212,6 +231,9 @@ function openContactList(e) {
 }
 
 
+/**
+ * This function closes the drop down menu of the contact list.
+ */
 function closeContactList() {
     document.getElementById('arrow_up').classList.add('d_none');
     document.getElementById('arrow_down').classList.remove('d_none');
@@ -220,6 +242,9 @@ function closeContactList() {
 }
 
 
+/**
+ * This function fetches the user data from the firebase database to get access to the contacts of the current logged in user.
+ */
 async function fetchUserData() {
     let activeUser = sessionStorage.getItem('loggedIn');
     let parsedActiveUser = JSON.parse(activeUser);
@@ -236,6 +261,11 @@ async function fetchUserData() {
 }
 
 
+/**
+ * This function pushes the contacts of the current user into a global array.
+ * 
+ * @param {object} contacts - It contains all the contacts of the current user.
+ */
 function pushContactList(contacts) {
     contactsNamesOfUser = [];
     for(let [key, value] of Object.entries(contacts)) {
@@ -245,6 +275,12 @@ function pushContactList(contacts) {
 }
 
 
+/**
+ * This function gets the first characters of the firs and last name. Then it checks if the contact is assigned to the current card. In the last step it puts the informations into a html template.
+ * 
+ * @param {number} cardIndex - The index of the current card. 
+ * @returns - It returns the html template of the contact list to the edit section of the dialog.
+ */
 function renderContactList(cardIndex) {
     let assignmentList = getAssignmentList(cardIndex);
     let contactsRef = ``;
@@ -264,6 +300,11 @@ function renderContactList(cardIndex) {
 }
 
 
+/**
+ * 
+ * @param {number} cardIndex - The current index of the card. 
+ * @returns - It returns an array with the contacts who are assigned to the current card.
+ */
 function getAssignmentList(cardIndex) {
     const array = getCurrentArray();
     let assignedTo = [];
@@ -277,6 +318,9 @@ function getAssignmentList(cardIndex) {
 }
 
 
+/**
+ * It changes the UI of the input field where you can add a new one to the card. 
+ */
 function checkSubtaskInputField() {
     const dialogSubtasks = document.getElementById('dialog_subtasks');
     if (dialogSubtasks.value.length >= 1) {
@@ -294,6 +338,9 @@ function checkSubtaskInputField() {
 }
 
 
+/**
+ * With this function you can empty the input field where you could add a new subtask.
+ */
 function deleteSubtaskFromInput() {
     const dialogSubtasks = document.getElementById('dialog_subtasks');
     dialogSubtasks.value = '';
@@ -356,19 +403,6 @@ function renderAssignedContactsToEditDialog(index) {
     }
     return assignedContactsRef;
 }
-
-
-// function renderSubtasksintoEditDialog(index) {
-//     const array = getCurrentArray();
-//     let subtasksRef = ``;
-//     for(let [key, value] of Object.entries(array[index].value.subtasks)) {
-//         if (key == "null") {
-//             continue;
-//         }
-//         subtasksRef += getSubtasksEditDialogTemplate(value.name, i);
-//     }
-//     return subtasksRef;
-// }
 
 
 function renderSubtasksintoEditDialog(index) {
@@ -539,12 +573,11 @@ function saveChangesToSubtaskInEditDialog(cardIndex, subtaskId, subtaskIndex, e)
 
 
 function checkValidationInEditDialog(cardIndex) {
-    const array = getCurrentArray();
     if (document.getElementById('input_title').value.length === 0) {
-        highlightValidationError(array, cardIndex, 'title');
+        highlightValidationError('title');
     }
     if (document.getElementById('input_duedate').value.length === 0) {
-        highlightValidationError(array, cardIndex, 'duedate');
+        highlightValidationError('duedate');
     }
     if (document.getElementById('input_title').value.length !== 0 && document.getElementById('input_duedate').value.length !== 0) {
         saveCardChangesToDatabase(cardIndex);
@@ -552,7 +585,7 @@ function checkValidationInEditDialog(cardIndex) {
 }
 
 
-function highlightValidationError(array, cardIndex, placeholder) {
+function highlightValidationError(placeholder) {
     document.getElementById(`error_${placeholder}`).classList.remove('d_none');
     document.getElementById(`container_input_${placeholder}`).classList.add('red-validation-border');
 }
@@ -562,7 +595,7 @@ function checkTitleAndDateInputLength(placeholder) {
     const inputRef = document.getElementById(`input_${placeholder}`);
     const inputRefValue = inputRef.value;
     const errorText = document.getElementById(`error_${placeholder}`);
-    const inputBorder = document.getElementById(`container_input_${placeholder}`)
+    const inputBorder = document.getElementById(`container_input_${placeholder}`);
 
     if(inputRefValue.length >= 1 && !errorText.classList.contains('d_none')) {
         errorText.classList.add('d_none');
