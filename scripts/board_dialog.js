@@ -150,6 +150,20 @@ async function deleteFromDatabase(i) {
 }
 
 
+// function checkDuedateInputConditions(cardIndex) {
+//     const inputRef = document.getElementById('input_duedate');
+//     const inputRefValue = inputRef.value;
+//     typeof inputRefValue;
+
+//     if (inputRefValue.length === 2) {
+//         inputRef.value = `${inputRefValue}/`;
+//     }
+//     else if (inputRefValue.length === 5) {
+//         inputRef.value = `${inputRefValue}/`;
+//     }
+// }
+
+
 /**
  * This function calls the three functions that change the css of the buttons in the edit field
  * 
@@ -301,7 +315,8 @@ function addInputToSubtasks(cardIndex) {
         }
     }
     array[cardIndex].value.subtasks[randomId] = {name : dialogSubtasks.value, status : "unchecked"};
-    console.log(array[cardIndex].value.subtasks);
+    dialogSubtasks.value = ``;
+    checkSubtaskInputField();
     renderUpdatedSutasksInEditDialog(cardIndex);
 }
 
@@ -523,16 +538,53 @@ function saveChangesToSubtaskInEditDialog(cardIndex, subtaskId, subtaskIndex, e)
 }
 
 
+function checkValidationInEditDialog(cardIndex) {
+    const array = getCurrentArray();
+    if (document.getElementById('input_title').value.length === 0) {
+        highlightValidationError(array, cardIndex, 'title');
+    }
+    if (document.getElementById('input_duedate').value.length === 0) {
+        highlightValidationError(array, cardIndex, 'duedate');
+    }
+    if (document.getElementById('input_title').value.length !== 0 && document.getElementById('input_duedate').value.length !== 0) {
+        saveCardChangesToDatabase(cardIndex);
+    }
+}
+
+
+function highlightValidationError(array, cardIndex, placeholder) {
+    document.getElementById(`error_${placeholder}`).classList.remove('d_none');
+    document.getElementById(`container_input_${placeholder}`).classList.add('red-validation-border');
+}
+
+
+function checkTitleAndDateInputLength(placeholder) {
+    const inputRef = document.getElementById(`input_${placeholder}`);
+    const inputRefValue = inputRef.value;
+    const errorText = document.getElementById(`error_${placeholder}`);
+    const inputBorder = document.getElementById(`container_input_${placeholder}`)
+
+    if(inputRefValue.length >= 1 && !errorText.classList.contains('d_none')) {
+        errorText.classList.add('d_none');
+        inputBorder.classList.remove('red-validation-border');
+    }
+}
+
+
 async function saveCardChangesToDatabase(index) {
     const array = getCurrentArray();
-    /*await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${array[index].id}.json`, {
+    await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${array[index].id}.json`, {
         method : "PUT",
         headers : {"Content-Type" : "application/json"},
         body : JSON.stringify({
-            title : document.getElementById(`input_title_${index}`).value,
-            description : document.getElementById(`input_descr_${index}`).value,
+            title : document.getElementById('input_title').value,
+            description : document.getElementById('input_descr').value,
             priority : currentPriority,
-
+            duedate : document.getElementById('input_duedate').value,
+            currentStatus : array[index].value.currentStatus,
+            category : array[index].value.category,
+            subtasks : array[index].value.subtasks,
+            assigned : array[index].value.assigned
         })
-    })*/
+    })
 }

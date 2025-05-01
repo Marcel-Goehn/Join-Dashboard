@@ -153,18 +153,21 @@ function getEditDialogTemplate(array, index) {
                 <img onclick="closeDialog(event)" class="close-btn" src="../assets/img/addtask/x.svg">
             </div>
             <form onsubmit="return false">
-                <div class="align-title-input">
-                    <label for="input_title">Title</label>
-                    <input value="${array[index].value.title}" type="text" name="input_title" id="input_title" placeholder="Enter a title">
+                <label class="title-label" for="input_title">Title</label>
+                 <div class="align-title-input" id="container_input_title">
+                    <input onkeyup="checkTitleAndDateInputLength('title')" value="${array[index].value.title}" type="text" name="input_title" id="input_title" placeholder="Enter a title">
                 </div>
+                <p id="error_title" class="error-required d_none">This field is required</p>
                 <div class="align-descr-input">
                     <label for="input_descr">Description</label>
                     <textarea name="input_descr" id="input_descr" rows="4" placeholder="Enter a description">${array[index].value.description}</textarea>
                 </div>
-                <div class="align-duedate-input">
-                    <label for="input_duedate">Duedate</label>
-                    <input type="date" name="input_duedate" id="input_duedate">
+                <label class="duedate-input" for="input_duedate">Duedate</label>
+                <div class="align-duedate-input" id="container_input_duedate">
+                    <input onkeyup="checkTitleAndDateInputLength('duedate')" value="${array[index].value.duedate}" type="text" name="input_duedate" id="input_duedate" placeholder="dd/mm/yyyy">
+                    <img src="../assets/img/addtask/calendar.svg">
                 </div>
+                <p id="error_duedate" class="error-required d_none">This field is required</p>
                 <div class="align-priority-btn-section">
                     <p>Priority</p>
                     <div class="btn-flexbox">
@@ -203,7 +206,7 @@ function getEditDialogTemplate(array, index) {
                     ${renderSubtasksintoEditDialog(index)}
                 </ul>
                 <div class="align-save-btn">
-                    <button onclick="saveCardChangesToDatabase(${index})">
+                    <button onclick="checkValidationInEditDialog(${index})">
                         Ok
                         <img src="../assets/img/addtask/done.svg">
                     </button>

@@ -217,32 +217,57 @@ dialog .wrapper {
     align-items: center;
 }
 
-.align-title-input {
+form {
     margin-top: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 0.5rem;
 }
 
-.align-title-input label {
+.align-title-input {
+    /* display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center; */
+    margin-top: 0.5rem;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+}
+
+/* .align-title-input label {
+    color: #2A3647;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+} */
+
+.title-label {
     color: #2A3647;
     font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
 }
 
+.align-title-input:focus-within {
+    border: 1px solid #29ABE2;
+}
+
+.error-required {
+    color: #FF8190;
+    font-size: 12px;
+}
+
 #input_title {
-    border: 1px solid #D1D1D1;
+    /* border: 1px solid #D1D1D1; */
     outline: none;
-    border-radius: 10px;
-    padding: 1rem 1.5rem;
+    border: none;
+    /* border-radius: 10px; */
+    /* padding: 1rem 1.5rem; */
     color: #000000;
     font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
 }
 
-#input_title:focus {
-    border: 1px solid #29ABE2;
+.red-validation-border {
+    border: 1px solid #FF8190 !important;
 }
+
+/* #input_title:focus {
+    border: 1px solid #29ABE2;
+} */
 
 #input_title::placeholder {
     font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
@@ -254,7 +279,7 @@ dialog .wrapper {
 }
 
 .align-descr-input {
-    margin-top: 2rem;
+    margin-block: 2rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -286,31 +311,39 @@ dialog .wrapper {
 }
 
 .align-duedate-input {
-    margin-top: 2rem;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-.align-duedate-input label {
-    color: #2A3647;
-    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
-}
-
-#input_duedate {
+    align-items: center;
+    margin-top: 0.5rem;
     border-radius: 10px;
     border: 1px solid #D1D1D1;
     outline: none;
     padding: 1rem 1.5rem;
-    color: #000000;
-    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
 }
 
-#input_duedate:focus {
+.align-duedate-input:focus-within {
     border: 1px solid #29ABE2;
 }
+
+.duedate-input {
+    color: #2A3647;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+    flex: 1;
+}
+
+#input_duedate {
+    /* border-radius: 10px; */
+    /* border: 1px solid #D1D1D1; */
+    outline: none;
+    border: none;
+    /* padding: 1rem 1.5rem; */
+    color: #000000;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+    flex: 1;
+}
+
+/* #input_duedate:focus {
+    border: 1px solid #29ABE2;
+} */
 
 #input_duedate::placeholder {
     font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
