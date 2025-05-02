@@ -215,6 +215,10 @@ function getEditDialogTemplate(array, index) {
 }
 
 
+/**
+ * 
+ * @returns - It returns the html with the urgent button highlighted
+ */
 function renderUrgent() {
     return `<button id="urgent_button" class="flexbtn urgent_button_klicked" onclick="choosePriority('urgent', 'medium', 'low')">
                             Urgent
@@ -234,6 +238,10 @@ function renderUrgent() {
 }
 
 
+/**
+ * 
+ * @returns - It returns the html with the medium button highlighted
+ */
 function renderMedium() {
     return `<button id="urgent_button" class="flexbtn urgent_button_unklicked" onclick="choosePriority('urgent', 'medium', 'low')">
                             Urgent
@@ -253,6 +261,10 @@ function renderMedium() {
 }
 
 
+/**
+ * 
+ * @returns - It returns the html with the low button highlighted
+ */
 function renderLow() {
     return `<button id="urgent_button" class="flexbtn urgent_button_unklicked" onclick="choosePriority('urgent', 'medium', 'low')">
                             Urgent
@@ -272,11 +284,26 @@ function renderLow() {
 }
 
 
+/**
+ * 
+ * @param {string} firstLetterFName - First char of the firstname
+ * @param {string} firstLetterLName - First char of the lastname
+ * @returns - It returns the html for the first characters of the first and lastname
+ */
 function getAssignedUsersEditTemplate(firstLetterFName, firstLetterLName) {
     return `<div onclick="openContactList(event)" class="short-name-dialog">${firstLetterFName}${firstLetterLName}</div>`
 }
 
 
+/**
+ * 
+ * @param {string} firstNameFirstChar - The first character of the first name
+ * @param {string} lastNameFirstChar - The first character of the last name
+ * @param {number} contactIndex - The index of the current contact who is getting rendered into the html template
+ * @param {number} cardIndex - The index of the current selected card
+ * @param {array} contactArr - This array holds the informations about the contacts
+ * @returns - It returns the html for the contact list 
+ */
 function renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, contactIndex, cardIndex, contactArr) {
     return `<div id="contact_container_${contactIndex}" class="align-contact-list" onclick="assignOrDisassignContact(${contactIndex}, ${cardIndex}, '${contactArr[contactIndex].id}', '${contactArr[contactIndex].value.name}')">
                             <div class="combine-name-and-shorthand">
@@ -289,6 +316,15 @@ function renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, con
 }
 
 
+/**
+ * 
+ * @param {string} firstNameFirstChar - The first character of the first name 
+ * @param {string} lastNameFirstChar - The first character of the last name
+ * @param {number} contactIndex - The index of the current contact who is getting rendered into the html template
+ * @param {number} cardIndex - The index of the current selected card
+ * @param {array} contactArr - This array holds the informations about the contacts
+ * @returns - It returns the html for the assigned contacts in the contact list
+ */
 function renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, contactIndex, cardIndex, contactArr) {
     return `<div id="contact_container_${contactIndex}" class="assigned-contact-background" onclick="assignOrDisassignContact(${contactIndex}, ${cardIndex}, '${contactArr[contactIndex].id}', '${contactArr[contactIndex].value.name}')">
                             <div class="combine-name-and-shorthand">
@@ -301,6 +337,14 @@ function renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstC
 }
 
 
+/**
+ * 
+ * @param {string} id - The key of the current selected subtask 
+ * @param {number} cardIndex - The index of the current selected card 
+ * @param {string} name - The information that the subtask holds
+ * @param {number} subtaskIndex - The index of the current subtask
+ * @returns - It returns the html for the subtasks
+ */
 function getSubtasksEditDialogTemplate(id, cardIndex, name, subtaskIndex) {
     return `<li id="number_of_subtask_${subtaskIndex}" onmouseover="highlightChangeOptions(${subtaskIndex})" onmouseout="hideChangeOptions(${subtaskIndex})" class="subtasks-list-items">
                 <div class="dot-name-gap">

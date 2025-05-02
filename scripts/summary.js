@@ -246,11 +246,17 @@ function renderUrgentDate(index) {
 }
 
 
+/**
+ * Adds the username to the fadeout animation when below 850px screen width
+ */
 function greetOnSmallerDevices() {
     fadeOutGreeting.innerHTML = greeting.innerHTML;
 }
 
 
+/**
+ * Disables the ability scroll when the user gets greeted
+ */
 function disableScrollTemporarily() {
     document.body.style.overflow = 'hidden';
     setTimeout(() => {

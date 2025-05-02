@@ -351,6 +351,11 @@ function deleteSubtaskFromInput() {
 }
 
 
+/**
+ * This function takes the user input and adds it to the subtasks as a new subtask
+ * 
+ * @param {number} cardIndex - The index of the current selected card 
+ */
 function addInputToSubtasks(cardIndex) {
     const array = getCurrentArray();
     const dialogSubtasks = document.getElementById('dialog_subtasks');
@@ -368,6 +373,11 @@ function addInputToSubtasks(cardIndex) {
 }
 
 
+/**
+ * This function updates the UI after a new subtask got added to the card
+ * 
+ * @param {number} cardIndex - The index of the current selected card 
+ */
 function renderUpdatedSutasksInEditDialog(cardIndex) {
     const subtasksListRef = document.getElementById('subtasks_list');
     subtasksListRef.innerHTML = ``;
@@ -375,6 +385,12 @@ function renderUpdatedSutasksInEditDialog(cardIndex) {
 }
 
 
+/**
+ * Checks wich button to highlight when opening up the edit tab of the dialog
+ * 
+ * @param {number} index - The index of the current selected card 
+ * @returns - It returns a function to render the right html
+ */
 function checkWichBtnToHighlight(index) {
     const array = getCurrentArray();
     if (array[index].value.priority === 'urgent') {
@@ -389,6 +405,12 @@ function checkWichBtnToHighlight(index) {
 }
 
 
+/**
+ * This functions extracts the first char of the first name and last name. After that it calls a template function where the variables are getting inserted.
+ * 
+ * @param {number} index - The index of the current selected card 
+ * @returns - Returns the html to the template
+ */
 function renderAssignedContactsToEditDialog(index) {
     const array = getCurrentArray();
     let assignedContactsRef = ``;
@@ -405,6 +427,11 @@ function renderAssignedContactsToEditDialog(index) {
 }
 
 
+/**
+ * 
+ * @param {number} index - The index of the current selected card
+ * @returns - It returns the html of the subtasks to the template
+ */
 function renderSubtasksintoEditDialog(index) {
     const array = getCurrentArray();
     let subtasksRef = ``;
@@ -420,6 +447,14 @@ function renderSubtasksintoEditDialog(index) {
 }
 
 
+/**
+ * This function checks if a contact is assigned to the current selected card or not. You can assign or disassign them.
+ * 
+ * @param {number} contactIndex - The index of the contact 
+ * @param {number} cardIndex - The index of the current selected card 
+ * @param {string} contactID - The key of the contact to get access to it's value
+ * @param {string} contactName - The name of the contact
+ */
 function assignOrDisassignContact(contactIndex, cardIndex, contactID, contactName) {
     let iteratedAssignments = getAssignmentList(cardIndex);
     let searchForAssignment = iteratedAssignments.find(element => element.id == contactID);
@@ -432,6 +467,11 @@ function assignOrDisassignContact(contactIndex, cardIndex, contactID, contactNam
 }
 
 
+/**
+ * 
+ * @param {number} index - The index of the current selected card 
+ * @returns - It returns an array of all the assigned contacts of a card
+ */
 function getAssignmentList(index) {
     const array = getCurrentArray();
     let assignedTo = [];
@@ -445,6 +485,13 @@ function getAssignmentList(index) {
 }
 
 
+/**
+ * This function disassigns a contact from a list
+ * 
+ * @param {string} contactID - The key of the contact to get access to it's values 
+ * @param {*} cardIndex - The index of the current selected card
+ * @param {*} contactIndex - The index of the contact 
+ */
 function disAssignUserFromCard(contactID, cardIndex, contactIndex) {
     const array = getCurrentArray();
     delete array[cardIndex].value.assigned[contactID];
@@ -458,6 +505,14 @@ function disAssignUserFromCard(contactID, cardIndex, contactIndex) {
 }
 
 
+/**
+ * With this function you can assign contacts to a card
+ * 
+ * @param {number} contactIndex - The index of the contact 
+ * @param {number} cardIndex - The index of the current selected card
+ * @param {string} contactID - The key of the contact to get access to it's values
+ * @param {string} contactName - The name of the contact
+ */
 function assignUserToCard(contactIndex, cardIndex, contactID, contactName) {
     const array = getCurrentArray();
     array[cardIndex].value.assigned[contactID] = {name : contactName};
@@ -471,6 +526,11 @@ function assignUserToCard(contactIndex, cardIndex, contactID, contactName) {
 }
 
 
+/**
+ * This function updates the ui with the first character of the first and last name, after a contact got assigned or disassigned.
+ * 
+ * @param {number} cardIndex - The index of the current selected card 
+ */
 function updateShortHandNames(cardIndex) {
     const array = getCurrentArray();
     let assignedUsers = "";
@@ -489,6 +549,11 @@ function updateShortHandNames(cardIndex) {
 }
 
 
+/**
+ * This function watches the input field where you can filter contacts in the edit dialog.
+ * 
+ * @param {number} cardIndex - The index of the current selected card. 
+ */
 function checkFilterContactConditions(cardIndex) {
     let inputLetters = document.getElementById('dialog_assigned_to').value;
     let inputLettersLength = inputLetters.trim().length;
@@ -501,6 +566,12 @@ function checkFilterContactConditions(cardIndex) {
 }
 
 
+/**
+ * This function filters the contacts based of the given value from the input field.
+ * 
+ * @param {string} inputLetters - The value from the filter contact input field. 
+ * @param {number} cardIndex - The index of the current selected card
+ */
 function filterContactsInEditDialog(inputLetters, cardIndex) {
     let filteredContacts = "";
     filteredContacts = contactsNamesOfUser.filter(contact => contact.value.name.toLowerCase().includes(inputLetters));
@@ -509,6 +580,12 @@ function filterContactsInEditDialog(inputLetters, cardIndex) {
 }
 
 
+/**
+ * This function renders the filtered contacts into the contact list of the edit dialog
+ * 
+ * @param {array} filteredContacts - The filtered array of the contact list 
+ * @param {number} cardIndex - The index of the current selected card
+ */
 function renderFilteredContactsIntoDialog(filteredContacts, cardIndex) {
     let assignmentList = getAssignmentList(cardIndex);
     let contactListRef = document.getElementById('contact-list-wrapper');
@@ -531,18 +608,35 @@ function renderFilteredContactsIntoDialog(filteredContacts, cardIndex) {
 }
 
 
+/**
+ * Hovering over the html component will activate this function. It will show the customization button and the delete button.
+ * 
+ * @param {number} subtaskIndex - The index of the current subtask 
+ */
 function highlightChangeOptions(subtaskIndex) {
     document.getElementById(`edit_delete_container_${subtaskIndex}`).classList.remove('d_none');
     document.getElementById(`edit_delete_container_${subtaskIndex}`).classList.add('align-change-or-delete-btn');  
 }
 
 
+/**
+ * When leaving the hover state of the component, the edit and delete button will be hidden again.
+ * 
+ * @param {number} subtaskIndex - The index of the current subtask
+ */
 function hideChangeOptions(subtaskIndex) {
     document.getElementById(`edit_delete_container_${subtaskIndex}`).classList.remove('align-change-or-delete-btn');
     document.getElementById(`edit_delete_container_${subtaskIndex}`).classList.add('d_none');  
 }
 
 
+/**
+ * This function will delete the chosen subtask from the card.
+ * 
+ * @param {string} id - The key of the subtask to get access to it's values
+ * @param {number} cardIndex - The index of the current selected card
+ * @param {event} e 
+ */
 function deleteSubtaskFromEditDialog(id, cardIndex, e) {
     e.stopPropagation();
     const array = getCurrentArray();
@@ -553,6 +647,14 @@ function deleteSubtaskFromEditDialog(id, cardIndex, e) {
 }
 
 
+/**
+ * This function let's you edit the current selected subtask
+ * 
+ * @param {string} id - The key of the subtask to get access to it's values 
+ * @param {number} cardIndex - The index of the current selected card
+ * @param {number} subtaskIndex - The index of the current selected subtask
+ * @param {event} e 
+ */
 function editSubtaskInEditDialog(id, cardIndex, subtaskIndex, e) {
     e.stopPropagation();
     const array = getCurrentArray();
@@ -562,6 +664,14 @@ function editSubtaskInEditDialog(id, cardIndex, subtaskIndex, e) {
 }
 
 
+/**
+ * This function will save the changes that the user makes to the subtasks
+ * 
+ * @param {number} cardIndex - The index of the current selected card 
+ * @param {string} subtaskId - The key of the subtask to get access to it's values
+ * @param {number} subtaskIndex - The index of the current selected subtask
+ * @param {event} e 
+ */
 function saveChangesToSubtaskInEditDialog(cardIndex, subtaskId, subtaskIndex, e) {
     e.stopPropagation();
     const array = getCurrentArray();
@@ -572,6 +682,11 @@ function saveChangesToSubtaskInEditDialog(cardIndex, subtaskId, subtaskIndex, e)
 }
 
 
+/**
+ * This function checks if the needed input fields are filled correctly
+ * 
+ * @param {number} cardIndex - The index of the current selected card 
+ */
 function checkValidationInEditDialog(cardIndex) {
     if (document.getElementById('input_title').value.length === 0) {
         highlightValidationError('title');
@@ -585,12 +700,22 @@ function checkValidationInEditDialog(cardIndex) {
 }
 
 
+/**
+ * This function will signalize the user that there is a validation error
+ * 
+ * @param {string} placeholder - holds the value of the input section (example: title or duedate)
+ */
 function highlightValidationError(placeholder) {
     document.getElementById(`error_${placeholder}`).classList.remove('d_none');
     document.getElementById(`container_input_${placeholder}`).classList.add('red-validation-border');
 }
 
 
+/**
+ * This function will check the lenght of the selected input field. If you are writing in it after a validation error, it will remove the error message.
+ * 
+ * @param {string} placeholder - holds the value of the input section (example: title or duedate)
+ */
 function checkTitleAndDateInputLength(placeholder) {
     const inputRef = document.getElementById(`input_${placeholder}`);
     const inputRefValue = inputRef.value;
@@ -604,6 +729,11 @@ function checkTitleAndDateInputLength(placeholder) {
 }
 
 
+/**
+ * This function will update the database with the updated card.
+ * 
+ * @param {number} index - The index of the current selected card 
+ */
 async function saveCardChangesToDatabase(index) {
     const array = getCurrentArray();
     await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${array[index].id}.json`, {
