@@ -163,15 +163,42 @@ async function deleteFromDatabase(i) {
 }
 
 
-// function checkDuedateInputConditions(cardIndex) {
+/**
+ * This function adds a "/" to the right spots when the user inserts numbers to the input field.
+ * 
+ * @param {event} e 
+ * @returns - If the backspace key is pressed, the function will stop.
+ */
+function checkDuedateInputConditions(e) {
+    if (e.key === "Backspace") {
+        return;
+    }
+    const inputRef = document.getElementById('input_duedate');
+    const inputRefValue = inputRef.value;
+    typeof inputRefValue;
+
+    if (inputRefValue.length === 2) {
+        inputRef.value = `${inputRefValue}/`;
+    }
+    else if (inputRefValue.length === 5) {
+        inputRef.value = `${inputRefValue}/`;
+    }
+}
+
+
+// function checkDuedateInputConditions(e) {
+//     if (e.key === "Backspace") {
+//         return;
+//     }
 //     const inputRef = document.getElementById('input_duedate');
 //     const inputRefValue = inputRef.value;
-//     typeof inputRefValue;
-
-//     if (inputRefValue.length === 2) {
-//         inputRef.value = `${inputRefValue}/`;
+//     const cleanedValue = inputRefValue.replaceAll("/", "");
+//     const onlyDigits = /^[0-9]*$/.test(cleanedValue);
+//     if (!onlyDigits) {
+//         console.log("Ungültige Eingabe: nur Ziffern (0–9) erlaubt");
+//         return;
 //     }
-//     else if (inputRefValue.length === 5) {
+//     if (inputRefValue.length === 2 || inputRefValue.length === 5) {
 //         inputRef.value = `${inputRefValue}/`;
 //     }
 // }
@@ -693,9 +720,42 @@ function checkValidationInEditDialog(cardIndex) {
     }
     if (document.getElementById('input_duedate').value.length === 0) {
         highlightValidationError('duedate');
+        return;
+    }
+    if (document.getElementById('input_duedate').value.length !== 10) {
+        highlightValidationErrorLength('duedate');
+        return;
+    }
+    if (checkIfDueDateInputAreNumbers()) {
+        highlightValidationErrorWithString('duedate');
+        return;
     }
     if (document.getElementById('input_title').value.length !== 0 && document.getElementById('input_duedate').value.length !== 0) {
         saveCardChangesToDatabase(cardIndex);
+    }
+    closeDialog(event);
+}
+
+
+/**
+ * This function splits the value of the input field into dd mm and yyyy. After that it converts the input to numbers. If there is a string in between the numbers this function will catch the error and stops the form from sending this data.
+ * 
+ * @returns - either true or false
+ */
+function checkIfDueDateInputAreNumbers() {
+    const inputRef = document.getElementById('input_duedate');
+    const inputRefValue = inputRef.value;
+
+    let [day, month, year] = inputRefValue.split('/');
+    let dayToNumber = Number(day);
+    let monthToNumber = Number(month);
+    let yearToNumber = Number(year);
+
+    if (isNaN(dayToNumber) || isNaN(monthToNumber) || isNaN(yearToNumber)) {
+        return true;
+    }
+    else {
+        return false;
     }
 }
 
@@ -708,6 +768,28 @@ function checkValidationInEditDialog(cardIndex) {
 function highlightValidationError(placeholder) {
     document.getElementById(`error_${placeholder}`).classList.remove('d_none');
     document.getElementById(`container_input_${placeholder}`).classList.add('red-validation-border');
+}
+
+
+/**
+ * This function will signalize the user that there is a validation error
+ * 
+ * @param {string} placeholder 
+ */
+function highlightValidationErrorWithString(placeholder) {
+    document.getElementById(`container_input_${placeholder}`).classList.add('red-validation-border');
+    document.getElementById(`error_string_${placeholder}`).classList.remove('d_none');
+}
+
+
+/**
+ * This function will signalize the user that there is a validation error
+ * 
+ * @param {string} placeholder 
+ */
+function highlightValidationErrorLength(placeholder) {
+    document.getElementById(`container_input_${placeholder}`).classList.add('red-validation-border');
+    document.getElementById(`error_length_${placeholder}`).classList.remove('d_none');
 }
 
 
@@ -725,6 +807,21 @@ function checkTitleAndDateInputLength(placeholder) {
     if(inputRefValue.length >= 1 && !errorText.classList.contains('d_none')) {
         errorText.classList.add('d_none');
         inputBorder.classList.remove('red-validation-border');
+    }
+}
+
+
+/**
+ * This function removes the highlighted validation error from the input field
+ */
+function removeValidationHighlightFromDueDate() {
+    const inputRef = document.getElementById('input_duedate');
+    const inputRefValue = inputRef.value;
+
+    if(inputRefValue.length === 10) {
+        document.getElementById('container_input_duedate').classList.remove('red-validation-border');
+        document.getElementById('error_length_duedate').classList.add('d_none');
+        document.getElementById('error_string_duedate').classList.add('d_none');
     }
 }
 
