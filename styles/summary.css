@@ -122,6 +122,7 @@ main {
 .align-todos-and-done:hover .task-numbers,
 .align-todos-and-done:hover .small-task-text {
     color: #FFFFFF;
+    cursor: pointer;
 }
 
 .hovered-todo {
@@ -204,6 +205,7 @@ main {
 .deadline-box:hover .urgent-date,
 .deadline-box:hover .upcoming-deadline-text {
     color: #FFFFFF;
+    cursor: pointer;
 }
 
 .deadline-box img {
@@ -227,6 +229,10 @@ main {
     /* height: 102px; */
     height: clamp(4.25rem, 3.6429rem + 3.0357vw, 6.375rem);
     border: 2px solid #D1D1D1;
+}
+
+.urgent-border:hover {
+    cursor: pointer;
 }
 
 .align-urgent-date {
@@ -306,6 +312,7 @@ main {
 .tasks-in-board:hover .task-numbers,
 .tasks-in-board:hover .small-task-text {
     color: #FFFFFF;
+    cursor: pointer;
 }
 
 .column-border {

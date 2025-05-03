@@ -51,6 +51,7 @@ async function fetchData() {
     }
 }
 
+
 /**
  * Fetches the users from the database and transforms the json to an array
  */
