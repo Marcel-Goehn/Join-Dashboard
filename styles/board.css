@@ -237,6 +237,15 @@ p {
     display: none;
 }
 
+@media(max-width: 1100px) {
+    .board-header {
+        margin-left: 128px;
+    }
+    main {
+        margin-left: 128px;
+    }
+}
+
 @media(max-width: 850px) {
 /* toggle active add-Task button */
     .add-task-btn.mobile {
