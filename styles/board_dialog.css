@@ -169,6 +169,7 @@ dialog .wrapper {
 
 .align-checkbox img:hover {
     cursor: pointer;
+    filter: drop-shadow(0 0 4px #000);
 }
 
 .delete-change-section {
@@ -200,6 +201,7 @@ dialog .wrapper {
 .delete-change-container:hover span {
     color: #29ABE2;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .delete-change-container:hover svg path {
@@ -217,7 +219,7 @@ dialog .wrapper {
     align-items: center;
 }
 
-form {
+.form-space-top {
     margin-top: 1.5rem;
 }
 
@@ -230,6 +232,10 @@ form {
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     padding: 1rem 1.5rem;
+}
+
+.align-title-input:hover {
+    cursor: pointer;
 }
 
 /* .align-title-input label {
@@ -318,6 +324,10 @@ form {
     border: 1px solid #D1D1D1;
     outline: none;
     padding: 1rem 1.5rem;
+}
+
+.align-duedate-input:hover {
+    cursor: pointer;
 }
 
 .align-duedate-input:focus-within {
@@ -455,6 +465,10 @@ form {
     justify-content: space-between;
     width: 100%;
     padding: 1rem 1.5rem;
+}
+
+.diaolog-dropdown-menu:hover {
+    cursor: pointer;
 }
 
 .diaolog-dropdown-menu:focus-within {
@@ -631,6 +645,7 @@ form {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    transition: all 100ms ease-in-out;
     /* gap: 0.5rem; */
 }
 
@@ -649,6 +664,10 @@ form {
     justify-content: space-between;
     align-items: center;
     gap: 0.5rem;
+}
+
+.dot-name-gap span:hover {
+    cursor: pointer;
 }
 
 .align-change-or-delete-btn {
@@ -690,7 +709,7 @@ form {
 
 .align-save-btn button:hover {
     background-color: #29ABE2;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 25);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .edit-list-subtask {

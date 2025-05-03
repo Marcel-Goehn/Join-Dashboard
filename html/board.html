@@ -39,13 +39,15 @@
                 <div class="board-header_mobile">
                     <h1>Board</h1>
                     <button class="add-task-btn mobile" onclick="window.location.href='addTask.html'">
-                        <img src="../assets/img/add.png">
+                        <img src="../assets/img/board/add.png">
                     </button>
                 </div>
                 <div class="align-input-and-task-btn">
                     <form class="inputgroup" onsubmit="return false">
                         <input class="find-task-input" id="find_task" type="text" placeholder="Find Task" required oninput="searchTasks()">
-                        <button class="find-task-btn"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                        <div class="align-input-divider-btn">
+                            <div class="input-group-divider"></div>
+                            <button class="find-task-btn"><svg class="hover-search-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                 viewBox="0 0 32 32" fill="none">
                                 <mask id="mask0_300393_6090" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
                                     y="0" width="32" height="32">
@@ -57,9 +59,11 @@
                                         fill="#2A3647" />
                                 </g>
                             </svg></button>
+                        </div>
+                        
                     </form>
                     <button class="add-task-btn" onclick="openAddTask()"><span class="add-task">Add Task</span><img
-                            src="../assets/img/add.png"></button>
+                            src="../assets/img/board/add.png"></button>
                 </div>
             </div>
         </div>
@@ -71,7 +75,11 @@
                 <div class="col">
                     <div class="board-card-header">
                         <span>To do</span>
-                        <button><img src="../assets/img/plus button.png"></button>
+                        <svg class="highlight-add-task-to-section" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="1" y="1" width="22" height="22" rx="7" stroke="#091931" stroke-width="2"/>
+                            <path d="M12 8V16" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M16 12.0754L8 12.0754" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
                     </div>
                     <div class="board_category" id="to_do" ondragover="allowDrop(event)" ondrop="moveTo('todo')">
                         
@@ -80,7 +88,11 @@
                 <div class="col">
                     <div class="board-card-header">
                         <span>In progress</span>
-                        <button><img src="../assets/img/plus button.png"></button>
+                        <svg class="highlight-add-task-to-section" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="1" y="1" width="22" height="22" rx="7" stroke="#091931" stroke-width="2"/>
+                            <path d="M12 8V16" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M16 12.0754L8 12.0754" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
                     </div>
                     <div class="board_category" id="progress" ondragover="allowDrop(event)" ondrop="moveTo('progress')">
                         
@@ -89,7 +101,11 @@
                 <div class="col">
                     <div class="board-card-header">
                         <span>Await Feedback</span>
-                        <button><img src="../assets/img/plus button.png"></button>
+                        <svg class="highlight-add-task-to-section" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="1" y="1" width="22" height="22" rx="7" stroke="#091931" stroke-width="2"/>
+                            <path d="M12 8V16" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M16 12.0754L8 12.0754" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
                     </div>
                     <div class="board_category" id="feedback" ondragover="allowDrop(event)" ondrop="moveTo('feedback')">
                         
@@ -98,7 +114,6 @@
                 <div class="col">
                     <div class="board-card-header">
                         <span>Done</span>
-                        <button><img src="../assets/img/plus button.png"></button>
                     </div>
                     <div class="board_category" id="done" ondragover="allowDrop(event)" ondrop="moveTo('done')">
                         

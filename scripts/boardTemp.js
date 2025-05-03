@@ -18,7 +18,7 @@ function getCardsTemplate(index, array) {
                                 <div class="user-icons">
                                     ${getAssignedUsers(index)}
                                 </div>
-                                <img src="../assets/img/${array[index].value.priority}.svg">
+                                <img src="../assets/img/board/${array[index].value.priority}.svg">
                             </div>
                         </div>`; // Dann muss noch aus dem Dialog kontrolliert werden ob schon subtasks abgehakt wurden oder nicht.
 }
@@ -84,7 +84,7 @@ function getDialogTemplate(index, array) {
                 <span class="priority-txt">Priority:</span>
                 <div class="priority-icon-alignment">
                     <span class="icon-txt">${array[index].value.priority}</span>
-                    <img src="../assets/img/${array[index].value.priority}.svg">
+                    <img src="../assets/img/board/${array[index].value.priority}.svg">
                 </div>
             </div>
             <p class="assignment-txt">Assigned To:</p>
@@ -137,7 +137,7 @@ function getAssignedUsersDialogTemplate(firstName, lastName, firstLetterFName, f
  */
 function getSubtasksDialogTemplate(status, name, cardIndex, key) {
     return `<div class="align-checkbox">
-                <img onclick="checkOrUncheckSubtask('${status}', ${cardIndex}, '${key}')" src="../assets/img/Check_button_${status}.svg">
+                <img onclick="checkOrUncheckSubtask('${status}', ${cardIndex}, '${key}')" src="../assets/img/board/Check_button_${status}.svg">
                 <p>${name}</p>
             </div>`
 }
@@ -152,7 +152,7 @@ function getEditDialogTemplate(array, index) {
     return `<div class="align-edit-dialog-close-btn">
                 <img onclick="closeDialog(event)" class="close-btn" src="../assets/img/addtask/x.svg">
             </div>
-            <form onsubmit="return false">
+            <form class="form-space-top" onsubmit="return false">
                 <label class="title-label" for="input_title">Title</label>
                  <div class="align-title-input" id="container_input_title">
                     <input onkeyup="checkTitleAndDateInputLength('title')" value="${array[index].value.title}" type="text" name="input_title" id="input_title" placeholder="Enter a title">
@@ -222,18 +222,18 @@ function getEditDialogTemplate(array, index) {
 function renderUrgent() {
     return `<button id="urgent_button" class="flexbtn urgent_button_klicked" onclick="choosePriority('urgent', 'medium', 'low')">
                             Urgent
-                            <img id="urgent_img" src="../assets/img/urgent.svg" class="d_none">
-                            <img id="urgent_white_img" src="../assets/img/urgent_white.svg">
+                            <img id="urgent_img" src="../assets/img/board/urgent.svg" class="d_none">
+                            <img id="urgent_white_img" src="../assets/img/board/urgent_white.svg">
                         </button>
                         <button id="medium_button" class="flexbtn medium_button_unklicked" onclick="choosePriority('medium', 'urgent', 'low')">
                             Medium
-                            <img id="medium_white_img" src="../assets/img/medium_white.svg" class="d_none">
-                            <img id="medium_img" src="../assets/img/Prio media.svg">
+                            <img id="medium_white_img" src="../assets/img/board/medium_white.svg" class="d_none">
+                            <img id="medium_img" src="../assets/img/board/Prio media.svg">
                         </button>
                         <button id="low_button" class="flexbtn low_button_unklicked" onclick="choosePriority('low', 'urgent', 'medium')">
                             Low
-                            <img id="low_img" src="../assets/img/low.svg">
-                            <img id="low_white_img" src="../assets/img/low_white.svg" class="d_none">
+                            <img id="low_img" src="../assets/img/board/low.svg">
+                            <img id="low_white_img" src="../assets/img/board/low_white.svg" class="d_none">
                         </button>`
 }
 
@@ -245,18 +245,18 @@ function renderUrgent() {
 function renderMedium() {
     return `<button id="urgent_button" class="flexbtn urgent_button_unklicked" onclick="choosePriority('urgent', 'medium', 'low')">
                             Urgent
-                            <img id="urgent_img" src="../assets/img/urgent.svg">
-                            <img id="urgent_white_img" src="../assets/img/urgent_white.svg" class="d_none">
+                            <img id="urgent_img" src="../assets/img/board/urgent.svg">
+                            <img id="urgent_white_img" src="../assets/img/board/urgent_white.svg" class="d_none">
                         </button>
                         <button id="medium_button" class="flexbtn medium_button_klicked" onclick="choosePriority('medium', 'urgent', 'low')">
                             Medium
-                            <img id="medium_white_img" src="../assets/img/medium_white.svg">
-                            <img id="medium_img" src="../assets/img/Prio media.svg" class="d_none">
+                            <img id="medium_white_img" src="../assets/img/board/medium_white.svg">
+                            <img id="medium_img" src="../assets/img/board/Prio media.svg" class="d_none">
                         </button>
                         <button id="low_button" class="flexbtn low_button_unklicked" onclick="choosePriority('low', 'urgent', 'medium')">
                             Low
-                            <img id="low_img" src="../assets/img/low.svg">
-                            <img id="low_white_img" src="../assets/img/low_white.svg" class="d_none">
+                            <img id="low_img" src="../assets/img/board/low.svg">
+                            <img id="low_white_img" src="../assets/img/board/low_white.svg" class="d_none">
                         </button>`
 }
 
@@ -268,18 +268,18 @@ function renderMedium() {
 function renderLow() {
     return `<button id="urgent_button" class="flexbtn urgent_button_unklicked" onclick="choosePriority('urgent', 'medium', 'low')">
                             Urgent
-                            <img id="urgent_img" src="../assets/img/urgent.svg">
-                            <img id="urgent_white_img" src="../assets/img/urgent_white.svg" class="d_none">
+                            <img id="urgent_img" src="../assets/img/board/urgent.svg">
+                            <img id="urgent_white_img" src="../assets/img/board/urgent_white.svg" class="d_none">
                         </button>
                         <button id="medium_button" class="flexbtn medium_button_unklicked" onclick="choosePriority('medium', 'urgent', 'low')">
                             Medium
-                            <img id="medium_white_img" src="../assets/img/medium_white.svg" class="d_none">
-                            <img id="medium_img" src="../assets/img/Prio media.svg">
+                            <img id="medium_white_img" src="../assets/img/board/medium_white.svg" class="d_none">
+                            <img id="medium_img" src="../assets/img/board/Prio media.svg">
                         </button>
                         <button id="low_button" class="flexbtn low_button_klicked" onclick="choosePriority('low', 'urgent', 'medium')">
                             Low
-                            <img id="low_img" src="../assets/img/low.svg" class="d_none">
-                            <img id="low_white_img" src="../assets/img/low_white.svg">
+                            <img id="low_img" src="../assets/img/board/low.svg" class="d_none">
+                            <img id="low_white_img" src="../assets/img/board/low_white.svg">
                         </button>`
 }
 
@@ -310,8 +310,8 @@ function renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, con
                                 <div class="short-name-dialog">${firstNameFirstChar}${lastNameFirstChar}</div>
                                 <span id="full_name_${contactIndex}" class="full-name-dark">${contactArr[contactIndex].value.name}</span>
                             </div>
-                            <img id="unchecked_image_${contactIndex}" src="../assets/img/Check_button_unchecked.svg">
-                            <img id="checked_image_${contactIndex}" class="d_none" src="../assets/img/Check button_white.svg">
+                            <img id="unchecked_image_${contactIndex}" src="../assets/img/board/Check_button_unchecked.svg">
+                            <img id="checked_image_${contactIndex}" class="d_none" src="../assets/img/board/Check button_white.svg">
                         </div>`
 }
 
@@ -331,8 +331,8 @@ function renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstC
                                 <div class="short-name-dialog">${firstNameFirstChar}${lastNameFirstChar}</div>
                                 <span id="full_name_${contactIndex}" class="full-name-white">${contactArr[contactIndex].value.name}</span>
                             </div>
-                            <img id="unchecked_image_${contactIndex}" class="d_none" src="../assets/img/Check_button_unchecked.svg">
-                            <img id="checked_image_${contactIndex}" src="../assets/img/Check button_white.svg">
+                            <img id="unchecked_image_${contactIndex}" class="d_none" src="../assets/img/board/Check_button_unchecked.svg">
+                            <img id="checked_image_${contactIndex}" src="../assets/img/board/Check button_white.svg">
                         </div>`
 }
 
