@@ -348,7 +348,7 @@ function getAssignmentList(cardIndex) {
 /**
  * It changes the UI of the input field where you can add a new one to the card. 
  */
-function checkSubtaskInputField() {
+function checkSubtaskInputField(e, cardIndex) {
     const dialogSubtasks = document.getElementById('dialog_subtasks');
     if (dialogSubtasks.value.length >= 1) {
         document.getElementById('plus_icon').classList.add('d_none');
@@ -361,6 +361,13 @@ function checkSubtaskInputField() {
         document.getElementById('check_icon').classList.add('d_none');
         document.getElementById('icon_divider').classList.add('d_none');
         document.getElementById('plus_icon').classList.remove('d_none');
+    }
+    if (e == undefined) {
+        return;
+    }
+    else if(e.key == 'Enter') {
+        e.preventDefault();
+        addInputToSubtasks(cardIndex);
     }
 }
 

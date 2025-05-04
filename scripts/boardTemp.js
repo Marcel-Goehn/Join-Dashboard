@@ -195,7 +195,7 @@ function getEditDialogTemplate(array, index) {
                 <div class="align-subtasks-section">
                     <label for="dialog_subtasks">Subtasks</label>
                     <div class="diaolog-dropdown-menu">
-                        <input onkeyup="checkSubtaskInputField()" type="text" id="dialog_subtasks" name="dialog_subtasks" placeholder="Add new subtask">
+                        <input onkeyup="checkSubtaskInputField(event, ${index})" type="text" id="dialog_subtasks" name="dialog_subtasks" placeholder="Add new subtask">
                         <img id="plus_icon" class="subtask-icons" src="../assets/img/addtask/add.svg">
                         <div class="align-subtask-icons">
                             <img onclick="deleteSubtaskFromInput()" id="x_icon" class="d_none subtask-icons" src="../assets/img/addtask/x.svg">

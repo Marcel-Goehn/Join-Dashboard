@@ -110,6 +110,7 @@ h1 {
 
 .hover-search-icon {
     border-radius: 50%;
+    transition: background-color 100ms ease-in-out;
 }
 
 .hover-search-icon:hover {
@@ -149,6 +150,10 @@ main {
     font-weight: 700;
     font-size: 1.25rem;
     color: #42526E;
+}
+
+.highlight-add-task-to-section {
+    transition: cursor 100ms ease-in-out, stroke 100ms ease-in-out;
 }
 
 .highlight-add-task-to-section:hover {

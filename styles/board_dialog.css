@@ -167,9 +167,14 @@ dialog .wrapper {
     margin-top: 0;
 }
 
+.align-checkbox img {
+    transition: cursor 100ms ease-in-out, background-color 100ms ease-in-out border-radius 100ms ease-in-out;
+}
+
 .align-checkbox img:hover {
     cursor: pointer;
-    filter: drop-shadow(0 0 4px #000);
+    background-color: #e2e2e2;
+    border-radius: 50%;
 }
 
 .delete-change-section {
@@ -185,12 +190,14 @@ dialog .wrapper {
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
+    transition: transform 100ms ease-in-out;
 }
 
 .delete-change-container span {
     font-weight: 400;
     font-size: 1rem;
     color: #2A3647;
+    transition: color 100ms ease-in-out, font-weight 100ms ease-in-out;
 }
 
 .delete-change-container:hover {
@@ -389,7 +396,6 @@ dialog .wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    
     padding: 1rem;
     gap: 0.5rem;
     border-radius: 10px;
@@ -398,6 +404,7 @@ dialog .wrapper {
 .urgent_button_unklicked {
     background-color: #FFFFFF;
     font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+    transition: box-shadow 100ms ease-in-out;
 }
 
 .urgent_button_unklicked:hover {
@@ -414,6 +421,7 @@ dialog .wrapper {
 .medium_button_unklicked {
     background-color: #FFFFFF;
     font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+    transition: box-shadow 100ms ease-in-out;
 }
 
 .medium_button_unklicked:hover {
@@ -430,6 +438,7 @@ dialog .wrapper {
 .low_button_unklicked {
     background-color: #FFFFFF;
     font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
+    transition: box-shadow 100ms ease-in-out;
 }
 
 .low_button_unklicked:hover {
@@ -490,6 +499,10 @@ dialog .wrapper {
     font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
 }
 
+.dropdown-icon {
+    transition: background-color 100ms ease-in-out, border-radius 100ms ease-in-out;
+}
+
 .dropdown-icon:hover {
     background-color: #EEEEEE;
     border-radius: 50%;
@@ -511,6 +524,7 @@ dialog .wrapper {
     border-radius: 10px;
     padding: 0.5rem 1rem;
     margin-top: 0.25rem;
+    transition: background-color 100ms ease-in-out;
 }
 
 .align-contact-list:first-child {
@@ -530,6 +544,7 @@ dialog .wrapper {
     border-radius: 10px;
     padding: 0.5rem 1rem;
     margin-top: 0.25rem;
+    transition: background-color 100ms ease-in-out;
 }
 
 .assigned-contact-background:first-child {
@@ -538,6 +553,7 @@ dialog .wrapper {
 
 .assigned-contact-background:hover {
     cursor: pointer;
+    background-color: #091931;
 }
 
 .full-name-white {
@@ -556,10 +572,6 @@ dialog .wrapper {
 
 .full-name-dark:hover {
     cursor: pointer;
-}
-
-.assigned-contact-background:hover {
-    background-color: #091931;
 }
 
 .combine-name-and-shorthand {
@@ -620,6 +632,10 @@ dialog .wrapper {
     align-items: center;
     justify-content: center;
     gap: 4px;
+}
+
+.subtask-icons {
+    transition: background-color 100ms ease-in-out, border-radius 100ms ease-in-out;
 }
 
 .subtask-icons:hover {
