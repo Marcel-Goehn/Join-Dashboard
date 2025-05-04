@@ -149,9 +149,17 @@ main {
     display: block;
 }
 
+.to-do-animation {
+    transition: transform 100ms ease-in-out, background-color 100ms ease-in-out;
+}
+
 .to-do-animation:hover {
     transform: scale(1.1) translateX(5px);
     background-color: #2A3647;
+}
+
+.done-animation {
+    transition: transform 100ms ease-in-out, background-color 100ms ease-in-out;
 }
 
 .done-animation:hover {
@@ -291,16 +299,28 @@ main {
     transition: all 80ms ease-out;
 }
 
+.animate-first-task {
+    transition: transform 100ms ease-in-out, background-color 100ms ease-in-out;
+}
+
 .animate-first-task:hover {
     cursor: pointer;
     transform: scale(1.1) translateX(5px);
     background-color: #2A3647;
 }
 
+.animate-second-task {
+    transition: transform 100ms ease-in-out, background-color 100ms ease-in-out;
+}
+
 .animate-second-task:hover {
     cursor: pointer;
     transform: scale(1.1);
     background-color: #2A3647;
+}
+
+.animate-third-task {
+    transition: transform 100ms ease-in-out, background-color 100ms ease-in-out;
 }
 
 .animate-third-task:hover {

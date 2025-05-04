@@ -732,8 +732,8 @@ function checkValidationInEditDialog(cardIndex) {
     }
     if (document.getElementById('input_title').value.length !== 0 && document.getElementById('input_duedate').value.length !== 0) {
         saveCardChangesToDatabase(cardIndex);
+        closeDialog(event);
     }
-    closeDialog(event);
 }
 
 

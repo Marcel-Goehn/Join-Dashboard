@@ -348,7 +348,7 @@ function renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstC
  * @returns - It returns the html for the subtasks
  */
 function getSubtasksEditDialogTemplate(id, cardIndex, name, subtaskIndex) {
-    return `<li id="number_of_subtask_${subtaskIndex}" onmouseover="highlightChangeOptions(${subtaskIndex})" onmouseout="hideChangeOptions(${subtaskIndex})" class="subtasks-list-items">
+    return `<li id="number_of_subtask_${subtaskIndex}" ondblclick="editSubtaskInEditDialog('${id}', ${cardIndex}, ${subtaskIndex}, event)" onmouseover="highlightChangeOptions(${subtaskIndex})" onmouseout="hideChangeOptions(${subtaskIndex})" class="subtasks-list-items">
                 <div class="dot-name-gap">
                     <span>&bull;</span>${name}
                 </div>

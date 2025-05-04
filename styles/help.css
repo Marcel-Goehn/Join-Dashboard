@@ -23,9 +23,15 @@ h1 {
     color: #000000;
 }
 
-.align-header button {
-    background-color: #F6F7F8;
+.align-header img {
     align-self: flex-start;
+    border-radius: 50%;
+    transition: background-color 100ms ease-in-out;
+}
+
+.align-header img:hover {
+    background-color: #EEEEEE;
+    cursor: pointer;
 }
 
 .introducing {

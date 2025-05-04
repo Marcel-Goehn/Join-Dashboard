@@ -53,6 +53,7 @@ header span {
 	width: 20px;
 	height: 20px;
 	cursor: pointer;
+	transition: transform 100ms ease-in-out;
 }
 
 #headerInfoIcon:hover {
@@ -73,6 +74,7 @@ span {
 	align-items: center;
 	color: #29abe2;
 	cursor: pointer;
+	transition: background-color 100ms ease-in-out;
 }
 
 #shorthandNameDiv:hover {
