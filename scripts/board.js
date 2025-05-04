@@ -229,37 +229,3 @@ function getCurrentArray(){
         return foundTasks;
     }
 }
-
-
-
-
-
-
-
-
-// Hab diese Funktion nur gebaut um Test Objekte in die Datenbank zu laden, lösche sie sobald alles glatt läuft
-
-
-/*async function sendDataToFirebase(data) {
-    await fetch("https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test.json", {
-        method : "POST",
-        headers : {"Content-Type" : "application/json"},
-        body : JSON.stringify(data)
-    });
-}
-
-function testUpload() {
-    let obj = {
-        "title" : "CSS Architecture Planning",
-        "priority" : "medium",
-        "duedate" : "20/06/2025",
-        "description" : "Define CSS naming conventions and structure",
-        "currentStatus" : "done",
-        "category" : "Technical Task",
-        "subtasks" : {"null" : "null"},
-        "assigned" : {"null" : "null"}
-    };
-    sendDataToFirebase(obj);
-}
-
-testUpload();*/
