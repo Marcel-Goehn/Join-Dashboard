@@ -14,6 +14,7 @@ const checkbox = document.getElementById("privacyCheckbox");
 const checkboxBorder = document.getElementById("checkboxBorder");
 const dialog = document.getElementById("succesfulSignUpDial");
 let previousLength = 0;
+const colors = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E","#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B",  "#FF4646", "#FFBB2B"];
 
 const databaseLinkRef =
 	"https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users.json";
@@ -101,7 +102,7 @@ async function validateForm() {
 			return;
 		}
 		postUser(nameInput.value, emailInput.value, passwordInput.value);
-		//nextPage();
+		nextPage();
 	}
 }
 
@@ -129,13 +130,20 @@ function setRedBorder(element) {
 }
 
 /* --------------------- > Validation end ----------------------------- */
+async function getColor(){
+	const userDataColor = await fetchData();
+	const color = colors[Object.keys(userDataColor).length % colors.length];
+	return color;
+  }
 
 async function postUser(name, email, password) {
+	const userColor = await getColor();
 	const newUser = {
 		name,
 		email: email.toLowerCase(),
 		password,
 		contacts: null,
+		color: userColor,
 	};
 	const request = await fetch(databaseLinkRef, {
 		method: "POST",
