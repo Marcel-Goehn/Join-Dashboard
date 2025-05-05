@@ -209,7 +209,7 @@ function nextPage() {
 	dialog.showModal();
 	document.getElementById("successDiv").classList.add("fadeInAndMoveUp");
 	setTimeout(() => {
-		window.location.href = "./login.html";
+		window.location.href = "./index.html";
 	}, 1000);
 }
 

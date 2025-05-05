@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join | Login</title>
-    <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../styles/styleTemp.css">
-    <link rel="stylesheet" href="../styles/login.css">
-    <link rel="stylesheet" href="../styles/animation.css">
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/styleTemp.css">
+    <link rel="stylesheet" href="./styles/login.css">
+    <link rel="stylesheet" href="./styles/animation.css">
 </head>
 <body onload="init()">
     <div id="content-wrapper">
@@ -23,12 +23,12 @@
             <form id="login_data" action="./summary.html">
                 <div class="form-element">
                     <input onclick="removeInvalidClass(0)" id="emailInput" name="email" type="email" placeholder="Email">
-                    <img src="../assets/img/login/mail.svg">
+                    <img src="./assets/img/login/mail.svg">
                 </div>
                 <div>
                     <div class="form-element">
                         <input onkeyup="passwordInputisEmpty()" onclick="removeInvalidClass(1)" id="passwordInput" name="password" type="password" placeholder="Password">
-                        <img onclick="toggleVisibility(), togglePasswordIcon()" id="PasswordIcon" src="../assets/img/login/lock.svg">
+                        <img onclick="toggleVisibility(), togglePasswordIcon()" id="PasswordIcon" src="./assets/img/login/lock.svg">
                     </div>
                     <span id="invalid_login_hint" class="hidden">Check your email and password. Please try again.</span>
                 </div>
@@ -40,7 +40,7 @@
         </div>
         <div id="signup_div_mobile" class="hidden">
             <span>Not a Join User?</span>
-            <a href="./signUp.html">
+            <a href="/html/signUp.html">
                 <button id="signup_btn">Sign up</button>
             </a>
         </div>
@@ -50,5 +50,5 @@
         </footer>
     </div>
 </body>
-<script src="../scripts/login.js"></script>
+<script src="./scripts/login.js"></script>
 </html>

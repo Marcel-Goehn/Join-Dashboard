@@ -24,7 +24,7 @@
                 <div id="menu" class="hidden">
                     <a href="legalNotice.html">Legal Notice</a>
                     <a href="privacyPolicy.html">Privacy Policy</a>
-                    <a onclick="logout()" href="login.html">Log out</a>
+                    <a onclick="logout()" href="../index.html">Log out</a>
                 </div>
             </div>
         </div>
@@ -148,11 +148,9 @@
                 </div>
                 <div class="formular-section">
                     <span>Due date<span class="star">*</span></span>
-                    <div class="duedate_wrapper formular-element">
-                        <div id="placeholder">
-                            <span>dd/mm/yyyy</span><img src="../assets/img/addtask/calendar.svg">
-                        </div>
-                        <input id="duedate_input" onkeyup="checkUploadConditions()" type="date">
+                    <div id="duedate" class="formular-element">
+                            <input id="duedate_input" onkeyup="formcorrectDuedate(), checkUploadConditions()" placeholder="dd/mm/yyyy" type="text">
+                            <img src="../assets/img/addtask/calendar.svg">
                     </div>
                     <span class="hidden">this field is required</span>
                 </div>

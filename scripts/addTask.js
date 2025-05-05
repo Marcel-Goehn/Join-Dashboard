@@ -150,6 +150,21 @@ function addSubtask() {
     }
     ChangeSubtaskIcons();
 }
+function formcorrectDuedate() {
+    eraseInvalidInput();
+    if (duedate.value.length > 2 && !duedate.value.includes('/')) {
+        duedate.value = duedate.value.slice(0, 2) + '/' + duedate.value.slice(2);
+    }
+    if (duedate.value.length > 5 && !duedate.value.slice(3).includes('/')) {
+        duedate.value = duedate.value.slice(0, 5) + '/' + duedate.value.slice(5);
+    }
+}
+function eraseInvalidInput() {
+    let lastChar = duedate.value.slice(-1);
+    if (isNaN(lastChar) == true) {
+        duedate.value = duedate.value.slice(0, -1);
+    }
+}
 
 function confirmSubtask(id) {
     document.getElementById(`edit_div${id}`).classList.toggle('hidden');
@@ -171,12 +186,12 @@ function editSubtask(id) {
     document.getElementById(`edit_div${id}`).classList.toggle('hidden');
     document.getElementById(`edit_div${id}`).style = "background-color: white";
     document.getElementById(id).classList.toggle('hidden');
-    document.getElementById(`edit_input${id}`).value = current_subtask;    
+    document.getElementById(`edit_input${id}`).value = current_subtask;
 }
 
 function checkUploadConditions() {
-    if (title.value !== "" && duedate.value !== "" && selectedCategory.innerHTML !== "Select task category") {
-                document.getElementById('confirm_btn').disabled = false;
+    if (title.value !== "" && duedate.value.length == 10 && selectedCategory.innerHTML !== "Select task category") {
+        document.getElementById('confirm_btn').disabled = false;
     } else {
         document.getElementById('confirm_btn').disabled = true;
     }

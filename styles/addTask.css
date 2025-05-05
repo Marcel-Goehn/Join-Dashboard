@@ -20,26 +20,13 @@ span {
 #title_input::placeholder {
 	color: #D1D1D1;
 }
-#placeholder {
-	position: absolute;
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-	align-items: center;
-	pointer-events: none;
-	padding-right: 40px;
-}
-.duedate_wrapper {
-	position: relative;
-	display: flex;
-	align-items: center;
-	width: 100%;
-	color: #d1d1d1;
+ #duedate {
 	background-color: white;
-}
-#duedate_input {
-opacity: 0;
-}
+	display: flex;
+ }
+ #duedate_input::placeholder {
+	color: #D1D1D1;
+ }
 #separator {
 	height: 424px;
 	border: 1px solid #d1d1d1;

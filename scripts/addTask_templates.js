@@ -17,8 +17,8 @@ function subtask_template(id, subtask) {
             </div>`;
 }
 
-function renderSelectedContactsAsCircle(name, id) {
-    return `<div onclick="toggleCheckmark('${name}', '${id}')" class="circle">${getInitials(name)}</div>`
+function renderSelectedContactsAsCircle(name, id, color) {
+    return `<div onclick="toggleCheckmark('${name}', '${id}')" class="circle">${getInitials(name)} style="background-color: ${color}"</div>`
 }
 
 function subtaskIsNotBlank() {
