@@ -117,10 +117,10 @@ function renderTasks() {
  */
 function checkBoardAmount() {
     if(cards.length -1 === 1) {
-        boardAmount.innerHTML = getTaskInBoardTemplate();//`Task in Board`;
+        boardAmount.innerHTML = getTaskInBoardTemplate('Board');//`Task in Board`;
     }
     else {
-        boardAmount.innerHTML = getTasksInBoardTemplate()//`Tasks in Board`;
+        boardAmount.innerHTML = getTasksInBoardTemplate('Board')//`Tasks in Board`;
     }
     checkProgressAmount();
 }
@@ -131,11 +131,11 @@ function checkBoardAmount() {
  * otherwise to "Tasks in Board".
  */
 function checkProgressAmount() {
-    if(progress.length === 1) {
-        progressAmount.innerHTML = getTaskInBoardTemplate()//`Task in Board`;
+    if(progressLength === 1) {
+        progressAmount.innerHTML = getTaskInBoardTemplate('Progress')//`Task in Board`;
     }
     else {
-        progressAmount.innerHTML = getTasksInBoardTemplate()//`Tasks in Board`;
+        progressAmount.innerHTML = getTasksInBoardTemplate('Progress')//`Tasks in Board`;
     }
     nextUrgentDate();
 }
@@ -217,6 +217,19 @@ function nextUrgentDate() {
     let count = 0;
     let miliseconds;
     let index;
+    let foundNextUrgentDate = loopThroughUrgentDate(count, miliseconds, index);
+    renderUrgentDate(foundNextUrgentDate);
+}
+
+
+/**
+ * 
+ * @param {number} count 
+ * @param {number} miliseconds 
+ * @param {number} index 
+ * @returns - It returns the index of the next urgent date
+ */
+function loopThroughUrgentDate(count, miliseconds, index) {
     for (let i = 0; i < cards.length; i++) {
         if(cards[i].value.duedate === undefined || cards[i].value.priority != "urgent") {
             continue;
@@ -233,7 +246,7 @@ function nextUrgentDate() {
             index = i;
         }
     }
-    renderUrgentDate(index);
+    return index;
 }
 
 

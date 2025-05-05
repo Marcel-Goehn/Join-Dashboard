@@ -34,7 +34,6 @@ async function closeDialog(e) {
 dialog.onclick = function (e) {
     const contactWrapper = document.getElementById('contact-list-wrapper');
     if (!wrapper.contains(e.target)) {
-        //dialog.close();
         closeDialog(e);
         return;
     }
@@ -115,11 +114,9 @@ async function checkOrUncheckSubtask(status, cardIndex, subtaskKey) {
     const array = getCurrentArray();
     if(status === "checked") {
         array[cardIndex].value.subtasks[subtaskKey].status = "unchecked";
-        console.log(array[cardIndex].value.subtasks[subtaskKey].status)
     }
     else {
         array[cardIndex].value.subtasks[subtaskKey].status = "checked";
-        console.log(array[cardIndex].value.subtasks[subtaskKey].status + "checked")
     }
     await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${array[cardIndex].id}/subtasks.json`, {
         method : "PUT",
