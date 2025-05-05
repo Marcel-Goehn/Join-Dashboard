@@ -67,6 +67,16 @@ function getEmptySectionTemplate(placeholder) {
 
 /**
  * 
+ * @param {string} placeholder 
+ * @returns - It returns the html for the empty box to signalize the user where to drag & drop
+ */
+function getDropBoxTemplate(placeholder) {
+    return `<div id="${placeholder}_drop_box" class="o_hidden custom-drop-box"></div>`
+}
+
+
+/**
+ * 
  * @returns - It returns the html code for the dialog of the task card
  */
 function getDialogTemplate(index, array) {

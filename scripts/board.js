@@ -100,6 +100,7 @@ function renderCards(array) {
         checkRenderConditions(i, array);   
     }
     checkIfBoxIsEmpty();
+    addDropBox();
 }
 
 
@@ -152,6 +153,17 @@ function checkRenderConditions(index, array) {
     else if (array[index].value.currentStatus === "done") {
         doneMemory += getCardsTemplate(index, array);
     }
+}
+
+
+/**
+ * Add's at the end of every board section an empty card, to let the user know where he can drag and drop
+ */
+function addDropBox() {
+    todo.innerHTML += getDropBoxTemplate('todo');
+    progress.innerHTML += getDropBoxTemplate('progress');
+    feedback.innerHTML += getDropBoxTemplate('feedback');
+    done.innerHTML += getDropBoxTemplate('done');
 }
 
 

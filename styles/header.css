@@ -46,6 +46,7 @@ header span {
 	gap: 16px;
 	justify-content: center;
 	align-items: center;
+	position: relative;
 }
 
 #headerInfoIcon {
@@ -92,7 +93,8 @@ span {
 #menu {
 	display: flex;
 	position: absolute;
-	top: 96px;
+	top: 76px;
+	right: 0;
 	flex-direction: column;
 	background-color: #2a3547;
 	border-radius: 20px 0 20px 20px;
@@ -135,11 +137,11 @@ span {
 	#headerContent {
 		padding-inline: 1rem;
 	}
-	#headerIconDiv a {
-		display: none;
-	}
 	#shorthandNameDiv {
 		height: 40px;
 		width: 40px;
+	}
+	#menu {
+		top: 40px;
 	}
 }
