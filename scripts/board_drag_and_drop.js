@@ -68,7 +68,7 @@ function moveTo(category) {
         const array = getCurrentArray();
         array[currentDraggedElement].value.currentStatus = category;
         renderCards(array);
-        updateDatabase(array[currentDraggedElement].id, category);   
+        updateDatabase(array[currentDraggedElement].id, category);
 }
 
 

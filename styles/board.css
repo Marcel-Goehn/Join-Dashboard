@@ -362,15 +362,16 @@ p {
         max-width: 252px;
     }
     .col {
-        width: auto;
+        width: 100%;
     }
     .board_category {
         display: flex;
+        flex: 1;
         gap: 20px; /* don't know the actual gap */
-        max-width: 100vw;
+        /* max-width: 100vw; */
         overflow-x: auto;
-        border-style: solid;
-        border-color: red;
+        /* border-style: solid;
+        border-color: red; */
     }
     body {
         overflow-x: hidden;
