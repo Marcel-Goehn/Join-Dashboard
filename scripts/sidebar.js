@@ -34,7 +34,7 @@ function highlightSidebarLink() {
 
 
 function checkIfLoggedIn(){
-	if(userObjectForCheck === null){
+	if(userObjectForCheck === null || undefined){
 		window.location.href = "../html/login.html";
 	}
 }
