@@ -2,6 +2,7 @@ const contactsDiv = document.getElementById("contactsSidebarDiv");
 const addTaskDiv = document.getElementById("addTaskSidebarDiv");
 const boardDiv = document.getElementById("boardSidebarDiv");
 const summaryDiv = document.getElementById("summarySidebarDiv");
+const userObjectForCheck = sessionStorage.getItem("loggedIn");
 checkIfLoggedIn();
 
 function highlightSidebarLink() {
@@ -33,7 +34,7 @@ function highlightSidebarLink() {
 
 
 function checkIfLoggedIn(){
-	if(user === null){
+	if(userObjectForCheck === null){
 		window.location.href = "../html/login.html";
 	}
 }
