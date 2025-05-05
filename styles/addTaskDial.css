@@ -210,14 +210,19 @@ body {
 #clear_btn:hover {
 	outline-color: #00c0dd;
 	color: #00c0dd;
-	/* Das verfluchte X muss auch noch irgendwie die Farbe ändern */
 }
 .btn_bigFont {
 	font-size: 21px !important;
 	font-weight: 700 !important;
 	color: white;
 }
-
+#duedate {
+	background-color: white;
+	display: flex;
+}
+#duedate_input::placeholder {
+	color: #D1D1D1;
+}
 .btn_smallFont {
 	font-size: 20px;
 	font-weight: 400;
