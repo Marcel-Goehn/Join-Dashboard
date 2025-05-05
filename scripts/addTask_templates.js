@@ -1,3 +1,9 @@
+/**
+ * creates a subtask beneath the subtask-inputspace
+ * @param {id of subtask} id 
+ * @param {content of subtask} subtask 
+ * @returns a block of code, representing a posted subtask
+ */
 function subtask_template(id, subtask) {
     return `<li class="addedSubtask" onclick="editSubtask(${id})" id="${id}">
                 <span id="subtask_row${id}" class="listitem">${subtask}</span>
@@ -17,20 +23,41 @@ function subtask_template(id, subtask) {
             </div>`;
 }
 
+/**
+ * HTML-Element for better user-comprehension
+ * @param {name of user} name 
+ * @param {id of user} id 
+ * @param {color of user} color 
+ * @returns a line of code, representing the user's initials in a circle
+ */
 function renderSelectedContactsAsCircle(name, id, color) {
     return `<div onclick="toggleCheckmark('${name}', '${id}')" class="circle">${getInitials(name)} style="background-color: ${color}"</div>`
 }
 
+/**
+ * HTML-Element for better user-comprehension
+ * @returns a line of code, representing icons
+ */
 function subtaskIsNotBlank() {
     return `<img class="icon" onclick="clearInput()" src="../assets/img/addtask/x.svg"></img>
     |
     <img class="icon" onclick="addSubtask()" src="../assets/img/addtask/done_black.svg"></img>`
 }
 
+/**
+ * HTML-Element for better user-comprehension
+ * @returns a line of code, representing an icon
+ */
 function subtaskIsBlank() {
     return `<img class="icon" src="../assets/img/addtask/add.svg"></img>`
 }
 
+/**
+ * HTML-Element for better user-comprehension
+ * @param {*} id 
+ * @param {*} contactObject 
+ * @returns a block of code, representing a contact of the user
+ */
 function renderContacts(id, contactObject) {
     return `<div class="contact" id="${id}" onclick="toggleCheckmark('${contactObject.name}', '${id}'), Bubbling(event)">
                 <div class="initial_name">

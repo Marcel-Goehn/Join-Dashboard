@@ -16,12 +16,17 @@ let title = document.getElementById('title_input');
 let duedate = document.getElementById('duedate_input');
 let selectedCategory = document.getElementById('btn_text');
 
-
+/**
+ * calls all necessary functions for rendering logged user & its contacts
+ */
 async function init_addTask() {
     await fetchUser();
     logged_user.contacts ? getContacts() : null;
 }
 
+/**
+ * stores userdata in a variable for further interaction
+ */
 async function fetchUser() {
     let result = sessionStorage.getItem("loggedIn");
     let userID = await JSON.parse(result);
@@ -29,6 +34,10 @@ async function fetchUser() {
     logged_user = await response.json();
 }
 
+/**
+ * resets all buttons and highlights the corresponding button of the picked urgency afterwards
+ * @param {task-urgency as string} priority 
+ */
 function select(priority) {
     resetButtonsToDefault();
     switch (priority) {
@@ -50,6 +59,9 @@ function select(priority) {
     }
 }
 
+/**
+ * resets all buttons to the "not pressed"-state
+ */
 function resetButtonsToDefault() {
     urgent_button.classList.remove('urgent','btn_bigFont');
     medium_button.classList.remove('medium','btn_bigFont');
@@ -59,12 +71,18 @@ function resetButtonsToDefault() {
     ['low_1', 'low_2'].forEach(id => document.getElementById(id).setAttribute("fill", "#7ae229"));
 }
 
+/**
+ * opens & closes the dropdown-menu of the contacts
+ */
 function toggleContacts() {
     Contacts.classList.toggle('hidden');
     selectedContacts.classList.toggle('hidden');
     rotateArrowIcon("assigned_icon");
 }
 
+/**
+ * closes all currently open dropdown-menus
+ */
 function closeOpenSections(){
     Contacts.classList.add('hidden');
     selectedContacts.classList.remove('hidden');
@@ -72,15 +90,25 @@ function closeOpenSections(){
     categorySelection.classList.add('hidden');
     document.getElementById("category_icon").classList.remove('rotate');
 }
-
+/**
+ * prevents events from unwanted triggering
+ * @param {LMB} event 
+ */
 function Bubbling(event){
     event.stopPropagation();
 }
 
+/**
+ * rotates the arrow-icon for better user-comprehension
+ * @param {either contacts or category} formularID 
+ */
 function rotateArrowIcon(formularID) {
     document.getElementById(formularID).classList.toggle('rotate');
 }
 
+/**
+ * extracts all selected contacts from an object and calls function for rendering those
+ */
 function getSelectedContacts() {
     selectedContacts.innerHTML = "";
     for (const [id, name] of Object.entries(assignedContacts)) {
@@ -88,12 +116,21 @@ function getSelectedContacts() {
     }
 }
 
+/**
+ *
+ * @param {Username as string} name 
+ * @returns the initials of an username
+ */
 function getInitials(name) {
     let step_1 = name.split(" ");
     let step_2 = step_1.map(partName => partName[0].toUpperCase());
     return step_2.join("");
 }
-
+/**
+ * toggles the checkmark-icon of the selected user between checked & unchecked
+ * @param {Username} name 
+ * @param {Userid} id 
+ */
 function toggleCheckmark(name, id) {
     document.getElementById(id).classList.toggle('highlight');
     document.getElementById(`${id}-unchecked`).classList.toggle('hidden');
@@ -101,7 +138,11 @@ function toggleCheckmark(name, id) {
     editAssignedObject(name, id);
     getSelectedContacts();
 }
-
+/**
+ * edits the content of assignedContacts, a variable used for keeping track of previous selected contacts
+ * @param {Username} name 
+ * @param {Userid} id 
+ */
 function editAssignedObject(name, id) {
     if (document.getElementById(`${id}-checked`).classList != 'hidden') {
         assignedContacts[`${id}`] ? null : assignedContacts[`${id}`] = name;
@@ -109,7 +150,9 @@ function editAssignedObject(name, id) {
         delete assignedContacts[`${id}`];
     }
 }
-
+/**
+ * reads within all contacts and returns results based on the current searchinput
+ */
 function search() {
     Contacts.classList.remove('hidden');
     selectedContacts.classList.add('hidden');
@@ -117,11 +160,18 @@ function search() {
     let searchresult = Object.values(logged_user.contacts).filter(details => details.name.toLowerCase().includes(userInput));
     getContacts(Object.entries(searchresult));
 }
-
+/**
+ * toggles the hidden-class, making the corresponding div either visible or invisible
+ * @param {name of div} id 
+ */
 function toggleHidden(id) {
     document.getElementById(id).classList.toggle('hidden');
 }
 
+/**
+ * shows the user-selection und hides the other options
+ * @param {string} category 
+ */
 function setCategory(category) {
     switch (category) {
         case "Technical Task":
@@ -136,11 +186,17 @@ function setCategory(category) {
     checkUploadConditions();
 }
 
+/**
+ * resets the subtask-inputspace
+ */
 function clearInput() {
     subtaskInput.value = "";
     ChangeSubtaskIcons();
 }
 
+/**
+ * adds the currently written Subtask-prompt as an unique & editable line beneath the subtask-inputfield
+ */
 function addSubtask() {
     let UserInput = subtaskInput.value;
     if (UserInput != "") {   
@@ -151,6 +207,10 @@ function addSubtask() {
     }
     ChangeSubtaskIcons();
 }
+
+/**
+ * adds "/" after the second and fifth character
+ */
 function formcorrectDuedate() {
     eraseInvalidInput();
     if (duedate.value.length > 2 && !duedate.value.includes('/')) {
@@ -160,6 +220,10 @@ function formcorrectDuedate() {
         duedate.value = duedate.value.slice(0, 5) + '/' + duedate.value.slice(5);
     }
 }
+
+/**
+ * accepts only numbers, therefore removes invalid input from user
+ */
 function eraseInvalidInput() {
     let lastChar = duedate.value.slice(-1);
     if (isNaN(lastChar) == true) {
@@ -167,6 +231,10 @@ function eraseInvalidInput() {
     }
 }
 
+/**
+ * closes the "edit"-Mode of the currently eddited subtask, adding it back as a line beneath the subtask-input
+ * @param {id of subtask as string} id 
+ */
 function confirmSubtask(id) {
     document.getElementById(`edit_div${id}`).classList.toggle('hidden');
     document.getElementById(`edit_div${id}`).style = "background-color: white";
@@ -175,6 +243,11 @@ function confirmSubtask(id) {
     subtasks[`${id}`] = document.getElementById(`edit_input${id}`).value;
 }
 
+/**
+ * deletes the selected subtask entirely
+ * @param {LMB} event 
+ * @param {id of subtask as string} id 
+ */
 function deleteSubtask(event, id) {
     event.stopPropagation();
     document.getElementById(id).remove();
@@ -182,6 +255,10 @@ function deleteSubtask(event, id) {
     delete subtasks[`${id}`];
 }
 
+/**
+ * opens "edit"-mode of the selected subtask, making it possible to change previous settings
+ * @param {id of subtask as string} id 
+ */
 function editSubtask(id) {
     let current_subtask = document.getElementById(`subtask_row${id}`).innerHTML;
     document.getElementById(`edit_div${id}`).classList.toggle('hidden');
@@ -190,6 +267,9 @@ function editSubtask(id) {
     document.getElementById(`edit_input${id}`).value = current_subtask;
 }
 
+/**
+ * validates all necessary inputs for a new task and enables the upload-button, if valid
+ */
 function checkUploadConditions() {
     if (title.value !== "" && duedate.value.length == 10 && selectedCategory.innerHTML !== "Select task category") {
         document.getElementById('confirm_btn').disabled = false;
@@ -201,6 +281,9 @@ function checkUploadConditions() {
     }
 }
 
+/**
+ * starts an animation after a successful Task Creation
+ */
 function animationTaskAdded() {
     let confirmation = document.getElementById('confirmation');
     confirmation.classList.remove('hidden');
@@ -210,6 +293,10 @@ function animationTaskAdded() {
     }, 2000);
 }
 
+/**
+ * collects various information and creates an taskcard for further interactions
+ * @returns an object with key:value pairs
+ */
 function assembleTask() {
     return {
         "assigned" : assignedContacts,
@@ -223,6 +310,10 @@ function assembleTask() {
     }
 }
 
+/**
+ * uploads tasks to the database
+ * @param {added tasks} object 
+ */
 async function uploadTask(object) {
     await fetch(databaseLinkRef + "addTasks(testarea).json", {
         method: "POST",
@@ -231,6 +322,9 @@ async function uploadTask(object) {
     });
 }
 
+/**
+ * changes the subtask-Icon while creating a subtask 
+ */
 function ChangeSubtaskIcons() {
     let subtaskIcons = document.getElementById('subtask_input_icons');
     if (subtaskInput.value !== "") {
@@ -240,6 +334,10 @@ function ChangeSubtaskIcons() {
     }
 }
 
+/**
+ * renders contacts from the logged user
+ * @param {contacts from the user} object 
+ */
 function getContacts(object = Object.entries(logged_user.contacts)) {
     Contacts.innerHTML = "";
         for (const [id, contactObject] of object) {
@@ -247,6 +345,9 @@ function getContacts(object = Object.entries(logged_user.contacts)) {
         }
 }
 
+/**
+ * clears all content from the addtask-dialog
+ */
 function clearDialog() {
     title.value = null;
     document.getElementById('description').value = null;
