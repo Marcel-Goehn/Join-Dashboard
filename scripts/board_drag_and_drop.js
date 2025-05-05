@@ -1,6 +1,16 @@
 let currentDraggedElement;
 
 
+function addCardAnimation(cardIndex) {
+    document.getElementById(`card${cardIndex}`).classList.add('card-animation');
+}
+
+
+function removeCardAnimation(cardIndex) {
+    document.getElementById(`card${cardIndex}`).classList.remove('card-animation');
+}
+
+
 /**
  * 
  * @param {number} id - The index of the current dragged card

@@ -231,10 +231,6 @@ dialog .wrapper {
 }
 
 .align-title-input {
-    /* display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center; */
     margin-top: 0.5rem;
     border: 1px solid #D1D1D1;
     border-radius: 10px;
@@ -244,11 +240,6 @@ dialog .wrapper {
 .align-title-input:hover {
     cursor: pointer;
 }
-
-/* .align-title-input label {
-    color: #2A3647;
-    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
-} */
 
 .title-label {
     color: #2A3647;
@@ -265,11 +256,8 @@ dialog .wrapper {
 }
 
 #input_title {
-    /* border: 1px solid #D1D1D1; */
     outline: none;
     border: none;
-    /* border-radius: 10px; */
-    /* padding: 1rem 1.5rem; */
     color: #000000;
     font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
 }
@@ -277,10 +265,6 @@ dialog .wrapper {
 .red-validation-border {
     border: 1px solid #FF8190 !important;
 }
-
-/* #input_title:focus {
-    border: 1px solid #29ABE2;
-} */
 
 #input_title::placeholder {
     font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
@@ -348,19 +332,12 @@ dialog .wrapper {
 }
 
 #input_duedate {
-    /* border-radius: 10px; */
-    /* border: 1px solid #D1D1D1; */
     outline: none;
     border: none;
-    /* padding: 1rem 1.5rem; */
     color: #000000;
     font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
     flex: 1;
 }
-
-/* #input_duedate:focus {
-    border: 1px solid #29ABE2;
-} */
 
 #input_duedate::placeholder {
     font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
@@ -662,7 +639,6 @@ dialog .wrapper {
     justify-content: flex-start;
     align-items: center;
     transition: all 100ms ease-in-out;
-    /* gap: 0.5rem; */
 }
 
 .subtasks-list-items:hover{

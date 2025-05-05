@@ -1,5 +1,4 @@
 .join-header {
-    /* margin-top: 12.875rem; */
     width: calc(100% - 232px);
     margin-left: 232px;
     margin-top: clamp(8rem, 6.6071rem + 6.9643vw, 12.875rem);
@@ -13,13 +12,11 @@
     align-items: center;
     margin-inline: auto;
     gap: 1.875rem;
-    /* padding-inline: 6rem; */
     padding-inline: clamp(1rem, -0.4286rem + 7.1429vw, 6rem);
 }
 
 h1 {
     font-weight: 700;
-    /* font-size: 3.813rem; */
     font-size: clamp(2.9375rem, 2.6874rem + 1.2507vw, 3.813rem);
 }
 
@@ -31,13 +28,11 @@ h1 {
 
 .subheader {
     font-weight: 400;
-    /* font-size: 1.688rem; */
     font-size: clamp(1.25rem, 1.1249rem + 0.6257vw, 1.688rem);
     color: #2A3647;
 }
 
 main {
-    /* margin-top: 3.5rem; */
     margin-top: clamp(2.5rem, 2.2143rem + 1.4286vw, 3.5rem);
     width: calc(100% - 232px);
     margin-left: 232px;
@@ -47,10 +42,7 @@ main {
     max-width: 1440px;
     width: 100%;
     margin-inline: auto;
-    /* padding-left: 6rem; */
     padding-inline: clamp(1rem, -0.4286rem + 7.1429vw, 6rem);
-    /* padding-right: 2.5rem; */
-    /* padding-right: clamp(1rem, 0.5714rem + 2.1429vw, 2.5rem); */
 }
 
 .divide-greeting-from-tasks {
@@ -61,11 +53,9 @@ main {
 }
 
 .tasks {
-    /* width: 50%; */
     flex: 1;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    /* gap: 1.75rem; */
     row-gap: clamp(1.5rem, 1.4286rem + 0.3571vw, 1.75rem);
     column-gap: clamp(1.125rem, 0.9464rem + 0.8929vw, 1.75rem);
 }
@@ -95,7 +85,6 @@ main {
 }
 
 .greet {
-    /* width: 50%; */
     flex: 1;
 }
 
@@ -103,13 +92,10 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* padding-inline: 3.625rem; */
-    /* padding-block: 2.375rem; */
     padding-block: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
     padding-inline: clamp(0.75rem, 0.6071rem + 0.7143vw, 1.25rem);
     background-color: #FFFFFF;
     border-radius: 30px;
-    /* gap: 1.125rem; */
     gap: clamp(0.625rem, 0.4821rem + 0.7143vw, 1.125rem);
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.10);
     transition: all 80ms ease-out;
@@ -173,30 +159,25 @@ main {
 
 .task-numbers {
     font-weight: 600;
-    /* font-size: 4rem; */
     font-size: clamp(2.9375rem, 2.6339rem + 1.5179vw, 4rem);
     color: #000000;
 }
 
 .small-task-text {
     font-weight: 400;
-    /* font-size: 1.25rem; */
     font-size: clamp(0.875rem, 0.7679rem + 0.5357vw, 1.25rem);
     color: #2A3647;
     text-align: center;
 }
 
 .deadline-box {
-    /* padding-inline: 3.625rem; */
     padding-inline: clamp(0.75rem, 0.6071rem + 0.7143vw, 1.25rem);
-    /* padding-block: 2.375rem; */
     padding-block: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
     background-color: #FFFFFF;
     border-radius: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* gap: 3.813rem; */
     gap: clamp(1.25rem, 0.5179rem + 3.6607vw, 3.8125rem);
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.10);
     transition: all 80ms ease-out;
@@ -228,13 +209,11 @@ main {
 
 .urgent-task-text {
     font-weight: 400;
-    /* font-size: 1rem; */
     font-size: clamp(0.875rem, 0.8393rem + 0.1786vw, 1rem);
     color: #2A3647;
 }
 
 .urgent-border {
-    /* height: 102px; */
     height: clamp(4.25rem, 3.6429rem + 3.0357vw, 6.375rem);
     border: 2px solid #D1D1D1;
 }
@@ -246,20 +225,17 @@ main {
 .align-urgent-date {
     display: flex;
     flex-direction: column;
-    /* gap: 0.813rem; */
     gap: clamp(0.5rem, 0.4107rem + 0.4464vw, 0.8125rem);
 }
 
 .urgent-date {
     font-weight: 700;
-    /* font-size: 1.313rem; */
     font-size: clamp(1rem, 0.9107rem + 0.4464vw, 1.3125rem);
     color: #2A3647;
 }
 
 .upcoming-deadline-text {
     font-weight: 400;
-    /* font-size: 1rem; */
     font-size: clamp(0.875rem, 0.8393rem + 0.1786vw, 1rem);
     color: #2A3647;
 }
@@ -272,22 +248,18 @@ main {
 
 .greet-msg {
     font-weight: 500;
-    /* font-size: 2.938rem; */
     font-size: clamp(2.25rem, 2.0536rem + 0.9821vw, 2.9375rem);
     color: #2A3647;
 }
 
 .greet-name {
     font-weight: 700;
-    /* font-size: 4rem; */
     font-size: clamp(2.9375rem, 2.6339rem + 1.5179vw, 4rem);
     color: #29ABE2;
 }
 
 .tasks-in-board {
-    /* padding-inline: 1.188rem; */
     padding-inline: clamp(0.75rem, 0.6071rem + 0.7143vw, 1.25rem);
-    /* padding-block: 1.563rem; */
     padding-block: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
     background-color: #FFFFFF;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0 ,0.10);

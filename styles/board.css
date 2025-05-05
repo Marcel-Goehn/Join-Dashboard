@@ -78,8 +78,6 @@ h1 {
 
 .find-task-input {
     flex: 1;
-    /* padding: 0.5rem 1rem; */
-    /* border-radius: 10px; */
     background-color: #fff;
     outline: none;
     font-weight: 400;
@@ -99,8 +97,6 @@ h1 {
 }
 
 .find-task-btn {
-    /* padding-inline: 1rem; */
-    /* border-radius: 10px; */
     background-color: #fff;
     outline: none;
     display: flex;
@@ -289,6 +285,22 @@ p {
     background-color: #462F8A;
 }
 
+@keyframes card-spin {
+    0% {
+
+    }
+
+    100% {
+        transform: rotate(10deg);
+    }
+}
+
+.card-animation {
+    animation-name: card-spin;
+    animation-duration: 300ms;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
 
 
 
