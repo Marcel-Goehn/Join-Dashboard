@@ -24,8 +24,8 @@ function greetingGuestTemp(timeOfDay) {
  * 
  * @returns - It returns the html for the task in the board
  */
-function getTaskInBoardTemplate() {
-    return `Task in Board`;
+function getTaskInBoardTemplate(placeholder) {
+    return `Task in ${placeholder}`;
 }
 
 
@@ -33,6 +33,6 @@ function getTaskInBoardTemplate() {
  * 
  * @returns - It returns the html for the tasks in the board
  */
-function getTasksInBoardTemplate() {
-    return `Tasks in Board`;
+function getTasksInBoardTemplate(placeholder) {
+    return `Tasks in ${placeholder}`;
 }

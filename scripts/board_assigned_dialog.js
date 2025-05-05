@@ -146,24 +146,6 @@ function assignOrDisassignContact(contactIndex, cardIndex, contactID, contactNam
 
 
 /**
- * 
- * @param {number} index - The index of the current selected card 
- * @returns - It returns an array of all the assigned contacts of a card
- */
-function getAssignmentList(index) {
-    const array = getCurrentArray();
-    let assignedTo = [];
-    for(let [key, value] of Object.entries(array[index].value.assigned)) {
-        if (key == "null") {
-            continue;
-        }
-        assignedTo.push({id : key, value});
-    }
-    return assignedTo;
-}
-
-
-/**
  * This function disassigns a contact from a list
  * 
  * @param {string} contactID - The key of the contact to get access to it's values 
@@ -266,7 +248,7 @@ function filterContactsInEditDialog(inputLetters, cardIndex) {
  */
 function renderFilteredContactsIntoDialog(filteredContacts, cardIndex) {
     let assignmentList = getAssignmentList(cardIndex);
-    let contactListRef = document.getElementById('contact-list-wrapper');
+    const contactListRef = document.getElementById('contact-list-wrapper');
     let contactsRef = "";
     contactListRef.innerHTML = ``;
     for (let i = 0; i < filteredContacts.length; i++) {
@@ -282,5 +264,4 @@ function renderFilteredContactsIntoDialog(filteredContacts, cardIndex) {
         }
     }
     contactListRef.innerHTML = contactsRef;
-    console.log(contactsNamesOfUser);
 }

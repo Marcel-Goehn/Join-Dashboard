@@ -4,16 +4,10 @@
 function checkSubtaskInputField(e, cardIndex) {
     const dialogSubtasks = document.getElementById('dialog_subtasks');
     if (dialogSubtasks.value.length >= 1) {
-        document.getElementById('plus_icon').classList.add('d_none');
-        document.getElementById('x_icon').classList.remove('d_none');
-        document.getElementById('check_icon').classList.remove('d_none');
-        document.getElementById('icon_divider').classList.remove('d_none');
+        showIcons();
     }
     else {
-        document.getElementById('x_icon').classList.add('d_none');
-        document.getElementById('check_icon').classList.add('d_none');
-        document.getElementById('icon_divider').classList.add('d_none');
-        document.getElementById('plus_icon').classList.remove('d_none');
+        hideIcons();
     }
     if (e == undefined) {
         return;
@@ -22,6 +16,28 @@ function checkSubtaskInputField(e, cardIndex) {
         e.preventDefault();
         addInputToSubtasks(cardIndex);
     }
+}
+
+
+/**
+ * Shows the icons if the value of the input field is equal or longer than 1 
+ */
+function showIcons() {
+    document.getElementById('plus_icon').classList.add('d_none');
+    document.getElementById('x_icon').classList.remove('d_none');
+    document.getElementById('check_icon').classList.remove('d_none');
+    document.getElementById('icon_divider').classList.remove('d_none');
+}
+
+
+/**
+ * Hides the icons if the value of the input field is equal to zero
+ */
+function hideIcons() {
+    document.getElementById('x_icon').classList.add('d_none');
+    document.getElementById('check_icon').classList.add('d_none');
+    document.getElementById('icon_divider').classList.add('d_none');
+    document.getElementById('plus_icon').classList.remove('d_none');
 }
 
 
