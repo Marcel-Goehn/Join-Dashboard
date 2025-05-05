@@ -5,7 +5,7 @@
  * @returns - it returns the html code to the render function
  */
 function getCardsTemplate(index, array) {
-    return `<div draggable="true" ondragstart="startDragging(${index})" onclick="openDialog(${index})" class="card">
+    return `<div draggable="true" ondragstart="startDragging(${index})" onclick="openDialog(${index})" onmousedown="addCardAnimation(${index})" onmouseleave="removeCardAnimation(${index})" class="card" id="card${index}">
                             <h2>
                                 <span class="card-header">${array[index].value.category}</span>
                             </h2>

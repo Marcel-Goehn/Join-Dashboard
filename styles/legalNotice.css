@@ -12,7 +12,7 @@ main {
 
 .container {
     padding-inline: clamp(1rem, -0.4286rem + 7.1429vw, 6rem);
-    margin-inline: auto;
+    margin-right: auto;
     width: 100%;
     max-width: 1440px;
 }
