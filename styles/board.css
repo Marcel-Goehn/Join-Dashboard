@@ -9,7 +9,7 @@
 }
 
 .container {
-    margin-inline: auto;
+    margin-right: auto;
     max-width: 1440px;
     width: 100%;
     padding-inline: 4rem;
