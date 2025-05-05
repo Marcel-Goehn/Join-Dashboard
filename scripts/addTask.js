@@ -245,4 +245,16 @@ function getContacts(object = Object.entries(logged_user.contacts)) {
         for (const [id, contactObject] of object) {
             Contacts.innerHTML += renderContacts(id, contactObject);
         }
-    }
+}
+
+function clearDialog() {
+    title.value = null;
+    document.getElementById('description').value = null;
+    duedate.value = null;
+    select('medium');
+    selectedContacts.innerHTML = "";
+    getContacts();
+    assignedContacts = {};
+    selectedCategory.innerHTML = "Select task category";
+    document.getElementById('addedSubtasks').innerHTML = "";
+}
