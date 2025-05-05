@@ -63,7 +63,7 @@
                         </div>
                         
                     </form>
-                    <button class="add-task-btn" onclick="openAddTask()"><span class="add-task">Add Task</span><img
+                    <button class="add-task-btn" onclick="openAddTask('To Do')"><span class="add-task">Add Task</span><img
                             src="../assets/img/board/add.png"></button>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                 <div class="col">
                     <div class="board-card-header">
                         <span>To do</span>
-                        <svg onclick="openAddTask()" class="highlight-add-task-to-section" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <svg onclick="openAddTask('To Do')" class="highlight-add-task-to-section" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <rect x="1" y="1" width="22" height="22" rx="7" stroke="#091931" stroke-width="2"/>
                             <path d="M12 8V16" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
                             <path d="M16 12.0754L8 12.0754" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
@@ -89,7 +89,7 @@
                 <div class="col">
                     <div class="board-card-header">
                         <span>In progress</span>
-                        <svg onclick="openAddTask()" class="highlight-add-task-to-section" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <svg onclick="openAddTask('In Progress')" class="highlight-add-task-to-section" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <rect x="1" y="1" width="22" height="22" rx="7" stroke="#091931" stroke-width="2"/>
                             <path d="M12 8V16" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
                             <path d="M16 12.0754L8 12.0754" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
@@ -102,7 +102,7 @@
                 <div class="col">
                     <div class="board-card-header">
                         <span>Await Feedback</span>
-                        <svg onclick="openAddTask()" class="highlight-add-task-to-section" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <svg onclick="openAddTask('Await Feedback')" class="highlight-add-task-to-section" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <rect x="1" y="1" width="22" height="22" rx="7" stroke="#091931" stroke-width="2"/>
                             <path d="M12 8V16" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
                             <path d="M16 12.0754L8 12.0754" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
@@ -123,7 +123,6 @@
             </div>
         </div>
     </main>
-
     <div id="sidebar">
         <div id="sidebarLogoDiv">
             <img
@@ -228,12 +227,6 @@
             <a href="./legalNotice.html" class="policyLink">Legal notice</a>
         </div>
     </div>
-
-    <dialog id="overlay">
-        <div class="wrapper">
-            
-        </div>
-    </dialog>
     <dialog id="addTaskDial">
         <div id="addTaskDialContent">
             <div id="center-content" onclick="closeOpenSections()">
@@ -252,10 +245,9 @@
                             <span>Description</span>
                             <textarea class="formular-element" name="description" id="description" placeholder="Enter a Description"></textarea>
                         </div>
-                        <div class="formular-section">
-                            <span>Due date<span class="star">*</span></span>
-                            <input id="duedate_input" onkeyup="checkUploadConditions()" class="formular-element" type="date" placeholder="dd/mm/yyyy">
-                            <span class="hidden">this field is required</span>
+                        <div id="duedate" class="formular-element">
+                            <input id="duedate_input" onkeyup="formcorrectDuedate(), checkUploadConditions()" placeholder="dd/mm/yyyy" type="text">
+                            <img src="../assets/img/addtask/calendar.svg">
                         </div>
                     </div>
                     <div id="separator"></div>
@@ -343,8 +335,8 @@
                             </g>
                         </svg>
                     </button>
-                    <button id="confirm_btn" class="dialog_button btn_bigFont" disabled="true" type="confirm" onclick="uploadTask(assembleTask())">
-                        <span>Create Task</span>
+                    <button id="confirm_btn" class="dialog_button btn_bigFont" disabled="true" type="confirm" onclick="uploadTask(assembleTask()), closeAddTask()">
+                        <span id="confirm_btn_text">Create Task</span>
                         <img src="../assets/img/addtask/done.svg">
                     </button>
                 </div>

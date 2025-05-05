@@ -1,5 +1,6 @@
 const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/";
 let logged_user = {};
+let currentStatus = "To Do";
 let priority = "medium";
 let assignedContacts = {};
 let subtasks = {};
@@ -192,8 +193,11 @@ function editSubtask(id) {
 function checkUploadConditions() {
     if (title.value !== "" && duedate.value.length == 10 && selectedCategory.innerHTML !== "Select task category") {
         document.getElementById('confirm_btn').disabled = false;
+        document.getElementById('confirm_btn_text').style.cursor = "pointer";
     } else {
         document.getElementById('confirm_btn').disabled = true;
+        document.getElementById('confirm_btn_text').style.cursor = "not-allowed";
+        
     }
 }
 
@@ -212,7 +216,7 @@ function assembleTask() {
         "category" : selectedCategory.innerHTML,
         "description" : document.getElementById('description').value,
         "duedate" : duedate.value,
-        "currentStatus" : "To Do",
+        "currentStatus" : currentStatus,
         "priority" : priority,
         "subtasks" : subtasks,
         "title" : title.value
@@ -225,7 +229,6 @@ async function uploadTask(object) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(object)
     });
-    animationTaskAdded();
 }
 
 function ChangeSubtaskIcons() {

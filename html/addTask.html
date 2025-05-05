@@ -242,8 +242,8 @@
                         </g>
                     </svg>
                 </button>
-                <button id="confirm_btn" class="btn_bigFont" disabled="true" type="confirm" onclick="uploadTask(assembleTask())">
-                    <span>Create Task</span>
+                <button id="confirm_btn" class="btn_bigFont" disabled="true" type="confirm" onclick="uploadTask(assembleTask()), animationTaskAdded()">
+                    <span id="confirm_btn_text">Create Task</span>
                     <img src="../assets/img/addtask/done.svg">
                 </button>
             </div>
