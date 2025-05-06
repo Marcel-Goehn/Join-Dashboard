@@ -34,6 +34,16 @@ async function fetchUser() {
     logged_user = await response.json();
 }
 
+async function fetchContacts(){
+    const response = await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`);
+    const contactDataObj = await response.json();
+    const contactDataArr = Object.entries(contactDataObj).map(([, value]) => [value])
+    console.log(contactDataArr);
+    return contactDataArr
+}
+
+
+
 /**
  * resets all buttons and highlights the corresponding button of the picked urgency afterwards
  * @param {task-urgency as string} priority 

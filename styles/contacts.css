@@ -486,7 +486,7 @@ body {
 	}
 
 	#contactInfo{
-		padding-top: 150px;
+		padding-top: 90px;
 		padding-inline: clamp(1.25rem, -0.5682rem + 9.0909vw, 3.125rem);
 	}
 
@@ -496,5 +496,19 @@ body {
 
 	#nameAndEditDiv h3{
 	 font-size: clamp(1.6875rem, 0.8996rem + 3.9394vw, 2.5rem);
+	}
+	.formDiv{
+		width: 100% !important;
+	}
+
+	.formDiv input{
+		width: clamp(12.5rem, 4.9528rem + 37.7358vw, 25rem);
+	}
+
+	#addNewContactBtnDiv{
+		padding-bottom: 0;
+	} 
+	#contactNameDiv{
+		padding-bottom: 30px;
 	}
 }

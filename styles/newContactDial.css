@@ -650,3 +650,26 @@
         animation: slideOutFromBottom 0.5s ease-in-out forwards;
     }
 }
+
+@media(max-width: 650px){
+	#editContactTextDiv h3{
+		font-size: clamp(2.375rem, 2.0354rem + 1.6981vw, 2.9375rem);
+	}
+	#editContactLogoAndTextDiv{
+		padding-block: 80px;
+	}
+	#editContactInfoDiv{
+		padding-bottom: 1.5rem;
+	}
+	#editImgDiv{
+		transform: translate(-50%, -130%);
+	}
+
+	#addContactLogoAndTextDiv{
+		padding-block: 80px;
+	}
+
+	#addContactInfoDiv {
+		padding-block: 30px;
+	}
+}

@@ -134,7 +134,7 @@ async function renderChangedContacts(contactObject){
 /**
  * this function renders the contactlist, it uses the sorted contacts and compares if the previous startinglette of the contactname is the same letter or a new on to the current contactname. if the letter is a new one, it renders this letter into the list.
  * 
- * @param {Array} sortedContacts the sorted contacts objects put into an array
+ * @param {Array} sortedContacts the sorted contacts object put into an array
  */
 function renderContacts(sortedContacts) {
 	let previousLetter = "";
@@ -218,6 +218,12 @@ function openAddContactDial() {
 // END RENDER FUNCTIONS //
 
 // HELP FUNCTIONS //
+
+function closeViaBackdrop(event){
+	if (event.target === addContactDial) {
+				closeContactDial();
+	}
+}
 
 /**
  * this functions closes the the dialogs and starts the closing animation
