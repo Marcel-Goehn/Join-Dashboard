@@ -9,7 +9,7 @@ const colors = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1"
 
 async function fetchContactData() {
 	const response = await fetch(
-		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${user}/contacts.json`
+		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`
 	);
 	const contactData = await response.json();
 	return contactData;
@@ -20,33 +20,31 @@ function sortContacts(contactData) {
 		const sortedContacts = Object.entries(contactData).sort(([, a], [, b]) =>
 			a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
 		);
-		const sortedContactsObject = Object.fromEntries(sortedContacts);
-		return sortedContactsObject;
+		const sortedContactsArray = sortedContacts.map(([, value]) => value);
+		return sortedContactsArray
 	}
 }
 
 function renderContacts(contactData) {
 	let previousLetter = "";
-	let index = 0;
 	contactDiv.innerHTML = "";
-	for (const contact in contactData) {
-		if (contactData[contact].name.charAt(0).localeCompare(previousLetter) > 0) {
+	for(let i = 0; i < contactData.length; i++){
+		if(contactData[i].name.charAt(0).localeCompare(previousLetter) > 0){
 			contactDiv.innerHTML += letterTemp(
-				contactData[contact].name.charAt(0).toUpperCase()
+				contactData[i].name.charAt(0).toUpperCase()
 			);
-			previousLetter = contactData[contact].name.charAt(0).toUpperCase();
+			previousLetter = contactData[i].name.charAt(0).toUpperCase();
 		}
-		const color = getColor(index);
-		const phone = checkIfUndefined(contactData[contact].phone);
+		const color = contactData[i].color;
+		const phone = checkIfUndefined(contactData[i].phone);
 		contactDiv.innerHTML += contactTemp(
-			contactData[contact].email,
-			contactData[contact].name,
+			contactData[i].email,
+			contactData[i].name,
 			phone,
-			index,
+			i,
 			color
 		);
-		styleBackgroundOfInitials(color, index);
-		index++;
+		styleBackgroundOfInitials(color, i);
 	}
 }
 
@@ -142,21 +140,52 @@ function openEditContactDial(email, name, phone, color) {
 async function deleteContact(name) {
 	const contactId = await getContactId(name);
 	const request = await fetch(
-		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${user}/contacts/${contactId}.json`,
+		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts/${contactId}.json`,
 		{
 			method: "DELETE",
 		}
 	);
 	showContacts();
+	await deleteUserOutOfTask(contactId);
 	contactInfoDiv.innerHTML = "";
 }
+
+async function deleteUserOutOfTask(contactId){
+	const kanbanData = await fetchKanbanTasks();
+	const taskIdArr = findTaskIdByAssignedContactId(kanbanData, contactId);
+	for(let i = 0; i < taskIdArr.length; i++){
+		await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban/${taskIdArr[i]}/assigned/${contactId}.json`,
+			{
+				method: "DELETE",
+			}
+		);
+	}
+}
+
+async function fetchKanbanTasks(){
+	const response = await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban.json`);
+	const kanbanData = await response.json();
+	return kanbanData;
+}
+
+function findTaskIdByAssignedContactId(kanbanData, contactId) {
+	const assignedArray = [];
+	for (const [taskId, taskData] of Object.entries(kanbanData)) {
+	  if (!taskData.assigned) continue;
+	  const isAssigned = Object.keys(taskData.assigned).includes(contactId);
+	  if (isAssigned) {
+		assignedArray.push(taskId);
+	  }
+	}
+	return assignedArray;
+  }
 
 async function updateContact(name, event) {
 	event.preventDefault();
 	const contactId = await getContactId(name);
 	const editedContactData = getEditedContactData();
 	await fetch(
-		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${user}/contacts/${contactId}.json`,
+		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts/${contactId}.json`,
 		{
 			method: "PUT",
 			headers: {
@@ -179,9 +208,9 @@ async function updateContact(name, event) {
 }
 
 async function addContact() {
-	const newContactData = getNewContactData();
+	const newContactData = await getNewContactData();
 	await fetch(
-		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${user}/contacts.json`,
+		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`,
 		{
 			method: "POST",
 			headers: {
@@ -210,14 +239,19 @@ async function getContactId(name) {
 	return contactId;
 }
 
-function getNewContactData() {
+async function getNewContactData() {
 	const newContactName = document.getElementById("addDialNameInput").value;
 	const newContactEmail = document.getElementById("addDialEmailInput").value;
 	const newContactPhone = document.getElementById("addDialPhoneInput").value;
+	const contactData = await fetchContactData();
+	const color = getColor(Object.keys(contactData).length);
+	console.log(color);
+	console.log(Object.keys(contactData).length);
 	const newContactData = {
 		name: `${newContactName}`,
 		email: `${newContactEmail}`,
 		phone: `${newContactPhone}`,
+		color,
 	};
 	return newContactData;
 }
@@ -228,10 +262,12 @@ function getEditedContactData() {
 		document.getElementById("editDialEmailInput").value;
 	const editedContactPhone =
 		document.getElementById("editDialPhoneInput").value;
+		const backgroundColor = document.getElementById("initialsDivInfo").style.backgroundColor;
 	const editedContactData = {
 		name: `${editedContactName}`,
 		email: `${editedContactEmail}`,
 		phone: `${editedContactPhone}`,
+		color: backgroundColor,
 	};
 	return editedContactData;
 }
