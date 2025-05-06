@@ -56,7 +56,6 @@ function pushContactList(contacts) {
     for(let [key, value] of Object.entries(contacts)) {
         contactsNamesOfUser.push({id : key, value});
     }
-    console.log(contactsNamesOfUser);
 }
 
 
@@ -235,7 +234,6 @@ function checkFilterContactConditions(cardIndex) {
 function filterContactsInEditDialog(inputLetters, cardIndex) {
     let filteredContacts = "";
     filteredContacts = contactsNamesOfUser.filter(contact => contact.value.name.toLowerCase().includes(inputLetters));
-    console.log(filteredContacts);
     renderFilteredContactsIntoDialog(filteredContacts, cardIndex);
 }
 

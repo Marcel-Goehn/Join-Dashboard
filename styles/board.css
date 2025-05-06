@@ -1,7 +1,7 @@
 .board-header {
     width: calc(100% - 232px);
     margin-left: 232px;
-    margin-top: 11rem;
+    margin-top: clamp(3rem, 0.7143rem + 11.4286vw, 11rem);;
 }
 
 .d_none {
@@ -12,7 +12,7 @@
     margin-right: auto;
     max-width: 1440px;
     width: 100%;
-    padding-inline: 4rem;
+    padding-inline: clamp(1rem, 0.1429rem + 4.2857vw, 4rem);
 }
 
 .align-board-header {
@@ -30,7 +30,7 @@
 
 h1 {
     font-weight: 700;
-    font-size: 3.813rem;
+    font-size: clamp(2.9375rem, 2.6874rem + 1.2507vw, 3.813rem);
     color: #000000;
 }
 
@@ -118,7 +118,7 @@ h1 {
 }
 
 main {
-    margin-top: 3rem;
+    margin-top: clamp(1.5rem, 1.0714rem + 2.1429vw, 3rem);
     width: calc(100% - 232px);
     margin-left: 232px;
 }
@@ -133,7 +133,7 @@ main {
 .col {
     display: flex;
     flex-direction: column;
-    width: 25%;
+    flex: 1;
 }
 
 .board-card-header {
@@ -144,7 +144,7 @@ main {
 
 .board-card-header span {
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: clamp(1.6875rem, 1.8125rem + -0.625vw, 1.25rem);
     color: #42526E;
 }
 
@@ -200,6 +200,7 @@ main {
 h3 {
     margin-top: 1.5rem;
     font-weight: 700;
+    font-size: 1rem;
     color: #2A3647;
 }
 
@@ -375,6 +376,12 @@ p {
     }
     body {
         overflow-x: hidden;
+    }
+    .empty-cards {
+        min-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 

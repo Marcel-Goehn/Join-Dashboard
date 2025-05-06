@@ -234,18 +234,24 @@ function getEditDialogTemplate(array, index) {
 function renderUrgent() {
     return `<button id="urgent_button" class="flexbtn urgent_button_klicked" onclick="choosePriority('urgent', 'medium', 'low')">
                             Urgent
-                            <img id="urgent_img" src="../assets/img/board/urgent.svg" class="d_none">
-                            <img id="urgent_white_img" src="../assets/img/board/urgent_white.svg">
+                            <div class="hide-img-under-400">
+                                <img id="urgent_img" src="../assets/img/board/urgent.svg" class="d_none">
+                                <img id="urgent_white_img" src="../assets/img/board/urgent_white.svg">
+                            </div>
                         </button>
                         <button id="medium_button" class="flexbtn medium_button_unklicked" onclick="choosePriority('medium', 'urgent', 'low')">
                             Medium
-                            <img id="medium_white_img" src="../assets/img/board/medium_white.svg" class="d_none">
-                            <img id="medium_img" src="../assets/img/board/Prio media.svg">
+                            <div class="hide-img-under-400">
+                                <img id="medium_white_img" src="../assets/img/board/medium_white.svg" class="d_none">
+                                <img id="medium_img" src="../assets/img/board/Prio media.svg">
+                            </div>
                         </button>
                         <button id="low_button" class="flexbtn low_button_unklicked" onclick="choosePriority('low', 'urgent', 'medium')">
                             Low
-                            <img id="low_img" src="../assets/img/board/low.svg">
-                            <img id="low_white_img" src="../assets/img/board/low_white.svg" class="d_none">
+                            <div class="hide-img-under-400">
+                                <img id="low_img" src="../assets/img/board/low.svg">
+                                <img id="low_white_img" src="../assets/img/board/low_white.svg" class="d_none">
+                            </div>
                         </button>`
 }
 
@@ -257,18 +263,24 @@ function renderUrgent() {
 function renderMedium() {
     return `<button id="urgent_button" class="flexbtn urgent_button_unklicked" onclick="choosePriority('urgent', 'medium', 'low')">
                             Urgent
-                            <img id="urgent_img" src="../assets/img/board/urgent.svg">
-                            <img id="urgent_white_img" src="../assets/img/board/urgent_white.svg" class="d_none">
+                            <div class="hide-img-under-400">
+                                <img id="urgent_img" src="../assets/img/board/urgent.svg">
+                                <img id="urgent_white_img" src="../assets/img/board/urgent_white.svg" class="d_none">
+                            </div>
                         </button>
                         <button id="medium_button" class="flexbtn medium_button_klicked" onclick="choosePriority('medium', 'urgent', 'low')">
                             Medium
-                            <img id="medium_white_img" src="../assets/img/board/medium_white.svg">
-                            <img id="medium_img" src="../assets/img/board/Prio media.svg" class="d_none">
+                            <div class="hide-img-under-400">
+                                <img id="medium_white_img" src="../assets/img/board/medium_white.svg">
+                                <img id="medium_img" src="../assets/img/board/Prio media.svg" class="d_none">
+                            </div>
                         </button>
                         <button id="low_button" class="flexbtn low_button_unklicked" onclick="choosePriority('low', 'urgent', 'medium')">
                             Low
-                            <img id="low_img" src="../assets/img/board/low.svg">
-                            <img id="low_white_img" src="../assets/img/board/low_white.svg" class="d_none">
+                            <div class="hide-img-under-400">
+                                <img id="low_img" src="../assets/img/board/low.svg">
+                                <img id="low_white_img" src="../assets/img/board/low_white.svg" class="d_none">
+                            </div>
                         </button>`
 }
 
@@ -280,18 +292,24 @@ function renderMedium() {
 function renderLow() {
     return `<button id="urgent_button" class="flexbtn urgent_button_unklicked" onclick="choosePriority('urgent', 'medium', 'low')">
                             Urgent
-                            <img id="urgent_img" src="../assets/img/board/urgent.svg">
-                            <img id="urgent_white_img" src="../assets/img/board/urgent_white.svg" class="d_none">
+                            <div class="hide-img-under-400">
+                                <img id="urgent_img" src="../assets/img/board/urgent.svg">
+                                <img id="urgent_white_img" src="../assets/img/board/urgent_white.svg" class="d_none">
+                            </div>
                         </button>
                         <button id="medium_button" class="flexbtn medium_button_unklicked" onclick="choosePriority('medium', 'urgent', 'low')">
                             Medium
-                            <img id="medium_white_img" src="../assets/img/board/medium_white.svg" class="d_none">
-                            <img id="medium_img" src="../assets/img/board/Prio media.svg">
+                            <div class="hide-img-under-400">
+                                <img id="medium_white_img" src="../assets/img/board/medium_white.svg" class="d_none">
+                                <img id="medium_img" src="../assets/img/board/Prio media.svg">
+                            </div>
                         </button>
                         <button id="low_button" class="flexbtn low_button_klicked" onclick="choosePriority('low', 'urgent', 'medium')">
                             Low
-                            <img id="low_img" src="../assets/img/board/low.svg" class="d_none">
-                            <img id="low_white_img" src="../assets/img/board/low_white.svg">
+                            <div class="hide-img-under-400">
+                                <img id="low_img" src="../assets/img/board/low.svg" class="d_none">
+                                <img id="low_white_img" src="../assets/img/board/low_white.svg">
+                            </div>
                         </button>`
 }
 

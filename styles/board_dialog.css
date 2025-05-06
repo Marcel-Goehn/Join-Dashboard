@@ -17,7 +17,8 @@ dialog {
 }
 
 dialog .wrapper {
-    padding: 3rem 2.5rem;
+    padding-inline: clamp(1.5rem, 1.2143rem + 1.4286vw, 2.5rem);
+    padding-block: clamp(2rem, 1.7143rem + 1.4286vw, 3rem);
 }
 
 .align-dialog-header {
@@ -28,10 +29,11 @@ dialog .wrapper {
 
 .category {
     background-color: #0038FF;
-    padding: 0.25rem 1.5rem;
+    padding-block: 0.25rem;
+    padding-inline: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
     border-radius: 8px;
     font-weight: 400;
-    font-size: 1.438rem;
+    font-size: clamp(1rem, 0.8749rem + 0.6257vw, 1.438rem);
     color: #FFFFFF;
 }
 
@@ -46,21 +48,21 @@ dialog .wrapper {
 }
 
 .dialog-h1 {
-    margin-top: 1.5rem;
+    margin-top: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
     font-weight: 700;
-    font-size: 3.813rem;
+    font-size: clamp(2.25rem, 1.8036rem + 2.2321vw, 3.8125rem);
     color: #000000;
 }
 
 .dialog-p {
-    margin-top: 1.5rem;
+    margin-top: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
     font-weight: 400;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
     color: #000000;
 }
 
 .due-date-section {
-    margin-top: 1.5rem;
+    margin-top: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -69,18 +71,18 @@ dialog .wrapper {
 
 .due-date-txt {
     font-weight: 400;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
     color: #2A3647;
 }
 
 .due-date {
     font-weight: 400;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
     color: #000000;
 }
 
 .priority-section {
-    margin-top: 1.5rem;
+    margin-top: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -89,7 +91,7 @@ dialog .wrapper {
 
 .priority-txt {
     font-weight: 400;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
     color: #2A3647;
 }
 
@@ -102,15 +104,15 @@ dialog .wrapper {
 
 .icon-txt {
     font-weight: 400;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
     color: #000000;
 }
 
 .assignment-txt {
     text-align: left;
-    margin-top: 1.5rem;
+    margin-top: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
     font-weight: 400;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
     color: #42526E;
 }
 
@@ -141,9 +143,9 @@ dialog .wrapper {
     background-color: #1FD7C1;
 }
 
-.contact-board-diaolog span {
+.contact-board-dialog span {
     font-weight: 400;
-    font-size: 1.188rem;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
     color: #000000;
 }
 
@@ -158,6 +160,10 @@ dialog .wrapper {
     align-items: center;
     margin-top: 0.25rem;
     gap: 1rem;
+}
+
+.align-checkbox:first-child {
+    margin-top: 0;
 }
 
 .align-checkbox p {
@@ -178,7 +184,7 @@ dialog .wrapper {
 }
 
 .delete-change-section {
-    margin-top: 1.5rem;
+    margin-top: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -227,7 +233,7 @@ dialog .wrapper {
 }
 
 .form-space-top {
-    margin-top: 1.5rem;
+    margin-top: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
 }
 
 .align-title-input {
@@ -276,7 +282,7 @@ dialog .wrapper {
 }
 
 .align-descr-input {
-    margin-block: 2rem;
+    margin-block: clamp(1.5rem, 1.3571rem + 0.7143vw, 2rem);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -345,7 +351,7 @@ dialog .wrapper {
 }
 
 .align-priority-btn-section {
-    margin-top: 2.5rem;
+    margin-top: clamp(2rem, 1.8571rem + 0.7143vw, 2.5rem);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -373,7 +379,8 @@ dialog .wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    padding-inline: clamp(0.5rem, 0.3571rem + 0.7143vw, 1rem);
+    padding-block: 1rem;
     gap: 0.5rem;
     border-radius: 10px;
 }
@@ -430,7 +437,7 @@ dialog .wrapper {
 }
 
 .align-assigned-to-section {
-    margin-top: 1.5rem;
+    margin-top: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -535,7 +542,7 @@ dialog .wrapper {
 
 .full-name-white {
     color: #FFFFFF;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
 }
 
 .full-name-white:hover {
@@ -544,7 +551,7 @@ dialog .wrapper {
 
 .full-name-dark {
     color: #000000;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
 }
 
 .full-name-dark:hover {
@@ -587,7 +594,7 @@ dialog .wrapper {
 }
 
 .align-subtasks-section {
-    margin-top: 1.5rem;
+    margin-top: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -695,7 +702,7 @@ dialog .wrapper {
     justify-content: space-between;
     align-items: center;
     gap: 8px;
-    margin-top: 1.5rem;
+    margin-top: clamp(1rem, 0.8571rem + 0.7143vw, 1.5rem);
     transition: all 100ms ease-in-out;
 }
 
@@ -721,4 +728,16 @@ dialog .wrapper {
     flex: 1;
     font-size: 1rem;
     cursor: default !important;
+}
+
+.hide-img-under-400 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 500px) {
+    .hide-img-under-400 {
+        display: none;
+    }
 }
