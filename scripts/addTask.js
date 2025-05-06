@@ -112,7 +112,7 @@ function rotateArrowIcon(formularID) {
 function getSelectedContacts() {
     selectedContacts.innerHTML = "";
     for (const [id, name] of Object.entries(assignedContacts)) {
-        selectedContacts.innerHTML += renderSelectedContactsAsCircle(name, id);
+        selectedContacts.innerHTML += renderSelectedContactsAsCircle(name.name, id);
     }
 }
 
@@ -145,7 +145,7 @@ function toggleCheckmark(name, id) {
  */
 function editAssignedObject(name, id) {
     if (document.getElementById(`${id}-checked`).classList != 'hidden') {
-        assignedContacts[`${id}`] ? null : assignedContacts[`${id}`] = name;
+        assignedContacts[`${id}`] ? null : assignedContacts[`${id}`] = {"name" : name};
     } else {
         delete assignedContacts[`${id}`];
     }
@@ -201,7 +201,7 @@ function addSubtask() {
     let UserInput = subtaskInput.value;
     if (UserInput != "") {   
         document.getElementById('addedSubtasks').innerHTML += subtask_template(subtask_id, UserInput);
-        subtasks[subtask_id] = UserInput;
+        subtasks[subtask_id] = {name : UserInput, status : "unchecked"};
         subtask_id += 1;
         subtaskInput.value = "";
     }
@@ -299,15 +299,41 @@ function animationTaskAdded() {
  */
 function assembleTask() {
     return {
-        "assigned" : assignedContacts,
+        "assigned" : checkAssignedContactsLength(),
         "category" : selectedCategory.innerHTML,
         "description" : document.getElementById('description').value,
         "duedate" : duedate.value,
         "currentStatus" : currentStatus,
         "priority" : priority,
-        "subtasks" : subtasks,
+        "subtasks" : checkSubtasksLength(),
         "title" : title.value
     }
+}
+
+/**
+ * This function checks if the value is empty or not. If the value is empty there will be a placeholder inserted so it is not getting deleted from firebase.
+ * 
+ * @returns - It returns an object
+ */
+function checkAssignedContactsLength() {
+    let getSize = Object.keys(assignedContacts);
+    if(getSize.length === 0) {
+        assignedContacts = {"null" : "null"};
+    }
+    return assignedContacts;
+}
+
+/**
+ * This function checks if the value is empty or not. If the value is empty there will be a placeholder inserted so it is not getting deleted from firebase.
+ * 
+ * @returns - It returns an object 
+ */
+function checkSubtasksLength() {
+    let getSize = Object.keys(subtasks);
+    if(getSize.length === 0) {
+        subtasks = {"null" : "null"};
+    }
+    return subtasks;
 }
 
 /**
