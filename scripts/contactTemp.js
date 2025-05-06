@@ -56,7 +56,6 @@ function contactInfoTemp(email, name, phone, color) {
                 <span>${phone}</span>
             </div>
         </div>
-        <div id="editMobileButtonPlaceholder"></div>
     `;
 }
 

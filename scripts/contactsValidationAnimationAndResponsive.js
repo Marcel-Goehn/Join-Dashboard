@@ -201,6 +201,8 @@ resizeHandler = () => {
 			addNewFixed.classList.add("dnone");
 			contentLimiter.style.width = "auto";
 			stickyContactsContent.classList.remove("dnone");
+			const optionsBtn = document.getElementById("optionsBtn");
+			optionsBtn.classList.remove("show");
 			closeBurger();
 		}}
 	
@@ -213,6 +215,8 @@ resizeHandler = () => {
 			stickyContactsContent.classList.add("dnone");
 			const contentLimiter = document.getElementById("contentLimiter");
 			contentLimiter.classList.remove("dnone");
+			const optionsBtn = document.getElementById("optionsBtn");
+			optionsBtn.classList.add("show");
 		}
 	}
 	/**
@@ -224,6 +228,9 @@ resizeHandler = () => {
 			stickyContactsContent.classList.remove("dnone");
 			const contentLimiter = document.getElementById("contentLimiter");
 			contentLimiter.classList.add("dnone");
+			const optionsBtn = document.getElementById("optionsBtn");
+			optionsBtn.classList.remove("show");
+
 		}
 	}
 	

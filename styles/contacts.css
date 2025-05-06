@@ -384,6 +384,10 @@ body {
 .slideBurgerIn{
 	transform: translateX(0)!important;
 }
+
+.show{
+	display: flex !important;
+}
 @media(max-width: 1440px){
 	#addNewContactBtn{
 		font-size: clamp(1rem, 0.5498rem + 0.8475vw, 1.3125rem);
@@ -463,7 +467,7 @@ body {
 		padding-inline: clamp(1.25rem, -1.6314rem + 5.4237vw, 3.25rem);
 	}
 	#contentLimiter{
-		margin-left: clamp(0.3125rem, -6.6572rem + 34.8485vw, 7.5rem);
+		margin-left: 0;
 	}
 	#contactHeadlineDiv{
 		flex-direction: column;
@@ -483,13 +487,14 @@ body {
 
 	#contactInfo{
 		padding-top: 150px;
-	}
-
-	#optionsBtn{
-		display: flex !important;
+		padding-inline: clamp(1.25rem, -0.5682rem + 9.0909vw, 3.125rem);
 	}
 
 	#editDiv{
 		display: none !important;
+	}
+
+	#nameAndEditDiv h3{
+	 font-size: clamp(1.6875rem, 0.8996rem + 3.9394vw, 2.5rem);
 	}
 }
