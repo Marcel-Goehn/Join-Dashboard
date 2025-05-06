@@ -58,14 +58,14 @@ function subtaskIsBlank() {
  * @param {*} contactObject 
  * @returns a block of code, representing a contact of the user
  */
-function renderContacts(id, contactObject) {
-    return `<div class="contact" id="${id}" onclick="toggleCheckmark('${contactObject.name}', '${id}'), Bubbling(event)">
+function renderContacts(index, contactObject) {
+    return `<div class="contact" id="${contactObject[index][0]}" onclick="toggleCheckmark('${contactObject[index][1].name}', '${contactObject[index][0]}', '${contactObject[index][1].color}'), Bubbling(event)">
                 <div class="initial_name">
-                    <div class="circle">${getInitials(contactObject.name)}</div>
-                    <span>${contactObject.name}</span>
+                    <div class="circle">${getInitials(contactObject[index][1].name)}</div>
+                    <span>${contactObject[index][1].name}</span>
                 </div>
-                <img id="${id}-unchecked" src="../assets/img/board/Check_button_unchecked.svg">
-                <svg id="${id}-checked" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#2a3547">
+                <img id="${contactObject[index][0]}-unchecked" src="../assets/img/board/Check_button_unchecked.svg">
+                <svg id="${contactObject[index][0]}-checked" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#2a3547">
                     <path d="M20 11V17C20 18.6569 18.6569 20 17 20H7C5.34315 20 4 18.6569 4 17V7C4 5.34315 5.34315 4 7 4H15" stroke="white" stroke-width="2" stroke-linecap="round"/>
                     <path d="M8 12L12 16L20 4.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>

@@ -1,5 +1,4 @@
 const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/";
-let logged_user = {};
 let currentStatus = "To Do";
 let priority = "medium";
 let assignedContacts = {};
@@ -15,35 +14,27 @@ let subtaskInput = document.getElementById('subtask_input');
 let title = document.getElementById('title_input');
 let duedate = document.getElementById('duedate_input');
 let selectedCategory = document.getElementById('btn_text');
+let contactData = [];
 
-/**
- * calls all necessary functions for rendering logged user & its contacts
- */
-async function init_addTask() {
-    await fetchUser();
-    logged_user.contacts ? getContacts() : null;
-}
-
-/**
- * stores userdata in a variable for further interaction
- */
-async function fetchUser() {
-    let result = sessionStorage.getItem("loggedIn");
-    let userID = await JSON.parse(result);
-    const response = await fetch(databaseLinkRef + "users/" + userID + ".json");
-    logged_user = await response.json();
+/// --------------------------------- PATRICK FUNKTIONEN ----------------------------////
+async function init_addTask(){
+    await fetchContacts();
+    getContacts(contactData);
 }
 
 async function fetchContacts(){
     const response = await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`);
     const contactDataObj = await response.json();
-    const contactDataArr = Object.entries(contactDataObj).map(([, value]) => [value])
-    console.log(contactDataArr);
-    return contactDataArr
+    const contactDataArr = Object.entries(contactDataObj)
+    contactData = contactDataArr;
+    console.log(contactData);
 }
 
-
-
+function postTask(){
+    const assembledTaskObj = assembleTask();
+    uploadTask(assembledTaskObj);
+}
+/// ------------ ENDE PATRIUCK FUNKTIONEN -------------------------------- //
 /**
  * resets all buttons and highlights the corresponding button of the picked urgency afterwards
  * @param {task-urgency as string} priority 
@@ -141,11 +132,11 @@ function getInitials(name) {
  * @param {Username} name 
  * @param {Userid} id 
  */
-function toggleCheckmark(name, id) {
+function toggleCheckmark(name, id, color) {
     document.getElementById(id).classList.toggle('highlight');
     document.getElementById(`${id}-unchecked`).classList.toggle('hidden');
     document.getElementById(`${id}-checked`).classList.toggle('hidden');
-    editAssignedObject(name, id);
+    editAssignedObject(name, id, color);
     getSelectedContacts();
 }
 /**
@@ -153,9 +144,9 @@ function toggleCheckmark(name, id) {
  * @param {Username} name 
  * @param {Userid} id 
  */
-function editAssignedObject(name, id) {
+function editAssignedObject(name, id, color) {
     if (document.getElementById(`${id}-checked`).classList != 'hidden') {
-        assignedContacts[`${id}`] ? null : assignedContacts[`${id}`] = {"name" : name};
+        assignedContacts[`${id}`] ? null : assignedContacts[`${id}`] = {"name" : name, "color" : color};
     } else {
         delete assignedContacts[`${id}`];
     }
@@ -167,8 +158,8 @@ function search() {
     Contacts.classList.remove('hidden');
     selectedContacts.classList.add('hidden');
     let userInput = document.getElementById('searchbar').value.toLowerCase();
-    let searchresult = Object.values(logged_user.contacts).filter(details => details.name.toLowerCase().includes(userInput));
-    getContacts(Object.entries(searchresult));
+    let searchresult = contactData.filter(contact => contact[1].name.toLowerCase().includes(userInput));
+    getContacts(searchresult);
 }
 /**
  * toggles the hidden-class, making the corresponding div either visible or invisible
@@ -348,13 +339,13 @@ function checkSubtasksLength() {
 
 /**
  * uploads tasks to the database
- * @param {added tasks} object 
+ * @param {added tasks} object (object = obj.entries(obj)) 
  */
-async function uploadTask(object) {
+async function uploadTask(assembledTaskObj) {
     await fetch(databaseLinkRef + "addTasks(testarea).json", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(object)
+        body: JSON.stringify(assembledTaskObj)
     });
 }
 
@@ -374,10 +365,10 @@ function ChangeSubtaskIcons() {
  * renders contacts from the logged user
  * @param {contacts from the user} object 
  */
-function getContacts(object = Object.entries(logged_user.contacts)) {
+function getContacts(contactData) {
     Contacts.innerHTML = "";
-        for (const [id, contactObject] of object) {
-            Contacts.innerHTML += renderContacts(id, contactObject);
+        for(let i = 0; i < contactData.length ; i++){
+            Contacts.innerHTML += renderContacts(i, contactData);
         }
 }
 
