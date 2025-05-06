@@ -7,6 +7,13 @@ const userObject = sessionStorage.getItem("loggedIn");
 const user = JSON.parse(userObject);
 const colors = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E","#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B",  "#FF4646", "#FFBB2B"];
 
+
+// FETCH FUNCTIONS //
+/**
+ * 
+ * @returns - returns the fetched contact data from the firebase server
+ * 
+ */
 async function fetchContactData() {
 	const response = await fetch(
 		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`
@@ -15,31 +22,135 @@ async function fetchContactData() {
 	return contactData;
 }
 
-function sortContacts(contactData) {
-	if (contactData != null || undefined) {
-		const sortedContacts = Object.entries(contactData).sort(([, a], [, b]) =>
-			a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
+/**
+ * this functions deletes a contact based on a the name of the contact object, renders the contacts again after and than starts a function which deletes the user out of all tasks the user was assigned to
+ * 
+ * @param {string} name - Name Value of the Contact Object
+ */
+async function deleteContact(name) {
+	const contactId = await getContactId(name);
+	const request = await fetch(
+		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts/${contactId}.json`,
+		{
+			method: "DELETE",
+		}
+	);
+	showContacts();
+	await deleteUserOutOfTask(contactId);
+	contactInfoDiv.innerHTML = "";
+}
+
+/**
+ * this functions deletes the a contact based on the contact id and the kanban object out of all assigned tasks, it is starting two more functions, the first gets the kanban object out of the database and the second one filters the kanban object for the issigned contactId
+ * 
+ * @param {string} contactId 
+ */
+async function deleteUserOutOfTask(contactId){
+	const kanbanData = await fetchKanbanTasks();
+	const taskIdArr = findTaskIdByAssignedContactId(kanbanData, contactId);
+	for(let i = 0; i < taskIdArr.length; i++){
+		await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban/${taskIdArr[i]}/assigned/${contactId}.json`,
+			{
+				method: "DELETE",
+			}
 		);
-		const sortedContactsArray = sortedContacts.map(([, value]) => value);
-		return sortedContactsArray
 	}
 }
 
-function renderContacts(contactData) {
+/**
+ * this function gets the kanban object from the the firebase database
+ * 
+ * @returns the kanban Object from the firebase database
+ */
+async function fetchKanbanTasks(){
+	const response = await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban.json`);
+	const kanbanData = await response.json();
+	return kanbanData;
+}
+
+/**
+ * this function edits a contact based on the values of the editinputs. It starts three functions, the first is getting the contact id via the value name of the contacts object, the second one reads the input values and the third one renders the contacts with the new values
+ * 
+ * @param {string} name 
+ * @param {event} event 
+ */
+async function updateContact(name, event) {
+	event.preventDefault();
+	const contactId = await getContactId(name);
+	const editedContactData = getEditedContactData();
+	await fetch(
+		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts/${contactId}.json`,
+		{
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(editedContactData),
+		}
+	);
+	await renderChangedContacts(editedContactData)
+}
+
+/**
+ * this function adds a new contact to the firebase database and is starting two functions, the first function reads the newContactInputs and puts them into a obj which gets returned. the second one renders the new contacts based on that new data.
+ */
+async function addContact() {
+	const newContactData = await getNewContactData();
+	await fetch(
+		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`,
+		{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(newContactData),
+		}
+	);
+	await renderChangedContacts(newContactData);
+}
+
+// END FETCH FUNCTIONS //
+
+// RENDER FUNCTIONS //
+
+/**
+ * this functions renders the new contactlist based on the newly added data, opens the specific contact and closes the dialog
+ * 
+ * @param {Object} newContactData those are the values of Inputs put into an Obj
+ */
+async function renderChangedContacts(contactObject){
+	await showContacts();
+	const indexAndColor = searchForIndexAndColor(contactObject);
+	openContact(
+		contactObject["email"],
+		contactObject["name"],
+		contactObject["phone"],
+		indexAndColor[1],
+		indexAndColor[0]
+	);
+	closeContactDial();
+}
+
+/**
+ * this function renders the contactlist, it uses the sorted contacts and compares if the previous startinglette of the contactname is the same letter or a new on to the current contactname. if the letter is a new one, it renders this letter into the list.
+ * 
+ * @param {Array} sortedContacts the sorted contacts objects put into an array
+ */
+function renderContacts(sortedContacts) {
 	let previousLetter = "";
 	contactDiv.innerHTML = "";
-	for(let i = 0; i < contactData.length; i++){
-		if(contactData[i].name.charAt(0).localeCompare(previousLetter) > 0){
+	for(let i = 0; i < sortedContacts.length; i++){
+		if(sortedContacts[i].name.charAt(0).localeCompare(previousLetter) > 0){
 			contactDiv.innerHTML += letterTemp(
-				contactData[i].name.charAt(0).toUpperCase()
+				sortedContacts[i].name.charAt(0).toUpperCase()
 			);
-			previousLetter = contactData[i].name.charAt(0).toUpperCase();
+			previousLetter = sortedContacts[i].name.charAt(0).toUpperCase();
 		}
-		const color = contactData[i].color;
-		const phone = checkIfUndefined(contactData[i].phone);
+		const color = sortedContacts[i].color;
+		const phone = checkIfUndefined(sortedContacts[i].phone);
 		contactDiv.innerHTML += contactTemp(
-			contactData[i].email,
-			contactData[i].name,
+			sortedContacts[i].email,
+			sortedContacts[i].name,
 			phone,
 			i,
 			color
@@ -48,31 +159,24 @@ function renderContacts(contactData) {
 	}
 }
 
-function checkIfUndefined(phone) {
-	if(phone === undefined){
-		phone = "No number assigned";
-		return phone;
-	}
-	return phone;
-}
-
-function styleBackgroundOfInitials(color, index) {
-	document.getElementById(`shorthand${index}`).style.backgroundColor = color;
-}
-
-function shorthandName(name) {
-	return name
-		.split(" ")
-		.map((partName) => partName[0].toUpperCase())
-		.join("");
-}
-
+/**
+ * this function starts 3 functions, the first is fetching the contactdataobject from the firebase database, the second one is sorting this object and the third one renders the data
+ */
 async function showContacts() {
 	const contactData = await fetchContactData();
 	const sortedContacts = sortContacts(contactData);
 	renderContacts(sortedContacts);
 }
 
+/**
+ * this function renders the data from the contact that got clicked in the contact list in a bigger format 
+ * 
+ * @param {string} email the email of the specific sorted contact
+ * @param {string} name the name of the specific sorted contact
+ * @param {number} phone the phonenumber of the specific sorted contact
+ * @param {string} color the color of the specific sorted contact
+ * @param {number} index the index of the specific sorted contact
+ */
 function openContact(email, name, phone, color, index) {
     email = decodeURIComponent(email);
     name = decodeURIComponent(name);
@@ -90,36 +194,34 @@ function openContact(email, name, phone, color, index) {
     }
 }
 
-function getMobileIn(email, name, phone, color){
-	const contactInfoContent = document.getElementById("contactInfo");
-	const optionsBtn = contactInfoContent.querySelector("#optionsBtn");
-	if (optionsBtn) {
-		optionsBtn.remove();
-	}
-	contactInfoContent.innerHTML += editMobileTemp(email, name, phone, color);
+/**
+ * this functions opens the dialog and renders the editContactDIal via the tempplate.
+ * 
+ * @param {*} email the email of the specific contact
+ * @param {*} name the name of the specific contact
+ * @param {*} phone the phone of the specific contact
+ * @param {*} color the color of the specific contact
+ */
+function openEditContactDial(email, name, phone, color) {
+	addContactDial.innerHTML = editContactDialTemp(email, name, phone);
+	document.getElementById("editImgDiv").style.backgroundColor = color;
+	addContactDial.showModal();
 }
 
-function colorClickedContact(index) {
-	const acutalContentDivs = document.querySelectorAll(".actualContactDiv");
-	acutalContentDivs.forEach((div) => {
-		div.classList.remove("clickedBackground");
-		div.classList.add("whiteBackground");
-	});
-	const clickedContentDiv = document.getElementById(`actualContactDiv${index}`);
-	clickedContentDiv.classList.remove("whiteBackground");
-	clickedContentDiv.classList.add("clickedBackground");
-}
-
-function getColor(index){
-	const color = colors[index % colors.length];
-	return color;
-  }
-
+/**
+ * this function open the dialog and renders the addContactDial via the template.
+ */
 function openAddContactDial() {
 	addContactDial.innerHTML = addContactDialTemp();
 	addContactDial.showModal();
 }
+// END RENDER FUNCTIONS //
 
+// HELP FUNCTIONS //
+
+/**
+ * this functions closes the the dialogs and starts the closing animation
+ */
 function closeContactDial() {
 	if (document.getElementById("addContactDialContent")) {
 		slideOut(document.getElementById("addContactDialContent"));
@@ -131,43 +233,92 @@ function closeContactDial() {
 	}, 400);
 }
 
-function openEditContactDial(email, name, phone, color) {
-	addContactDial.innerHTML = editContactDialTemp(email, name, phone);
-	document.getElementById("editImgDiv").style.backgroundColor = color;
-	addContactDial.showModal();
-}
-
-async function deleteContact(name) {
-	const contactId = await getContactId(name);
-	const request = await fetch(
-		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts/${contactId}.json`,
-		{
-			method: "DELETE",
-		}
-	);
-	showContacts();
-	await deleteUserOutOfTask(contactId);
-	contactInfoDiv.innerHTML = "";
-}
-
-async function deleteUserOutOfTask(contactId){
-	const kanbanData = await fetchKanbanTasks();
-	const taskIdArr = findTaskIdByAssignedContactId(kanbanData, contactId);
-	for(let i = 0; i < taskIdArr.length; i++){
-		await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban/${taskIdArr[i]}/assigned/${contactId}.json`,
-			{
-				method: "DELETE",
-			}
+/**
+ * this functions sorts the contactObject while using object entries to convert that object into an array and destructures that array to only sort the values. after that it maps the sortedArray and removes the key pairs from object entries, so only the values are left and returns that array
+ * 
+ * @param {Object} contactData this is the fetches contact object from the firebase database
+ * @returns an sorted array, which got build from object entries out of the contacts object
+ */
+function sortContacts(contactData) {
+	if (contactData != null || undefined) {
+		const sortedContacts = Object.entries(contactData).sort(([, a], [, b]) =>
+			a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
 		);
+		const sortedContactsArray = sortedContacts.map(([, value]) => value);
+		return sortedContactsArray
 	}
 }
 
-async function fetchKanbanTasks(){
-	const response = await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban.json`);
-	const kanbanData = await response.json();
-	return kanbanData;
+/**
+ * 
+ * @param {number/undifined} phone the phonenumber of a specific contact 
+ * @returns the phonenumber, or "No number assigned" if phone is undifined
+ */
+function checkIfUndefined(phone) {
+	if(phone === undefined){
+		phone = "No number assigned";
+		return phone;
+	}
+	return phone;
 }
 
+/**
+ *  this function colors the background of the initalDiv based on the color of the contact 
+ *  
+ * @param {string} color the color of the specific contact
+ * @param {number} index the index of the of the specific contact 
+ */
+function styleBackgroundOfInitials(color, index) {
+	document.getElementById(`shorthand${index}`).style.backgroundColor = color;
+}
+
+/**
+ * this function converts the surname and the lastname of the contact into the initals of that name
+ * 
+ * @param {string} name name of a specific contact 
+ * @returns the initials of that name
+ */
+function shorthandName(name) {
+	return name
+		.split(" ")
+		.map((partName) => partName[0].toUpperCase())
+		.join("");
+}
+
+/**
+ * this function colors the contact which got clicked in the contactlist and sets the background color of the other contacts to white
+ * 
+ * @param {number} index index of the specific contact 
+ */
+function colorClickedContact(index) {
+	const acutalContentDivs = document.querySelectorAll(".actualContactDiv");
+	acutalContentDivs.forEach((div) => {
+		div.classList.remove("clickedBackground");
+		div.classList.add("whiteBackground");
+	});
+	const clickedContentDiv = document.getElementById(`actualContactDiv${index}`);
+	clickedContentDiv.classList.remove("whiteBackground");
+	clickedContentDiv.classList.add("clickedBackground");
+}
+
+/**
+ * this function checks which color the next contact will get. It uses a index or the length of the current contacts object to determine which color to pick out of the colors array. Its using the modulu operator to reassign the first color, if the index/length is bigger than the color array
+ * 
+ * @param {number} index this can be the index of the contact or the length of the contacts object
+ * @returns the color out of the colors array
+ */
+function getColor(index){
+	const color = colors[index % colors.length];
+	return color;
+  }
+
+/**
+ * this function con converts the kanban object into an array and searches the assigned value for the contactid, everytime the contactId is assigned to a task, it pushes the taskId into an array which gest returned
+ * 
+ * @param {Object} kanbanData the fetched kanaban object from the firebase database
+ * @param {number/string} contactId the id of the specific contact
+ * @returns an array of tasks where the contactId is assigned to
+ */
 function findTaskIdByAssignedContactId(kanbanData, contactId) {
 	const assignedArray = [];
 	for (const [taskId, taskData] of Object.entries(kanbanData)) {
@@ -180,58 +331,13 @@ function findTaskIdByAssignedContactId(kanbanData, contactId) {
 	return assignedArray;
   }
 
-async function updateContact(name, event) {
-	event.preventDefault();
-	const contactId = await getContactId(name);
-	const editedContactData = getEditedContactData();
-	await fetch(
-		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts/${contactId}.json`,
-		{
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(editedContactData),
-		}
-	);
-
-	await showContacts();
-	const indexAndColor = searchForIndexAndColor(editedContactData);
-	openContact(
-		editedContactData["email"],
-		editedContactData["name"],
-		editedContactData["phone"],
-		indexAndColor[1],
-		indexAndColor[0]
-	);
-	closeContactDial();
-}
-
-async function addContact() {
-	const newContactData = await getNewContactData();
-	await fetch(
-		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`,
-		{
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(newContactData),
-		}
-	);
-	await showContacts();
-	const indexAndColor = searchForIndexAndColor(newContactData);
-	openContact(
-		newContactData["email"],
-		newContactData["name"],
-		newContactData["phone"],
-		indexAndColor[1],
-		indexAndColor[0]
-	);
-	closeContactDial();
-}
-
-async function getContactId(name) {
+  /**
+   * this function fetches the contactdata and searches the object for a specific name, if the name is found it returns the id of that contact
+   * 
+   * @param {string} name the name of a specific contact 
+   * @returns the contact id corresponding to that name
+   */
+  async function getContactId(name) {
 	const contactData = await fetchContactData();
 	const contactId = Object.entries(contactData).find(
 		([, value]) => value.name === name
@@ -239,14 +345,17 @@ async function getContactId(name) {
 	return contactId;
 }
 
+/**
+ * this function is reading the input values of the new contact inputs and converts them into an object
+ * 
+ * @returns returns an object consisting of the input values of the add contact inputs
+ */
 async function getNewContactData() {
 	const newContactName = document.getElementById("addDialNameInput").value;
 	const newContactEmail = document.getElementById("addDialEmailInput").value;
 	const newContactPhone = document.getElementById("addDialPhoneInput").value;
 	const contactData = await fetchContactData();
 	const color = getColor(Object.keys(contactData).length);
-	console.log(color);
-	console.log(Object.keys(contactData).length);
 	const newContactData = {
 		name: `${newContactName}`,
 		email: `${newContactEmail}`,
@@ -256,6 +365,11 @@ async function getNewContactData() {
 	return newContactData;
 }
 
+/**
+ * this function is reading the input values of the edit contact inputs and converts them into an object
+ * 
+ * @returns an object consisting of the input values of the edit inputs
+ */
 function getEditedContactData() {
 	const editedContactName = document.getElementById("editDialNameInput").value;
 	const editedContactEmail =
@@ -272,34 +386,12 @@ function getEditedContactData() {
 	return editedContactData;
 }
 
-function slideIn() {
-	const editDialContent = document.getElementById("editContactDialContent");
-	editDialContent.classList.toggle("slideIn");
-}
-
-function slideInAddContact() {
-	const addContactDialContent = document.getElementById(
-		"addContactDialContent"
-	);
-	addContactDialContent.classList.toggle("slideIn");
-}
-
-function slideInContactInfo() {
-	const contactInfoInfo = document.getElementById("contactInfoInfo");
-	contactInfoInfo.classList.remove("slideInContactInfo");
-	void contactInfoInfo.offsetWidth;
-	contactInfoInfo.classList.add("slideInContactInfo");
-}
-
-function successMsg() {
-	const successDialBtn = document.getElementById("successBtn");
-	successDialBtn.classList.add("slideMsgInAndOut");
-	setTimeout(() => {
-		successDialBtn.classList.remove("slideMsgInAndOut");
-	}, 2000);
-	addContactDial.close();
-}
-
+/**
+ * this function searches for the index and the color of a specific contact and returns it
+ * 
+ * @param {Object} newContactData its an object that contains name, email, phone and color of a specific contact 
+ * @returns the index of that contact and the color fo that contact
+ */
 function searchForIndexAndColor(newContactData) {
 	const allContactDivs = document.querySelectorAll(".actualContactDiv");
 	const searchedContactDiv = Array.from(allContactDivs).find((contactDiv) =>
@@ -314,181 +406,32 @@ function searchForIndexAndColor(newContactData) {
 	});
 	return [index, color];
 }
-
-function slideOut(contentDial) {
-	contentDial.classList.remove("slideIn");
-	contentDial.classList.add("slideOut");
-}
-
-function validateContactForm(addOrEdit, name, event) {
-	const nameInput = document.getElementById(`${addOrEdit}DialNameInput`);
-	const nameRefuseDiv = document.getElementById(`${addOrEdit}NameRefuseDiv`);
-	const nameInputDiv = document.getElementById(`${addOrEdit}DialNameDiv`);
-	const emailInput = document.getElementById(`${addOrEdit}DialEmailInput`);
-	const emailRefuseDiv = document.getElementById(`${addOrEdit}EmailRefuseDiv`);
-	const emailInputDiv = document.getElementById(`${addOrEdit}DialEmailDiv`);
-	const phoneInput = document.getElementById(`${addOrEdit}DialPhoneInput`);
-	const phoneRefuseDiv = document.getElementById(`${addOrEdit}PhoneRefuseDiv`);
-	const phoneInputDiv = document.getElementById(`${addOrEdit}DialPhoneDiv`);
-	if (
-		validateName(nameInput, nameRefuseDiv, nameInputDiv) &&
-		validateEmail(emailInput, emailRefuseDiv, emailInputDiv) &&
-		validatePhone(phoneInput, phoneRefuseDiv, phoneInputDiv)
-	) {
-		if (addOrEdit === "add") {
-			addContact();
-			successMsg();
-		} else {
-			updateContact(name, event);
-		}
-	}
-}
-
-function validatePhone(phoneInput, refuseDiv, phoneInputDiv) {
-	const pattern = /^\+\d{5,}$/;
-	if (!pattern.test(phoneInput.value)) {
-		refuseDiv.innerHTML = "Please enter the phonenumber starting with a +";
-		showRefuseDiv(refuseDiv);
-		setRedBorder(phoneInputDiv);
-		revertBorderColor(phoneInputDiv);
-		disableRefuseDiv(refuseDiv);
-		return false;
-	}
-	return true;
-}
-
-function validateName(nameInput, refuseDiv, nameInputDiv) {
-	const pattern = /^[a-zA-ZäöüÄÖÜß]+ [a-zA-ZäöüÄÖÜß]+$/;
-	if (!pattern.test(nameInput.value)) {
-		refuseDiv.innerHTML = "Enter first and lastname separated by a space.";
-		showRefuseDiv(refuseDiv);
-		setRedBorder(nameInputDiv);
-		revertBorderColor(nameInputDiv);
-		disableRefuseDiv(refuseDiv);
-		return false;
-	}
-	return true;
-}
-
-function validateEmail(emailInput, refuseDiv, emailInputDiv) {
-	const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-	if (!pattern.test(emailInput.value)) {
-		refuseDiv.innerHTML = "Please enter your email.";
-		showRefuseDiv(refuseDiv);
-		setRedBorder(emailInputDiv);
-		revertBorderColor(emailInputDiv);
-		disableRefuseDiv(refuseDiv);
-		return false;
-	}
-	return true;
-}
-
-function revertBorderColor(element) {
-	setTimeout(() => {
-		element.style.border = "";
-		element.focus();
-	}, 2000);
-}
-
-function disableRefuseDiv(element) {
-	setTimeout(() => {
-		element.classList.add("hideRefuseDiv");
-		element.classList.remove("showRefuseDiv");
-	}, 2000);
-}
-
-function showRefuseDiv(refuseDiv) {
-	refuseDiv.classList.remove("hideRefuseDiv");
-	refuseDiv.classList.add("showRefuseDiv");
-}
-
-function setRedBorder(element) {
-	element.style.border = "1px solid red";
-}
+// END HELP FUNCTIONS //
 
 
-function switchToSingleView(contentLimiter, stickyContacts, addNewContactBtn, addNewFixed){
-	if(!document.getElementById("stickyContactsContent").classList.contains("dnone")){
-	contentLimiter.classList.add("dnone");
-	contentLimiter.style.width = window.innerWidth + "px";
-	stickyContacts.style.width = window.innerWidth + "px";
-	addNewContactBtn.classList.add("dnone")
-	addNewFixed.classList.remove("dnone");
-}
-}
-
-function addResizeListener(){
-window.addEventListener("resize", resizeHandler)
-}
-
-resizeHandler = () => {const contentLimiter = document.getElementById("contentLimiter");
-	const stickyContacts = document.getElementById("stickyContacts");
-	const addNewContactBtn = document.getElementById("addNewContactBtn");
-	const addNewFixed = document.getElementById("addContactFixed");
-	const stickyContactsContent = document.getElementById("stickyContactsContent");
-	if(window.innerWidth <= 650){
-		switchToSingleView(contentLimiter, stickyContacts, addNewContactBtn, addNewFixed);
-	}else if(window.innerWidth > 650){
-		contentLimiter.classList.remove("dnone");
-		stickyContacts.style.width = "auto";
-		addNewContactBtn.classList.remove("dnone");
-		addNewFixed.classList.add("dnone");
-		contentLimiter.style.width = "auto";
-		stickyContactsContent.classList.remove("dnone");
-		closeBurger();
-	}}
 
 
-function clickContactSmall(){
-	if(window.innerWidth < 650){
-		const stickyContactsContent = document.getElementById("stickyContactsContent");
-		stickyContactsContent.classList.add("dnone");
-		const contentLimiter = document.getElementById("contentLimiter");
-		contentLimiter.classList.remove("dnone");
-	}
-}
 
-function backSmall(){
-	if(window.innerWidth < 650){
-		const stickyContactsContent = document.getElementById("stickyContactsContent");
-		stickyContactsContent.classList.remove("dnone");
-		const contentLimiter = document.getElementById("contentLimiter");
-		contentLimiter.classList.add("dnone");
-	}
-}
 
-function toggleBurger(event) {
-	event.stopPropagation();
-	const burgerDiv = document.getElementById("editBurger");
-	
-	if (burgerDiv.classList.contains("slideBurgerIn")) {
-	  closeBurger();
-	} else {
-	  openBurger();
-	  document.addEventListener("click", closeBurgerHandler);
-	}
-  }
-  
-  function openBurger() {
-	const burgerDiv = document.getElementById("editBurger");
-	burgerDiv.classList.remove("slideBurgerOut");
-	burgerDiv.classList.add("slideBurgerIn");
-  }
-  
-  function closeBurger() {
-	const burgerDiv = document.getElementById("editBurger");
-	if (burgerDiv) {
-	  burgerDiv.classList.remove("slideBurgerIn");
-	  burgerDiv.classList.add("slideBurgerOut");
-	}
-  }
-  
-  function closeBurgerHandler(event) {
-	const burgerDiv = document.getElementById("editBurger");
-	const optionsBtn = document.getElementById("optionsBtn");
-	
-	if (!burgerDiv.contains(event.target) && event.target !== optionsBtn) {
-	  closeBurger();
-	  document.removeEventListener("click", closeBurgerHandler);
-	}
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
