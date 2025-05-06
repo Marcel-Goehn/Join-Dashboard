@@ -274,7 +274,7 @@ p {
     margin-left: 0;
 }
 
-.user-1 {
+/* .user-1 {
     background-color: #FF7A00;
 }
 
@@ -284,7 +284,7 @@ p {
 
 .user-3 {
     background-color: #462F8A;
-}
+} */
 
 @keyframes card-spin {
     0% {

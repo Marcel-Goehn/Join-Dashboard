@@ -1,7 +1,9 @@
 const dataBase = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test.json";
 const usersDatabase = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/"
+const contactsDatabase = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json"
 let cards = [];
 let user = [];
+let contactsArr = [];
 const findTask = document.getElementById('find_task');
 const todo = document.getElementById('to_do');
 const progress = document.getElementById('progress');
@@ -23,6 +25,7 @@ let originalFoundTasks = [];
 async function init() {
         originalCards = [];
         await fetchData();
+        await fetchContacts();
         const array = getCurrentArray();
         renderCards(array);
         await fetchUserData();
@@ -59,6 +62,39 @@ function pushDataToCardsArray(cardData) {
         originalCards.push({id : key, value});
     }
     cards = structuredClone(originalCards);
+}
+
+
+/**
+ * Fetches the contacts of all users
+ */
+async function fetchContacts() {
+    try {
+        let response = await fetch(contactsDatabase);
+        if(!response.ok) {
+            throw new Error(`HTTP Fehler! Status: ${response.status}`);    
+        }
+        let data = await response.json();
+        pushContactsToArray(data);
+    } catch (error) {
+        console.error("Fehler beim Abrufen der Daten:", error);
+    }
+}
+
+
+/**
+ * This function pushes the fetched contacts into an empty array
+ * 
+ * @param {object} data - The contact object 
+ */
+function pushContactsToArray(data) {
+    for (let [key, value] of Object.entries(data)) {
+        if(key == "null") {
+            continue;
+        }
+        contactsArr.push({id : key, value});
+    }
+    console.log(contactsArr);
 }
 
 
@@ -224,7 +260,7 @@ function getAssignedUsers(index) {
         let [firstName, lastName] = value.name.split(" ");
         firstLetterFName = firstName.slice(0,1);
         firstLetterLName = lastName.slice(0,1);
-        assignedContactsRef += getAssignedUsersTemplate(firstLetterFName, firstLetterLName);
+        assignedContactsRef += getAssignedUsersTemplate(firstLetterFName, firstLetterLName, value.color);
     }
     return assignedContactsRef;
 }

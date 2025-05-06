@@ -140,7 +140,7 @@ dialog .wrapper {
     font-size: 0.75rem;
     text-align: center;
     color: #FFFFFF;
-    background-color: #1FD7C1;
+    /* background-color: #1FD7C1; */
 }
 
 .contact-board-dialog span {
@@ -576,7 +576,7 @@ dialog .wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FFA800;
+    /* background-color: #FFA800; */
     font-size: 0.75rem;
     color: #FFFFFF;
 }

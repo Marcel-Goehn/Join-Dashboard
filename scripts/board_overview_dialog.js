@@ -76,7 +76,7 @@ function assignedDialogUsers(index) {
         let [firstName, lastName] = value.name.split(" ");
         firstLetterFName = firstName.slice(0, 1);
         firstLetterLName = lastName.slice(0, 1);
-        assignedContactsRef += getAssignedUsersDialogTemplate(firstName, lastName, firstLetterFName, firstLetterLName);
+        assignedContactsRef += getAssignedUsersDialogTemplate(firstName, lastName, firstLetterFName, firstLetterLName, value.color);
     }
     return assignedContactsRef;
 }

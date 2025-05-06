@@ -68,16 +68,16 @@ function pushContactList(contacts) {
 function renderContactList(cardIndex) {
     let assignmentList = getAssignmentList(cardIndex);
     let contactsRef = ``;
-    for (let i = 0; i < contactsNamesOfUser.length; i++) {
-        let [firstNameFirstChar, lastNameFirstChar] = contactsNamesOfUser[i].value.name.split(" ");
+    for (let i = 0; i < contactsArr.length; i++) {
+        let [firstNameFirstChar, lastNameFirstChar] = contactsArr[i].value.name.split(" ");
         firstNameFirstChar = firstNameFirstChar.charAt(0);
         lastNameFirstChar = lastNameFirstChar.charAt(0);
-        const checkAssignment = assignmentList.find(element => element.id == contactsNamesOfUser[i].id);
+        const checkAssignment = assignmentList.find(element => element.id == contactsArr[i].id);
         if(checkAssignment != undefined) {
-            contactsRef += renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i, cardIndex, contactsNamesOfUser);
+            contactsRef += renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i, cardIndex, contactsArr, contactsArr[i].value.color);
         }
         else {
-            contactsRef += renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i, cardIndex, contactsNamesOfUser);
+            contactsRef += renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, i, cardIndex, contactsArr, contactsArr[i].value.color);
         }
     }
     return contactsRef;
@@ -118,7 +118,7 @@ function renderAssignedContactsToEditDialog(index) {
         let [firstName, lastName] = value.name.split(" ");
         firstLetterFName = firstName.slice(0, 1);
         firstLetterLName = lastName.slice(0, 1);
-        assignedContactsRef += getAssignedUsersEditTemplate(firstLetterFName, firstLetterLName);
+        assignedContactsRef += getAssignedUsersEditTemplate(firstLetterFName, firstLetterLName, value.color);
     }
     return assignedContactsRef;
 }
@@ -174,7 +174,7 @@ function disAssignUserFromCard(contactID, cardIndex, contactIndex) {
  */
 function assignUserToCard(contactIndex, cardIndex, contactID, contactName) {
     const array = getCurrentArray();
-    array[cardIndex].value.assigned[contactID] = {name : contactName};
+    array[cardIndex].value.assigned[contactID] = {name : contactName, color: contactsArr[contactIndex].value.color};
     document.getElementById(`contact_container_${contactIndex}`).classList.add('assigned-contact-background');
     document.getElementById(`contact_container_${contactIndex}`).classList.remove('align-contact-list');
     document.getElementById(`full_name_${contactIndex}`).classList.add('full-name-white');
@@ -202,7 +202,7 @@ function updateShortHandNames(cardIndex) {
         let [firstName, lastName] = value.name.split(" ");
         firstLetterFName = firstName.slice(0, 1);
         firstLetterLName = lastName.slice(0, 1);
-        assignedUsers += getAssignedUsersEditTemplate(firstLetterFName, firstLetterLName);
+        assignedUsers += getAssignedUsersEditTemplate(firstLetterFName, firstLetterLName, value.color);
     }
     shortHandRef.innerHTML = assignedUsers;
 }

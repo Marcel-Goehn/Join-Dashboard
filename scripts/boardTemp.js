@@ -28,10 +28,11 @@ function getCardsTemplate(index, array) {
  * 
  * @param {string} first - Inserts the first letter of the first name 
  * @param {string} last - Inserts the first letter of the last name
+ * @param {string} userColor - Inserts the background color for the specific user
  * @returns - returns the html code to the getCardsTemplate function
  */
-function getAssignedUsersTemplate(first, last) {
-    return `<div class="user-1 user">${first}${last}</div>`
+function getAssignedUsersTemplate(first, last, userColor) {
+    return `<div style="background-color: ${userColor};" class="user">${first}${last}</div>`
 }
 
 
@@ -131,9 +132,9 @@ function getDialogTemplate(index, array) {
  * @param {string} firstLetterLName 
  * @returns - Adds the names and first letters of first- and lastname into the html snippet
  */
-function getAssignedUsersDialogTemplate(firstName, lastName, firstLetterFName, firstLetterLName) {
+function getAssignedUsersDialogTemplate(firstName, lastName, firstLetterFName, firstLetterLName, userColor) {
     return `<div class="contact-board-dialog">
-                <div class="contact-logo">${firstLetterFName}${firstLetterLName}</div>
+                <div style="background-color: ${userColor};" class="contact-logo">${firstLetterFName}${firstLetterLName}</div>
                 <span>${firstName} ${lastName}</span>
             </div>`
 }
@@ -320,8 +321,8 @@ function renderLow() {
  * @param {string} firstLetterLName - First char of the lastname
  * @returns - It returns the html for the first characters of the first and lastname
  */
-function getAssignedUsersEditTemplate(firstLetterFName, firstLetterLName) {
-    return `<div onclick="openContactList(event)" class="short-name-dialog">${firstLetterFName}${firstLetterLName}</div>`
+function getAssignedUsersEditTemplate(firstLetterFName, firstLetterLName, userColor) {
+    return `<div onclick="openContactList(event)" style="background-color: ${userColor};" class="short-name-dialog">${firstLetterFName}${firstLetterLName}</div>`
 }
 
 
@@ -334,10 +335,10 @@ function getAssignedUsersEditTemplate(firstLetterFName, firstLetterLName) {
  * @param {array} contactArr - This array holds the informations about the contacts
  * @returns - It returns the html for the contact list 
  */
-function renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, contactIndex, cardIndex, contactArr) {
+function renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, contactIndex, cardIndex, contactArr, userColor) {
     return `<div id="contact_container_${contactIndex}" class="align-contact-list" onclick="assignOrDisassignContact(${contactIndex}, ${cardIndex}, '${contactArr[contactIndex].id}', '${contactArr[contactIndex].value.name}')">
                             <div class="combine-name-and-shorthand">
-                                <div class="short-name-dialog">${firstNameFirstChar}${lastNameFirstChar}</div>
+                                <div style="background-color: ${userColor};" class="short-name-dialog">${firstNameFirstChar}${lastNameFirstChar}</div>
                                 <span id="full_name_${contactIndex}" class="full-name-dark">${contactArr[contactIndex].value.name}</span>
                             </div>
                             <img id="unchecked_image_${contactIndex}" src="../assets/img/board/Check_button_unchecked.svg">
@@ -355,10 +356,10 @@ function renderContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, con
  * @param {array} contactArr - This array holds the informations about the contacts
  * @returns - It returns the html for the assigned contacts in the contact list
  */
-function renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, contactIndex, cardIndex, contactArr) {
+function renderAssignedContactsIntoEditDialog(firstNameFirstChar, lastNameFirstChar, contactIndex, cardIndex, contactArr, userColor) {
     return `<div id="contact_container_${contactIndex}" class="assigned-contact-background" onclick="assignOrDisassignContact(${contactIndex}, ${cardIndex}, '${contactArr[contactIndex].id}', '${contactArr[contactIndex].value.name}')">
                             <div class="combine-name-and-shorthand">
-                                <div class="short-name-dialog">${firstNameFirstChar}${lastNameFirstChar}</div>
+                                <div style="background-color: ${userColor};" class="short-name-dialog">${firstNameFirstChar}${lastNameFirstChar}</div>
                                 <span id="full_name_${contactIndex}" class="full-name-white">${contactArr[contactIndex].value.name}</span>
                             </div>
                             <img id="unchecked_image_${contactIndex}" class="d_none" src="../assets/img/board/Check_button_unchecked.svg">
