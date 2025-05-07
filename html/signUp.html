@@ -30,6 +30,7 @@
 									required
 									type="text"
 									placeholder="Name"
+									oninput="validateName()"
 								/><img
 									id="personIcon"
 									class="signUpInputIcon"
@@ -47,11 +48,13 @@
 									required
 									type="email"
 									placeholder="Email"
+									oninput="validateEmail()"
 								/><img
 									id="emailIcon"
 									class="signUpInputIcon"
 									src="../assets/img/signUp/mail.png"
 									alt="Mail Icon"
+									
 								/>
 							</div>
 							<div id="emailRefuseDiv" class="refuseDiv"></div>
@@ -64,7 +67,7 @@
 									required
 									type="password"
 									placeholder="Password"
-									oninput="switchIcons('PW')"
+									oninput="switchIcons('PW'), validatePassword()"
 								/><img
 									id="lockIconPW"
 									class="signUpInputIcon signUpLock"
@@ -94,7 +97,7 @@
 									required
 									type="password"
 									placeholder="Confirm Password"
-									oninput="switchIcons('CF')"
+									oninput="switchIcons('CF'), validateConfirmPassword()"
 								/><img
 									id="lockIconCF"
 									class="signUpInputIcon signUpLock"
@@ -120,7 +123,7 @@
 				</div>
 				<div class="signUpCheckboxDiv">
 					<label class="checkbox">
-						<input type="checkbox" id="privacyCheckbox" />
+						<input type="checkbox" id="privacyCheckbox" oninput="validatePrivacy()" />
 						<span class="checkmark normalBorder" id="checkboxBorder"></span>
 					</label>
 					<span>I accept the </span>
@@ -129,7 +132,7 @@
 					>
 				</div>
 				<div id="signUpButtonDiv">
-					<button id="signUpBtn" onclick="validateForm()">Sign up</button>
+					<button id="signUpBtn" onclick="validateForm()" disabled >Sign up</button>
 				</div>
 			</div>
 			<div id="signUpPrivacyAndLegalDiv">

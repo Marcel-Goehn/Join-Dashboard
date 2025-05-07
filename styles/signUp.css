@@ -398,6 +398,14 @@ dialog p {
 	cursor: pointer;
 }
 
+button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	background-color: gray; 
+	color: #ccc;
+	pointer-events: none;        
+  }
+
 @media (max-width: 53.125rem) {
 	#signUpContent {
 		width: 100%;

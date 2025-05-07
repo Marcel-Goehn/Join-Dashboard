@@ -14,6 +14,11 @@ const checkbox = document.getElementById("privacyCheckbox");
 const checkboxBorder = document.getElementById("checkboxBorder");
 const dialog = document.getElementById("succesfulSignUpDial");
 let previousLength = 0;
+let nameValidation = false;
+let emailValidation = false;
+let passwordValidation = false;
+let confirmPWValidation = false;
+let privacyValidation = false;
 const colors = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E","#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B",  "#FF4646", "#FFBB2B"];
 
 const databaseLinkRef =
@@ -33,10 +38,14 @@ function validateName() {
 		nameRefuseDiv.innerHTML = "Enter first and lastname separated by a space.";
 		setRedBorder(nameBorder);
 		showRefuseDiv(nameRefuseDiv);
-		revertBorderColor(nameBorder);
-		disableRefuseDiv(nameRefuseDiv);
+		nameValidation = false;
+		enableButtonAfterValidation();
 		return false;
 	}
+	nameValidation = true;
+	enableButtonAfterValidation();
+	revertBorderColor(nameBorder);
+	disableRefuseDiv(nameRefuseDiv);
 	return true;
 }
 
@@ -46,10 +55,14 @@ function validateEmail() {
 		emailRefuseDiv.innerHTML = "Please enter your email";
 		setRedBorder(emailBorder);
 		showRefuseDiv(emailRefuseDiv);
-		revertBorderColor(emailBorder);
-		disableRefuseDiv(emailRefuseDiv);
+		emailValidation = false;
+		enableButtonAfterValidation();
 		return false;
 	}
+	emailValidation = true;
+	enableButtonAfterValidation();
+	revertBorderColor(emailBorder);
+	disableRefuseDiv(emailRefuseDiv);
 	return true;
 }
 
@@ -59,10 +72,14 @@ function validatePassword() {
 		passwordRefuseDiv.innerHTML = "Min. 8 Characters, 1 Letter and 1 Number";
 		setRedBorder(pwBorder);
 		showRefuseDiv(passwordRefuseDiv);
-		revertBorderColor(pwBorder);
-		disableRefuseDiv(passwordRefuseDiv);
+		passwordValidation = false;
+		enableButtonAfterValidation();
 		return false;
 	}
+	passwordValidation = true;
+	enableButtonAfterValidation();
+	revertBorderColor(pwBorder);
+	disableRefuseDiv(passwordRefuseDiv);
 	return true;
 }
 
@@ -71,10 +88,14 @@ function validateConfirmPassword() {
 		confirmRefuseDiv.innerHTML = "Your passwords dont match. Try again.";
 		setRedBorder(confPwBorder);
 		showRefuseDiv(confirmRefuseDiv);
-		revertBorderColor(confPwBorder);
-		disableRefuseDiv(confirmRefuseDiv);
+		confirmPWValidation = false;
+		enableButtonAfterValidation();
 		return false;
 	}
+	confirmPWValidation = true;
+	enableButtonAfterValidation();
+	revertBorderColor(confPwBorder);
+	disableRefuseDiv(confirmRefuseDiv);
 	return true;
 }
 
@@ -84,8 +105,12 @@ function validatePrivacy() {
 		setTimeout(() => {
 			toggleBorder();
 		}, 2000);
+		privacyValidation = false;
+		enableButtonAfterValidation();
 		return false;
 	}
+	privacyValidation = true;
+	enableButtonAfterValidation();
 	return true;
 }
 
@@ -106,18 +131,22 @@ async function validateForm() {
 	}
 }
 
+function enableButtonAfterValidation(){
+	if(nameValidation && passwordValidation && confirmPWValidation && emailValidation && privacyValidation){
+		document.getElementById("signUpBtn").disabled = false;
+	}else{
+		document.getElementById("signUpBtn").disabled = true;
+	}
+}
+
 function revertBorderColor(element) {
-	setTimeout(() => {
 		element.style.border = "";
 		element.focus();
-	}, 2000);
 }
 
 function disableRefuseDiv(element) {
-	setTimeout(() => {
 		element.classList.add("hideRefuseDiv");
 		element.classList.remove("showRefuseDiv");
-	}, 2000);
 }
 
 function showRefuseDiv(refuseDiv) {
@@ -201,15 +230,11 @@ function emailTaken() {
 }
 
 function revertBorderColor(element) {
-	setTimeout(() => {
 		element.style.border = "";
 		element.focus();
-	}, 2000);
 	if (element === checkboxBorder) {
-		setTimeout(() => {
 			element.style.outline = "";
 			element.focus();
-		}, 2000);
 	}
 }
 
@@ -222,10 +247,8 @@ function nextPage() {
 }
 
 function disableRefuseDiv(element) {
-	setTimeout(() => {
 		element.classList.add("hideRefuseDiv");
 		element.classList.remove("showRefuseDiv");
-	}, 2000);
 }
 
 function showRefuseDiv(refuseDiv) {
