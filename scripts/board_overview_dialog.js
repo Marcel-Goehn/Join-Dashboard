@@ -6,6 +6,10 @@ const wrapper = document.querySelector('.wrapper');
  * This function opens the dialog of the card
  */
 function openDialog(i) {
+    if (wasDragging) {
+        wasDragging = false;
+        return;
+    }
     const array = getCurrentArray();
     wrapper.innerHTML = getDialogTemplate(i, array);
     dialog.showModal();
@@ -25,14 +29,24 @@ function closeDialog(e) {
         const array = getCurrentArray();
         renderCards(array);
     }
-    }
+    checkScreenWidth();
+}
 
+
+/**
+ * This function closes the dialog and awaits the init funtcion
+ */
 async function closeDialogAfterSafe(){
         currentPriority = "";
         dialog.close();
         await init();
     }
 
+
+/**
+ * This function closes the edit dialog 
+ * @param {event} e 
+ */
 function closeEditTaskDialog(e){
     e.stopPropagation();
     currentPriority = "";
@@ -83,6 +97,10 @@ function openEditDialog(index, e) {
     dialog.showModal();
 }
 
+
+/**
+ * This function saves the original state of the current array
+ */
 function saveOriginalArrayState(){
     const array = getCurrentArray();
     if(array === foundTasks){
@@ -91,6 +109,7 @@ function saveOriginalArrayState(){
         originalCards = structuredClone(cards);
     }
 }
+
 
 /**
  * 

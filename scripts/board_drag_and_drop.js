@@ -125,6 +125,7 @@ function mobileDropTo(cardIndex, placeholder, e) {
     currentOpenedMobileOverlay = undefined;
     document.getElementById('mobile_backdrop').classList.add('d_none');
     renderCards(array);
+    checkScreenWidth();
     updateMobileDatabase(cardIndex, array[cardIndex].id);
     e.stopPropagation();
 }

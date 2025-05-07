@@ -31,6 +31,7 @@ async function init() {
         const array = getCurrentArray();
         console.log(array)
         renderCards(array);
+        checkScreenWidth();
 }
 
 
@@ -341,17 +342,19 @@ function getCurrentArray(){
 }
 
 
-// function checkScreenWidth() {
-//     if (window.innerWidth <= 1000) {
-//         document.querySelectorAll('.card').forEach(card => {
-//             card.setAttribute('draggable', 'false');
-//         });
-//     } else {
-//         document.querySelectorAll('.card').forEach(card => {
-//             card.setAttribute('draggable', 'true');
-//         });
-//     }
-// }
+/**
+ * This function checks everytime the screensize when it get's adjusted and enables or disables the drag and drop functionality
+ */
+function checkScreenWidth() {
+    if (window.innerWidth <= 1170) {
+        document.querySelectorAll('.card').forEach(card => {
+            card.setAttribute('draggable', 'false');
+        });
+    } else {
+        document.querySelectorAll('.card').forEach(card => {
+            card.setAttribute('draggable', 'true');
+        });
+    }
+}
 
-
-// window.addEventListener('resize', checkScreenWidth);
+window.addEventListener('resize', checkScreenWidth);

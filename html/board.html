@@ -83,7 +83,7 @@
                             <path d="M16 12.0754L8 12.0754" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                     </div>
-                    <div class="board_category" id="to_do" ondragover="allowDrop(event); showDropBox('To-Do')" ondragleave="hideDropBox('To-Do')" ondrop="moveTo('To-Do')">
+                    <div class="board_category scroll-container" id="to_do" ondragover="allowDrop(event); showDropBox('To-Do')" ondragleave="hideDropBox('To-Do')" ondrop="moveTo('To-Do')">
                         
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                             <path d="M16 12.0754L8 12.0754" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                     </div>
-                    <div class="board_category" id="progress" ondragover="allowDrop(event); showDropBox('Progress')" ondragleave="hideDropBox('Progress')" ondrop="moveTo('Progress')">
+                    <div class="board_category scroll-container" id="progress" ondragover="allowDrop(event); showDropBox('Progress')" ondragleave="hideDropBox('Progress')" ondrop="moveTo('Progress')">
                         
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                             <path d="M16 12.0754L8 12.0754" stroke="#091931" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                     </div>
-                    <div class="board_category" id="feedback" ondragover="allowDrop(event); showDropBox('Feedback')" ondragleave="hideDropBox('Feedback')" ondrop="moveTo('Feedback')">
+                    <div class="board_category scroll-container" id="feedback" ondragover="allowDrop(event); showDropBox('Feedback')" ondragleave="hideDropBox('Feedback')" ondrop="moveTo('Feedback')">
                         
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                     <div class="board-card-header">
                         <span>Done</span>
                     </div>
-                    <div class="board_category" id="done" ondragover="allowDrop(event); showDropBox('Done')" ondragleave="hideDropBox('Done')" ondrop="moveTo('Done')">
+                    <div class="board_category scroll-container" id="done" ondragover="allowDrop(event); showDropBox('Done')" ondragleave="hideDropBox('Done')" ondrop="moveTo('Done')">
                         
                     </div>
                 </div>
@@ -367,6 +367,7 @@
     <script src="../scripts/board_dialog.js"></script>
     <script src="../scripts/header.js"></script>
     <script src="../scripts/board_drag_and_drop.js"></script>
+    <script src="../scripts/board_drag_to_scroll.js"></script>
     <script src="../scripts/addTaskDialog.js"></script>
     <script src="../scripts/addTask.js"></script>
     <script src="../scripts/addTask_templates.js"></script>
