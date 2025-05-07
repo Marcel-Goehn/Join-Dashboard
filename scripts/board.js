@@ -22,14 +22,17 @@ let originalFoundTasks = [];
 /**
  * Initializes the fetching
  */
+async function initBoard(){
+    await uploadTask(assembleTask());
+    await init();
+}
+
 async function init() {
         cards = [];
         contactsArr = [];
         await fetchData();
         await fetchContactsBoard();
-        console.log("TEST");
         const array = getCurrentArray();
-        console.log(array)
         renderCards(array);
 }
 
@@ -212,6 +215,22 @@ function checkRenderConditions(index, array) {
     }
     else if (array[index].value.currentStatus === "Done") {
         doneMemory += getCardsTemplate(index, array);
+    }
+}
+
+
+/**
+ * 
+ * @param {number} index - The index of the current selected card
+ * @returns - It returns the color for the card header
+ */
+function getHeaderBgColor(index) {
+    const array = getCurrentArray();
+    if (array[index].value.category === "User Story") {
+        return `style="background-color: #0038FF"`;
+    }
+    else {
+        return `style="background-color: #1FD7C1"`;
     }
 }
 

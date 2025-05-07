@@ -194,6 +194,7 @@ resizeHandler = () => {
 		const stickyContactsContent = document.getElementById("stickyContactsContent");
 		if(window.innerWidth <= 650){
 			switchToSingleView(contentLimiter, stickyContacts, addNewContactBtn, addNewFixed);
+			revertClickedContacts();
 		}else if(window.innerWidth > 650){
 			contentLimiter.classList.remove("dnone");
 			stickyContacts.style.width = "auto";
