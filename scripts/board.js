@@ -58,9 +58,8 @@ function pushDataToCardsArray(cardData) {
         if (key == "null") {
             continue;
         }
-        originalCards.push({id : key, value});
+        cards.push({id : key, value});
     }
-    cards = structuredClone(originalCards);
 }
 
 
@@ -103,17 +102,14 @@ function pushContactsToArray(data) {
 function searchTasks(){
     const searchInput = document.getElementById("find_task").value;
     if(searchInput.length > 2){
-        originalFoundTasks = cards.filter(card => 
+        foundTasks = cards.filter(card => 
         card.value.title.toLowerCase().includes(searchInput.toLowerCase()) ||
         card.value.description.toLowerCase().includes(searchInput.toLowerCase())
         )
-        foundTasks = structuredClone(originalFoundTasks);
         renderCards(foundTasks);
         checkSearchTaskInputValidation(searchInput);
         previousInput = searchInput.length;
     }else if(searchInput.length < 3 && previousInput > searchInput.length){
-        originalFoundTasks = [];
-        foundTasks = structuredClone(originalFoundTasks);
         renderCards(cards);   
     }
 }

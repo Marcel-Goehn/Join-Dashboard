@@ -15,14 +15,31 @@ function openDialog(i) {
 /**
  * This function closes the dialog of the card
  */
-async function closeDialog(e) {
+function closeDialog(e) {
+    if(document.getElementById("container_input_title")){
+        closeEditTaskDialog(e)
+    }else{
+        e.stopPropagation();
+        currentPriority = "";
+        dialog.close();
+        const array = getCurrentArray();
+        renderCards(array);
+    }
+    }
+
+
+function closeEditTaskDialog(e){
     e.stopPropagation();
     currentPriority = "";
     dialog.close();
-    cards = structuredClone(originalCards);
-    foundTasks = structuredClone(originalFoundTasks);
     const array = getCurrentArray();
-    renderCards(array);
+    if(array === foundTasks){
+        renderCards(originalFoundTasks);
+        originalFoundTasks = []
+    }else{
+        renderCards(originalCards);
+        originalCards = [];
+    }
 }
 
 
@@ -53,6 +70,7 @@ dialog.onclick = function (e) {
  * @param {event} e - Prevents the event bubbling 
  */
 function openEditDialog(index, e) {
+    saveOriginalArrayState();
     e.stopPropagation();
     const array = getCurrentArray();
     wrapper.innerHTML = getEditDialogTemplate(array ,index);
@@ -60,6 +78,14 @@ function openEditDialog(index, e) {
     dialog.showModal();
 }
 
+function saveOriginalArrayState(){
+    const array = getCurrentArray();
+    if(array === foundTasks){
+        originalFoundTasks = structuredClone(foundTasks);
+    }else{
+        originalCards = structuredClone(cards);
+    }
+}
 
 /**
  * 
