@@ -1,4 +1,4 @@
-const dataBase = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test.json";
+const dataBase = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban.json";
 const usersDatabase = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/"
 const contactsDatabase = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json"
 let cards = [];
@@ -263,6 +263,23 @@ function getAssignedUsers(index) {
         assignedContactsRef += getAssignedUsersTemplate(firstLetterFName, firstLetterLName, value.color);
     }
     return assignedContactsRef;
+}
+
+
+function checkMobileDragDropRenderConditions(cardIndex) {
+    const array = getCurrentArray();
+    if(array[cardIndex].value.currentStatus === "todo") {
+        return getRenderMobileDragDropContainerTemplate('todo', 'progress', cardIndex);
+    }
+    else if(array[cardIndex].value.currentStatus === 'progress') {
+        return getRenderMobileDragDropContainerTemplate('todo', 'feedback', cardIndex);
+    }
+    else if(array[cardIndex].value.currentStatus === 'feedback') {
+        return getRenderMobileDragDropContainerTemplate('progress', 'done', cardIndex);
+    }
+    else {
+        return getRenderMobileDragDropContainerTemplate('feedback', 'done', cardIndex);
+    }
 }
 
 

@@ -118,7 +118,7 @@ async function checkOrUncheckSubtask(status, cardIndex, subtaskKey) {
     else {
         array[cardIndex].value.subtasks[subtaskKey].status = "checked";
     }
-    await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${array[cardIndex].id}/subtasks.json`, {
+    await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban/${array[cardIndex].id}/subtasks.json`, {
         method : "PUT",
         headers : {"Content-Type" : "application/json"},
         body : JSON.stringify(array[cardIndex].value.subtasks)
@@ -150,7 +150,7 @@ function deleteCard(i) {
 async function deleteFromDatabase(i) {
     const array = getCurrentArray();
     let cardToDelete = array[i].id;
-    await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${cardToDelete}.json`, {
+    await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban/${cardToDelete}.json`, {
         method: "DELETE"
     });
 }

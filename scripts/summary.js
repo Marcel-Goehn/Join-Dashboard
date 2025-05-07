@@ -1,7 +1,7 @@
 let currentTime = new Date();
 let hours = currentTime.getHours();
 const userData = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users.json";
-const dataBaseUrl = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test.json";
+const dataBaseUrl = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban.json";
 const greeting = document.getElementById('greeting');
 const todo = document.getElementById('to_do');
 const done = document.getElementById('done');

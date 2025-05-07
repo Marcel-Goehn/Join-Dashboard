@@ -1,4 +1,5 @@
 let currentDraggedElement;
+let currentOpenedMobileOverlay;
 
 
 /**
@@ -7,6 +8,9 @@ let currentDraggedElement;
  * @param {number} cardIndex 
  */
 function addCardAnimation(cardIndex) {
+    if(window.innerWidth <= 1000) {
+        return;
+    }
     document.getElementById(`card${cardIndex}`).classList.add('card-animation');
 }
 
@@ -72,6 +76,36 @@ function moveTo(category) {
 }
 
 
+function showMobileDragDropMenu(e, cardIndex) {
+    e.stopPropagation();
+    const dragDropMobileContainer = document.getElementById(`mobile_drag_drop_container_${cardIndex}`);
+    dragDropMobileContainer.classList.remove('d_none');
+    document.getElementById('mobile_backdrop').classList.remove('d_none');
+    currentOpenedMobileOverlay = cardIndex;
+}
+
+
+function closeMobileDragDropMenu(e) {
+    const dragDropMobileContainer = document.getElementById(`mobile_drag_drop_container_${currentOpenedMobileOverlay}`);
+    if (!dragDropMobileContainer.contains(e.target)) {
+        dragDropMobileContainer.classList.add('d_none');
+        document.getElementById('mobile_backdrop').classList.add('d_none');
+        currentOpenedMobileOverlay = undefined;
+    }
+}
+
+
+function mobileDropTo(cardIndex, placeholder, e) {
+    const array = getCurrentArray();
+    array[cardIndex].value.currentStatus = placeholder;
+    currentOpenedMobileOverlay = undefined;
+    document.getElementById('mobile_backdrop').classList.add('d_none');
+    renderCards(array);
+    updateMobileDatabase(cardIndex, array[cardIndex].id);
+    e.stopPropagation();
+}
+
+
 /**
  * This function updates the database.
  * 
@@ -80,7 +114,7 @@ function moveTo(category) {
  */
 async function updateDatabase(id, cat) {
     const array = getCurrentArray();
-    await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${id}.json`, {
+    await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban/${id}.json`, {
         method : "PUT",
         headers : {"Content-Type" : "application/json"},
         body : JSON.stringify({
@@ -94,6 +128,25 @@ async function updateDatabase(id, cat) {
             assigned : array[currentDraggedElement].value.assigned
         })
     })
+}
+
+
+async function updateMobileDatabase(cardIndex, id) {
+    const array = getCurrentArray();
+    await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban/${id}.json`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            category: array[cardIndex].value.category,
+            currentStatus: array[cardIndex].value.currentStatus,
+            description: array[cardIndex].value.description,
+            duedate: array[cardIndex].value.duedate,
+            priority: array[cardIndex].value.priority,
+            title: array[cardIndex].value.title,
+            subtasks: array[cardIndex].value.subtasks,
+            assigned: array[cardIndex].value.assigned
+        })
+    });
 }
 
 

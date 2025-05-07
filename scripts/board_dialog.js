@@ -122,7 +122,7 @@ function removeValidationHighlightFromDueDate() {
  */
 async function saveCardChangesToDatabase(index) {
     const array = getCurrentArray();
-    await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/test/${array[index].id}.json`, {
+    await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban/${array[index].id}.json`, {
         method : "PUT",
         headers : {"Content-Type" : "application/json"},
         body : JSON.stringify({

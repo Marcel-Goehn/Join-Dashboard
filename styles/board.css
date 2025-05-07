@@ -181,6 +181,13 @@ main {
     border-radius: 24px;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
     cursor: pointer;
+    position: relative;
+}
+
+.align-first-card-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .card-header {
@@ -274,17 +281,44 @@ p {
     margin-left: 0;
 }
 
-/* .user-1 {
-    background-color: #FF7A00;
+.drag-drop-container {
+    background-color: #2A3647;
+    padding: 1rem 0.5rem;
+    border-radius: 0 20px 20px 20px;
+    position: absolute;
+    top: 16px;
+    right: -61px;
+    z-index: 10;
+    color: #FFFFFF;
+    cursor: default;
 }
 
-.user-2 {
-    background-color: #1FD7C1;
+.drag-drop-container p {
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    text-align: center;
 }
 
-.user-3 {
-    background-color: #462F8A;
-} */
+.drag-drop-container span {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.align-up-and-down-drag-drop {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.align-up-and-down-drag-drop span {
+    cursor: pointer;
+}
 
 @keyframes card-spin {
     0% {
@@ -318,8 +352,14 @@ p {
     opacity: 0;
 }
 
-
-
+#mobile_backdrop {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+}
 
 .mobile {
     display: none;
@@ -382,6 +422,16 @@ p {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .align-first-card-section {
+        justify-content: space-between;
+    }
+
+    .align-first-card-section img {
+        display: block;
+    }
+    #todo_drop_box, #progress_drop_box, #feedback_drop_box, #done_drop_box {
+        display: none;
     }
 }
 

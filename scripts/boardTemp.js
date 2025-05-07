@@ -6,9 +6,15 @@
  */
 function getCardsTemplate(index, array) {
     return `<div draggable="true" ondragstart="startDragging(${index})" onclick="openDialog(${index})" onmousedown="addCardAnimation(${index})" onmouseleave="removeCardAnimation(${index})" class="card" id="card${index}">
-                            <h2>
-                                <span class="card-header">${array[index].value.category}</span>
-                            </h2>
+                            <div class="align-first-card-section">
+                                <h2>
+                                    <span class="card-header">${array[index].value.category}</span>
+                                </h2>
+                                <img class="d_none" src="../assets/img/board/mobile_drag_and_drop.svg" onclick="showMobileDragDropMenu(event, ${index})">
+                            </div>
+                            <div class="drag-drop-container d_none" id="mobile_drag_drop_container_${index}">
+                                ${checkMobileDragDropRenderConditions(index)}
+                            </div>
                             <h3>${array[index].value.title}</h3>
                             <p>${array[index].value.description}</p>
                             <div id="subtasks${index}" class="subtasks">
@@ -33,6 +39,19 @@ function getCardsTemplate(index, array) {
  */
 function getAssignedUsersTemplate(first, last, userColor) {
     return `<div style="background-color: ${userColor};" class="user">${first}${last}</div>`
+}
+
+
+function getRenderMobileDragDropContainerTemplate(previous, next, cardIndex) {
+    return `<p>Move To</p>
+            <div class="align-up-and-down-drag-drop" onclick="mobileDropTo(${cardIndex}, '${previous}', event)">
+                <img src="../assets/img/board/move_to_arrow_upward.svg">
+                <span>${previous}</span>
+            </div>
+            <div class="align-up-and-down-drag-drop" onclick="mobileDropTo(${cardIndex}, '${next}', event)">
+                <img src="../assets/img/board/move_to_arrow_downward.svg">
+                <span>${next}</span>
+            </div>`
 }
 
 
