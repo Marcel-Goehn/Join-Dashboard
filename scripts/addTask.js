@@ -30,14 +30,14 @@ async function fetchContacts(){
     console.log(contactData);
 }
 
-function postTask(){
+function postTask() {
     const assembledTaskObj = assembleTask();
     uploadTask(assembledTaskObj);
 }
 /// ------------ ENDE PATRIUCK FUNKTIONEN -------------------------------- //
 /**
  * resets all buttons and highlights the corresponding button of the picked urgency afterwards
- * @param {task-urgency as string} priority 
+ * @param {string} priority value of priority, selected by user
  */
 function select(priority) {
     resetButtonsToDefault();
@@ -84,7 +84,7 @@ function toggleContacts() {
 /**
  * closes all currently open dropdown-menus
  */
-function closeOpenSections(){
+function closeOpenSections() {
     Contacts.classList.add('hidden');
     selectedContacts.classList.remove('hidden');
     document.getElementById("assigned_icon").classList.remove('rotate');
@@ -93,7 +93,7 @@ function closeOpenSections(){
 }
 /**
  * prevents events from unwanted triggering
- * @param {LMB} event 
+ * @param {event} event
  */
 function Bubbling(event){
     event.stopPropagation();
@@ -101,7 +101,7 @@ function Bubbling(event){
 
 /**
  * rotates the arrow-icon for better user-comprehension
- * @param {either contacts or category} formularID 
+ * @param {string} formularID either contacts or category
  */
 function rotateArrowIcon(formularID) {
     document.getElementById(formularID).classList.toggle('rotate');
@@ -119,7 +119,7 @@ function getSelectedContacts() {
 
 /**
  *
- * @param {Username as string} name 
+ * @param {string} name name of the contact
  * @returns the initials of an username
  */
 function getInitials(name) {
@@ -129,8 +129,8 @@ function getInitials(name) {
 }
 /**
  * toggles the checkmark-icon of the selected user between checked & unchecked
- * @param {Username} name 
- * @param {Userid} id 
+ * @param {string} name name of the contact
+ * @param {string} id id of the contact
  */
 function toggleCheckmark(name, id, color) {
     document.getElementById(id).classList.toggle('highlight');
@@ -141,8 +141,8 @@ function toggleCheckmark(name, id, color) {
 }
 /**
  * edits the content of assignedContacts, a variable used for keeping track of previous selected contacts
- * @param {Username} name 
- * @param {Userid} id 
+ * @param {string} name name of the contact
+ * @param {string} id id of the contact
  */
 function editAssignedObject(name, id, color) {
     if (document.getElementById(`${id}-checked`).classList != 'hidden') {
@@ -163,7 +163,7 @@ function search() {
 }
 /**
  * toggles the hidden-class, making the corresponding div either visible or invisible
- * @param {name of div} id 
+ * @param {string} id id of the div
  */
 function toggleHidden(id) {
     document.getElementById(id).classList.toggle('hidden');
@@ -171,7 +171,7 @@ function toggleHidden(id) {
 
 /**
  * shows the user-selection und hides the other options
- * @param {string} category 
+ * @param {string} category either Technical Task or User Story
  */
 function setCategory(category) {
     switch (category) {
@@ -234,7 +234,7 @@ function eraseInvalidInput() {
 
 /**
  * closes the "edit"-Mode of the currently eddited subtask, adding it back as a line beneath the subtask-input
- * @param {id of subtask as string} id 
+ * @param {string} id id of the subtask
  */
 function confirmSubtask(id) {
     document.getElementById(`edit_div${id}`).classList.toggle('hidden');
@@ -246,8 +246,8 @@ function confirmSubtask(id) {
 
 /**
  * deletes the selected subtask entirely
- * @param {LMB} event 
- * @param {id of subtask as string} id 
+ * @param {event} event 
+ * @param {string} id id of the subtask
  */
 function deleteSubtask(event, id) {
     event.stopPropagation();
@@ -258,7 +258,7 @@ function deleteSubtask(event, id) {
 
 /**
  * opens "edit"-mode of the selected subtask, making it possible to change previous settings
- * @param {id of subtask as string} id 
+ * @param {string} id id of the subtask
  */
 function editSubtask(id) {
     let current_subtask = document.getElementById(`subtask_row${id}`).innerHTML;
@@ -339,7 +339,7 @@ function checkSubtasksLength() {
 
 /**
  * uploads tasks to the database
- * @param {added tasks} object (object = obj.entries(obj)) 
+ * @param {object} assembledTaskObj object with necessary information for the taskcard
  */
 async function uploadTask(assembledTaskObj) {
     await fetch("https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban.json", {
@@ -350,7 +350,7 @@ async function uploadTask(assembledTaskObj) {
 }
 
 /**
- * changes the subtask-Icon while creating a subtask 
+ * changes the subtask-Icon while creating a subtask
  */
 function ChangeSubtaskIcons() {
     let subtaskIcons = document.getElementById('subtask_input_icons');
@@ -363,26 +363,11 @@ function ChangeSubtaskIcons() {
 
 /**
  * renders contacts from the logged user
- * @param {contacts from the user} object 
+ * @param {object} contactData object with contact information
  */
 function getContacts(contactData) {
     Contacts.innerHTML = "";
         for(let i = 0; i < contactData.length ; i++){
             Contacts.innerHTML += renderContacts(i, contactData);
         }
-}
-
-/**
- * clears all content from the addtask-dialog
- */
-function clearDialog() {
-    title.value = null;
-    document.getElementById('description').value = null;
-    duedate.value = null;
-    select('medium');
-    selectedContacts.innerHTML = "";
-    getContacts();
-    assignedContacts = {};
-    selectedCategory.innerHTML = "Select task category";
-    document.getElementById('addedSubtasks').innerHTML = "";
 }
