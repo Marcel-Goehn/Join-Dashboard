@@ -27,7 +27,6 @@ async function fetchContacts(){
     const contactDataObj = await response.json();
     const contactDataArr = Object.entries(contactDataObj)
     contactData = contactDataArr;
-    console.log(contactData);
 }
 
 function postTask() {
@@ -39,23 +38,26 @@ function postTask() {
  * resets all buttons and highlights the corresponding button of the picked urgency afterwards
  * @param {string} priority value of priority, selected by user
  */
-function select(priority) {
+function select(chosenPriority) {
     resetButtonsToDefault();
-    switch (priority) {
+    switch (chosenPriority) {
         case 'urgent':
             priority = "urgent";
             urgent_button.classList.add('urgent', 'btn_bigFont');
             ['urgent_1', 'urgent_2'].forEach(id => document.getElementById(id).setAttribute("fill", "white"));
+            console.log(priority);
             break;
         case 'medium':
             priority = "medium";
             medium_button.classList.add('medium', 'btn_bigFont');
             ['medium_1', 'medium_2'].forEach(id => document.getElementById(id).setAttribute("fill", "white"));
+            console.log(priority);
             break;
         case 'low':
             priority = "low";
             low_button.classList.add('low', 'btn_bigFont');
             ['low_1', 'low_2'].forEach(id => document.getElementById(id).setAttribute("fill", "white"));
+            console.log(priority);
             break;
     }
 }
@@ -299,6 +301,7 @@ function animationTaskAdded() {
  * @returns an object with key:value pairs
  */
 function assembleTask() {
+    console.log(priority);
     return {
         "assigned" : checkAssignedContactsLength(),
         "category" : selectedCategory.innerHTML,
@@ -348,12 +351,12 @@ function checkSubtasksLength() {
  * @param {object} assembledTaskObj object with necessary information for the taskcard
  */
 async function uploadTask(assembledTaskObj) {
+    console.log(priority);
     await fetch("https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban.json", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(assembledTaskObj)
     });
-    console.log("DONE");
 }
 
 /**

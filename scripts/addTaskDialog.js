@@ -31,7 +31,7 @@ function clearDialog() {
     duedate.value = null;
     select('medium');
     selectedContacts.innerHTML = "";
-    getContacts();
+    getContacts(contactData);
     assignedContacts = {};
     selectedCategory.innerHTML = "Select task category";
     document.getElementById('addedSubtasks').innerHTML = "";
