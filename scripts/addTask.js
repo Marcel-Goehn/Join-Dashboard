@@ -321,6 +321,9 @@ function checkAssignedContactsLength() {
     if(getSize.length === 0) {
         assignedContacts = {"null" : "null"};
     }
+    else {
+        assignedContacts['null'] = 'null';
+    }
     return assignedContacts;
 }
 
@@ -333,6 +336,9 @@ function checkSubtasksLength() {
     let getSize = Object.keys(subtasks);
     if(getSize.length === 0) {
         subtasks = {"null" : "null"};
+    }
+    else {
+        subtasks['null'] = 'null';
     }
     return subtasks;
 }
