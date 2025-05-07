@@ -3,7 +3,7 @@
  * 
  * @param {number} cardIndex - The index of the current selected card 
  */
-function checkValidationInEditDialog(cardIndex) {
+async function checkValidationInEditDialog(cardIndex) {
     if (document.getElementById('input_title').value.length === 0) {
         highlightValidationError('title');
     }
@@ -20,8 +20,8 @@ function checkValidationInEditDialog(cardIndex) {
         return;
     }
     if (document.getElementById('input_title').value.length !== 0 && document.getElementById('input_duedate').value.length !== 0) {
-        saveCardChangesToDatabase(cardIndex);
-        closeDialog(event);
+        await saveCardChangesToDatabase(cardIndex);
+        closeDialogAfterSafe();
     }
 }
 
@@ -133,7 +133,16 @@ async function saveCardChangesToDatabase(index) {
             currentStatus : array[index].value.currentStatus,
             category : array[index].value.category,
             subtasks : array[index].value.subtasks,
-            assigned : array[index].value.assigned
+            assigned : checkIfNull(array[index].value.assigned),
         })
     })
+}
+
+function checkIfNull(assignedContact){
+    if(assignedContact.length === 0){
+        console.log("NULL")
+        return {null: null}
+    }else{
+        return assignedContact
+    }
 }

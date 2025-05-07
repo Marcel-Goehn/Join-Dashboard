@@ -27,6 +27,11 @@ function closeDialog(e) {
     }
     }
 
+async function closeDialogAfterSafe(){
+        currentPriority = "";
+        dialog.close();
+        await init();
+    }
 
 function closeEditTaskDialog(e){
     e.stopPropagation();
