@@ -22,14 +22,17 @@ let originalFoundTasks = [];
 /**
  * Initializes the fetching
  */
+async function initBoard(){
+    await uploadTask(assembleTask());
+    await init();
+}
+
 async function init() {
         cards = [];
         contactsArr = [];
         await fetchData();
         await fetchContactsBoard();
-        console.log("TEST");
         const array = getCurrentArray();
-        console.log(array)
         renderCards(array);
 }
 

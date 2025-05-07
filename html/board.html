@@ -64,7 +64,7 @@
                         
                     </form>
                     <p id="search_input_field_board" class="d_none">No results found</p>
-                    <button class="add-task-btn" onclick="openAddTask('To Do')"><span class="add-task">Add Task</span><img
+                    <button class="add-task-btn" onclick="openAddTask('To-Do')"><span class="add-task">Add Task</span><img
                             src="../assets/img/board/add.png"></button>
                 </div>
             </div>
@@ -338,7 +338,7 @@
                             </g>
                         </svg>
                     </button>
-                    <button id="confirm_btn" class="dialog_button btn_bigFont" disabled="true" type="confirm" onclick="uploadTask(assembleTask()), closeAddTask()">
+                    <button id="confirm_btn" class="dialog_button btn_bigFont" disabled="true" type="confirm" onclick="initBoard(), closeAddTask()">
                         <span id="confirm_btn_text">Create Task</span>
                         <img src="../assets/img/addtask/done.svg">
                     </button>

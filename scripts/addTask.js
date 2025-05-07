@@ -347,6 +347,7 @@ async function uploadTask(assembledTaskObj) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(assembledTaskObj)
     });
+    console.log("DONE");
 }
 
 /**

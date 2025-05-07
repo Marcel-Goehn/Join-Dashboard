@@ -133,16 +133,7 @@ async function saveCardChangesToDatabase(index) {
             currentStatus : array[index].value.currentStatus,
             category : array[index].value.category,
             subtasks : array[index].value.subtasks,
-            assigned : checkIfNull(array[index].value.assigned),
+            assigned : array[index].value.assigned,
         })
     })
-}
-
-function checkIfNull(assignedContact){
-    if(assignedContact.length === 0){
-        console.log("NULL")
-        return {null: null}
-    }else{
-        return assignedContact
-    }
 }

@@ -194,6 +194,7 @@ body {
 	align-items: center;
 	font-size: 2.9375rem;
 	font-weight: 500;
+	flex-shrink: 0;
 }
 
 #nameAndEditDiv {
@@ -319,6 +320,11 @@ body {
 	border-radius: 4px ;
 	display: none;
 }
+
+.actualContactDiv.clickedBackground{
+	pointer-events: none;
+}
+
 @keyframes slideInContactInfo {
 	0% {
 		transform: translateX(200%);
@@ -387,6 +393,14 @@ body {
 
 .show{
 	display: flex !important;
+}
+
+.actualContactDiv span:hover{
+	cursor: pointer;
+}
+
+.editBlock span:hover{
+	cursor: pointer;
 }
 @media(max-width: 1440px){
 	#addNewContactBtn{
