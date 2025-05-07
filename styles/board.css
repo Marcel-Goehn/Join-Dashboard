@@ -430,7 +430,7 @@ p {
     .align-first-card-section img {
         display: block;
     }
-    #todo_drop_box, #progress_drop_box, #feedback_drop_box, #done_drop_box {
+    #To-Do_drop_box, #Progress_drop_box, #Feedback_drop_box, #Done_drop_box {
         display: none;
     }
 }

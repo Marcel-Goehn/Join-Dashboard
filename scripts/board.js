@@ -177,16 +177,16 @@ function checkIfBoxIsEmpty() {
  * @param {number} index - The index of the current card
  */
 function checkRenderConditions(index, array) {
-    if (array[index].value.currentStatus === "todo") {
+    if (array[index].value.currentStatus === "To-Do") {
         toDoMemory += getCardsTemplate(index, array);
     }
-    else if (array[index].value.currentStatus === "progress") {
+    else if (array[index].value.currentStatus === "Progress") {
         progressMemory += getCardsTemplate(index, array);
     }
-    else if (array[index].value.currentStatus === "feedback") {
+    else if (array[index].value.currentStatus === "Feedback") {
         feedbackMemory += getCardsTemplate(index, array);
     }
-    else if (array[index].value.currentStatus === "done") {
+    else if (array[index].value.currentStatus === "Done") {
         doneMemory += getCardsTemplate(index, array);
     }
 }
@@ -196,10 +196,10 @@ function checkRenderConditions(index, array) {
  * Add's at the end of every board section an empty card, to let the user know where he can drag and drop
  */
 function addDropBox() {
-    todo.innerHTML += getDropBoxTemplate('todo');
-    progress.innerHTML += getDropBoxTemplate('progress');
-    feedback.innerHTML += getDropBoxTemplate('feedback');
-    done.innerHTML += getDropBoxTemplate('done');
+    todo.innerHTML += getDropBoxTemplate('To-Do');
+    progress.innerHTML += getDropBoxTemplate('Progress');
+    feedback.innerHTML += getDropBoxTemplate('Feedback');
+    done.innerHTML += getDropBoxTemplate('Done');
 }
 
 
@@ -268,17 +268,17 @@ function getAssignedUsers(index) {
 
 function checkMobileDragDropRenderConditions(cardIndex) {
     const array = getCurrentArray();
-    if(array[cardIndex].value.currentStatus === "todo") {
-        return getRenderMobileDragDropContainerTemplate('todo', 'progress', cardIndex);
+    if(array[cardIndex].value.currentStatus === "To-Do") {
+        return getRenderMobileDragDropContainerTemplate('To-Do', 'Progress', cardIndex);
     }
-    else if(array[cardIndex].value.currentStatus === 'progress') {
-        return getRenderMobileDragDropContainerTemplate('todo', 'feedback', cardIndex);
+    else if(array[cardIndex].value.currentStatus === 'Progress') {
+        return getRenderMobileDragDropContainerTemplate('To-Do', 'Feedback', cardIndex);
     }
-    else if(array[cardIndex].value.currentStatus === 'feedback') {
-        return getRenderMobileDragDropContainerTemplate('progress', 'done', cardIndex);
+    else if(array[cardIndex].value.currentStatus === 'Feedback') {
+        return getRenderMobileDragDropContainerTemplate('Progress', 'Done', cardIndex);
     }
     else {
-        return getRenderMobileDragDropContainerTemplate('feedback', 'done', cardIndex);
+        return getRenderMobileDragDropContainerTemplate('Feedback', 'Done', cardIndex);
     }
 }
 

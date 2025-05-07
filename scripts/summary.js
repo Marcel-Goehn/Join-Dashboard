@@ -80,16 +80,16 @@ function calculateTasks() {
         if (cards[i].value.priority === "urgent") {
             urgentLength++;
         }
-        if (cards[i].value.currentStatus === "todo") {
+        if (cards[i].value.currentStatus === "To-Do") {
             todoLength++;
         }
-        else if (cards[i].value.currentStatus === "done") {
+        else if (cards[i].value.currentStatus === "Done") {
             doneLength++;
         }
-        else if (cards[i].value.currentStatus === "progress") {
+        else if (cards[i].value.currentStatus === "Progress") {
             progressLength++;
         }
-        else if (cards[i].value.currentStatus === "feedback") {
+        else if (cards[i].value.currentStatus === "Feedback") {
             feedbackLength++;
         }
     }
