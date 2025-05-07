@@ -23,10 +23,13 @@ let originalFoundTasks = [];
  * Initializes the fetching
  */
 async function init() {
-        originalCards = [];
+        cards = [];
+        contactsArr = [];
         await fetchData();
         await fetchContactsBoard();
+        console.log("TEST");
         const array = getCurrentArray();
+        console.log(array)
         renderCards(array);
 }
 
