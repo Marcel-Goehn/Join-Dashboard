@@ -13,6 +13,7 @@
 html {
 	scroll-behavior: smooth;
 	height: 100%;
+	position: relative;
 }
 
 body {
@@ -20,6 +21,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	background-color: #f6f7f8;
+	position: relative;
 }
 
 img,

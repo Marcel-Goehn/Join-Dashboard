@@ -12,7 +12,7 @@ function getCardsTemplate(index, array) {
                                 </h2>
                                 <img class="d_none" src="../assets/img/board/mobile_drag_and_drop.svg" onclick="showMobileDragDropMenu(event, ${index})">
                             </div>
-                            <div class="drag-drop-container d_none" id="mobile_drag_drop_container_${index}">
+                            <div onclick="closeMobileDragDropMenu(event)" class="drag-drop-container d_none" id="mobile_drag_drop_container_${index}">
                                 ${checkMobileDragDropRenderConditions(index)}
                             </div>
                             <h3>${array[index].value.title}</h3>

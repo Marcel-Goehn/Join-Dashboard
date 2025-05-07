@@ -320,3 +320,19 @@ function getCurrentArray(){
         return foundTasks;
     }
 }
+
+
+// function checkScreenWidth() {
+//     if (window.innerWidth <= 1000) {
+//         document.querySelectorAll('.card').forEach(card => {
+//             card.setAttribute('draggable', 'false');
+//         });
+//     } else {
+//         document.querySelectorAll('.card').forEach(card => {
+//             card.setAttribute('draggable', 'true');
+//         });
+//     }
+// }
+
+
+// window.addEventListener('resize', checkScreenWidth);

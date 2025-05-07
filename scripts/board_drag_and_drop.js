@@ -86,7 +86,9 @@ function showMobileDragDropMenu(e, cardIndex) {
     e.stopPropagation();
     const dragDropMobileContainer = document.getElementById(`mobile_drag_drop_container_${cardIndex}`);
     dragDropMobileContainer.classList.remove('d_none');
-    document.getElementById('mobile_backdrop').classList.remove('d_none');
+    const backdrop = document.getElementById('mobile_backdrop');
+    backdrop.classList.remove('d_none');
+    backdrop.style.height = `${document.documentElement.scrollHeight}px`;
     currentOpenedMobileOverlay = cardIndex;
 }
 
@@ -102,6 +104,10 @@ function closeMobileDragDropMenu(e) {
         dragDropMobileContainer.classList.add('d_none');
         document.getElementById('mobile_backdrop').classList.add('d_none');
         currentOpenedMobileOverlay = undefined;
+    }
+    else if (dragDropMobileContainer.contains(e.target)) {
+        e.stopPropagation();
+        return;
     }
 }
 
