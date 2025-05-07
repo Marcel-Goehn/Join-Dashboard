@@ -11,19 +11,20 @@
 		<link rel="stylesheet" href="../styles/contacts.css" />
 		<link rel="stylesheet" href="../styles/newContactDial.css" />
 	</head>
-	<body onload="showContacts(),  highlightSidebarLink(), addResizeListener(), resizeHandler()">
+	<body onload="showContacts(),  highlightSidebarLink(), addResizeListener(), resizeHandler(), fetchNameInitials()">
 		<header>
 			<div id="headerContent">
-				<span>Kanban Project Management Tool</span>
+				<span class="header-subheader">Kanban Project Management Tool</span>
+				<img class="header-logo" src="../assets/img/header/header_logo.png" alt="Logo">
 				<div id="headerIconDiv">
-					<a href="../html/help.html"
-						><img
-							id="headerInfoIcon"
-							src="../assets/img/help.svg"
-							alt="infoIcon"
-					/></a>
-					<div id="shorthandNameDiv">
-						<span class="short-hand-name">PH</span>
+					<a href="../html/help.html"><img id="headerInfoIcon" src="../assets/img/help.svg" alt="infoIcon"></a>
+					<div onclick="toggleMenu()" id="shorthandNameDiv">
+						<span class="short-hand-name"></span>
+					</div>
+					<div id="menu" class="hidden">
+						<a href="legalNotice.html">Legal Notice</a>
+						<a href="privacyPolicy.html">Privacy Policy</a>
+						<a onclick="logout()" href="../index.html">Log out</a>
 					</div>
 				</div>
 			</div>
@@ -167,5 +168,6 @@
 		<script src="../scripts/contactTemp.js"></script>
 		<script src="../scripts/sidebar.js"></script>
 		<script src="../scripts/contactsValidationAnimationAndResponsive.js"></script>
+		<script src="../scripts/header.js"></script>
 	</body>
 </html>

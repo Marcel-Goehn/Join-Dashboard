@@ -99,7 +99,6 @@ function pushContactsToArray(data) {
         }
         contactsArr.push({id : key, value});
     }
-    console.log(contactsArr);
 }
 
 

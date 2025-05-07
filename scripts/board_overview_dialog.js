@@ -5,11 +5,12 @@ const wrapper = document.querySelector('.wrapper');
 /**
  * This function opens the dialog of the card
  */
-function openDialog(i) {
+async function openDialog(i) {
     if (wasDragging) {
         wasDragging = false;
         return;
     }
+    await init();
     const array = getCurrentArray();
     wrapper.innerHTML = getDialogTemplate(i, array);
     dialog.showModal();
@@ -173,7 +174,6 @@ async function checkOrUncheckSubtask(status, cardIndex, subtaskKey) {
         headers : {"Content-Type" : "application/json"},
         body : JSON.stringify(array[cardIndex].value.subtasks)
     });
-    init();
     openDialog(cardIndex);
 }
 
