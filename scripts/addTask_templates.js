@@ -1,7 +1,7 @@
 /**
  * creates a subtask beneath the subtask-inputspace
- * @param {id of subtask} id 
- * @param {content of subtask} subtask 
+ * @param {string} id id of subtask
+ * @param {string} subtask description of subtask
  * @returns a block of code, representing a posted subtask
  */
 function subtask_template(id, subtask) {
@@ -25,9 +25,9 @@ function subtask_template(id, subtask) {
 
 /**
  * HTML-Element for better user-comprehension
- * @param {name of user} name 
- * @param {id of user} id 
- * @param {color of user} color 
+ * @param {string} name name of a contact
+ * @param {string} id id of a contact
+ * @param {string} color color of a contact
  * @returns a line of code, representing the user's initials in a circle
  */
 function renderSelectedContactsAsCircle(name, id, color) {
@@ -54,8 +54,8 @@ function subtaskIsBlank() {
 
 /**
  * HTML-Element for better user-comprehension
- * @param {*} id 
- * @param {*} contactObject 
+ * @param {number} index number for accessing the correct contact within the contacts-array
+ * @param {object} contactObject object with contact information
  * @returns a block of code, representing a contact of the user
  */
 function renderContacts(index, contactObject) {
