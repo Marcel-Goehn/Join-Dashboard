@@ -416,10 +416,6 @@ body {
 	animation: slideSuccessIn 1s ease forwards;
 }
 
-.hideMobileSucess{
-	display: none;
-}
-
 #successDivMobile{
 	position: fixed;
 	bottom: 50%;
@@ -479,7 +475,7 @@ body {
 		margin-left: clamp(31.25rem, 27.6483rem + 6.7797vw, 33.75rem);
 	}
 	#contactInfo{
-		padding-inline:clamp(1rem, -7.16rem + 15.36vw, 3.4rem);;
+		padding-right:clamp(2rem, -7.16rem + 15.36vw, 3.4rem);;
 	}
 	.divider{
 		margin-inline:clamp(0.625rem, -3.625rem + 8vw, 1.875rem); ;
@@ -489,6 +485,14 @@ body {
 	}
 }
 
+@media(max-width: 900px){
+	#contactHeadlineDiv{
+		flex-direction: column;
+	}
+	.divider{
+		transform: rotate(90deg);
+	}
+}
 @media(max-width: 850px){
 	#stickyContactsContent{
 		left: 0;
@@ -501,6 +505,12 @@ body {
 		margin-bottom: 80px;
 	}
 	
+}
+
+@media(max-width: 700px){
+	#nameAndEditDiv h3{
+		font-size: 30px;
+	}
 }
 
 @media(max-width: 650px){
