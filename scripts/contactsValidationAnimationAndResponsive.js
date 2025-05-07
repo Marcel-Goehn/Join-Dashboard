@@ -25,6 +25,7 @@ function validateContactForm(addOrEdit, name, event) {
 		if (addOrEdit === "add") {
 			addContact();
 			successMsg();
+			successMsgMobile();
 		} else {
 			updateContact(name, event);
 		}
@@ -341,6 +342,17 @@ function successMsg() {
 function slideOut(contentDial) {
 	contentDial.classList.remove("slideIn");
 	contentDial.classList.add("slideOut");
+}
+
+function successMsgMobile(){
+	if(window.innerWidth < 650){
+		const successMobileDiv = document.getElementById("successDivMobile");
+		successMobileDiv.classList.toggle("slideMobileSuccessIn");
+		setTimeout(()=>{
+			clickContactSmall();
+			successMobileDiv.classList.toggle("slideMobileSuccessIn");
+		}, 2000)
+	}
 }
 
 // END ANIMATION FUNCTIONS //

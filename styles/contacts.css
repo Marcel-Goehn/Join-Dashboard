@@ -402,6 +402,36 @@ body {
 .editBlock span:hover{
 	cursor: pointer;
 }
+
+@keyframes slideSuccessIn{
+	0%{
+		transform: translate(-50%, 1000%);
+	}
+	100%{
+		transform: translate(-50%, -50%);
+	}
+}
+
+.slideMobileSuccessIn{
+	animation: slideSuccessIn 1s ease forwards;
+}
+
+.hideMobileSucess{
+	display: none;
+}
+
+#successDivMobile{
+	position: fixed;
+	bottom: 50%;
+	left: 50%;
+	transform: translate(-50%, 1000%);
+	padding: 25px;
+	background-color: #2a3647;
+	border-radius: 20px;
+	color: white;
+	white-space: nowrap;
+	font-size: clamp(1rem, 0.8491rem + 0.7547vw, 1.25rem);
+}
 @media(max-width: 1440px){
 	#addNewContactBtn{
 		font-size: clamp(1rem, 0.5498rem + 0.8475vw, 1.3125rem);

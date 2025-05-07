@@ -56,7 +56,6 @@ function findLoggedInUser() {
 	const parsedSessionUser = JSON.parse(sessionUser);
 	const searchingForUser = userDataset.find(u => u.id === parsedSessionUser);
 	getUserInitials(searchingForUser);
-	console.log("done");
 }
 
 
@@ -74,5 +73,4 @@ function getUserInitials(searchingForUser) {
 	let slicedFName = firstName.slice(0,1);
 	let slicedLName = lastName.slice(0,1);
 	shortHandName.innerHTML = `${slicedFName}${slicedLName}`;
-	console.log("done");
 }
