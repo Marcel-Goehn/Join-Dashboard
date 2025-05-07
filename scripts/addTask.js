@@ -1,5 +1,5 @@
 const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/";
-let currentStatus = "To Do";
+let currentStatus = "To-Do";
 let priority = "medium";
 let assignedContacts = {};
 let subtasks = {};
@@ -112,8 +112,8 @@ function rotateArrowIcon(formularID) {
  */
 function getSelectedContacts() {
     selectedContacts.innerHTML = "";
-    for (const [id, name] of Object.entries(assignedContacts)) {
-        selectedContacts.innerHTML += renderSelectedContactsAsCircle(name.name, id);
+    for (const [id, value] of Object.entries(assignedContacts)) {
+        selectedContacts.innerHTML += renderSelectedContactsAsCircle(value.name, id, value.color);
     }
 }
 
@@ -342,7 +342,7 @@ function checkSubtasksLength() {
  * @param {added tasks} object (object = obj.entries(obj)) 
  */
 async function uploadTask(assembledTaskObj) {
-    await fetch(databaseLinkRef + "addTasks(testarea).json", {
+    await fetch("https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban.json", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(assembledTaskObj)

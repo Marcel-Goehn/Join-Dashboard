@@ -31,7 +31,7 @@ function subtask_template(id, subtask) {
  * @returns a line of code, representing the user's initials in a circle
  */
 function renderSelectedContactsAsCircle(name, id, color) {
-    return `<div onclick="toggleCheckmark('${name}', '${id}')" class="circle">${getInitials(name)} style="background-color: ${color}"</div>`
+    return `<div onclick="toggleCheckmark('${name}', '${id}')" class="circle", style="background-color: ${color}">${getInitials(name)}</div>`
 }
 
 /**
@@ -61,7 +61,7 @@ function subtaskIsBlank() {
 function renderContacts(index, contactObject) {
     return `<div class="contact" id="${contactObject[index][0]}" onclick="toggleCheckmark('${contactObject[index][1].name}', '${contactObject[index][0]}', '${contactObject[index][1].color}'), Bubbling(event)">
                 <div class="initial_name">
-                    <div class="circle">${getInitials(contactObject[index][1].name)}</div>
+                    <div class="circle" style="background-color: ${contactObject[index][1].color}">${getInitials(contactObject[index][1].name)}</div>
                     <span>${contactObject[index][1].name}</span>
                 </div>
                 <img id="${contactObject[index][0]}-unchecked" src="../assets/img/board/Check_button_unchecked.svg">

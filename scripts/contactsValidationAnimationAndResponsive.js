@@ -202,7 +202,9 @@ resizeHandler = () => {
 			contentLimiter.style.width = "auto";
 			stickyContactsContent.classList.remove("dnone");
 			const optionsBtn = document.getElementById("optionsBtn");
-			optionsBtn.classList.remove("show");
+			if(optionsBtn){
+				optionsBtn.classList.remove("show");
+			}
 			closeBurger();
 		}}
 	

@@ -453,6 +453,10 @@ body {
 	#contentLimiter{
 		margin-left: clamp(20.125rem, 4.2813rem + 39vw, 25rem);
 	}
+	#stickyContacts{
+		margin-bottom: 80px;
+	}
+	
 }
 
 @media(max-width: 650px){
@@ -508,7 +512,11 @@ body {
 	#addNewContactBtnDiv{
 		padding-bottom: 0;
 	} 
-	#contactNameDiv{
-		padding-bottom: 30px;
+	
+}
+@media(max-width: 640px){
+	#stickyContacts{
+		margin-bottom: 20px;
 	}
+	
 }
