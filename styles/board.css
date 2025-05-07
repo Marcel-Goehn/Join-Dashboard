@@ -193,12 +193,12 @@ main {
 
 .card-header {
     padding: 0.25rem 1rem;
-    background-color: #0038FF;
     border-radius: 8px;
     font-weight: 400;
     font-size: 1rem;
     color: #fff;
     text-align: center;
+    white-space: nowrap;
 }
 
 .card-header:hover {
@@ -388,7 +388,7 @@ p {
     }
 }
 
-@media(max-width: 1150px) {
+@media(max-width: 1170px) {
     .board-layout {
         flex-direction: column;
     }

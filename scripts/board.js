@@ -217,6 +217,22 @@ function checkRenderConditions(index, array) {
 
 
 /**
+ * 
+ * @param {number} index - The index of the current selected card
+ * @returns - It returns the color for the card header
+ */
+function getHeaderBgColor(index) {
+    const array = getCurrentArray();
+    if (array[index].value.category === "User Story") {
+        return `style="background-color: #0038FF"`;
+    }
+    else {
+        return `style="background-color: #1FD7C1"`;
+    }
+}
+
+
+/**
  * Add's at the end of every board section an empty card, to let the user know where he can drag and drop
  */
 function addDropBox() {
