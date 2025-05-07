@@ -297,6 +297,7 @@ function shorthandName(name) {
  * @param {number} index index of the specific contact 
  */
 function colorClickedContact(index) {
+	if(window.innerWidth >= 650){
 	const acutalContentDivs = document.querySelectorAll(".actualContactDiv");
 	acutalContentDivs.forEach((div) => {
 		div.classList.remove("clickedBackground");
@@ -305,6 +306,15 @@ function colorClickedContact(index) {
 	const clickedContentDiv = document.getElementById(`actualContactDiv${index}`);
 	clickedContentDiv.classList.remove("whiteBackground");
 	clickedContentDiv.classList.add("clickedBackground");
+}
+}
+
+function revertClickedContacts(){
+	const acutalContentDivs = document.querySelectorAll(".actualContactDiv");
+	acutalContentDivs.forEach((div) => {
+		div.classList.remove("clickedBackground");
+		div.classList.add("whiteBackground");
+	});
 }
 
 /**

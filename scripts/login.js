@@ -55,9 +55,8 @@ passwordInput.addEventListener("keypress", function(event) {
     }});
 
 /**
- * 
- * @returns true and relocates to the summary-page, if the userinput was found in the database.
- * the user's ID will be logged in the sessionstorage for further interactions.
+ * checks, if the used login is present within the database. If so, relocates to the summary-page and logs the user's ID in the sessionstorage
+ * @returns true
  */
 async function compareToDatabase() {
     const response = await fetch(databaseLinkRef + ".json");
