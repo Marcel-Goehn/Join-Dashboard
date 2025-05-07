@@ -26,6 +26,7 @@
     align-items: center;
     justify-content: center;
     gap: 2rem;
+    position: relative;
 }
 
 h1 {
@@ -363,6 +364,14 @@ p {
 
 .mobile {
     display: none;
+}
+
+#search_input_field_board {
+    position: absolute;
+    top: 45px;
+    left: 5px;
+    color: #FF8190;
+    font-size: 12px;
 }
 
 @media(max-width: 1100px) {

@@ -76,6 +76,12 @@ function moveTo(category) {
 }
 
 
+/**
+ * This function opens the mobile drag and drop container
+ * 
+ * @param {event} e  
+ * @param {*} cardIndex - The index of the current selected card 
+ */
 function showMobileDragDropMenu(e, cardIndex) {
     e.stopPropagation();
     const dragDropMobileContainer = document.getElementById(`mobile_drag_drop_container_${cardIndex}`);
@@ -85,6 +91,11 @@ function showMobileDragDropMenu(e, cardIndex) {
 }
 
 
+/**
+ * This function closes the mobile drag and drop container
+ * 
+ * @param {event} e 
+ */
 function closeMobileDragDropMenu(e) {
     const dragDropMobileContainer = document.getElementById(`mobile_drag_drop_container_${currentOpenedMobileOverlay}`);
     if (!dragDropMobileContainer.contains(e.target)) {
@@ -95,6 +106,13 @@ function closeMobileDragDropMenu(e) {
 }
 
 
+/**
+ * This function will update the database and ui after the card get's dropped
+ * 
+ * @param {number} cardIndex - The index of the current selected card 
+ * @param {string} placeholder - holds the value of where the card will be dropped
+ * @param {event} e 
+ */
 function mobileDropTo(cardIndex, placeholder, e) {
     const array = getCurrentArray();
     array[cardIndex].value.currentStatus = placeholder;
@@ -131,6 +149,12 @@ async function updateDatabase(id, cat) {
 }
 
 
+/**
+ * This function will update the database after a card got drag and dropped in the mobile view
+ * 
+ * @param {number} cardIndex - The index of the current selected card 
+ * @param {string} id - The key of the current selected card
+ */
 async function updateMobileDatabase(cardIndex, id) {
     const array = getCurrentArray();
     await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/kanban/${id}.json`, {

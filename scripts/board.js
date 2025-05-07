@@ -25,10 +25,9 @@ let originalFoundTasks = [];
 async function init() {
         originalCards = [];
         await fetchData();
-        await fetchContacts();
+        await fetchContactsBoard();
         const array = getCurrentArray();
         renderCards(array);
-        await fetchUserData();
 }
 
 
@@ -68,7 +67,7 @@ function pushDataToCardsArray(cardData) {
 /**
  * Fetches the contacts of all users
  */
-async function fetchContacts() {
+async function fetchContactsBoard() {
     try {
         let response = await fetch(contactsDatabase);
         if(!response.ok) {
@@ -110,12 +109,38 @@ function searchTasks(){
         )
         foundTasks = structuredClone(originalFoundTasks);
         renderCards(foundTasks);
+        checkSearchTaskInputValidation(searchInput);
         previousInput = searchInput.length;
     }else if(searchInput.length < 3 && previousInput > searchInput.length){
         originalFoundTasks = [];
         foundTasks = structuredClone(originalFoundTasks);
         renderCards(cards);   
     }
+}
+
+
+/**
+ * If there is no card found, this function will trigger a validation error
+ * 
+ * @param {string} value - The value of the search input field 
+ * @returns - If the user uses the backspace key, the validation should not be trigged, so this function returns here.
+ */
+function checkSearchTaskInputValidation(value) {
+    if (value.length > 2 && previousInput > value.length) {
+        return;
+    }
+    if (value.length > 2 && foundTasks.length === 0) {
+        document.getElementById('search_input_field_board').classList.remove('d_none');
+        setTimeout(removeInputValidation, 3000);
+    }
+}
+
+
+/**
+ * This function removes the validation of the input field after a certain amount of time
+ */
+function removeInputValidation() {
+    document.getElementById('search_input_field_board').classList.add('d_none');
 }
 
 
@@ -266,6 +291,11 @@ function getAssignedUsers(index) {
 }
 
 
+/**
+ * 
+ * @param {number} cardIndex - The number of the current selected card 
+ * @returns - It returns the html of the drag and drop container
+ */
 function checkMobileDragDropRenderConditions(cardIndex) {
     const array = getCurrentArray();
     if(array[cardIndex].value.currentStatus === "To-Do") {

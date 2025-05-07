@@ -1,5 +1,4 @@
 const contactList = document.getElementById('contact_list');
-let contactsNamesOfUser = [];
 
 
 /**
@@ -24,38 +23,6 @@ function closeContactList() {
     document.getElementById('arrow_down').classList.remove('d_none');
     document.getElementById('contact_list').classList.add('d_none');
     document.getElementById('shorthand_contact_list').classList.remove('d_none');
-}
-
-
-/**
- * This function fetches the user data from the firebase database to get access to the contacts of the current logged in user.
- */
-async function fetchUserData() {
-    let activeUser = sessionStorage.getItem('loggedIn');
-    let parsedActiveUser = JSON.parse(activeUser);
-    try {
-        let response = await fetch(usersDatabase + parsedActiveUser + '.json');
-        if (!response.ok) {
-            throw new Error(`HTTP Fehler! Status: ${response.status}`);
-        }
-        let data = await response.json();
-        pushContactList(data.contacts);
-    } catch (error) {
-        console.error("Fehler beim Abrufen der Daten:", error);
-    }
-}
-
-
-/**
- * This function pushes the contacts of the current user into a global array.
- * 
- * @param {object} contacts - It contains all the contacts of the current user.
- */
-function pushContactList(contacts) {
-    contactsNamesOfUser = [];
-    for(let [key, value] of Object.entries(contacts)) {
-        contactsNamesOfUser.push({id : key, value});
-    }
 }
 
 

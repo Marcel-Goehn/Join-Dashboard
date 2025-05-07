@@ -26,7 +26,7 @@ function getCardsTemplate(index, array) {
                                 </div>
                                 <img src="../assets/img/board/${array[index].value.priority}.svg">
                             </div>
-                        </div>`; // Dann muss noch aus dem Dialog kontrolliert werden ob schon subtasks abgehakt wurden oder nicht.
+                        </div>`;
 }
 
 
@@ -42,6 +42,13 @@ function getAssignedUsersTemplate(first, last, userColor) {
 }
 
 
+/**
+ * 
+ * @param {string} previous - Previous task section
+ * @param {string} next - Next task section
+ * @param {number} cardIndex - Index of the current selected card
+ * @returns - It returns the html template of the drag and drop mobile container
+ */
 function getRenderMobileDragDropContainerTemplate(previous, next, cardIndex) {
     return `<p>Move To</p>
             <div class="align-up-and-down-drag-drop" onclick="mobileDropTo(${cardIndex}, '${previous}', event)">
@@ -91,7 +98,7 @@ function getEmptySectionTemplate(placeholder) {
  * @returns - It returns the html for the empty box to signalize the user where to drag & drop
  */
 function getDropBoxTemplate(placeholder) {
-    return `<div id="${placeholder}_drop_box" class="o_hidden custom-drop-box"></div>`
+    return `<div draggable="false" id="${placeholder}_drop_box" class="o_hidden custom-drop-box"></div>`
 }
 
 
