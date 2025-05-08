@@ -4,6 +4,7 @@ const addTaskDial = document.getElementById("addTaskDial");
  * @param {string} section section from which the taskcard originates
  */
 function openAddTask(section) {
+	clearDialog();
 	console.log(currentStatus);
 	currentStatus = section;
 	console.log(currentStatus);

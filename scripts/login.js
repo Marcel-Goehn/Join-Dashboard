@@ -82,7 +82,7 @@ function invalidLogin() {
  * bypasses the validation and relocates to the summary-page as a guest-account 
  */
 function loginAsGuest() {
-    sessionStorage.setItem("loggedIn", JSON.stringify("-ONBJjWWRRsraHeP8qRV"));
+    sessionStorage.setItem("loggedIn", JSON.stringify("-OPjkntrc8LdNwD7XTjA"));
     window.location.href = "../html/summary.html";
 }
 
