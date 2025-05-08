@@ -40,11 +40,12 @@ input::placeholder {
     max-width: 1440px;
     margin-inline: auto;
     position: relative;
-    gap: 172px;
     padding: 67px 122px;
     font-size: 20px;
     font-weight: 400;
     align-items: center;
+    height: 100vh;
+    justify-content: space-between;
 }
 #login_data {
     display: flex;
