@@ -1,0 +1,45 @@
+
+#dueDateInput{
+    position: absolute;
+    display: flex;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    height: 48px;
+    right: 5%;
+    opacity: 0;
+}
+#custumDueDateDiv{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+#shownDateDiv{
+    position: relative;
+    width: 440px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    padding-inline: 16px;
+    padding-block: 12px;
+}
+
+#correctDateFormat{
+  flex-grow: 1;
+  height: 40px;
+  border: none;
+  font-size: 20px;
+   
+}
+#correctDateFormat:focus{
+    border: none;
+    outline: none;
+}
+#correctDateFormat::placeholder{
+    color:#D1D1D1
+}
+#calendarIcon{
+}

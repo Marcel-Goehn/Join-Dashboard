@@ -129,7 +129,7 @@ body {
 	align-items: flex-start;
 	flex-direction: column;
 	flex-wrap: wrap;
-    word-break: break-word;
+    word-break: break-all;
     white-space: normal;
 }
 
