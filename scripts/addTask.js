@@ -222,6 +222,9 @@ function formcorrectDuedate() {
     if (duedate.value.length > 5 && !duedate.value.slice(3).includes('/')) {
         duedate.value = duedate.value.slice(0, 5) + '/' + duedate.value.slice(5);
     }
+    if(duedate.value.length > 10){
+        duedate.value = duedate.value.slice(0, -1);
+    }
 }
 
 /**
