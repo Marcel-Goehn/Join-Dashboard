@@ -22,6 +22,20 @@ async function fetchContactData() {
 	return contactData;
 }
 
+async function fetchUserData(){
+	const response = await fetch(
+		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${user}.json`
+	);
+	const userData = await response.json();
+	return userData;
+}
+async function checkIfUserIsContact(contact){
+	const userData = await fetchUserData();
+	if(contact.email === userData.email){
+		return true;
+	}
+	return false;
+}
 /**
  * this functions deletes a contact based on a the name of the contact object, renders the contacts again after and than starts a function which deletes the user out of all tasks the user was assigned to
  * 
@@ -136,7 +150,7 @@ async function renderChangedContacts(contactObject){
  * 
  * @param {Array} sortedContacts the sorted contacts object put into an array
  */
-function renderContacts(sortedContacts) {
+async function renderContacts(sortedContacts) {
 	let previousLetter = "";
 	contactDiv.innerHTML = "";
 	for(let i = 0; i < sortedContacts.length; i++){
@@ -146,8 +160,20 @@ function renderContacts(sortedContacts) {
 			);
 			previousLetter = sortedContacts[i].name.charAt(0).toUpperCase();
 		}
+		
 		const color = sortedContacts[i].color;
 		const phone = checkIfUndefined(sortedContacts[i].phone);
+		const isUser = await checkIfUserIsContact(sortedContacts[i]);
+		if(isUser){
+			contactDiv.innerHTML += contactTemp(
+				sortedContacts[i].email,
+				sortedContacts[i].name +" (You)",
+				phone,
+				i,
+				color
+			);
+			styleBackgroundOfInitials(color, i);
+		}else{
 		contactDiv.innerHTML += contactTemp(
 			sortedContacts[i].email,
 			sortedContacts[i].name,
@@ -156,6 +182,7 @@ function renderContacts(sortedContacts) {
 			color
 		);
 		styleBackgroundOfInitials(color, i);
+	}
 	}
 }
 

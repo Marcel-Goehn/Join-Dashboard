@@ -124,6 +124,7 @@ async function validateForm() {
 	) {
 		if (!(await compareEmailWithData())) {
 			emailTaken();
+			console.log("test");
 			return;
 		}
 		postUser(nameInput.value, emailInput.value, passwordInput.value);
@@ -185,14 +186,14 @@ async function postUser(name, email, password) {
 }
 
 async function addSelfToContacts(name, email){
-	data = await fetchData();
-	const user = await getUserId(data, name)
 	const newContactData = {
 	name,
-	email: email.toLowerCase()
+	email: email.toLowerCase(),
+	color: await getColor(),
+	phone: "+4911111111",
 	}
 	await fetch(
-	`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${user}/contacts.json`,
+	`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`,
 	{
 		method: "POST",
 		headers: {
@@ -225,8 +226,13 @@ function emailTaken() {
 	emailRefuseDiv.innerHTML = "Email is already taken.";
 	setRedBorder(emailBorder);
 	showRefuseDiv(emailRefuseDiv);
-	revertBorderColor(emailBorder);
-	disableRefuseDiv(emailRefuseDiv);
+	setTimeout( ()=>{
+		revertBorderColor(emailBorder);
+	},2000)
+	setTimeout(()=>{
+		disableRefuseDiv(emailRefuseDiv);
+	},2000)
+	
 }
 
 function revertBorderColor(element) {
@@ -242,7 +248,7 @@ function nextPage() {
 	dialog.showModal();
 	document.getElementById("successDiv").classList.add("fadeInAndMoveUp");
 	setTimeout(() => {
-		window.location.href = "./index.html";
+		window.location.href = "../index.html";
 	}, 1000);
 }
 

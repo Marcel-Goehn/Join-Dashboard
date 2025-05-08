@@ -279,6 +279,10 @@ input {
 	display: none;
 }
 
+#successDiv{
+	white-space: nowrap;
+}
+
 .checkbox input:checked + .checkmark {
 	background-image: url("../assets/img/signUp/Property\ 1=hover\ checked.svg");
 	background-size: cover;
