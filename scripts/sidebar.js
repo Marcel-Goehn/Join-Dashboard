@@ -35,6 +35,6 @@ function highlightSidebarLink() {
 
 function checkIfLoggedIn(){
 	if(userObjectForCheck === null || undefined){
-		window.location.href = "../Join/index.html";
+		window.location.href = "../index.html";
 	}
 }

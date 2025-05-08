@@ -53,9 +53,6 @@
 					<div id="contactInfoBackBtn" onclick="backSmall()"><img src="../assets/img/backArrow.svg"></div>
 				</div>
 				<div id="contactInfoInfo"></div>
-				<div id="successDiv">
-					<button id="successBtn">Contact succesfully created</button>
-				</div>
 			</div>
 		</div>
 		<div id="sidebar">
@@ -163,7 +160,10 @@
 			</div>
 		</div>
 		<div id="editMobileButtonPlaceholder"></div>
-		<div id="successDivMobile" >Contact successfully created</div>
+		<div id="successDivMobile" class="hideSuccessMsg">Contact successfully created</div>
+		<div id="successDiv">
+			<button id="successBtn" class="hideSuccessMsg">Contact succesfully created</button>
+		</div>
 		<dialog id="addContactDial" onclick="closeViaBackdrop(event)"></dialog>
 		<script src="../scripts/contacts.js"></script>
 		<script src="../scripts/contactTemp.js"></script>

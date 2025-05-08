@@ -74,10 +74,7 @@ body {
 #contactInfo {
 	padding-left: 3.4375rem;
 	padding-top: 12.875rem;
-	padding-right: 8.0rem;
 	max-width: 90.0rem;
-	margin-right: auto;
-	width: 100%;
 	overflow: hidden;
 }
 
@@ -123,6 +120,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	color: white;
+	flex-shrink: 0;
 }
 
 .contactListNameAndEmailDiv {
@@ -130,6 +128,9 @@ body {
 	justify-content: center;
 	align-items: flex-start;
 	flex-direction: column;
+	flex-wrap: wrap;
+    word-break: break-word;
+    white-space: normal;
 }
 
 .actualContactDiv {
@@ -137,6 +138,7 @@ body {
 	gap: 2.1875rem;
 	padding: 0.9375rem 24px;
 	border-radius: 0.625rem;
+	max-width: 375px;
 }
 
 .actualContactDiv:hover {
@@ -265,6 +267,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	gap: 0.9375rem;
+	max-width: 200px;
 }
 
 .actualInfoBlock p {
@@ -295,7 +298,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	position: fixed;
-	bottom: 150px;
+	bottom: 10%;
 	right: 5%;
 }
 #addContactFixed:hover{
@@ -467,6 +470,12 @@ body {
 
 }
 
+@media(max-width: 1300px){
+	.actualContactDiv{
+		max-width: 300px;
+	}
+}
+
 @media(max-width: 1100px){
 	#stickyContactsContent{
 		left: 180px;
@@ -485,14 +494,6 @@ body {
 	}
 }
 
-@media(max-width: 900px){
-	#contactHeadlineDiv{
-		flex-direction: column;
-	}
-	.divider{
-		transform: rotate(90deg);
-	}
-}
 @media(max-width: 850px){
 	#stickyContactsContent{
 		left: 0;
@@ -504,16 +505,6 @@ body {
 	#stickyContacts{
 		margin-bottom: 80px;
 	}
-	
-}
-
-@media(max-width: 700px){
-	#nameAndEditDiv h3{
-		font-size: 30px;
-	}
-}
-
-@media(max-width: 650px){
 	.dividerBottom{
 		display: flex !important;
 	}
@@ -566,8 +557,17 @@ body {
 	#addNewContactBtnDiv{
 		padding-bottom: 0;
 	} 
-	
+	.actualContactDiv{
+		max-width:clamp(18.75rem, 3.6557rem + 75.4717vw, 43.75rem);
+	}
 }
+
+@media(max-width: 700px){
+	#nameAndEditDiv h3{
+		font-size: 30px;
+	}
+}
+
 @media(max-width: 640px){
 	#stickyContacts{
 		margin-bottom: 20px;

@@ -6,6 +6,7 @@ const addContactDial = document.getElementById("addContactDial");
 const userObject = sessionStorage.getItem("loggedIn");
 const user = JSON.parse(userObject);
 const colors = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E","#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B",  "#FF4646", "#FFBB2B"];
+let isFetching = false;
 
 
 // FETCH FUNCTIONS //
@@ -52,6 +53,10 @@ async function deleteContact(name) {
 	showContacts();
 	await deleteUserOutOfTask(contactId);
 	contactInfoDiv.innerHTML = "";
+	if(window.innerWidth < 850){
+		backSmall();
+		closeBurger();
+	}
 }
 
 /**
@@ -89,7 +94,10 @@ async function fetchKanbanTasks(){
  * @param {event} event 
  */
 async function updateContact(name, event) {
-	event.preventDefault();
+	if(isFetching) return
+	isFetching = true;
+	try{
+		event.preventDefault();
 	const contactId = await getContactId(name);
 	const editedContactData = getEditedContactData();
 	await fetch(
@@ -103,25 +111,36 @@ async function updateContact(name, event) {
 		}
 	);
 	await renderChangedContacts(editedContactData)
+	}finally{
+		isFetching = false;
+	}
+	
 }
 
 /**
  * this function adds a new contact to the firebase database and is starting two functions, the first function reads the newContactInputs and puts them into a obj which gets returned. the second one renders the new contacts based on that new data.
  */
 async function addContact() {
-	const newContactData = await getNewContactData();
-	await fetch(
-		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`,
-		{
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(newContactData),
-		}
-	);
-	await renderChangedContacts(newContactData);
+	if(isFetching) return;
+	isFetching = true;
+	try{
+		const newContactData = await getNewContactData();
+		await fetch(
+			`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(newContactData),
+			}
+		);
+		await renderChangedContacts(newContactData);
+	}finally{
+		isFetching = false;
+	}
 }
+
 
 // END FETCH FUNCTIONS //
 
@@ -192,7 +211,7 @@ async function renderContacts(sortedContacts) {
 async function showContacts() {
 	const contactData = await fetchContactData();
 	const sortedContacts = sortContacts(contactData);
-	renderContacts(sortedContacts);
+	await renderContacts(sortedContacts);
 }
 
 /**
@@ -325,7 +344,7 @@ function shorthandName(name) {
  * @param {number} index index of the specific contact 
  */
 function colorClickedContact(index) {
-	if(window.innerWidth >= 650){
+	if(window.innerWidth >= 850){
 	const acutalContentDivs = document.querySelectorAll(".actualContactDiv");
 	acutalContentDivs.forEach((div) => {
 		div.classList.remove("clickedBackground");

@@ -143,20 +143,19 @@
 	}
 
 	#sidebarLogoDiv {
-		padding: 0;
+		display: none;
 	}
 
+
 	#legalAndPolicyDiv {
-		flex-direction: column;
-		margin: 0;
-		padding: 0;
+		display: none;
 	}
 
 	#navLinksDiv {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		gap: 0.9375rem;
+		gap: clamp(0.03125rem, -2.9688rem + 15vw, 5rem);
 		justify-content: center;
 		margin: 0;
 	}
@@ -179,13 +178,6 @@
 }
 
 @media (max-width: 40rem) {
-	#sidebarLogoDiv {
-		display: none;
-	}
-
-	#legalAndPolicyDiv {
-		display: none;
-	}
 
 	#sidebar {
 		height: 80px;

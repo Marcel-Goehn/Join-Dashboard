@@ -83,7 +83,7 @@ function invalidLogin() {
  */
 function loginAsGuest() {
     sessionStorage.setItem("loggedIn", JSON.stringify("-OPjkntrc8LdNwD7XTjA"));
-    window.location.href = "../Join/html/summary.html";
+    window.location.href = "../html/summary.html";
 }
 
 /**

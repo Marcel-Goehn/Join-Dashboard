@@ -450,11 +450,11 @@
 }
 
 .hideRefuseDiv {
-	display: none;
+	visibility: hidden;
 }
 
 .showRefuseDiv {
-	display: flex;
+	visibility: visible;
 }
 
 .refuseDiv {
@@ -464,6 +464,7 @@
 	font-size: 0.8125rem;
 	font-weight: 400px;
 	margin-left: 0.625rem;
+	height: 10px;
 }
 
 .formInputWrapper {
@@ -476,6 +477,10 @@
 
 .formDiv:focus-within {
 	border-color: #29abe2;
+}
+
+.hideSuccessMsg{
+	display: none;
 }
 
 @media(max-width: 850px){

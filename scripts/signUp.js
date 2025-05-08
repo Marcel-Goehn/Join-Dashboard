@@ -158,6 +158,10 @@ function setRedBorder(element) {
 	element.style.border = "1px solid red";
 }
 
+function revertNotLetters(event){
+	event.target.value = event.target.value.replace(/[^A-Za-zÄäÖöÜüß\s\-]/g, '');
+}
+
 /* --------------------- > Validation end ----------------------------- */
 async function getColor(){
 	const userDataColor = await fetchData();

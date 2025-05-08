@@ -7,7 +7,7 @@
  * @param {string} name name of the specific contact 
  * @param {event} event click 
  */
-function validateContactForm(addOrEdit, name, event) {
+async function validateContactForm(addOrEdit, name, event) {
 	const nameInput = document.getElementById(`${addOrEdit}DialNameInput`);
 	const nameRefuseDiv = document.getElementById(`${addOrEdit}NameRefuseDiv`);
 	const nameInputDiv = document.getElementById(`${addOrEdit}DialNameDiv`);
@@ -23,11 +23,11 @@ function validateContactForm(addOrEdit, name, event) {
 		validatePhone(phoneInput, phoneRefuseDiv, phoneInputDiv)
 	) {
 		if (addOrEdit === "add") {
-			addContact();
+			await addContact();
 			successMsg();
 			successMsgMobile();
 		} else {
-			updateContact(name, event);
+			await updateContact(name, event);
 		}
 	}
 }
@@ -43,7 +43,7 @@ function validateContactForm(addOrEdit, name, event) {
 function validatePhone(phoneInput, refuseDiv, phoneInputDiv) {
 	const pattern = /^\+\d{5,}$/;
 	if (!pattern.test(phoneInput.value)) {
-		refuseDiv.innerHTML = "Please enter the phonenumber starting with a +";
+		refuseDiv.innerHTML = "Starting with a +, min 5 numbers";
 		showRefuseDiv(refuseDiv);
 		setRedBorder(phoneInputDiv);
 		revertBorderColor(phoneInputDiv);
@@ -74,6 +74,9 @@ function validateName(nameInput, refuseDiv, nameInputDiv) {
 	return true;
 }
 
+function revertNotLetters(event){
+	event.target.value = event.target.value.replace(/[^A-Za-zÄäÖöÜüß\s\-]/g, '');
+}
 /**
  * this function validates the emailinput based on a regex
  * 
@@ -193,10 +196,10 @@ resizeHandler = () => {
 		const addNewContactBtn = document.getElementById("addNewContactBtn");
 		const addNewFixed = document.getElementById("addContactFixed");
 		const stickyContactsContent = document.getElementById("stickyContactsContent");
-		if(window.innerWidth <= 650){
+		if(window.innerWidth <= 850){
 			switchToSingleView(contentLimiter, stickyContacts, addNewContactBtn, addNewFixed);
 			revertClickedContacts();
-		}else if(window.innerWidth > 650){
+		}else if(window.innerWidth > 850){
 			contentLimiter.classList.remove("dnone");
 			stickyContacts.style.width = "auto";
 			addNewContactBtn.classList.remove("dnone");
@@ -214,7 +217,7 @@ resizeHandler = () => {
 	 * this functions checks if the width of the viewport is smaller than 650px, and if so thann hides some elements of the contacts page
 	 */
 	function clickContactSmall(){
-		if(window.innerWidth < 650){
+		if(window.innerWidth < 850){
 			const stickyContactsContent = document.getElementById("stickyContactsContent");
 			stickyContactsContent.classList.add("dnone");
 			const contentLimiter = document.getElementById("contentLimiter");
@@ -227,7 +230,7 @@ resizeHandler = () => {
 	 * this functions checks if the width of the viewport is smaller than 650px, and if so it shows a button on the contact page
 	 */
 	function backSmall(){
-		if(window.innerWidth < 650){
+		if(window.innerWidth < 850){
 			const stickyContactsContent = document.getElementById("stickyContactsContent");
 			stickyContactsContent.classList.remove("dnone");
 			const contentLimiter = document.getElementById("contentLimiter");
@@ -326,12 +329,16 @@ function slideInContactInfo() {
  * this function slides in the success div
  */
 function successMsg() {
-	const successDialBtn = document.getElementById("successBtn");
+	if(window.innerWidth > 850){
+		const successDialBtn = document.getElementById("successBtn");
 	successDialBtn.classList.add("slideMsgInAndOut");
+	successDialBtn.classList.toggle("hideSuccessMsg");
 	setTimeout(() => {
 		successDialBtn.classList.remove("slideMsgInAndOut");
+		successDialBtn.classList.toggle("hideSuccessMsg");
 	}, 2000);
 	addContactDial.close();
+	}
 }
 
 /**
@@ -345,13 +352,16 @@ function slideOut(contentDial) {
 }
 
 function successMsgMobile(){
-	if(window.innerWidth < 650){
+	if(window.innerWidth < 850){
 		const successMobileDiv = document.getElementById("successDivMobile");
 		successMobileDiv.classList.toggle("slideMobileSuccessIn");
+		successMobileDiv.classList.toggle("hideSuccessMsg");
 		setTimeout(()=>{
 			clickContactSmall();
 			successMobileDiv.classList.toggle("slideMobileSuccessIn");
+			successMobileDiv.classList.toggle("hideSuccessMsg");
 		}, 2000)
+		addContactDial.close();
 	}
 }
 
