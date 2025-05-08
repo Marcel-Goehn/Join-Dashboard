@@ -312,6 +312,7 @@ function styleBackgroundOfInitials(color, index) {
  * @returns the initials of that name
  */
 function shorthandName(name) {
+	name = name.replace(/\s*\(.*?\)\s*/g, "").trim();
 	return name
 		.split(" ")
 		.map((partName) => partName[0].toUpperCase())

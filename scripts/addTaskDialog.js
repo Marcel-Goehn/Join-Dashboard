@@ -5,9 +5,7 @@ const addTaskDial = document.getElementById("addTaskDial");
  */
 function openAddTask(section) {
 	clearDialog();
-	console.log(currentStatus);
 	currentStatus = section;
-	console.log(currentStatus);
 	addTaskDial.showModal();
 	addTaskDial.classList.remove("slideTaskDialOut");
 	addTaskDial.classList.add("slideTaskDialIn");

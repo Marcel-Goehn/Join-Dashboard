@@ -104,7 +104,6 @@ function openEditDialog(index, e) {
     wrapper.innerHTML = getEditDialogTemplate(array ,index);
     currentPriority = array[index].value.priority;
     dialog.showModal();
-    console.log(originalCards);
 }
 
 
