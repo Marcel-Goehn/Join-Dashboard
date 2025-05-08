@@ -223,13 +223,23 @@ function formcorrectDuedate() {
         duedate.value = duedate.value.slice(0, 5) + '/' + duedate.value.slice(5);
     }
     if(duedate.value.length > 10){
-        duedate.value = duedate.value.slice(0, -1);
+        duedate.value = duedate.value.slice(0, 10);
+    }
+    if(duedate.value.length > 9){
+        validateDuedate(duedate);
     }
 }
 
 /**
  * accepts only numbers, therefore removes invalid input from user
  */
+function validateDuedate(duedate){
+    const duedateRef = duedate.value;
+    const [day, month, year] = duedateRef.split('/');
+    if(isNaN(day) || isNaN(month) || isNaN(year)){
+        duedate.value = "";
+    }
+}
 function eraseInvalidInput() {
     let lastChar = duedate.value.slice(-1);
     if (isNaN(lastChar) == true) {
