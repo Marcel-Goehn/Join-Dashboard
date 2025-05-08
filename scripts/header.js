@@ -15,7 +15,7 @@ function toggleMenu() {
 
 
 function logout() {
-	//loggedIn Pair löschen
+	sessionStorage.removeItem("loggedIn");
 }
 
 /**
