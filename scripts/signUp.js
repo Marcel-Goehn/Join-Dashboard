@@ -124,7 +124,6 @@ async function validateForm() {
 	) {
 		if (!(await compareEmailWithData())) {
 			emailTaken();
-			console.log("test");
 			return;
 		}
 		postUser(nameInput.value, emailInput.value, passwordInput.value);
