@@ -54,10 +54,12 @@ function closeEditTaskDialog(e){
     dialog.close();
     const array = getCurrentArray();
     if(array === foundTasks){
-        renderCards(originalFoundTasks);
-        originalFoundTasks = []
+        foundTasks = structuredClone(originalFoundTasks);
+        renderCards(foundTasks);
+        originalFoundTasks = [];
     }else{
-        renderCards(originalCards);
+        cards = structuredClone(originalCards);
+        renderCards(cards);
         originalCards = [];
     }
 }
@@ -71,8 +73,14 @@ function closeEditTaskDialog(e){
 dialog.onclick = function (e) {
     const contactWrapper = document.getElementById('contact-list-wrapper');
     if (!wrapper.contains(e.target)) {
-        closeDialog(e);
-        return;
+        if(document.getElementById("container_input_title")){
+            closeEditTaskDialog(e);
+            return;
+        }else{
+            closeDialog(e);
+            return;
+        }
+       
     }
     if (contactWrapper === null) {
         return;
@@ -96,6 +104,7 @@ function openEditDialog(index, e) {
     wrapper.innerHTML = getEditDialogTemplate(array ,index);
     currentPriority = array[index].value.priority;
     dialog.showModal();
+    console.log(originalCards);
 }
 
 
@@ -183,12 +192,12 @@ async function checkOrUncheckSubtask(status, cardIndex, subtaskKey) {
  * 
  * @param {number} i - The index of the current card 
  */
-function deleteCard(i) {
+async function deleteCard(i, e) {
     const array = getCurrentArray();
-    deleteFromDatabase(i);
+    await deleteFromDatabase(i);
     array.splice(i, 1);
-    closeDialog();
-    renderCards();
+    closeDialog(e);
+    await init();
 }
 
 
