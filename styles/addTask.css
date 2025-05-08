@@ -388,11 +388,11 @@ button:disabled:hover {
 		padding-left: calc(120px + 10vw);
 	}
 }
-/* @media(max-width: 980px) {
-	#description {
-		width: 80%;
-	}
-} */
+
+@media(max-width: 880px){
+
+}
+
 @media(max-width: 850px) {
 	body {
 		padding-left: 0;

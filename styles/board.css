@@ -183,6 +183,18 @@ main {
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
     cursor: pointer;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 300px;
+}
+.card h3{
+    word-break: break-all;
+    white-space: normal;
+}
+.card p{
+    word-break: break-all;
+    white-space: normal;
 }
 
 .align-first-card-section {
@@ -261,6 +273,8 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 120px;
+    flex-wrap: wrap;
 }
 
 .user {
@@ -276,6 +290,9 @@ p {
     font-size: 0.75rem;
     text-align: center;
     color: #FFFFFF;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    overflow: hidden;
 }
 
 .user:first-child {
