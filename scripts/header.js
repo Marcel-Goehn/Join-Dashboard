@@ -3,6 +3,7 @@ const userDataset = [];
 let shortHandName = document.querySelector(".short-hand-name");
 let helpIcon = document.getElementById("headerInfoIcon");
 let userButton = document.getElementById("shorthandNameDiv");
+const backdrop = document.getElementById("menuBackdrop");
 
 
 /**
@@ -11,6 +12,8 @@ let userButton = document.getElementById("shorthandNameDiv");
 function toggleMenu() {
 	document.getElementById("menu").classList.toggle("hidden");
 	document.getElementById(`menu`).classList.toggle("topToBottom");
+	backdrop.classList.add("backdrop");
+	backdrop.classList.remove("hidden");
 }
 
 
@@ -34,7 +37,13 @@ async function fetchNameInitials() {
 	}
 }
 
-
+function closeMenu(event){
+	if(!document.getElementById("menu").contains(event.target)){
+		backdrop.classList.add("hidden");
+		backdrop.classList.remove("backdrop");
+		toggleMenu();
+	}
+}
 /**
  * This function pushes the fetched json object into an array
  * 

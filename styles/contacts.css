@@ -208,6 +208,7 @@ body {
 #nameAndEditDiv h3 {
 	font-size: 2.9375rem;
 	font-weight: 500;
+	max-width: 200px;
 }
 
 #editDiv {

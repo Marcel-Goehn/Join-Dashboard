@@ -115,6 +115,17 @@ span {
 	display: none !important;
 }
 
+.backdrop{
+	position: fixed;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	display: flex;
+	z-index: 1000;
+	background-color: transparent;
+}
+
 @media (max-width: 1100px) {
 	header {
 		left: 180px;

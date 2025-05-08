@@ -13,22 +13,24 @@
 	</head>
 	<body onload="showContacts(),  highlightSidebarLink(), addResizeListener(), resizeHandler(), fetchNameInitials()">
 		<header>
-			<div id="headerContent">
-				<span class="header-subheader">Kanban Project Management Tool</span>
-				<img class="header-logo" src="../assets/img/header/header_logo.png" alt="Logo">
-				<div id="headerIconDiv">
-					<a href="../html/help.html"><img id="headerInfoIcon" src="../assets/img/help.svg" alt="infoIcon"></a>
-					<div onclick="toggleMenu()" id="shorthandNameDiv">
-						<span class="short-hand-name"></span>
-					</div>
-					<div id="menu" class="hidden">
-						<a href="legalNotice.html">Legal Notice</a>
-						<a href="privacyPolicy.html">Privacy Policy</a>
-						<a onclick="logout()" href="../index.html">Log out</a>
-					</div>
-				</div>
-			</div>
-		</header>
+            <div id="headerContent">
+                <span class="header-subheader">Kanban Project Management Tool</span>
+                <img class="header-logo" src="../assets/img/header/header_logo.png" alt="Logo">
+                <div id="headerIconDiv">
+                    <a href="../html/help.html"><img id="headerInfoIcon" src="../assets/img/help.svg" alt="infoIcon"></a>
+                    <div onclick="toggleMenu()" id="shorthandNameDiv">
+                        <span class="short-hand-name"></span>
+                    </div>
+                    <div id="menuBackdrop" class="hidden backdrop" onclick="closeMenu(event)">
+                    <div id="menu" class="hidden">
+                        <a href="legalNotice.html">Legal Notice</a>
+                        <a href="privacyPolicy.html">Privacy Policy</a>
+                        <a onclick="logout()" href="../index.html">Log out</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </header>
 		<div id="stickyContactsContent">
 			<div id="stickyContacts">
 				<div id="addContactFixed" onclick="openAddContactDial(), slideInAddContact()"><img src="../assets/img/person_add.svg"></div>
