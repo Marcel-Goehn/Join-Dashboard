@@ -249,9 +249,14 @@
                             <span>Description</span>
                             <textarea class="formular-element" name="description" id="description" placeholder="Enter a Description"></textarea>
                         </div>
-                        <div id="duedate" class="formular-element">
-                            <input id="duedate_input" oninput="formcorrectDuedate(), checkUploadConditions()" placeholder="dd/mm/yyyy" type="text">
-                            <img src="../assets/img/addtask/calendar.svg">
+                        <div id="customDueDateDiv" class="formular-element">
+                            <label for="dueDateInput"></label>
+                            <div id="shownDateDiv">
+                                <input type="date" id="dueDateInput" oninput="showCorrectData()">
+                                <input id="correctDateFormat" id="duedate_input" type="text" placeholder="dd/mm/yyyy">
+                                <img id="calendarIcon" src="../assets/img/addtask/calendar.svg">
+                            </div>
+                            
                         </div>
                     </div>
                     <div id="separator"></div>

@@ -12,9 +12,12 @@ let low_button = document.getElementById('low_btn');
 let categorySelection = document.getElementById('category');
 let subtaskInput = document.getElementById('subtask_input');
 let title = document.getElementById('title_input');
-let duedate = document.getElementById('duedate_input');
+let duedate = document.getElementById('dueDateInput');
 let selectedCategory = document.getElementById('btn_text');
 let contactData = [];
+const duedateInput = document.getElementById("dueDateInput");
+const shownDuedate = document.getElementById("correctDateFormat");
+
 
 /// --------------------------------- PATRICK FUNKTIONEN ----------------------------////
 async function init_addTask(){
@@ -38,6 +41,14 @@ function postTask() {
  * resets all buttons and highlights the corresponding button of the picked urgency afterwards
  * @param {string} priority value of priority, selected by user
  */
+
+function showCorrectData(){
+    console.log(duedateInput.value)
+    const [year, month, day] = duedateInput.value.split("-");
+
+    shownDuedate.value = `${day}/${month}/${year}`;
+}
+
 function select(chosenPriority) {
     resetButtonsToDefault();
     switch (chosenPriority) {

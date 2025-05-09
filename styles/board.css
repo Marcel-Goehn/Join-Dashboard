@@ -340,6 +340,56 @@ p {
     cursor: pointer;
 }
 
+/* DUEDATE */
+
+#dueDateInput{
+    position: absolute;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    height: 48px;
+    right: -45%;
+    top: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+}
+#dueDateInput:hover{
+    cursor: pointer;
+}
+#customDueDateDiv{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+#customDueDateDiv:hover{
+    cursor: pointer;
+}
+
+#shownDateDiv{
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+#correctDateFormat{
+  flex-grow: 1;
+  border: none;
+  font-size: 20px;
+  z-index: 1000;
+   
+}
+#correctDateFormat:focus{
+    border: none;
+    outline: none;
+}
+#correctDateFormat::placeholder{
+    color:#D1D1D1
+}
+#calendarIcon:hover{
+    cursor: pointer;
+}
+
 @keyframes card-spin {
     0% {
 
