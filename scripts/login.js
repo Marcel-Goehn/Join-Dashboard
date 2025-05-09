@@ -10,30 +10,41 @@ let hidePassword = "../Join/assets/img/login/visibility-off.svg";
  * calls necessary functions for start the Logo-Animation
  */
 function init() {
-    animateLogo();
-    fadeAllElementsIn();
+    if(window.innerWidth > 620){
+         animateLogo();
+        fadeAllElementsIn();
+    }else{
+        animateLogoMobile();
+        blackAllElementsIn();
+    }
+   
 }
 
 /**
  * moves the Logo into its final destination
  */
 function animateLogo(){
-    if(window.innerWidth > 620){
        const logoRef = document.getElementById("logo");
         logoRef.classList.toggle("animate"); 
-    }else{
+}
+
+function animateLogoMobile(){
     const logoRef = document.getElementById("logo");
     logoRef.classList.toggle("mobileAnimation");
-    const mobileBlackBackground = document.getElementById("mobileBlackBackground");
-    mobileBlackBackground.classList.add("fadeBackgroundOut");
-    }
- 
 }
 
 /**
  * slowly raises the opacity of all elements to 1
  */
 function fadeAllElementsIn(){
+    const allElementsExpectLogo = document.getElementsByTagName('div');
+    for (let index = 0; index < allElementsExpectLogo.length; index++) {
+        const element = allElementsExpectLogo[index];
+        element.classList.toggle("fadeIn");
+    }
+}
+
+function blackAllElementsIn(){
     const allElementsExpectLogo = document.getElementsByTagName('div');
     for (let index = 0; index < allElementsExpectLogo.length; index++) {
         const element = allElementsExpectLogo[index];

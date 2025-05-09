@@ -45,6 +45,7 @@ function postTask() {
 function showCorrectData(){
     const [year, month, day] = realDuedate.value.split("-");
     duedate.value = `${day}/${month}/${year}`;
+    checkUploadConditions();
 }
 
 
