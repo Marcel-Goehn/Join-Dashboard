@@ -7,32 +7,85 @@
     <link rel="stylesheet" href="../styles/styleTemp.css">
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../styles/sidebar.css">
-    <link rel="stylesheet" href="../styles/privacyPolicy.css">
-	<script src="../scripts/check_if_logged_in.js"></script>
-    <title>Join | Privacy Policy</title>
+    <link rel="stylesheet" href="../styles/legalNotice.css">
+    <title>Join | Legal Notices</title>
 </head>
-<body onload="fetchNameInitials()">
-  <header>
-    <div id="headerContent">
-        <span class="header-subheader">Kanban Project Management Tool</span>
-        <img class="header-logo" src="../assets/img/header/header_logo.png" alt="Logo">
-        <div id="headerIconDiv">
-            <a href="../html/help.html"><img id="headerInfoIcon" src="../assets/img/help.svg" alt="infoIcon"></a>
-            <div onclick="toggleMenu()" id="shorthandNameDiv">
-                <span class="short-hand-name"></span>
+<body>
+    <body>
+
+    <header>
+        <div id="headerContent">
+            <span class="header-subheader">Kanban Project Management Tool</span>
+            <img class="header-logo" src="../assets/img/header/header_logo.png" alt="Logo">
+            <div class="d_nun" id="headerIconDiv">
+                <a href="../html/help.html"><img id="headerInfoIcon" src="../assets/img/help.svg" alt="infoIcon"></a>
+                <div id="shorthandNameDiv">
+                    <span class="short-hand-name"></span>
+                </div>
+                <div id="menuBackdrop" class="hidden backdrop">
+                <div id="menu" class="hidden">
+                    <a href="legalNotice.html">Legal Notice</a>
+                    <a href="privacyPolicy.html">Privacy Policy</a>
+                    <a href="../index.html">Log out</a>
+                </div>
             </div>
-            <div id="menuBackdrop" class="hidden backdrop" onclick="closeMenu(event)">
-            <div id="menu" class="hidden">
-                <a href="legalNotice.html">Legal Notice</a>
-                <a href="privacyPolicy.html">Privacy Policy</a>
-                <a onclick="logout()" href="../index.html">Log out</a>
             </div>
         </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Legal Notice</h1>
+
+            <h2>Imprint</h2>
+            <ul>
+                <li>Patrick Höpner, Marcel Göhn, Alain Roth</li>
+                <li>Lerchenstraße 23</li>
+                <li>14612 Falkensee</li>
+            </ul>
+            <h3>Exploring the Board</h3>
+            <p>Email: jointeam2025@gmail.com</p>
+            <h3>Acceptance of terms</h3>
+            <p>By accessing and using <span>Join</span> (Product), you acknowledge and agree to the following terms and conditions,
+                and any policies, guidelines, or amendments thereto that may be presented to you from time to time. We,
+                the listed students, may update or change the terms and conditions from time to time without notice.</p>
+            <h3>Scope and ownership of the product</h3>
+            <p><span>Join</span> has been developed as part of a student group project in a web development bootcamp at the <span>Developer
+                Akademie GmbH</span>. It has an educational purpose and is not intended for extensive personal & business
+                usage. As such, we cannot guarantee consistent availability, reliability, accuracy, or any other aspect
+                of quality regarding this Product.</p>
+
+                <p class="mt-4">The design of <span>Join</span> is owned by the <span>Developer Akademie GmbH</span>. Unauthorized use, reproduction,
+                modification, distribution, or replication of the design is strictly prohibited.</p>
+            <h3>Proprietary rights</h3>
+            <p>Aside from the design owned by <span>Developer Akademie GmbH</span>, we, the listed students, retain all proprietary
+                rights in <span>Join</span>, including any associated copyrighted material, trademarks, and other proprietary
+                information.</p>
+            <h3>Use of the product</h3>
+            <p><span>Join</span> is intended to be used for lawful purposes only, in accordance with all applicable laws and
+                regulations. Any use of <span>Join</span> for illegal activities, or to harass, harm, threaten, or intimidate another
+                person, is strictly prohibited. You are solely responsible for your interactions with other users of
+                <span>Join</span>.</p>
+            <h3>Disclaimer of warranties and limitation of liability</h3>
+            <p><span>Join</span> is provided "as is" without warranty of any kind, whether express or implied, including but not
+                limited to the implied warranties of merchantability, fitness for a particular purpose, and
+                non-infringement. In no event will we, the listed students, or the <span>Developer Akademie</span>, be liable for any
+                direct, indirect, incidental, special, consequential or exemplary damages, including but not limited to,
+                damages for loss of profits, goodwill, use. Data, or other intangable losses, even if we have been
+                advised of the possibility of such damages, arising out of or in connection with the use or performance
+                of <span>Join</span>.</p>
+            <h3>Indemnity</h3>
+            <p>You agree to indemnify, defend and hold harmless us, the listed students, the <span>Developer Akademie</span>, and
+                our affiliates, partners, officers, directors, agents, and employees, from and against any claim,
+                demand, loss, damage, cost, or liability (including reasonable legal fees) arising out of or relating to
+                your use of <span>Join</span> and/or your breach of this Legal Notice.</p>
+
+            <p class="mt-4">For any questions or notices, please contact us at jointeam2025@gmail.com</p>
+
+            <p class="mt-4 mb-2">Date: March 28, 2025</p>
         </div>
-    </div>
-</header>
-    <div>
-        
+    </main>
+
     <div id="sidebar" onload="highlightSidebarLink()">
 			<div id="sidebarLogoDiv">
 				<img
@@ -153,102 +206,10 @@
 				</div>
 			</div>
 			<div id="legalAndPolicyDiv">
-				<a href="./privacyPolicy.html" class="policyLink">Privacy Policy</a>
-				<a href="./legalNotice.html" class="policyLink">Legal notice</a>
+				<a href="./privacy.html" class="policyLink">Privacy Policy</a>
+				<a href="./legal.html" class="policyLink">Legal notice</a>
 			</div>
 	</div>
-    </div>
-    <section id="privacy-policy">
-        <h1>Privacy Policy</h1>
-      
-        <h2>1. General Information</h2>
-        <p>
-          Protecting your personal data is very important to us. We treat your personal data confidentially and in accordance with the statutory data protection regulations and this privacy policy.
-          This privacy policy informs you about what data we collect, how we use it, and what rights you have regarding your data.
-        </p>
-      
-        <h2>2. Responsible Entity</h2>
-        <p>
-          <strong>Name:</strong> Private Individual<br>
-          <strong>Project Name:</strong> Join<br>
-          <strong>Address:</strong> Lerchenstraße 23, 14612 Falkensee, Germany<br>
-          <strong>Email:</strong> <a href="mailto:jointeam2025@gmail.com">jointeam2025@gmail.com</a>
-        </p>
-      
-        <h2>3. Hosting</h2>
-        <p>
-          This website is hosted via an FTP server (FileZilla). The hosting provider automatically processes your IP address and other technical data when you access the site to ensure its operation.
-          This information is stored in so-called server log files and includes:
-        </p>
-        <ul>
-          <li>IP address of the requesting device</li>
-          <li>Date and time of access</li>
-          <li>Browser type and version</li>
-          <li>Operating system used</li>
-          <li>Referrer URL</li>
-        </ul>
-        <p>This data is used solely for technical administration and is not merged with other data sources.</p>
-      
-        <h2>4. Collection and Processing of Personal Data</h2>
-        <p>
-          Our website includes a contact form. We collect the following personal data through this form:
-        </p>
-        <ul>
-          <li>First and last name</li>
-          <li>Email address</li>
-          <li>Phone number</li>
-          <li>Username</li>
-          <li>Password</li>
-        </ul>
-        <p>
-          This data is used solely to contact you or to provide the website’s features (e.g., login).
-        </p>
-        <p>
-          <strong>Storage and Security:</strong><br>
-          Passwords are stored securely using current encryption standards. Data transmission is encrypted (e.g., via HTTPS, if enabled).
-        </p>
-      
-        <h2>5. Data Disclosure</h2>
-        <p>Your personal data is not shared with third parties. No data is transferred outside the European Union.</p>
-      
-        <h2>6. Use of Cookies</h2>
-        <p>This website does <strong>not use cookies</strong>.</p>
-      
-        <h2>7. Analytics and Tracking Tools</h2>
-        <p>No tracking or analytics tools (e.g., Google Analytics, Matomo) are used on this website.</p>
-      
-        <h2>8. Your Rights</h2> 
-        <p>You have the right to:</p>
-        <ul>
-          <li>Access the personal data we store (Art. 15 GDPR)</li>
-          <li>Rectify inaccurate data (Art. 16 GDPR)</li>
-          <li>Request deletion of your data (Art. 17 GDPR)</li>
-          <li>Restrict processing of your data (Art. 18 GDPR)</li>
-          <li>Object to the processing of your data (Art. 21 GDPR)</li>
-          <li>Data portability (Art. 20 GDPR)</li>
-        </ul>
-        <p>
-          To exercise these rights, you can contact us via email: 
-          <a href="mailto:jointeam2025@gmail.com">jointeam2025@gmail.com</a>
-        </p>
-      
-        <h2>9. Data Retention</h2>
-        <p>We store your personal data only as long as necessary for the intended purpose or as required by law.</p>
-      
-        <h2>10. Data Security</h2>
-        <p>
-          We implement technical and organizational security measures to protect your data against manipulation, loss, destruction, or unauthorized access.
-        </p>
-      
-        <h2>11. Changes to This Privacy Policy</h2>
-        <p>
-          We reserve the right to amend this privacy policy at any time to comply with current legal requirements.
-          The latest version is available on our website under the specified contact address.
-        </p>
-      
-        <p><em>Last updated: April 2025</em></p>
-      </section>
-      <script src="../scripts/header.js"></script>
-      <script src="../scripts/sidebar.js"></script>
+    <script src="../scripts/sidebar.js"></script>
 </body>
 </html>

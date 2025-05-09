@@ -2,8 +2,8 @@ const contactsDiv = document.getElementById("contactsSidebarDiv");
 const addTaskDiv = document.getElementById("addTaskSidebarDiv");
 const boardDiv = document.getElementById("boardSidebarDiv");
 const summaryDiv = document.getElementById("summarySidebarDiv");
-const userObjectForCheck = sessionStorage.getItem("loggedIn");
-checkIfLoggedIn();
+checkPrivacyAndLegalLogIn();
+
 
 function highlightSidebarLink() {
 	const currentHtmlSite = window.location.pathname;
@@ -33,9 +33,9 @@ function highlightSidebarLink() {
 }
 
 
-function checkIfLoggedIn(){
-	const path = window.location.pathname;
-	if (path.includes('legalNotice.html') || path.includes('privacyPolicy.html')) {
+function checkPrivacyAndLegalLogIn() {
+    const path = window.location.pathname;
+	if (path.includes('legal.html') || path.includes('privacy.html')) {
 			if (sessionStorage.getItem("loggedIn") == null) {
 		document.getElementById('loginSidebarDiv').classList.remove('hidden');
 		document.getElementById('navLinksDiv').classList.add('hidden');
@@ -44,8 +44,5 @@ function checkIfLoggedIn(){
 		document.getElementById('navLinksDiv').classList.remove('hidden');
 			}
 		return;
-	}
-	if(userObjectForCheck === null || undefined){
-		window.location.href = "../index.html";
 	}
 }
