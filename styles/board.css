@@ -372,18 +372,18 @@ p {
   flex-grow: 1;
 }
 
-#correctDateFormat{
+#duedate_input{
   flex-grow: 1;
   border: none;
   font-size: 20px;
   z-index: 1000;
    
 }
-#correctDateFormat:focus{
+#duedate_input:focus{
     border: none;
     outline: none;
 }
-#correctDateFormat::placeholder{
+#duedate_input::placeholder{
     color:#D1D1D1
 }
 #calendarIcon:hover{

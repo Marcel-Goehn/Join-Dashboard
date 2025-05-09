@@ -12,11 +12,10 @@ let low_button = document.getElementById('low_btn');
 let categorySelection = document.getElementById('category');
 let subtaskInput = document.getElementById('subtask_input');
 let title = document.getElementById('title_input');
-let duedate = document.getElementById('dueDateInput');
+let duedate = document.getElementById('duedate_input');
 let selectedCategory = document.getElementById('btn_text');
 let contactData = [];
-const duedateInput = document.getElementById("dueDateInput");
-const shownDuedate = document.getElementById("correctDateFormat");
+const realDuedate = document.getElementById("dueDateInput");
 
 
 /// --------------------------------- PATRICK FUNKTIONEN ----------------------------////
@@ -43,10 +42,8 @@ function postTask() {
  */
 
 function showCorrectData(){
-    console.log(duedateInput.value)
-    const [year, month, day] = duedateInput.value.split("-");
-
-    shownDuedate.value = `${day}/${month}/${year}`;
+    const [year, month, day] = realDuedate.value.split("-");
+    duedate.value = `${day}/${month}/${year}`;
 }
 
 function select(chosenPriority) {
@@ -223,6 +220,7 @@ function addSubtask() {
  * adds "/" after the second and fifth character
  */
 function formcorrectDuedate() {
+    console.log("TEST");
     eraseInvalidInput();
     if (duedate.value.length > 2 && !duedate.value.includes('/')) {
         duedate.value = duedate.value.slice(0, 2) + '/' + duedate.value.slice(2);
