@@ -35,6 +35,15 @@ function highlightSidebarLink() {
 
 function checkPrivacyAndLegalLogIn() {
     const path = window.location.pathname;
+	if (path.includes('legalNotice.html') || path.includes('privacyPolicy.html')) {
+			if (sessionStorage.getItem("loggedIn") == null) {
+		document.getElementById('loginSidebarDiv').classList.remove('hidden');
+		document.getElementById('navLinksDiv').classList.add('hidden');
+			} else {
+		document.getElementById('loginSidebarDiv').classList.add('hidden');
+		document.getElementById('navLinksDiv').classList.remove('hidden');
+			}
+	}
 	if (path.includes('legal.html') || path.includes('privacy.html')) {
 			if (sessionStorage.getItem("loggedIn") == null) {
 		document.getElementById('loginSidebarDiv').classList.remove('hidden');
@@ -43,6 +52,6 @@ function checkPrivacyAndLegalLogIn() {
 		document.getElementById('loginSidebarDiv').classList.add('hidden');
 		document.getElementById('navLinksDiv').classList.remove('hidden');
 			}
-		return;
 	}
+
 }
