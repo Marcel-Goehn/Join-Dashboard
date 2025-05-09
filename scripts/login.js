@@ -83,7 +83,7 @@ function invalidLogin() {
  */
 function loginAsGuest() {
     sessionStorage.setItem("loggedIn", JSON.stringify("-OPjkntrc8LdNwD7XTjA"));
-    window.location.href = "../html/summary.html";
+    window.location.href = "../Join/html/summary.html";
 }
 
 /**
@@ -113,7 +113,7 @@ function removeInvalidClass(num) {
  * toggles icon between lock-icon (input is empty) and eye-icon (input contains characters)
  */
 function passwordInputisEmpty() {
-    passwordInput.value == "" ? PasswordIcon.src = "../assets/img/login/lock.svg" : checkVisibility();
+    passwordInput.value == "" ? PasswordIcon.src = "../Join/assets/img/login/lock.svg" : checkVisibility();
 }
 
 /**

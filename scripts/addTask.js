@@ -220,7 +220,6 @@ function addSubtask() {
  * adds "/" after the second and fifth character
  */
 function formcorrectDuedate() {
-    console.log("TEST");
     eraseInvalidInput();
     if (duedate.value.length > 2 && !duedate.value.includes('/')) {
         duedate.value = duedate.value.slice(0, 2) + '/' + duedate.value.slice(2);
