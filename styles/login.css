@@ -179,28 +179,7 @@ h1:hover {
     font-size: 13px;
     font-weight: 400;
 }
-#mobileBlackBackground{
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: #2A3647;
-}
-@keyframes fadeBackgroundOut{
-    0%{
-        display: flex;
-        opacity: 1;
-    }
-    
-    100%{
-        opacity: 0;
-    }
-}
 
-.fadeBackgroundOut{
-    animation: fadeBackgroundOut 1.5s ease-in-out  !important;
-}
 @media(max-width: 620px) {
     .login_buttons_div {
         flex-direction: column;

@@ -302,7 +302,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	position: fixed;
-	bottom: 10%;
+	bottom: 150px;
 	right: 5%;
 }
 #addContactFixed:hover{

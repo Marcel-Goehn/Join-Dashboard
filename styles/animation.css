@@ -45,3 +45,20 @@
         transform: translate(0, 0) scale(0.66);
     }
 }
+
+@keyframes blackOut{
+    0%{
+        background-color: #2A3647;
+        opacity: 0;
+    }
+    100%{
+        background-color: white;
+        opacity: 1;
+    }
+}
+
+@media(max-width: 620px){
+    .fadeIn{
+        animation: blackOut 1s ease-in forwards;
+    }
+}

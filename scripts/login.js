@@ -18,7 +18,7 @@ function init() {
  * moves the Logo into its final destination
  */
 function animateLogo(){
-    if(window.innerWidth > 850){
+    if(window.innerWidth > 620){
        const logoRef = document.getElementById("logo");
         logoRef.classList.toggle("animate"); 
     }else{
@@ -159,4 +159,8 @@ function removeHiddenClass(container) {
  */
 function addHiddenClass(container) {
     document.getElementById(container).classList.add('hidden');
+}
+
+function clearStorage(){
+    sessionStorage.clear();
 }
