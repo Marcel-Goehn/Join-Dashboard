@@ -6,14 +6,21 @@ const wrapper = document.querySelector('.wrapper');
  * This function opens the dialog of the card
  */
 async function openDialog(i) {
+    isFetching = true;
     if (wasDragging) {
         wasDragging = false;
         return;
     }
-    await init();
+    try{
+ await init();
     const array = getCurrentArray();
     wrapper.innerHTML = getDialogTemplate(i, array);
     dialog.showModal();
+    }
+    catch{
+        isFetching = false;
+    }
+   
 }
 
 

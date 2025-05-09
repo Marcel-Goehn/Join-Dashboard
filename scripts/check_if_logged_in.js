@@ -1,9 +1,12 @@
-const userObjectForCheck = sessionStorage.getItem("loggedIn");
 checkIfLoggedIn();
 
 
 function checkIfLoggedIn(){
-	if(userObjectForCheck === null || undefined){
+	const userObjectForCheck = sessionStorage.getItem("loggedIn");
+		console.log("test;")
+	if(userObjectForCheck === null || userObjectForCheck === undefined){
 		window.location.href = "../index.html";
+		console.log("NOT CHECKING")
 	}
+
 }
