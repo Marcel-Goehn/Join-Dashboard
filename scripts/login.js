@@ -18,8 +18,16 @@ function init() {
  * moves the Logo into its final destination
  */
 function animateLogo(){
+    if(window.innerWidth > 850){
+       const logoRef = document.getElementById("logo");
+        logoRef.classList.toggle("animate"); 
+    }else{
     const logoRef = document.getElementById("logo");
-    logoRef.classList.toggle("animate");
+    logoRef.classList.toggle("mobileAnimation");
+    const mobileBlackBackground = document.getElementById("mobileBlackBackground");
+    mobileBlackBackground.classList.add("fadeBackgroundOut");
+    }
+ 
 }
 
 /**
@@ -83,7 +91,7 @@ function invalidLogin() {
  */
 function loginAsGuest() {
     sessionStorage.setItem("loggedIn", JSON.stringify("-OPjkntrc8LdNwD7XTjA"));
-    window.location.href = "../Join/html/summary.html";
+    window.location.href = "../html/summary.html";
 }
 
 /**
