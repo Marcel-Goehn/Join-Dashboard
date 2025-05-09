@@ -321,6 +321,8 @@ dialog .wrapper {
     border: 1px solid #D1D1D1;
     outline: none;
     padding: 1rem 1.5rem;
+    position: relative;
+    justify-content: center;
 }
 
 .align-duedate-input:hover {
@@ -343,6 +345,7 @@ dialog .wrapper {
     color: #000000;
     font-size: clamp(1rem, 0.9286rem + 0.3571vw, 1.25rem);
     flex: 1;
+    z-index: 1000;
 }
 
 #input_duedate::placeholder {

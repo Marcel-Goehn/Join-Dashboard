@@ -19,12 +19,38 @@ let originalCards = [];
 let originalFoundTasks = [];
 
 
+
 /**
  * Initializes the fetching
  */
 async function initBoard(){
     await uploadTask(assembleTask());
     await init();
+}
+
+function formcorrectDuedateEdit() {
+    const duedateEdit = document.getElementById("input_duedate")
+    eraseInvalidInput();
+    if (duedateEdit.value.length > 2 && !duedateEdit.value.includes('/')) {
+        duedateEdit.value = duedateEdit.value.slice(0, 2) + '/' + duedateEdit.value.slice(2);
+    }
+    if (duedateEdit.value.length > 5 && !duedateEdit.value.slice(3).includes('/')) {
+        duedateEdit.value = duedateEdit.value.slice(0, 5) + '/' + duedateEdit.value.slice(5);
+    }
+    if(duedateEdit.value.length > 10){
+        duedateEdit.value = duedateEdit.value.slice(0, 10);
+    }
+    if(duedateEdit.value.length > 9){
+        validateDuedate(duedateEdit);
+    }
+}
+
+
+function showCorrectDataEdit(){
+    const dueDateInputEdit = document.getElementById("dueDateInputEdit");
+const shownDueDateEdit = document.getElementById("input_duedate");
+    const [year, month, day] = dueDateInputEdit.value.split("-");
+    shownDueDateEdit.value = `${day}/${month}/${year}`;
 }
 
 async function init() {

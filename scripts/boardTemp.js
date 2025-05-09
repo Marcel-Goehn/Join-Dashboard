@@ -199,11 +199,16 @@ function getEditDialogTemplate(array, index) {
                     <label for="input_descr">Description</label>
                     <textarea name="input_descr" id="input_descr" rows="4" placeholder="Enter a description">${array[index].value.description}</textarea>
                 </div>
-                <label class="duedate-input" for="input_duedate">Duedate</label>
-                <div class="align-duedate-input" id="container_input_duedate">
-                    <input onkeyup="checkTitleAndDateInputLength('duedate'); removeValidationHighlightFromDueDate(); checkDuedateInputConditions(event)" value="${array[index].value.duedate}" type="text" name="input_duedate" id="input_duedate" placeholder="dd/mm/yyyy">
-                    <img src="../assets/img/addtask/calendar.svg">
-                </div>
+
+                 <div id="container_input_duedate" class="align-duedate-input">
+                            <label for="dueDateInput"></label>
+                            <div id="shownDateDivEdit">
+                                <input type="date" id="dueDateInputEdit" oninput="showCorrectDataEdit()">
+                                <input id="input_duedate" type="text" placeholder="dd/mm/yyyy" oninput="checkTitleAndDateInputLength('duedate'); removeValidationHighlightFromDueDate(); formcorrectDuedateEdit()">
+                                <img id="calendarIcon" src="../assets/img/addtask/calendar.svg">
+                            </div>
+                        </div>
+
                 <p id="error_duedate" class="error-required d_none">This field is required</p>
                 <p id="error_string_duedate" class="error-required d_none">Only numbers are allowed</p>
                 <p id="error_length_duedate" class="error-required d_none">Missing at least 1 number</p>

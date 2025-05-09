@@ -352,6 +352,20 @@ p {
     opacity: 0;
     transform: translate(-50%, -50%);
 }
+#dueDateInputEdit{
+    position: absolute;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    height: 48px;
+    right: -45%;
+    top: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+}
+
+#dueDateInputEdit:hover{
+    cursor: pointer;
+}
 #dueDateInput:hover{
     cursor: pointer;
 }
@@ -367,6 +381,12 @@ p {
 }
 
 #shownDateDiv{
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+#shownDateDivEdit{
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
