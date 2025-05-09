@@ -76,6 +76,9 @@ body {
 	padding-top: 12.875rem;
 	max-width: 90.0rem;
 	overflow: hidden;
+	overflow-y: scroll;
+	  scrollbar-width: none;       
+  -ms-overflow-style: none;
 }
 
 #contactHeadlineDiv {
