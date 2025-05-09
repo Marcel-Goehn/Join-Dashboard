@@ -332,7 +332,6 @@ button:hover #clear_btn_img {
 }
 #addTaskDial {
 	width: auto;
-	max-height: 900px;
 	max-width: 1116px;
 }
 #title_dialog {

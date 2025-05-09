@@ -389,20 +389,34 @@ button:disabled:hover {
 	}
 }
 
-@media(max-width: 880px){
-
-}
-
-@media(max-width: 850px) {
+@media(max-width: 850px){
 	body {
 		padding-left: 0;
+	}
+	#center-content {
+		padding-inline: 1rem !important;
+	}
+	h1 {
+		padding-inline: 1rem !important;
+		left: 0 !important;
+		top: 80px !important;
+	}
+	#addtask_button_div {
+		padding-bottom: 20px !important;
+		padding-inline: 1rem !important;
+		bottom: 140px !important;
+	}
+}
+
+@media(max-width: 1000px) {
+	body {
 		align-items: center;
 	}
 	h1 {
 		position: fixed;
-		top: 80px;
-		padding-left: 16px;
+		top: 96px;
 		font-size: 47px;
+		left: calc(120px + 10vw);
 		padding-top: 48px;
 		background-color: #f6f7f8;
 	}
@@ -419,11 +433,11 @@ button:disabled:hover {
 		justify-content: flex-end;
 		gap: 32px;
 		position: fixed;
-		bottom: 140px;
+		bottom: 0;
 		padding-bottom: 20px;
 		background-color: #f6f7f8;
 		width: 100%;
-		padding-right: 16px;
+		padding-right: 2rem;
 		right: 0;
 	}
 	#separator {
@@ -433,9 +447,8 @@ button:disabled:hover {
 		flex-direction: column;
 	}
 	#center-content {
-		padding-left: 16px;
 		padding-top: 224px;
-		padding-right: 16px;
+		padding-right: 2rem;
 		gap: 32px;
 		align-items: center;
 	}
@@ -477,7 +490,7 @@ button:disabled:hover {
 }
 @media(max-width:640px){
 	#addtask_button_div {
-		bottom: 80px;
+		bottom: 80px !important;
 	}
 }
 @media(max-width: 427px) {
