@@ -34,4 +34,5 @@ function clearDialog() {
     assignedContacts = {};
     selectedCategory.innerHTML = "Select task category";
     document.getElementById('addedSubtasks').innerHTML = "";
+	document.getElementById('confirm_btn').disabled = true;
 }

@@ -426,7 +426,7 @@ button:disabled:hover {
   flex-grow: 1;
   border: none;
   /* font-size: 20px; */
-  z-index: 1000;
+  z-index: 10;
   width: 20px;
    
 }
@@ -471,6 +471,7 @@ button:disabled:hover {
 	}
 	h1 {
 		position: fixed;
+		z-index: 50;
 		top: 96px;
 		font-size: 47px;
 		left: calc(120px + 10vw);
@@ -490,6 +491,7 @@ button:disabled:hover {
 		justify-content: flex-end;
 		gap: 32px;
 		position: fixed;
+		z-index: 50;
 		bottom: 0;
 		padding-bottom: 20px;
 		background-color: #f6f7f8;

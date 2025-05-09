@@ -18,11 +18,11 @@ let contactData = [];
 const realDuedate = document.getElementById("dueDateInput");
 
 
-/// --------------------------------- PATRICK FUNKTIONEN ----------------------------////
 async function init_addTask(){
     await fetchContacts();
     getContacts(contactData);
 }
+
 
 async function fetchContacts(){
     const response = await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`);
@@ -35,7 +35,8 @@ function postTask() {
     const assembledTaskObj = assembleTask();
     uploadTask(assembledTaskObj);
 }
-/// ------------ ENDE PATRIUCK FUNKTIONEN -------------------------------- //
+
+
 /**
  * resets all buttons and highlights the corresponding button of the picked urgency afterwards
  * @param {string} priority value of priority, selected by user
@@ -45,6 +46,7 @@ function showCorrectData(){
     const [year, month, day] = realDuedate.value.split("-");
     duedate.value = `${day}/${month}/${year}`;
 }
+
 
 function select(chosenPriority) {
     resetButtonsToDefault();
@@ -67,6 +69,7 @@ function select(chosenPriority) {
     }
 }
 
+
 /**
  * resets all buttons to the "not pressed"-state
  */
@@ -79,6 +82,7 @@ function resetButtonsToDefault() {
     ['low_1', 'low_2'].forEach(id => document.getElementById(id).setAttribute("fill", "#7ae229"));
 }
 
+
 /**
  * opens & closes the dropdown-menu of the contacts
  */
@@ -87,6 +91,7 @@ function toggleContacts() {
     selectedContacts.classList.toggle('hidden');
     rotateArrowIcon("assigned_icon");
 }
+
 
 /**
  * closes all currently open dropdown-menus
@@ -98,6 +103,8 @@ function closeOpenSections() {
     categorySelection.classList.add('hidden');
     document.getElementById("category_icon").classList.remove('rotate');
 }
+
+
 /**
  * prevents events from unwanted triggering
  * @param {event} event
@@ -106,6 +113,7 @@ function Bubbling(event){
     event.stopPropagation();
 }
 
+
 /**
  * rotates the arrow-icon for better user-comprehension
  * @param {string} formularID either contacts or category
@@ -113,6 +121,7 @@ function Bubbling(event){
 function rotateArrowIcon(formularID) {
     document.getElementById(formularID).classList.toggle('rotate');
 }
+
 
 /**
  * extracts all selected contacts from an object and calls function for rendering those
@@ -124,6 +133,7 @@ function getSelectedContacts() {
     }
 }
 
+
 /**
  *
  * @param {string} name name of the contact
@@ -134,6 +144,8 @@ function getInitials(name) {
     let step_2 = step_1.map(partName => partName[0].toUpperCase());
     return step_2.join("");
 }
+
+
 /**
  * toggles the checkmark-icon of the selected user between checked & unchecked
  * @param {string} name name of the contact
@@ -146,6 +158,8 @@ function toggleCheckmark(name, id, color) {
     editAssignedObject(name, id, color);
     getSelectedContacts();
 }
+
+
 /**
  * edits the content of assignedContacts, a variable used for keeping track of previous selected contacts
  * @param {string} name name of the contact
@@ -158,6 +172,8 @@ function editAssignedObject(name, id, color) {
         delete assignedContacts[`${id}`];
     }
 }
+
+
 /**
  * reads within all contacts and returns results based on the current searchinput
  */
@@ -168,6 +184,8 @@ function search() {
     let searchresult = contactData.filter(contact => contact[1].name.toLowerCase().includes(userInput));
     getContacts(searchresult);
 }
+
+
 /**
  * toggles the hidden-class, making the corresponding div either visible or invisible
  * @param {string} id id of the div
@@ -175,6 +193,7 @@ function search() {
 function toggleHidden(id) {
     document.getElementById(id).classList.toggle('hidden');
 }
+
 
 /**
  * shows the user-selection und hides the other options
@@ -194,6 +213,7 @@ function setCategory(category) {
     checkUploadConditions();
 }
 
+
 /**
  * resets the subtask-inputspace
  */
@@ -201,6 +221,7 @@ function clearInput() {
     subtaskInput.value = "";
     ChangeSubtaskIcons();
 }
+
 
 /**
  * adds the currently written Subtask-prompt as an unique & editable line beneath the subtask-inputfield
@@ -215,6 +236,7 @@ function addSubtask() {
     }
     ChangeSubtaskIcons();
 }
+
 
 /**
  * adds "/" after the second and fifth character
@@ -235,6 +257,7 @@ function formcorrectDuedate() {
     }
 }
 
+
 /**
  * accepts only numbers, therefore removes invalid input from user
  */
@@ -245,12 +268,15 @@ function validateDuedate(duedate){
         duedate.value = "";
     }
 }
+
+
 function eraseInvalidInput() {
     let lastChar = duedate.value.slice(-1);
     if (isNaN(lastChar) == true) {
         duedate.value = duedate.value.slice(0, -1);
     }
 }
+
 
 /**
  * closes the "edit"-Mode of the currently eddited subtask, adding it back as a line beneath the subtask-input
@@ -264,6 +290,7 @@ function confirmSubtask(id) {
     subtasks[`${id}`] = document.getElementById(`edit_input${id}`).value;
 }
 
+
 /**
  * deletes the selected subtask entirely
  * @param {event} event 
@@ -276,6 +303,7 @@ function deleteSubtask(event, id) {
     delete subtasks[`${id}`];
 }
 
+
 /**
  * opens "edit"-mode of the selected subtask, making it possible to change previous settings
  * @param {string} id id of the subtask
@@ -287,6 +315,7 @@ function editSubtask(id) {
     document.getElementById(id).classList.toggle('hidden');
     document.getElementById(`edit_input${id}`).value = current_subtask;
 }
+
 
 /**
  * validates all necessary inputs for a new task and enables the upload-button, if valid
@@ -302,6 +331,7 @@ function checkUploadConditions() {
     }
 }
 
+
 /**
  * starts an animation after a successful Task Creation
  */
@@ -313,6 +343,7 @@ function animationTaskAdded() {
         window.location.href = "board.html";
     }, 2000);
 }
+
 
 /**
  * collects various information and creates an taskcard for further interactions
@@ -331,6 +362,7 @@ function assembleTask() {
     }
 }
 
+
 /**
  * This function checks if the value is empty or not. If the value is empty there will be a placeholder inserted so it is not getting deleted from firebase.
  * 
@@ -346,6 +378,7 @@ function checkAssignedContactsLength() {
     }
     return assignedContacts;
 }
+
 
 /**
  * This function checks if the value is empty or not. If the value is empty there will be a placeholder inserted so it is not getting deleted from firebase.
@@ -363,6 +396,7 @@ function checkSubtasksLength() {
     return subtasks;
 }
 
+
 /**
  * uploads tasks to the database
  * @param {object} assembledTaskObj object with necessary information for the taskcard
@@ -375,6 +409,7 @@ async function uploadTask(assembledTaskObj) {
     });
 }
 
+
 /**
  * changes the subtask-Icon while creating a subtask
  */
@@ -386,6 +421,7 @@ function ChangeSubtaskIcons() {
         subtaskIcons.innerHTML = subtaskIsBlank();
     }
 }
+
 
 /**
  * renders contacts from the logged user
