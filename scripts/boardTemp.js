@@ -199,9 +199,8 @@ function getEditDialogTemplate(array, index) {
                     <label for="input_descr">Description</label>
                     <textarea name="input_descr" id="input_descr" rows="4" placeholder="Enter a description">${array[index].value.description}</textarea>
                 </div>
-
+                <label for="dueDateInput" class="due-date-txt">Due date</label>
                  <div id="container_input_duedate" class="align-duedate-input">
-                            <label for="dueDateInput"></label>
                             <div id="shownDateDivEdit">
                                 <input type="date" id="dueDateInputEdit" oninput="showCorrectDataEdit()">
                                 <input id="input_duedate" type="text" placeholder="dd/mm/yyyy" oninput="checkTitleAndDateInputLength('duedate'); removeValidationHighlightFromDueDate(); formcorrectDuedateEdit()">
