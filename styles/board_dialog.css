@@ -14,6 +14,7 @@ dialog {
     border-radius: 30px;
     background-color: #FFFFFF;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+    scrollbar-width: none;
 }
 
 dialog .wrapper {
@@ -666,6 +667,7 @@ dialog .wrapper {
     justify-content: space-between;
     align-items: center;
     gap: 0.5rem;
+    height: 24px;
 }
 
 .dot-name-gap span:hover {
