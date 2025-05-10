@@ -23,7 +23,6 @@ async function init_addTask(){
     getContacts(contactData);
 }
 
-
 async function fetchContacts(){
     const response = await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`);
     const contactDataObj = await response.json();
@@ -321,14 +320,40 @@ function editSubtask(id) {
 /**
  * validates all necessary inputs for a new task and enables the upload-button, if valid
  */
-function checkUploadConditions() {
+function checkUploadConditions(container) {
+    removeRedBorder(container);
     if (title.value !== "" && duedate.value.length == 10 && selectedCategory.innerHTML !== "Select task category") {
         document.getElementById('confirm_btn').disabled = false;
         document.getElementById('confirm_btn_text').style.cursor = "pointer";
     } else {
         document.getElementById('confirm_btn').disabled = true;
         document.getElementById('confirm_btn_text').style.cursor = "not-allowed";
-        
+    }
+}
+
+
+/**
+ * removes red border of a container
+ * @param {string} container 
+ */
+function removeRedBorder(container) {
+    document.getElementById(container).classList.remove('redborder');
+}
+
+
+/**
+ * adds red border to a container
+ */
+function showRequired() {
+    if (title.value == "") {
+        title.classList.add('redborder');
+    }
+    if (duedate.value.length !== 10) {
+        document.getElementById('customDueDateDiv').classList.add('redborder');
+    }
+    if (selectedCategory.innerHTML == "Select task category") {
+        console.log(selectedCategory);
+        document.getElementById('category_btn').classList.add('redborder');
     }
 }
 
