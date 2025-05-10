@@ -203,7 +203,7 @@ function getEditDialogTemplate(array, index) {
                  <div id="container_input_duedate" class="align-duedate-input">
                             <div id="shownDateDivEdit">
                                 <input type="date" id="dueDateInputEdit" oninput="showCorrectDataEdit()">
-                                <input id="input_duedate" type="text" placeholder="dd/mm/yyyy" oninput="checkTitleAndDateInputLength('duedate'); removeValidationHighlightFromDueDate(); formcorrectDuedateEdit()">
+                                <input value="${array[index].value.duedate}" id="input_duedate" type="text" placeholder="dd/mm/yyyy" oninput="checkTitleAndDateInputLength('duedate'); removeValidationHighlightFromDueDate(); formcorrectDuedateEdit()">
                                 <img id="calendarIcon" src="../assets/img/addtask/calendar.svg">
                             </div>
                         </div>

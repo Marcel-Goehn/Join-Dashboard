@@ -1,4 +1,6 @@
 const addTaskDial = document.getElementById("addTaskDial");
+
+
 /**
  * starts an animation to slide the addTask Dialog into frame
  * @param {string} section section from which the taskcard originates
@@ -10,6 +12,8 @@ function openAddTask(section) {
 	addTaskDial.classList.remove("slideTaskDialOut");
 	addTaskDial.classList.add("slideTaskDialIn");
 }
+
+
 /**
  * starts an animation to slide the addTask Dialog out of frame
  */
@@ -20,6 +24,7 @@ function closeAddTask() {
 		addTaskDial.close();
 	}, 1000);
 }
+
 
 /**
  * clears all content from the addtask-dialog

@@ -6,6 +6,7 @@ let PasswordIcon = document.getElementById('PasswordIcon');
 let showPassword = "../Join/assets/img/login/visibility.svg";
 let hidePassword = "../Join/assets/img/login/visibility-off.svg";
 
+
 /**
  * calls necessary functions for start the Logo-Animation
  */
@@ -20,18 +21,24 @@ function init() {
    
 }
 
+
 /**
  * moves the Logo into its final destination
  */
 function animateLogo(){
-       const logoRef = document.getElementById("logo");
-        logoRef.classList.toggle("animate"); 
+    const logoRef = document.getElementById("logo");
+    logoRef.classList.toggle("animate"); 
 }
 
+
+/**
+ * 
+ */
 function animateLogoMobile(){
     const logoRef = document.getElementById("logo");
     logoRef.classList.toggle("mobileAnimation");
 }
+
 
 /**
  * slowly raises the opacity of all elements to 1
@@ -44,6 +51,10 @@ function fadeAllElementsIn(){
     }
 }
 
+
+/**
+ * Sets the background color of all elements from black to white
+ */
 function blackAllElementsIn(){
     const allElementsExpectLogo = document.getElementsByTagName('div');
     for (let index = 0; index < allElementsExpectLogo.length; index++) {
@@ -52,6 +63,7 @@ function blackAllElementsIn(){
     }
 }
 
+
 /**
  * awaits validation and acts on invalid input 
  */
@@ -59,6 +71,10 @@ async function loginAsUser() {
     await compareToDatabase() ? null : invalidLogin();
 }
 
+
+/**
+ * Enables the function to log in if the user presses the enter key
+ */
 emailInput.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
@@ -66,12 +82,17 @@ emailInput.addEventListener("keypress", function(event) {
         loginAsUser();
     }});
 
+
+/**
+ * Enables the function to log in if the user presses the enter key
+ */
 passwordInput.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
       event.preventDefault();
       passwordInput.blur();
       loginAsUser();
     }});
+
 
 /**
  * checks, if the used login is present within the database. If so, relocates to the summary-page and logs the user's ID in the sessionstorage
@@ -89,6 +110,7 @@ async function compareToDatabase() {
     }
 }
 
+
 /**
  * marks all inputs as invalid in case of a flawed attempt to login
  */
@@ -97,6 +119,7 @@ function invalidLogin() {
     userInput.forEach(element => element.classList.add('invalid'));
 }
 
+
 /**
  * bypasses the validation and relocates to the summary-page as a guest-account 
  */
@@ -104,6 +127,7 @@ function loginAsGuest() {
     sessionStorage.setItem("loggedIn", JSON.stringify("-OPjkntrc8LdNwD7XTjA"));
     window.location.href = "../html/summary.html";
 }
+
 
 /**
  * toggles userinput between readable and encrypted (stars)
@@ -119,6 +143,7 @@ function toggleVisibility() {
     }
 }
 
+
 /**
  * resets formular after a flawed login-attempt
  * @param {either 0 or 1; 0 is emailinput, 1 is passwordinput} num 
@@ -128,12 +153,14 @@ function removeInvalidClass(num) {
     addHiddenClass('invalid_login_hint');
 }
 
+
 /**
  * toggles icon between lock-icon (input is empty) and eye-icon (input contains characters)
  */
 function passwordInputisEmpty() {
     passwordInput.value == "" ? PasswordIcon.src = "../Join/assets/img/login/lock.svg" : checkVisibility();
 }
+
 
 /**
  * changes the password-icon to the last used visibility-setting
@@ -149,12 +176,14 @@ function checkVisibility() {
     }
 }
 
+
 /**
  * toggles password-icon between opened eye-icon (input is readable) and closed eye-icon (input is encrypted)
  */
 function togglePasswordIcon() {
     passwordInput.type == "password" ? PasswordIcon.src = hidePassword : PasswordIcon.src = showPassword;
 }
+
 
 /**
  * removes the hidden-class, making the div visible / accessable
@@ -164,6 +193,7 @@ function removeHiddenClass(container) {
     document.getElementById(container).classList.remove('hidden');
 }
 
+
 /**
  * adds the hidden-class, making the div invisible / unaccessable
  * @param {name of div as string} container 
@@ -172,6 +202,10 @@ function addHiddenClass(container) {
     document.getElementById(container).classList.add('hidden');
 }
 
+
+/**
+ * This function clears the session storage
+ */
 function clearStorage(){
     sessionStorage.clear();
 }

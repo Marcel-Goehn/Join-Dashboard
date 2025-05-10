@@ -28,6 +28,10 @@ async function initBoard(){
     await init();
 }
 
+
+/**
+ * The validation for the duedate input of the edit dialog
+ */
 function formcorrectDuedateEdit() {
     const duedateEdit = document.getElementById("input_duedate")
     eraseInvalidInput();
@@ -46,13 +50,20 @@ function formcorrectDuedateEdit() {
 }
 
 
+/**
+ * Takes the input value of the duedate date picker and rewrites it to match the right validation 
+ */
 function showCorrectDataEdit(){
     const dueDateInputEdit = document.getElementById("dueDateInputEdit");
-const shownDueDateEdit = document.getElementById("input_duedate");
+    const shownDueDateEdit = document.getElementById("input_duedate");
     const [year, month, day] = dueDateInputEdit.value.split("-");
     shownDueDateEdit.value = `${day}/${month}/${year}`;
 }
 
+
+/**
+ * Initializes the JavaScript for the board html
+ */
 async function init() {
         cards = [];
         contactsArr = [];
@@ -385,4 +396,8 @@ function checkScreenWidth() {
     }
 }
 
+
+/**
+ * Checks the current screen width when it get's adjusted
+ */
 window.addEventListener('resize', checkScreenWidth);

@@ -17,9 +17,13 @@ function toggleMenu() {
 }
 
 
+/**
+ * This function will log the user out
+ */
 function logout() {
 	sessionStorage.removeItem("loggedIn");
 }
+
 
 /**
  * This function fetches the users from the database
@@ -37,6 +41,12 @@ async function fetchNameInitials() {
 	}
 }
 
+
+/**
+ * Makes the user experience better, the user can click next to the menu button of the header so it will close automatically
+ * 
+ * @param {event} event 
+ */
 function closeMenu(event){
 	if(!document.getElementById("menu").contains(event.target)){
 		backdrop.classList.add("hidden");
@@ -44,6 +54,8 @@ function closeMenu(event){
 		toggleMenu();
 	}
 }
+
+
 /**
  * This function pushes the fetched json object into an array
  * 

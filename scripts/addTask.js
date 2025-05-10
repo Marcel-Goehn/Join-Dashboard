@@ -18,12 +18,18 @@ let contactData = [];
 const realDuedate = document.getElementById("dueDateInput");
 
 
+/**
+ * Initializes the add task javascript
+ */
 async function init_addTask(){
     await fetchContacts();
     getContacts(contactData);
 }
 
 
+/**
+ * This function fetches the contacts
+ */
 async function fetchContacts(){
     const response = await fetch(`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`);
     const contactDataObj = await response.json();
@@ -31,17 +37,11 @@ async function fetchContacts(){
     contactData = contactDataArr;
 }
 
-function postTask() {
-    const assembledTaskObj = assembleTask();
-    uploadTask(assembledTaskObj);
-}
-
 
 /**
  * resets all buttons and highlights the corresponding button of the picked urgency afterwards
  * @param {string} priority value of priority, selected by user
  */
-
 function showCorrectData(){
     const [year, month, day] = realDuedate.value.split("-");
     duedate.value = `${day}/${month}/${year}`;
@@ -49,6 +49,11 @@ function showCorrectData(){
 }
 
 
+/**
+ * This function changes the priority buttons when one is clicked 
+ * 
+ * @param {string} chosenPriority - The name of of the clicked button 
+ */
 function select(chosenPriority) {
     resetButtonsToDefault();
     switch (chosenPriority) {
@@ -271,6 +276,9 @@ function validateDuedate(duedate){
 }
 
 
+/**
+ * If the input is wrong, this function will slice of the last char
+ */
 function eraseInvalidInput() {
     let lastChar = duedate.value.slice(-1);
     if (isNaN(lastChar) == true) {

@@ -1,3 +1,8 @@
+/**
+ * 
+ * @param {string} letter 
+ * @returns - It returns the html for the first letter of the contact name
+ */
 function letterTemp(letter) {
 	return `
         <div class="letterDiv">
@@ -7,6 +12,16 @@ function letterTemp(letter) {
     `;
 }
 
+
+/**
+ * 
+ * @param {string} email 
+ * @param {string} name 
+ * @param {string} phone 
+ * @param {number} index 
+ * @param {string} color 
+ * @returns - It returns the html for the contact list
+ */
 function contactTemp(email, name, phone, index, color) {
 	return `
         <div class="actualContactDiv" id="actualContactDiv${index}"onclick="openContact('${email}', '${name}', '${phone}', '${color}', ${index}), slideInContactInfo(), clickContactSmall()">
@@ -21,6 +36,15 @@ function contactTemp(email, name, phone, index, color) {
     `;
 }
 
+
+/**
+ * 
+ * @param {string} email 
+ * @param {string} name 
+ * @param {string} phone 
+ * @param {string} color 
+ * @returns - It returns the html for the contact information
+ */
 function contactInfoTemp(email, name, phone, color) {
 	return `
         <div id="contactInfoInfoHeadline">
@@ -59,6 +83,14 @@ function contactInfoTemp(email, name, phone, color) {
     `;
 }
 
+
+/**
+ * 
+ * @param {string} email 
+ * @param {string} name 
+ * @param {string} phone 
+ * @returns - It returns the html for the contact dialog where a contact can get edited
+ */
 function editContactDialTemp(email, name, phone) {
 	return `
         <div id="editContactDialContent" class="slidedOut">
@@ -120,6 +152,11 @@ function editContactDialTemp(email, name, phone) {
     `;
 }
 
+
+/**
+ * 
+ * @returns - It returns the html for the add contact dialog
+ */
 function addContactDialTemp() {
 	return `
         <div id="addContactDialContent">
@@ -179,6 +216,15 @@ function addContactDialTemp() {
     `;
 }
 
+
+/**
+ * 
+ * @param {string} email 
+ * @param {string} name 
+ * @param {string} phone 
+ * @param {string} color 
+ * @returns - It returns the html for the edit contact dialog when the user is on a mobile phone
+ */
 function editMobileTemp(email, name, phone, color){
     return `<div id="optionsBtn" onclick="toggleBurger(event)"><img src="../assets/img/contacts/more_vert.png"></div>
             <div id="editBurger">  

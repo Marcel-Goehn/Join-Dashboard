@@ -23,6 +23,7 @@ function subtask_template(id, subtask) {
             </div>`;
 }
 
+
 /**
  * HTML-Element for better user-comprehension
  * @param {string} name name of a contact
@@ -34,6 +35,7 @@ function renderSelectedContactsAsCircle(name, id, color) {
     return `<div onclick="toggleCheckmark('${name}', '${id}')" class="circle", style="background-color: ${color}">${getInitials(name)}</div>`
 }
 
+
 /**
  * HTML-Element for better user-comprehension
  * @returns a line of code, representing icons
@@ -44,6 +46,7 @@ function subtaskIsNotBlank() {
     <img class="icon" onclick="addSubtask()" src="../assets/img/addtask/done_black.svg"></img>`
 }
 
+
 /**
  * HTML-Element for better user-comprehension
  * @returns a line of code, representing an icon
@@ -51,6 +54,7 @@ function subtaskIsNotBlank() {
 function subtaskIsBlank() {
     return `<img class="icon" src="../assets/img/addtask/add.svg"></img>`
 }
+
 
 /**
  * HTML-Element for better user-comprehension
