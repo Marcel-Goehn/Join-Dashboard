@@ -597,7 +597,7 @@ dialog .wrapper {
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
-    flex-wrap: wrap;
+    flex-wrap: wrapgit;
 }
 
 .align-subtasks-section {
