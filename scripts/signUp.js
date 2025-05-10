@@ -20,17 +20,19 @@ let passwordValidation = false;
 let confirmPWValidation = false;
 let privacyValidation = false;
 const colors = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E","#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B",  "#FF4646", "#FFBB2B"];
+const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users.json";
 
-const databaseLinkRef =
-	"https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users.json";
 
+/**
+ * 
+ * @returns - It returns the fetched registered users of the dashboard
+ */
 async function fetchData() {
 	const response = await fetch(databaseLinkRef);
 	const data = await response.json();
 	return data;
 }
 
-/** Validation start */
 
 function validateName() {
 	const pattern = /^[A-Za-z]+ [A-Za-z]+$/;

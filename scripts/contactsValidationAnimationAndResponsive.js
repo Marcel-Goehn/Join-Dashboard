@@ -1,5 +1,3 @@
-// VALIDATION FUNCTIONS //
-
 /**
  * this function checks, if every validation is met and if so than it continues and starts the follow functions
  * 
@@ -32,6 +30,7 @@ async function validateContactForm(addOrEdit, name, event) {
 	}
 }
 
+
 /**
  * this function validates the phone input based on a regex
  * 
@@ -52,6 +51,7 @@ function validatePhone(phoneInput, refuseDiv, phoneInputDiv) {
 	}
 	return true;
 }
+
 
 /**
  * this function validates the nameinput based on a regex
@@ -74,9 +74,17 @@ function validateName(nameInput, refuseDiv, nameInputDiv) {
 	return true;
 }
 
+
+/**
+ * The regex function alows only letters, if it's something else it will delete the char automatically
+ * 
+ * @param {event} event 
+ */
 function revertNotLetters(event){
 	event.target.value = event.target.value.replace(/[^A-Za-zÄäÖöÜüß\s\-]/g, '');
 }
+
+
 /**
  * this function validates the emailinput based on a regex
  * 
@@ -98,6 +106,7 @@ function validateEmail(emailInput, refuseDiv, emailInputDiv) {
 	return true;
 }
 
+
 /**
  * this function reverts the border color after 2 seconds to white
  * 
@@ -109,6 +118,7 @@ function revertBorderColor(element) {
 		element.focus();
 	}, 2000);
 }
+
 
 /**
  * this function hides the refusediv after 2 seconds
@@ -122,6 +132,7 @@ function disableRefuseDiv(refuseDiv) {
 	}, 2000);
 }
 
+
 /**
  * this function shows the refuse div
  * 
@@ -132,6 +143,7 @@ function showRefuseDiv(refuseDiv) {
 	refuseDiv.classList.add("showRefuseDiv");
 }
 
+
 /**
  * this function sets the border of a div red
  * 
@@ -141,9 +153,6 @@ function setRedBorder(element) {
 	element.style.border = "1px solid red";
 }
 
-// END VALIDATION FUNCTIONS //
-
-// RESPONSIVE FUNCTIONS //
 
 /**
  * this function adds the mobile template to to the contactInfoContent Div
@@ -162,6 +171,7 @@ function getMobileIn(email, name, phone, color){
 	contactInfoContent.innerHTML += editMobileTemp(email, name, phone, color);
 }
 
+
 /**
  * this function hides a part of the contacts page for responsiveness reasons
  * 
@@ -177,15 +187,17 @@ function switchToSingleView(contentLimiter, stickyContacts, addNewContactBtn, ad
 	stickyContacts.style.width = window.innerWidth + "px";
 	addNewContactBtn.classList.add("dnone")
 	addNewFixed.classList.remove("dnone");
+ 	}
 }
-}
+
 
 /**
  * this is a eventlistener which listens to the window innerwidth
  */
 function addResizeListener(){
 	window.addEventListener("resize", resizeHandler)
-	}
+}
+
 
 /**
 * this is the eventhandler for the resize listener, its checks if the innerwidth of the winfow is lower or higher than 650px. if its lower than 650px it starts the responsive functions, if its higher it reverts the responsive functions
@@ -211,91 +223,95 @@ resizeHandler = () => {
 				optionsBtn.classList.remove("show");
 			}
 			closeBurger();
-		}}
-	
-	/**
-	 * this functions checks if the width of the viewport is smaller than 650px, and if so thann hides some elements of the contacts page
-	 */
-	function clickContactSmall(){
-		if(window.innerWidth < 850){
-			const stickyContactsContent = document.getElementById("stickyContactsContent");
-			stickyContactsContent.classList.add("dnone");
-			const contentLimiter = document.getElementById("contentLimiter");
-			contentLimiter.classList.remove("dnone");
-			const optionsBtn = document.getElementById("optionsBtn");
-			optionsBtn.classList.add("show");
-		}
-	}
-	/**
-	 * this functions checks if the width of the viewport is smaller than 650px, and if so it shows a button on the contact page
-	 */
-	function backSmall(){
-		if(window.innerWidth < 850){
-			const stickyContactsContent = document.getElementById("stickyContactsContent");
-			stickyContactsContent.classList.remove("dnone");
-			const contentLimiter = document.getElementById("contentLimiter");
-			contentLimiter.classList.add("dnone");
-			const optionsBtn = document.getElementById("optionsBtn");
-			optionsBtn.classList.remove("show");
+}}
 
-		}
-	}
-	
-	/**
-	 * this function adds toggles a evenbt listener for a burger menu
-	 * 
-	 * @param {event} event click
-	 */
-	function toggleBurger(event) {
-		event.stopPropagation();
-		const burgerDiv = document.getElementById("editBurger");
 		
-		if (burgerDiv.classList.contains("slideBurgerIn")) {
-		  closeBurger();
-		} else {
-		  openBurger();
-		  document.addEventListener("click", closeBurgerHandler);
-		}
-	  }
-	  
-	  /**
-	   * this function opens the burger menu
-	   */
-	  function openBurger() {
-		const burgerDiv = document.getElementById("editBurger");
-		burgerDiv.classList.remove("slideBurgerOut");
-		burgerDiv.classList.add("slideBurgerIn");
-	  }
-	  
-	  /**
-	   * this function closes the burgermenu
-	   */
-	  function closeBurger() {
-		const burgerDiv = document.getElementById("editBurger");
-		if (burgerDiv) {
-		  burgerDiv.classList.remove("slideBurgerIn");
-		  burgerDiv.classList.add("slideBurgerOut");
-		}
-	  }
-	  
-	  /**
-	   * this functions removes the burgerhandler if the conditions are met
-	   * 
-	   * @param {event} event click 
-	   */
-	  function closeBurgerHandler(event) {
-		const burgerDiv = document.getElementById("editBurger");
+/**
+ * this functions checks if the width of the viewport is smaller than 650px, and if so thann hides some elements of the contacts page
+ */
+function clickContactSmall(){
+	if(window.innerWidth < 850){
+		const stickyContactsContent = document.getElementById("stickyContactsContent");
+		stickyContactsContent.classList.add("dnone");
+		const contentLimiter = document.getElementById("contentLimiter");
+		contentLimiter.classList.remove("dnone");
 		const optionsBtn = document.getElementById("optionsBtn");
-		
-		if (!burgerDiv.contains(event.target) && event.target !== optionsBtn) {
-		  closeBurger();
-		  document.removeEventListener("click", closeBurgerHandler);
-		}
-	  }
+		optionsBtn.classList.add("show");
+	}
+}
 
-// END RESPONSIVE FUNCTIONS //
 
-// ANIMATION FUNCTIONS //
+/**
+ * this functions checks if the width of the viewport is smaller than 650px, and if so it shows a button on the contact page
+ */
+function backSmall(){
+	if(window.innerWidth < 850){
+		const stickyContactsContent = document.getElementById("stickyContactsContent");
+		stickyContactsContent.classList.remove("dnone");
+		const contentLimiter = document.getElementById("contentLimiter");
+		contentLimiter.classList.add("dnone");
+		const optionsBtn = document.getElementById("optionsBtn");
+		optionsBtn.classList.remove("show");
+
+	}
+}
+
+
+/**
+ * this function adds toggles a evenbt listener for a burger menu
+ * 
+ * @param {event} event click
+ */
+function toggleBurger(event) {
+	event.stopPropagation();
+	const burgerDiv = document.getElementById("editBurger");
+	
+	if (burgerDiv.classList.contains("slideBurgerIn")) {
+		closeBurger();
+	} else {
+		openBurger();
+		document.addEventListener("click", closeBurgerHandler);
+	}
+}
+
+
+/**
+ * this function opens the burger menu
+ */
+function openBurger() {
+const burgerDiv = document.getElementById("editBurger");
+burgerDiv.classList.remove("slideBurgerOut");
+burgerDiv.classList.add("slideBurgerIn");
+}
+
+
+/**
+ * this function closes the burgermenu
+ */
+function closeBurger() {
+const burgerDiv = document.getElementById("editBurger");
+if (burgerDiv) {
+	burgerDiv.classList.remove("slideBurgerIn");
+	burgerDiv.classList.add("slideBurgerOut");
+}
+}
+
+
+/**
+ * this functions removes the burgerhandler if the conditions are met
+ * 
+ * @param {event} event click 
+ */
+function closeBurgerHandler(event) {
+const burgerDiv = document.getElementById("editBurger");
+const optionsBtn = document.getElementById("optionsBtn");
+
+if (!burgerDiv.contains(event.target) && event.target !== optionsBtn) {
+	closeBurger();
+	document.removeEventListener("click", closeBurgerHandler);
+}
+}
+
 
 /**
  * this functions adds the animation do the edit contact dial
@@ -304,6 +320,7 @@ function slideIn() {
 	const editDialContent = document.getElementById("editContactDialContent");
 	editDialContent.classList.toggle("slideIn");
 }
+
 
 /**
  * this function adds a animation to the add contact dial
@@ -315,6 +332,7 @@ function slideInAddContact() {
 	addContactDialContent.classList.toggle("slideIn");
 }
 
+
 /**
  * this function adds a animation to the contactinfo
  */
@@ -324,6 +342,7 @@ function slideInContactInfo() {
 	void contactInfoInfo.offsetWidth;
 	contactInfoInfo.classList.add("slideInContactInfo");
 }
+
 
 /**
  * this function slides in the success div
@@ -341,6 +360,7 @@ function successMsg() {
 	}
 }
 
+
 /**
  * this function adds the slideOut animation to one of the dials
  * 
@@ -350,6 +370,7 @@ function slideOut(contentDial) {
 	contentDial.classList.remove("slideIn");
 	contentDial.classList.add("slideOut");
 }
+
 
 function successMsgMobile(){
 	if(window.innerWidth < 850){
@@ -364,5 +385,3 @@ function successMsgMobile(){
 		addContactDial.close();
 	}
 }
-
-// END ANIMATION FUNCTIONS //

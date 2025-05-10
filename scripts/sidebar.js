@@ -5,6 +5,9 @@ const summaryDiv = document.getElementById("summarySidebarDiv");
 checkPrivacyAndLegalLogIn();
 
 
+/**
+ * This function checks wich side is currently active. The active side will receive a highlighted background color in the sidebar.
+ */
 function highlightSidebarLink() {
 	const currentHtmlSite = window.location.pathname;
 	switch (currentHtmlSite) {
@@ -33,6 +36,9 @@ function highlightSidebarLink() {
 }
 
 
+/**
+ * This function checks if the current active html page is either legalnotice or privacy policy. After it checks if there is any user logged in or not. In dependency to that the highlighting in the sidebar will be accorded to that.
+ */
 function checkPrivacyAndLegalLogIn() {
     const path = window.location.pathname;
 	if (path.includes('legalNotice.html') || path.includes('privacyPolicy.html')) {

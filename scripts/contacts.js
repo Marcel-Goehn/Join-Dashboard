@@ -1,5 +1,4 @@
-const databaseLinkRef =
-	"https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/";
+const databaseLinkRef = "https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/";
 const contactDiv = document.getElementById("contactNameDiv");
 const contactInfoDiv = document.getElementById("contactInfoInfo");
 const addContactDial = document.getElementById("addContactDial");
@@ -9,7 +8,6 @@ const colors = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1"
 let isFetching = false;
 
 
-// FETCH FUNCTIONS //
 /**
  * 
  * @returns - returns the fetched contact data from the firebase server
@@ -23,6 +21,11 @@ async function fetchContactData() {
 	return contactData;
 }
 
+
+/**
+ * 
+ * @returns - It returns the user data as an object
+ */
 async function fetchUserData(){
 	const response = await fetch(
 		`https://join---database-default-rtdb.europe-west1.firebasedatabase.app/users/${user}.json`
@@ -30,6 +33,13 @@ async function fetchUserData(){
 	const userData = await response.json();
 	return userData;
 }
+
+
+/**
+ * 
+ * @param {object} contact 
+ * @returns - Returns if the logged in user is part of the contact list. If it's true, the user will get a (your) after it's name in the contact list
+ */
 async function checkIfUserIsContact(contact){
 	const userData = await fetchUserData();
 	if(contact.email === userData.email){
@@ -37,6 +47,8 @@ async function checkIfUserIsContact(contact){
 	}
 	return false;
 }
+
+
 /**
  * this functions deletes a contact based on a the name of the contact object, renders the contacts again after and than starts a function which deletes the user out of all tasks the user was assigned to
  * 
@@ -59,6 +71,7 @@ async function deleteContact(name) {
 	}
 }
 
+
 /**
  * this functions deletes the a contact based on the contact id and the kanban object out of all assigned tasks, it is starting two more functions, the first gets the kanban object out of the database and the second one filters the kanban object for the issigned contactId
  * 
@@ -76,6 +89,7 @@ async function deleteUserOutOfTask(contactId){
 	}
 }
 
+
 /**
  * this function gets the kanban object from the the firebase database
  * 
@@ -86,6 +100,7 @@ async function fetchKanbanTasks(){
 	const kanbanData = await response.json();
 	return kanbanData;
 }
+
 
 /**
  * this function edits a contact based on the values of the editinputs. It starts three functions, the first is getting the contact id via the value name of the contacts object, the second one reads the input values and the third one renders the contacts with the new values
@@ -117,6 +132,7 @@ async function updateContact(name, event) {
 	
 }
 
+
 /**
  * this function adds a new contact to the firebase database and is starting two functions, the first function reads the newContactInputs and puts them into a obj which gets returned. the second one renders the new contacts based on that new data.
  */
@@ -142,10 +158,6 @@ async function addContact() {
 }
 
 
-// END FETCH FUNCTIONS //
-
-// RENDER FUNCTIONS //
-
 /**
  * this functions renders the new contactlist based on the newly added data, opens the specific contact and closes the dialog
  * 
@@ -163,6 +175,7 @@ async function renderChangedContacts(contactObject){
 	);
 	closeContactDial();
 }
+
 
 /**
  * this function renders the contactlist, it uses the sorted contacts and compares if the previous startinglette of the contactname is the same letter or a new on to the current contactname. if the letter is a new one, it renders this letter into the list.
@@ -205,6 +218,7 @@ async function renderContacts(sortedContacts) {
 	}
 }
 
+
 /**
  * this function starts 3 functions, the first is fetching the contactdataobject from the firebase database, the second one is sorting this object and the third one renders the data
  */
@@ -213,6 +227,7 @@ async function showContacts() {
 	const sortedContacts = sortContacts(contactData);
 	await renderContacts(sortedContacts);
 }
+
 
 /**
  * this function renders the data from the contact that got clicked in the contact list in a bigger format 
@@ -240,6 +255,7 @@ function openContact(email, name, phone, color, index) {
     }
 }
 
+
 /**
  * this functions opens the dialog and renders the editContactDIal via the tempplate.
  * 
@@ -254,6 +270,7 @@ function openEditContactDial(email, name, phone, color) {
 	addContactDial.showModal();
 }
 
+
 /**
  * this function open the dialog and renders the addContactDial via the template.
  */
@@ -261,15 +278,19 @@ function openAddContactDial() {
 	addContactDial.innerHTML = addContactDialTemp();
 	addContactDial.showModal();
 }
-// END RENDER FUNCTIONS //
 
-// HELP FUNCTIONS //
 
+/**
+ * Closes the contact dialog when the user clicks next to it
+ * 
+ * @param {event} event 
+ */
 function closeViaBackdrop(event){
 	if (event.target === addContactDial) {
 				closeContactDial();
 	}
 }
+
 
 /**
  * this functions closes the the dialogs and starts the closing animation
@@ -284,6 +305,7 @@ function closeContactDial() {
 		addContactDial.close();
 	}, 400);
 }
+
 
 /**
  * this functions sorts the contactObject while using object entries to convert that object into an array and destructures that array to only sort the values. after that it maps the sortedArray and removes the key pairs from object entries, so only the values are left and returns that array
@@ -301,6 +323,7 @@ function sortContacts(contactData) {
 	}
 }
 
+
 /**
  * 
  * @param {number/undifined} phone the phonenumber of a specific contact 
@@ -314,6 +337,7 @@ function checkIfUndefined(phone) {
 	return phone;
 }
 
+
 /**
  *  this function colors the background of the initalDiv based on the color of the contact 
  *  
@@ -323,6 +347,7 @@ function checkIfUndefined(phone) {
 function styleBackgroundOfInitials(color, index) {
 	document.getElementById(`shorthand${index}`).style.backgroundColor = color;
 }
+
 
 /**
  * this function converts the surname and the lastname of the contact into the initals of that name
@@ -337,6 +362,7 @@ function shorthandName(name) {
 		.map((partName) => partName[0].toUpperCase())
 		.join("");
 }
+
 
 /**
  * this function colors the contact which got clicked in the contactlist and sets the background color of the other contacts to white
@@ -356,6 +382,10 @@ function colorClickedContact(index) {
 }
 }
 
+
+/**
+ * Removes the background color of all contacts when no one is clicked 
+ */
 function revertClickedContacts(){
 	const acutalContentDivs = document.querySelectorAll(".actualContactDiv");
 	acutalContentDivs.forEach((div) => {
@@ -363,6 +393,7 @@ function revertClickedContacts(){
 		div.classList.add("whiteBackground");
 	});
 }
+
 
 /**
  * this function checks which color the next contact will get. It uses a index or the length of the current contacts object to determine which color to pick out of the colors array. Its using the modulu operator to reassign the first color, if the index/length is bigger than the color array
@@ -373,7 +404,8 @@ function revertClickedContacts(){
 function getColor(index){
 	const color = colors[index % colors.length];
 	return color;
-  }
+}
+
 
 /**
  * this function con converts the kanban object into an array and searches the assigned value for the contactid, everytime the contactId is assigned to a task, it pushes the taskId into an array which gest returned
@@ -392,7 +424,8 @@ function findTaskIdByAssignedContactId(kanbanData, contactId) {
 	  }
 	}
 	return assignedArray;
-  }
+}
+
 
   /**
    * this function fetches the contactdata and searches the object for a specific name, if the name is found it returns the id of that contact
@@ -407,6 +440,7 @@ function findTaskIdByAssignedContactId(kanbanData, contactId) {
 	)?.[0];
 	return contactId;
 }
+
 
 /**
  * this function is reading the input values of the new contact inputs and converts them into an object
@@ -427,6 +461,7 @@ async function getNewContactData() {
 	};
 	return newContactData;
 }
+
 
 /**
  * this function is reading the input values of the edit contact inputs and converts them into an object
@@ -449,6 +484,7 @@ function getEditedContactData() {
 	return editedContactData;
 }
 
+
 /**
  * this function searches for the index and the color of a specific contact and returns it
  * 
@@ -469,7 +505,6 @@ function searchForIndexAndColor(newContactData) {
 	});
 	return [index, color];
 }
-// END HELP FUNCTIONS //
 
 
 
