@@ -17,7 +17,7 @@ let previousInput = 0;
 let foundTasks = [];
 let originalCards = [];
 let originalFoundTasks = [];
-let isFetching = false;
+let isFetchingOpen = false;
 
 
 /**

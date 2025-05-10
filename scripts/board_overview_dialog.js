@@ -1,26 +1,26 @@
 const dialog = document.getElementById('overlay');
 const wrapper = document.querySelector('.wrapper');
-
+let isFetchingOpen = false;
 
 /**
  * This function opens the dialog of the card
  */
 async function openDialog(i) {
-    isFetching = true;
     if (wasDragging) {
         wasDragging = false;
         return;
     }
+    if(isFetchingOpen) return;
+     isFetchingOpen = true;
     try{
- await init();
+    await init();
     const array = getCurrentArray();
     wrapper.innerHTML = getDialogTemplate(i, array);
     dialog.showModal();
     }
-    catch{
-        isFetching = false;
+    finally{
+        isFetchingOpen = false;
     }
-   
 }
 
 

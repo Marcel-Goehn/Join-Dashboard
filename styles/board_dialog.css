@@ -121,7 +121,7 @@ dialog .wrapper {
     margin-top: 0.5rem;
     padding-inline: 1rem;
     max-height: 170px;
-    overflow-y: scroll;
+    overflow-y: auto;
     outline: none;
 }
 
