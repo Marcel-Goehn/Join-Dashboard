@@ -142,6 +142,7 @@ function searchTasks(){
         checkSearchTaskInputValidation(searchInput);
         previousInput = searchInput.length;
     }else if(searchInput.length < 3 && previousInput > searchInput.length){
+        foundTasks = [];
         renderCards(cards);   
     }
 }

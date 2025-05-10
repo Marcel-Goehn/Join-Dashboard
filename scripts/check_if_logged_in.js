@@ -1,11 +1,12 @@
-checkIfLoggedIn();
+document.addEventListener("DOMContentLoaded", checkIfLoggedIn);
 
+function checkIfLoggedIn() {
+    const userObjectForCheck = sessionStorage.getItem("loggedIn");
 
-function checkIfLoggedIn(){
-	const userObjectForCheck = sessionStorage.getItem("loggedIn");
-	if(userObjectForCheck === null || userObjectForCheck === undefined){
-		window.location.href = "../index.html";
-		console.log("NOT CHECKING")
-	}
-
+    if (!userObjectForCheck) {
+        console.log("Not logged in – redirecting...");
+        window.location.href = "../index.html";
+    } else {
+        console.log("User is logged in.");
+    }
 }
