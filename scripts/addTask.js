@@ -45,7 +45,7 @@ async function fetchContacts(){
 function showCorrectData(){
     const [year, month, day] = realDuedate.value.split("-");
     duedate.value = `${day}/${month}/${year}`;
-    checkUploadConditions();
+    checkUploadConditions('customDueDateDiv');
 }
 
 
@@ -216,7 +216,7 @@ function setCategory(category) {
             categorySelection.classList.add('hidden');
             break;
     }
-    checkUploadConditions();
+    checkUploadConditions('category_btn');
 }
 
 
