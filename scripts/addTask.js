@@ -361,7 +361,6 @@ function showRequired() {
         document.getElementById('customDueDateDiv').classList.add('redborder');
     }
     if (selectedCategory.innerHTML == "Select task category") {
-        console.log(selectedCategory);
         document.getElementById('category_btn').classList.add('redborder');
     }
 }
