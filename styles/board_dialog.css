@@ -120,6 +120,8 @@ dialog .wrapper {
 .task-member {
     margin-top: 0.5rem;
     padding-inline: 1rem;
+    max-height: 170px;
+    overflow-y: scroll;
 }
 
 .contact-board-dialog {
@@ -595,6 +597,7 @@ dialog .wrapper {
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .align-subtasks-section {
