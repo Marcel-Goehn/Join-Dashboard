@@ -1,17 +1,12 @@
-/**
- * Initializes the cheIfLoggedIn function when the html page get's opened
- */
+const userObjectForCheck = sessionStorage.getItem("loggedIn");
 checkIfLoggedIn();
 
 
 /**
- * Checks if the user is logged in before the html get's rendered. If he is not logged in he ain't getting permission to access the page and gets redirected to the login page.
+ * This function checks if a user is logged in before the DOM get's rendered. If there is no user logged in, the DOM will not get loaded and the the user will get redirected to the login page.
  */
 function checkIfLoggedIn(){
-	const userObjectForCheck = sessionStorage.getItem("loggedIn");
-	if(userObjectForCheck === null || userObjectForCheck === undefined){
+	if(userObjectForCheck === null || undefined){
 		window.location.href = "../index.html";
-		console.log("NOT CHECKING")
 	}
-
 }

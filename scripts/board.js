@@ -153,6 +153,7 @@ function searchTasks(){
         checkSearchTaskInputValidation(searchInput);
         previousInput = searchInput.length;
     }else if(searchInput.length < 3 && previousInput > searchInput.length){
+        foundTasks = [];
         renderCards(cards);   
     }
 }
@@ -333,14 +334,21 @@ function calculateProgressBar(counter, subtaskLengthArr) {
 function getAssignedUsers(index) {
     const array = getCurrentArray();
     let assignedContactsRef = ``;
+    let userCount = 0;
     for(let [key, value] of Object.entries(array[index].value.assigned)) {
         if (key == "null") {
             continue;
+        }
+        if(userCount > 2){
+            const overflow = Object.entries(array[index].value.assigned).length -3;
+            assignedContactsRef += getAssignedUsersTemplateOverflow(overflow);
+            return assignedContactsRef;
         }
         let [firstName, lastName] = value.name.split(" ");
         firstLetterFName = firstName.slice(0,1);
         firstLetterLName = lastName.slice(0,1);
         assignedContactsRef += getAssignedUsersTemplate(firstLetterFName, firstLetterLName, value.color);
+        userCount++;
     }
     return assignedContactsRef;
 }

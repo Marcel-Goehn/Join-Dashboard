@@ -41,6 +41,10 @@ function getAssignedUsersTemplate(first, last, userColor) {
     return `<div style="background-color: ${userColor};" class="user">${first}${last}</div>`
 }
 
+function getAssignedUsersTemplateOverflow(overflow){
+    return `<div style="background-color: red;" class="user">${overflow}+</div>`
+}
+
 
 /**
  * 
