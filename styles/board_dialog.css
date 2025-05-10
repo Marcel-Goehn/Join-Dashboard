@@ -122,6 +122,7 @@ dialog .wrapper {
     padding-inline: 1rem;
     max-height: 170px;
     overflow-y: scroll;
+    outline: none;
 }
 
 .contact-board-dialog {
