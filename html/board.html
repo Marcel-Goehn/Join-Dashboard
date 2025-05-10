@@ -244,7 +244,7 @@
                     <div id="leftside">
                         <div class="formular-section">
                             <span>Title<span class="star">*</span></span>
-                            <input id="title_input" class="formular-element" type="text" placeholder="Enter a title" onkeyup="checkUploadConditions()">
+                            <input id="title_input" class="formular-element" type="text" placeholder="Enter a title" onkeyup="checkUploadConditions('title_input')">
                             <span class="hidden">this field is required</span>
                         </div>
                         <div class="formular-section">
@@ -257,7 +257,7 @@
                             
                             <div id="shownDateDiv">
                                 <input type="date" id="dueDateInput" oninput="showCorrectData()">
-                                <input id="duedate_input" type="text" placeholder="dd/mm/yyyy" oninput="formcorrectDuedate(), checkUploadConditions()">
+                                <input id="duedate_input" type="text" placeholder="dd/mm/yyyy" oninput="formcorrectDuedate(), checkUploadConditions('customDueDateDiv')">
                                 <img id="calendarIcon" src="../assets/img/addtask/calendar.svg">
                             </div>
                         </div>
@@ -313,7 +313,7 @@
                         </div>
                         <div class="formular-section">
                             <span>Category<span class="star">*</span></span>
-                            <button class="dialog_button no-shadow" id="category_btn" onclick="toggleHidden('category'), rotateArrowIcon('category_icon'), Bubbling(event)">
+                            <button class="dialog_button no-shadow" id="category_btn" onclick="removeRedBorder('category_btn'), toggleHidden('category'), rotateArrowIcon('category_icon'), Bubbling(event)">
                                 <span id="btn_text">Select task category</span>
                                 <img class="icon" id="category_icon" src="../assets/img/addtask/arrow_drop_downaa.svg">
                             </button>
@@ -349,6 +349,7 @@
                         </svg>
                     </button>
                     <button id="confirm_btn" class="dialog_button btn_bigFont" disabled="true" type="confirm" onclick="initBoard(), closeAddTask()">
+                        <div class="zIndex" onclick="showRequired()"></div>
                         <span id="confirm_btn_text">Create Task</span>
                         <img src="../assets/img/addtask/done.svg">
                     </button>

@@ -30,6 +30,9 @@ function closeAddTask() {
  * clears all content from the addtask-dialog
  */
 function clearDialog() {
+	removeRedBorder('customDueDateDiv');
+	removeRedBorder('title_input');
+	removeRedBorder('category_btn');
     title.value = null;
     document.getElementById('description').value = null;
     duedate.value = null;

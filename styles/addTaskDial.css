@@ -197,6 +197,7 @@ body {
 	display: flex;
 	align-items: center;
 	gap: 8px;
+	position: relative;
 }
 #confirm_btn:hover {
 	background-color: #00c0dd;
@@ -237,6 +238,18 @@ ul {
 }
 .listitem {
 	position: relative;
+}
+.redborder {
+	border-color: red !important;
+	outline-color: red !important;
+}
+.zIndex {
+	z-index: 1000;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 .listitem::after {
 	content: "";
