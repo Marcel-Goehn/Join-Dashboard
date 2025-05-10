@@ -134,8 +134,15 @@ function rotateArrowIcon(formularID) {
  */
 function getSelectedContacts() {
     selectedContacts.innerHTML = "";
-    for (const [id, value] of Object.entries(assignedContacts)) {
-        selectedContacts.innerHTML += renderSelectedContactsAsCircle(value.name, id, value.color);
+    for (let displayedAmount = 0; displayedAmount < 4; displayedAmount++) {
+        const contact = Object.entries(assignedContacts)[displayedAmount];
+        if (contact !== undefined) {
+            selectedContacts.innerHTML += renderSelectedContactsAsCircle(contact[1].name, contact[0], contact[1].color);
+        }
+    }
+    if (Object.entries(assignedContacts).length > 4) {
+        const overflow = Object.entries(assignedContacts).length - 4;
+        selectedContacts.innerHTML += renderOverflowAsCircle(overflow);
     }
 }
 

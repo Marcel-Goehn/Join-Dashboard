@@ -37,6 +37,15 @@ function renderSelectedContactsAsCircle(name, id, color) {
 
 
 /**
+ * regulates overflow if selected contacts are more than 4
+ * @param {number} overflow 
+ * @returns a line of code, representing overflow
+ */
+function renderOverflowAsCircle(overflow) {
+    return `<div class="circle", style="background-color: red">+${overflow}</div>`
+}
+
+/**
  * HTML-Element for better user-comprehension
  * @returns a line of code, representing icons
  */
