@@ -115,7 +115,6 @@ textarea:not([rows]) {
 .highlight {
 	background-color: #2a3547;
 	color: white;
-	
 }
 .highlight:hover {
 	background-color: #091931;
@@ -127,7 +126,6 @@ textarea:not([rows]) {
 	height: 42px;
 	width: 42px !important;
 	border-radius: 50%;
-	background-color: red;
 	margin: 6px;
 }
 .circle:hover {
@@ -238,6 +236,7 @@ body {
 	display: flex;
 	align-items: center;
 	gap: 8px;
+	position: relative;
 }
 #confirm_btn:hover {
 	background-color: #00c0dd;
@@ -390,10 +389,6 @@ button:disabled:hover {
     border-radius: 10px;
     height: 48px;
     opacity: 0;
-    /* right: -9%;
-    top: 50%;
-    transform: translate(-50%, -50%); */
-
 	top: 0;
     right: 0;
     width: 100%;
@@ -425,7 +420,6 @@ button:disabled:hover {
 #duedate_input{
   flex-grow: 1;
   border: none;
-  /* font-size: 20px; */
   z-index: 10;
   width: 20px;
    
@@ -439,6 +433,18 @@ button:disabled:hover {
 }
 #calendarIcon:hover{
     cursor: pointer;
+}
+.redborder {
+	border-color: red !important;
+	outline-color: red !important;
+}
+.zIndex {
+	z-index: 1000;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 @media(max-width: 1100px) {
 	body {
