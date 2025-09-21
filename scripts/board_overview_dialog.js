@@ -1,6 +1,6 @@
 const dialog = document.getElementById('overlay');
 const wrapper = document.querySelector('.wrapper');
-let isFetchingOpen = false;
+isFetchingOpen = false;
 
 /**
  * This function opens the dialog of the card
