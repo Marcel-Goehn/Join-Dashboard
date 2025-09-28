@@ -3,8 +3,8 @@ let emailInput = document.getElementById('emailInput');
 let passwordInput = document.getElementById('passwordInput');
 let userInput = Array.from(document.getElementsByClassName('form-element'));
 let PasswordIcon = document.getElementById('PasswordIcon');
-let showPassword = "../Join/assets/img/login/visibility.svg";
-let hidePassword = "../Join/assets/img/login/visibility-off.svg";
+let showPassword = "/assets/img/login/visibility.svg";
+let hidePassword = "/assets/img/login/visibility-off.svg";
 
 
 /**
@@ -104,7 +104,7 @@ async function compareToDatabase() {
     for (const [id, userData] of Object.entries(users)) {
         if (userData.email == emailInput.value && userData.password == passwordInput.value) {
             sessionStorage.setItem("loggedIn", JSON.stringify(id));
-            window.location.href = "../Join/html/summary.html";
+            window.location.href = "/html/summary.html";
             return true;
         }
     }
@@ -125,7 +125,7 @@ function invalidLogin() {
  */
 function loginAsGuest() {
     sessionStorage.setItem("loggedIn", JSON.stringify("-OPjkntrc8LdNwD7XTjA"));
-    window.location.href = "../Join/html/summary.html";
+    window.location.href = "/html/summary.html";
 }
 
 
@@ -158,7 +158,7 @@ function removeInvalidClass(num) {
  * toggles icon between lock-icon (input is empty) and eye-icon (input contains characters)
  */
 function passwordInputisEmpty() {
-    passwordInput.value == "" ? PasswordIcon.src = "../Join/assets/img/login/lock.svg" : checkVisibility();
+    passwordInput.value == "" ? PasswordIcon.src = "/assets/img/login/lock.svg" : checkVisibility();
 }
 
 

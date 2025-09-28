@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "join-6a681",
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
